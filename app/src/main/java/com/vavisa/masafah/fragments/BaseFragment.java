@@ -1,4 +1,4 @@
-package com.vavisa.masafah.activities.fragments;
+package com.vavisa.masafah.fragments;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;

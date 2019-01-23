@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">Masafah</string>
     <string name="mobile">Mobile</string>
+    <string name="upload_shipment_photos">Upload shipment photos</string>
+    <string name="shipment_name">Shipment name*</string>
+    <string name="description">Description*</string>
 </resources>

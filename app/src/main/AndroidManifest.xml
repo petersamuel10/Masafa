@@ -46,6 +46,9 @@
         <activity
             android:name=".activities.AddAddressActivity"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activities.AddShipmentActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>

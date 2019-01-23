@@ -20,7 +20,7 @@ public class StartUpActivity extends BaseActivity {
               sleep(3000);
             } catch (InterruptedException e) {
             } finally {
-              startActivity(new Intent(StartUpActivity.this, AddAddressActivity.class));
+              startActivity(new Intent(StartUpActivity.this, AddShipmentActivity.class));
             }
           }
         };

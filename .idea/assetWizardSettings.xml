@@ -23,7 +23,7 @@
                                 <PersistentState>
                                   <option name="values">
                                     <map>
-                                      <entry key="url" value="jar:file:/Applications/Android%20Studio.app/Contents/plugins/android/lib/android.jar!/images/material_design_icons/navigation/ic_chevron_left_black_24dp.xml" />
+                                      <entry key="url" value="jar:file:/Applications/Android%20Studio.app/Contents/plugins/android/lib/android.jar!/images/material_design_icons/content/ic_remove_black_24dp.xml" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -33,12 +33,12 @@
                         </option>
                         <option name="values">
                           <map>
-                            <entry key="color" value="4293ff" />
-                            <entry key="height" value="36" />
-                            <entry key="outputName" value="ic_chevron_left_primary_36dp" />
+                            <entry key="color" value="ffffff" />
+                            <entry key="height" value="20" />
+                            <entry key="outputName" value="ic_remove_white_20dp" />
                             <entry key="overrideSize" value="true" />
                             <entry key="sourceFile" value="$USER_HOME$" />
-                            <entry key="width" value="36" />
+                            <entry key="width" value="20" />
                           </map>
                         </option>
                       </PersistentState>
