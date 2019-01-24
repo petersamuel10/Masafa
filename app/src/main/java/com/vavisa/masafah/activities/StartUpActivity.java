@@ -17,10 +17,10 @@ public class StartUpActivity extends BaseActivity {
         new Thread() {
           public void run() {
             try {
-              sleep(3000);
+              sleep(1);
             } catch (InterruptedException e) {
             } finally {
-              startActivity(new Intent(StartUpActivity.this, AddShipmentActivity.class));
+              startActivity(new Intent(StartUpActivity.this, MainActivity.class));
             }
           }
         };

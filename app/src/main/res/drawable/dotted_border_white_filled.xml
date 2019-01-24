@@ -8,4 +8,6 @@
         android:dashWidth="2.5dp"
         android:dashGap="5dp" />
 
+    <solid android:color="@android:color/white" />
+
 </shape>

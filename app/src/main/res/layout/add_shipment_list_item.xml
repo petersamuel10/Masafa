@@ -21,8 +21,8 @@
 
     <ImageView
         android:id="@+id/shipment_image"
-        android:layout_width="80dp"
-        android:layout_height="100dp"
+        android:layout_width="100dp"
+        android:layout_height="120dp"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="8dp"
@@ -30,13 +30,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/upload_shipment_photos_tag" />
 
-
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/add_image"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:tint="@android:color/white"
         app:backgroundTint="@color/colorPrimary"
+        app:fabCustomSize="30dp"
         app:layout_constraintBottom_toBottomOf="@+id/shipment_image"
         app:layout_constraintEnd_toEndOf="@+id/shipment_image"
         app:layout_constraintStart_toStartOf="@+id/shipment_image"
@@ -53,7 +53,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:background="@drawable/dotted_border_transparent"
-        android:drawableLeft="@drawable/shipment_name"
+        android:drawableLeft="@drawable/ic_box"
         android:drawableTint="@color/colorPrimary"
         android:hint="@string/shipment_name"
         android:paddingStart="8dp"

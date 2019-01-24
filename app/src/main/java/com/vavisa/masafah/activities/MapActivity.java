@@ -29,7 +29,7 @@ public class MapActivity extends BaseActivity
     super.onCreate(savedInstanceState);
     setContentView(R.layout.fragment_pickup_location);
 
-    Toolbar toolbar = findViewById(R.id.pickup_location_toolbar);
+    Toolbar toolbar = findViewById(R.id.add_shipment_toolbar);
     setSupportActionBar(toolbar);
     TextView toolbarTitle = toolbar.findViewById(R.id.pickup_location_toolbar_title);
     toolbarTitle.setText("Pickup location");

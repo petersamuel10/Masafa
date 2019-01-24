@@ -1,11 +1,9 @@
 package com.vavisa.masafah.activities;
 
-import android.graphics.Rect;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
-import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -29,18 +27,8 @@ public class AddShipmentActivity extends BaseActivity {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_add_new_shipment);
 
+
     shipmentList = findViewById(R.id.shipment_items);
-
-    FloatingActionButton addMoreItem = findViewById(R.id.add_more_item);
-
-    addMoreItem.setOnClickListener(
-        new View.OnClickListener() {
-          @Override
-          public void onClick(View v) {
-            shipments.add("Testing");
-            shipmentAdapter.notifyDataSetChanged();
-          }
-        });
 
     shipmentList.setLayoutManager(new LinearLayoutManager(this));
 
@@ -55,8 +43,14 @@ public class AddShipmentActivity extends BaseActivity {
 
   private class ShipmentViewHolder extends RecyclerView.ViewHolder {
 
+    FloatingActionButton addMoreItems;
+
     public ShipmentViewHolder(@NonNull View itemView) {
       super(itemView);
+
+      // if (getItemViewType() == R.layout.add_new_item) {
+      addMoreItems = itemView.findViewById(R.id.add_more_item);
+      // }
     }
   }
 
@@ -66,23 +60,44 @@ public class AddShipmentActivity extends BaseActivity {
     @Override
     public ShipmentViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
 
-      View v =
-          LayoutInflater.from(viewGroup.getContext())
-              .inflate(R.layout.shipment_list_item, viewGroup, false);
-      return new ShipmentViewHolder(v);
+      View itemView;
+
+      if (i == R.layout.add_shipment_list_item) {
+        itemView =
+            LayoutInflater.from(viewGroup.getContext())
+                .inflate(R.layout.add_shipment_list_item, viewGroup, false);
+      } else {
+        itemView =
+            LayoutInflater.from(viewGroup.getContext())
+                .inflate(R.layout.add_new_item, viewGroup, false);
+      }
+
+      return new ShipmentViewHolder(itemView);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ShipmentViewHolder shipmentViewHolder, int i) {}
+    public void onBindViewHolder(@NonNull ShipmentViewHolder shipmentViewHolder, int i) {
+
+      if (i == shipments.size()) {
+        shipmentViewHolder.addMoreItems.setOnClickListener(
+            new View.OnClickListener() {
+              @Override
+              public void onClick(View v) {
+                shipments.add("Testing");
+                notifyDataSetChanged();
+              }
+            });
+      }
+    }
 
     @Override
     public int getItemCount() {
-      return shipments.size();
+      return shipments.size() + 1;
     }
 
     @Override
     public int getItemViewType(int position) {
-      return super.getItemViewType(position);
+      return (position == shipments.size()) ? R.layout.add_new_item : R.layout.add_shipment_list_item;
     }
   }
 }

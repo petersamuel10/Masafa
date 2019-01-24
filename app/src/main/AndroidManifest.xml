@@ -34,6 +34,10 @@
             </intent-filter>
         </activity>
 
+
+        <activity
+            android:name=".activities.MainActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".activities.MapActivity"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -48,6 +52,9 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".activities.AddShipmentActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activities.SelectLocationActivity"
             android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
