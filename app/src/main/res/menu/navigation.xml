@@ -6,7 +6,10 @@
         android:icon="@drawable/ic_box"
         android:title="My shipments" />
 
-    <item android:title="" />
+    <item
+        android:id="@+id/navigation_add_shipment"
+        android:title="" />
+
 
     <item
         android:id="@+id/navigation_profile"

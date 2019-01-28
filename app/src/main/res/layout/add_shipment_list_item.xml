@@ -55,6 +55,8 @@
         android:background="@drawable/dotted_border_transparent"
         android:drawableLeft="@drawable/ic_box"
         android:drawableTint="@color/colorPrimary"
+        android:focusableInTouchMode="true"
+        android:focusable="true"
         android:hint="@string/shipment_name"
         android:paddingStart="8dp"
         android:paddingLeft="8dp"

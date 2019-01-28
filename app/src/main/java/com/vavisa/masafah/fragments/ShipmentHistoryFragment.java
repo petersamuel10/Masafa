@@ -1,0 +1,161 @@
+package com.vavisa.masafah.fragments;
+
+import android.os.Build;
+import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+import android.support.constraint.ConstraintLayout;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.ViewOutlineProvider;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import com.vavisa.masafah.R;
+import com.vavisa.masafah.util.BottomSpaceItemDecoration;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class ShipmentHistoryFragment extends BaseFragment implements View.OnClickListener {
+
+  private View fragment;
+  private ConstraintLayout buttonLayout;
+  private RecyclerView myShipmentListView;
+  private List<String> myShipments = new ArrayList<>();
+  private ImageView noShipmentsImage;
+  private TextView noShipmentsMessage;
+  private Button deliveredButton;
+  private Button canceledButton;
+
+  @Nullable
+  @Override
+  public View onCreateView(
+      @NonNull LayoutInflater inflater,
+      @Nullable ViewGroup container,
+      @Nullable Bundle savedInstanceState) {
+
+    fragment = inflater.inflate(R.layout.fragment_shipment_history, container, false);
+
+    Toolbar toolbar = fragment.findViewById(R.id.shipment_history_toolbar);
+    ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
+
+    buttonLayout = fragment.findViewById(R.id.profile_layout);
+    myShipmentListView = fragment.findViewById(R.id.my_shipments_list);
+    noShipmentsImage = fragment.findViewById(R.id.no_shipments_image);
+    noShipmentsMessage = fragment.findViewById(R.id.no_shipments_message);
+
+    deliveredButton = buttonLayout.findViewById(R.id.delivered_button);
+    canceledButton = buttonLayout.findViewById(R.id.canceled_button);
+
+    deliveredButton.setOnClickListener(this);
+    canceledButton.setOnClickListener(this);
+
+    myShipmentListView.setLayoutManager(new LinearLayoutManager(getActivity()));
+
+    myShipments.add("Test");
+
+    myShipmentListView.setAdapter(new MyShipmentsDeliveredAdapter());
+
+    myShipmentListView.addItemDecoration(new BottomSpaceItemDecoration(50));
+
+    buttonLayout.post(
+        new Runnable() {
+          @Override
+          public void run() {
+            int height = buttonLayout.getHeight();
+            buttonLayout.setTranslationY(-(height / 2));
+          }
+        });
+
+    if (myShipments.size() == 0) {
+      noShipmentsMessage.setVisibility(View.VISIBLE);
+      noShipmentsImage.setVisibility(View.VISIBLE);
+    }
+
+    return fragment;
+  }
+
+  @Override
+  public void onClick(View v) {
+    switch (v.getId()) {
+      case R.id.delivered_button:
+        deliveredButton.setBackground(
+            getResources().getDrawable(R.drawable.button_rounded_corners_primary_filled));
+        deliveredButton.setTextColor(getResources().getColor(android.R.color.white));
+        canceledButton.setBackground(null);
+        canceledButton.setTextColor(getResources().getColor(R.color.colorPrimary));
+        myShipmentListView.setAdapter(new MyShipmentsDeliveredAdapter());
+        break;
+
+      case R.id.canceled_button:
+        canceledButton.setBackground(
+            getResources().getDrawable(R.drawable.button_rounded_corners_primary_filled));
+        deliveredButton.setBackground(null);
+        canceledButton.setTextColor(getResources().getColor(android.R.color.white));
+        deliveredButton.setTextColor(getResources().getColor(R.color.colorPrimary));
+        myShipmentListView.setAdapter(new MyShipmentsCanceledAdapter());
+        break;
+    }
+  }
+
+  private class MyShipmentsViewHolder extends RecyclerView.ViewHolder {
+
+    public MyShipmentsViewHolder(@NonNull View itemView) {
+      super(itemView);
+
+      if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+        itemView.setOutlineProvider(ViewOutlineProvider.BACKGROUND);
+        itemView.setClipToOutline(true);
+      }
+    }
+  }
+
+  private class MyShipmentsCanceledAdapter extends RecyclerView.Adapter<MyShipmentsViewHolder> {
+
+    @NonNull
+    @Override
+    public MyShipmentsViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+      View v =
+          LayoutInflater.from(viewGroup.getContext())
+              .inflate(R.layout.shipment_history_canceled_list_item, viewGroup, false);
+
+      return new MyShipmentsViewHolder(v);
+    }
+
+    @Override
+    public void onBindViewHolder(@NonNull MyShipmentsViewHolder myShipmentsViewHolder, int i) {}
+
+    @Override
+    public int getItemCount() {
+      return myShipments.size();
+    }
+  }
+
+  private class MyShipmentsDeliveredAdapter extends RecyclerView.Adapter<MyShipmentsViewHolder> {
+
+    @NonNull
+    @Override
+    public MyShipmentsViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+      View v =
+          LayoutInflater.from(viewGroup.getContext())
+              .inflate(R.layout.shipment_history_delivered_list_item, viewGroup, false);
+
+      return new MyShipmentsViewHolder(v);
+    }
+
+    @Override
+    public void onBindViewHolder(@NonNull MyShipmentsViewHolder myShipmentsViewHolder, int i) {}
+
+    @Override
+    public int getItemCount() {
+      return myShipments.size();
+    }
+  }
+}

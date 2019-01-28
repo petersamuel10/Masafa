@@ -43,9 +43,11 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".activities.LoginActivity"
+            android:noHistory="true"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".activities.VerifyYourNumberActivity"
+            android:noHistory="true"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".activities.AddAddressActivity"
@@ -55,6 +57,12 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".activities.SelectLocationActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activities.CompanyDetailsActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activities.PopUpActivity"
             android:theme="@style/AppTheme.NoActionBar" />
     </application>
 

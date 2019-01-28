@@ -2,16 +2,18 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/my_shipments_constraint_layout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/rounded_corners_white_filled">
+    android:background="@drawable/rounded_corners_white_filled"
+    android:clipChildren="true">
 
 
     <View
         android:id="@+id/side_border"
-        android:layout_width="6dp"
+        android:layout_width="10dp"
         android:layout_height="0dp"
-        android:background="@drawable/border_left_primary_filled"
+        android:background="@color/colorPrimary"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -56,17 +58,18 @@
         app:layout_constraintWidth_percent="0.4" />
 
     <Button
-        android:id="@+id/pending_button"
+        android:id="@+id/accepted_button"
         android:layout_width="wrap_content"
         android:layout_height="30dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
         android:layout_marginTop="32dp"
         android:layout_marginBottom="8dp"
-        android:background="@drawable/button_oval_grey_filled"
-        android:text="@string/pending"
+        android:background="@drawable/button_oval_red_filled"
+        android:text="Canceled"
         android:textAllCaps="false"
         android:textColor="@android:color/white"
+        android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/side_border"
         app:layout_constraintTop_toBottomOf="@+id/shipment_description" />
@@ -88,7 +91,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/pickup_location"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -99,11 +102,11 @@
         android:text="Salmiya"
         android:textColor="@android:color/black"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/imageView2"
+        app:layout_constraintStart_toEndOf="@+id/filled_circle"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/filled_circle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
@@ -115,7 +118,7 @@
         app:srcCompat="@drawable/ic_filled_circle" />
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/empty_circle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -129,7 +132,7 @@
         app:srcCompat="@drawable/ic_empty_circle" />
 
     <TextView
-        android:id="@+id/textView5"
+        android:id="@+id/drop_location_area"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -142,11 +145,11 @@
         android:textColor="@android:color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/imageView"
+        app:layout_constraintStart_toEndOf="@+id/empty_circle"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/imageView3"
+        android:id="@+id/location_icon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -156,9 +159,9 @@
         android:layout_marginBottom="8dp"
         android:background="#E3EDFA"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/textView5"
+        app:layout_constraintEnd_toEndOf="@+id/drop_location_area"
         app:layout_constraintStart_toEndOf="@+id/light_divider"
-        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        app:layout_constraintTop_toBottomOf="@+id/empty_circle"
         app:srcCompat="@drawable/ic_location_on_primary_32dp" />
 
     <TextView
@@ -170,8 +173,8 @@
         android:text="@string/distance"
         android:textColor="@android:color/darker_gray"
         android:textSize="10sp"
-        app:layout_constraintStart_toEndOf="@+id/imageView3"
-        app:layout_constraintTop_toTopOf="@+id/imageView3" />
+        app:layout_constraintStart_toEndOf="@+id/location_icon"
+        app:layout_constraintTop_toTopOf="@+id/location_icon" />
 
     <TextView
         android:id="@+id/textView7"
@@ -182,18 +185,46 @@
         android:text="12 km"
         android:textColor="@android:color/black"
         android:textSize="12sp"
-        app:layout_constraintStart_toEndOf="@+id/imageView3"
+        app:layout_constraintStart_toEndOf="@+id/location_icon"
         app:layout_constraintTop_toBottomOf="@+id/distance_tag" />
 
     <View
         android:id="@+id/vertical_dotted_lines"
-        android:layout_width="3dp"
+        android:layout_width="80dp"
         android:layout_height="0dp"
-        android:background="@drawable/dotted_vertical_line_primary"
-        app:layout_constraintBottom_toTopOf="@+id/imageView"
-        app:layout_constraintEnd_toEndOf="@+id/imageView2"
-        app:layout_constraintStart_toStartOf="@+id/imageView2"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="4dp"
+        android:background="@drawable/vertical_dotted_lines_small"
+        android:layerType="software"
+        app:layout_constraintBottom_toTopOf="@+id/empty_circle"
+        app:layout_constraintEnd_toEndOf="@+id/filled_circle"
+        app:layout_constraintStart_toStartOf="@+id/filled_circle"
+        app:layout_constraintTop_toBottomOf="@+id/filled_circle" />
 
+    <TextView
+        android:id="@+id/by_tag"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:text="@string/by"
+        app:layout_constraintBottom_toBottomOf="@+id/accepted_button"
+        app:layout_constraintStart_toEndOf="@+id/accepted_button"
+        app:layout_constraintTop_toTopOf="@+id/accepted_button" />
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/delivery_company_image"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:src="@drawable/masafah_icon"
+        app:layout_constraintBottom_toBottomOf="@+id/by_tag"
+        app:layout_constraintEnd_toStartOf="@+id/light_divider"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/by_tag"
+        app:layout_constraintTop_toTopOf="@+id/by_tag" />
 
 </android.support.constraint.ConstraintLayout>

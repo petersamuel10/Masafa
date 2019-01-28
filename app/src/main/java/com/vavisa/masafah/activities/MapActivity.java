@@ -1,12 +1,15 @@
 package com.vavisa.masafah.activities;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
@@ -23,6 +26,7 @@ public class MapActivity extends BaseActivity
   private GoogleMap map;
   private static final String TAG = MapActivity.class.getName();
   private FusedLocationProviderClient fusedLocationProviderClient;
+  private Button selectButton;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -35,12 +39,20 @@ public class MapActivity extends BaseActivity
     toolbarTitle.setText("Pickup location");
     setTitle("");
 
-    getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-    getSupportActionBar().setDisplayShowHomeEnabled(true);
+    selectButton = findViewById(R.id.select_button);
 
     SupportMapFragment mapFragment =
         (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
     mapFragment.getMapAsync(this);
+
+    selectButton.setOnClickListener(
+        new View.OnClickListener() {
+          @Override
+          public void onClick(View v) {
+            startActivity(new Intent(MapActivity.this, AddAddressActivity.class));
+            finish();
+          }
+        });
   }
 
   /*private void getDeviceLocation() {
