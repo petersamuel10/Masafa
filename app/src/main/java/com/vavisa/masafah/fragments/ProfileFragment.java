@@ -6,6 +6,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
@@ -15,12 +16,14 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.orhanobut.dialogplus.DialogPlus;
 import com.orhanobut.dialogplus.ViewHolder;
 import com.vavisa.masafah.R;
+import com.vavisa.masafah.activities.LoginActivity;
 import com.vavisa.masafah.util.GridSpaceItemDecoration;
 
 import java.util.ArrayList;
@@ -28,12 +31,13 @@ import java.util.List;
 
 import static com.vavisa.masafah.activities.MainActivity.navigationView;
 
-public class ProfileFragment extends BaseFragment {
+public class ProfileFragment extends BaseFragment implements View.OnClickListener {
 
   private View fragment;
   private RecyclerView profileGridView;
   private List<Profile> profileItems;
   private ConstraintLayout profileLayout;
+  private Button logout;
 
   @Nullable
   @Override
@@ -51,6 +55,9 @@ public class ProfileFragment extends BaseFragment {
 
       profileLayout = fragment.findViewById(R.id.profile_layout);
       profileGridView = fragment.findViewById(R.id.profile_items);
+      logout = fragment.findViewById(R.id.logout_button);
+
+      logout.setOnClickListener(this);
 
       profileLayout.post(
           new Runnable() {
@@ -75,6 +82,20 @@ public class ProfileFragment extends BaseFragment {
     profileGridView.setAdapter(new ProfileAdapter());
 
     return fragment;
+  }
+
+  @Override
+  public void onClick(View v) {
+    switch (v.getId()) {
+      case R.id.logout_button:
+        getActivity()
+            .getSupportFragmentManager()
+            .popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+        Intent intent = new Intent(getActivity(), LoginActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);
+        break;
+    }
   }
 
   private class ProfileViewHolder extends RecyclerView.ViewHolder {

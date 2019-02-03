@@ -7,7 +7,7 @@
     android:background="@color/background">
 
     <android.support.v7.widget.Toolbar
-        android:id="@+id/shipment_history_toolbar"
+        android:id="@+id/my_shipments_toolbar"
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:theme="@style/ToolbarTheme"
@@ -40,7 +40,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/shipment_history_toolbar">
+        app:layout_constraintTop_toBottomOf="@+id/my_shipments_toolbar">
 
         <Button
             android:id="@+id/pending_button"

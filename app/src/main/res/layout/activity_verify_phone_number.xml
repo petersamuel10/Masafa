@@ -67,8 +67,9 @@
             style="@style/pin_edittext_style"
             android:layout_width="70dp"
             android:layout_height="wrap_content"
+
             android:focusableInTouchMode="true"
-            android:inputType="number"
+            android:inputType="numberPassword"
             android:maxLength="1"
             android:textSize="26sp"
             app:layout_constraintStart_toStartOf="parent" />
@@ -78,7 +79,7 @@
             style="@style/pin_edittext_style"
             android:layout_width="70dp"
             android:layout_height="wrap_content"
-            android:inputType="number"
+            android:inputType="numberPassword"
             android:maxLength="1"
             android:textSize="26sp"
             app:layout_constraintStart_toEndOf="@+id/otp_code_1" />
@@ -88,17 +89,18 @@
             style="@style/pin_edittext_style"
             android:layout_width="70dp"
             android:layout_height="wrap_content"
-            android:inputType="number"
+            android:inputType="numberPassword"
             android:maxLength="1"
             android:textSize="26sp"
             app:layout_constraintStart_toEndOf="@+id/otp_code_2" />
 
         <EditText
+
             android:id="@+id/otp_code_4"
             style="@style/pin_edittext_style"
             android:layout_width="70dp"
             android:layout_height="wrap_content"
-            android:inputType="number"
+            android:inputType="numberPassword"
             android:maxLength="1"
             android:textSize="26sp"
             app:layout_constraintEnd_toEndOf="parent"

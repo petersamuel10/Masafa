@@ -48,7 +48,7 @@ public class MyShipmentsFragment extends BaseFragment implements View.OnClickLis
 
     if (fragment == null) {
       fragment = inflater.inflate(R.layout.fragment_my_shipments, container, false);
-      Toolbar toolbar = fragment.findViewById(R.id.add_shipment_toolbar);
+      Toolbar toolbar = fragment.findViewById(R.id.my_shipments_toolbar);
       ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
 
       buttonLayout = fragment.findViewById(R.id.profile_layout);

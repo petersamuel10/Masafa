@@ -23,6 +23,8 @@ import com.vavisa.masafah.util.BottomSpaceItemDecoration;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.vavisa.masafah.activities.MainActivity.navigationView;
+
 public class ShipmentHistoryFragment extends BaseFragment implements View.OnClickListener {
 
   private View fragment;
@@ -41,38 +43,45 @@ public class ShipmentHistoryFragment extends BaseFragment implements View.OnClic
       @Nullable ViewGroup container,
       @Nullable Bundle savedInstanceState) {
 
-    fragment = inflater.inflate(R.layout.fragment_shipment_history, container, false);
+    if (fragment == null) {
+      fragment = inflater.inflate(R.layout.fragment_shipment_history, container, false);
 
-    Toolbar toolbar = fragment.findViewById(R.id.shipment_history_toolbar);
-    ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
+      Toolbar toolbar = fragment.findViewById(R.id.shipment_history_toolbar);
+      ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
 
-    buttonLayout = fragment.findViewById(R.id.profile_layout);
-    myShipmentListView = fragment.findViewById(R.id.my_shipments_list);
-    noShipmentsImage = fragment.findViewById(R.id.no_shipments_image);
-    noShipmentsMessage = fragment.findViewById(R.id.no_shipments_message);
+      buttonLayout = fragment.findViewById(R.id.profile_layout);
+      myShipmentListView = fragment.findViewById(R.id.my_shipments_list);
+      noShipmentsImage = fragment.findViewById(R.id.no_shipments_image);
+      noShipmentsMessage = fragment.findViewById(R.id.no_shipments_message);
 
-    deliveredButton = buttonLayout.findViewById(R.id.delivered_button);
-    canceledButton = buttonLayout.findViewById(R.id.canceled_button);
+      deliveredButton = buttonLayout.findViewById(R.id.delivered_button);
+      canceledButton = buttonLayout.findViewById(R.id.canceled_button);
 
-    deliveredButton.setOnClickListener(this);
-    canceledButton.setOnClickListener(this);
+      deliveredButton.setOnClickListener(this);
+      canceledButton.setOnClickListener(this);
 
-    myShipmentListView.setLayoutManager(new LinearLayoutManager(getActivity()));
+      myShipmentListView.setLayoutManager(new LinearLayoutManager(getActivity()));
+
+      buttonLayout.post(
+          new Runnable() {
+            @Override
+            public void run() {
+              int height = buttonLayout.getHeight();
+              buttonLayout.setTranslationY(-(height / 2));
+            }
+          });
+    } else {
+      for (int i = 1; i < navigationView.getMenu().size(); i++) {
+        navigationView.getMenu().getItem(i).setChecked(false);
+      }
+      navigationView.getMenu().getItem(1).setChecked(true);
+    }
 
     myShipments.add("Test");
 
     myShipmentListView.setAdapter(new MyShipmentsDeliveredAdapter());
 
     myShipmentListView.addItemDecoration(new BottomSpaceItemDecoration(50));
-
-    buttonLayout.post(
-        new Runnable() {
-          @Override
-          public void run() {
-            int height = buttonLayout.getHeight();
-            buttonLayout.setTranslationY(-(height / 2));
-          }
-        });
 
     if (myShipments.size() == 0) {
       noShipmentsMessage.setVisibility(View.VISIBLE);

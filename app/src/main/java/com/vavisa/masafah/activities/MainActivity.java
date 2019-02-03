@@ -1,13 +1,7 @@
 package com.vavisa.masafah.activities;
 
-import android.content.Context;
 import android.content.Intent;
-import android.graphics.Canvas;
-import android.graphics.Path;
-import android.graphics.RectF;
-import android.icu.util.MeasureUnit;
 import android.support.annotation.NonNull;
-import android.support.design.internal.BottomNavigationMenuView;
 import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
@@ -15,20 +9,12 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.DisplayMetrics;
-import android.util.TypedValue;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.vavisa.masafah.R;
 import com.vavisa.masafah.fragments.MyShipmentsFragment;
 import com.vavisa.masafah.fragments.ProfileFragment;
-import com.vavisa.masafah.fragments.ShipmentDetailsFragment;
-
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -70,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
             case R.id.navigation_shipments:
               backStackEntryAt = getFragmentBackStackEntryAt("myShipments");
 
-              if (backStackEntryAt > 0) {
+              if (backStackEntryAt >= 0) {
                 getSupportFragmentManager()
                     .popBackStack(backStackEntryAt + 1, FragmentManager.POP_BACK_STACK_INCLUSIVE);
               } else {
@@ -95,14 +81,21 @@ public class MainActivity extends AppCompatActivity {
               break;
 
             case R.id.navigation_profile:
-              if (!"profile"
-                  .equals(
-                      getSupportFragmentManager()
-                          .getBackStackEntryAt(
-                              getSupportFragmentManager().getBackStackEntryCount() - 1)
-                          .getName())) {
-                fragment = new ProfileFragment();
-                switchFragment(fragment, "profile");
+              backStackEntryAt = getFragmentBackStackEntryAt("profile");
+
+              if (backStackEntryAt > 0) {
+                getSupportFragmentManager()
+                    .popBackStack(backStackEntryAt + 1, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+              } else {
+                if (!"profile"
+                    .equals(
+                        getSupportFragmentManager()
+                            .getBackStackEntryAt(
+                                getSupportFragmentManager().getBackStackEntryCount() - 1)
+                            .getName())) {
+                  fragment = new ProfileFragment();
+                  switchFragment(fragment, "profile");
+                }
               }
 
               return true;

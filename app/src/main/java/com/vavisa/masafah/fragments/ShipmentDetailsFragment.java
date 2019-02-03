@@ -3,19 +3,19 @@ package com.vavisa.masafah.fragments;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v4.view.GravityCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 
 import com.vavisa.masafah.R;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.vavisa.masafah.activities.MainActivity.navigationView;
 
 public class ShipmentDetailsFragment extends BaseFragment {
 
@@ -30,13 +30,20 @@ public class ShipmentDetailsFragment extends BaseFragment {
       @Nullable ViewGroup container,
       @Nullable Bundle savedInstanceState) {
 
-    fragment = inflater.inflate(R.layout.fragment_shipment_details, container, false);
-    imagesListView = fragment.findViewById(R.id.images_list);
+    if (fragment == null) {
+      fragment = inflater.inflate(R.layout.fragment_shipment_details, container, false);
+      imagesListView = fragment.findViewById(R.id.images_list);
 
-    RecyclerView.LayoutManager layoutManager =
-        new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
+      RecyclerView.LayoutManager layoutManager =
+          new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
 
-    imagesListView.setLayoutManager(layoutManager);
+      imagesListView.setLayoutManager(layoutManager);
+    } else {
+      for (int i = 1; i < navigationView.getMenu().size(); i++) {
+        navigationView.getMenu().getItem(i).setChecked(false);
+      }
+      navigationView.getMenu().getItem(0).setChecked(true);
+    }
 
     images.add(R.drawable.sofa_single);
     images.add(R.drawable.flooar_mat);

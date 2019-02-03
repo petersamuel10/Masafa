@@ -56,8 +56,8 @@ public class VerifyYourNumberActivity extends BaseActivity {
 
           @Override
           public void afterTextChanged(Editable s) {
-            otpCode1.setFocusable(false);
-            otpCode2.setFocusable(true);
+            otpCode1.clearFocus();
+            otpCode2.requestFocus();
           }
         });
     otpCode2.addTextChangedListener(
@@ -70,8 +70,8 @@ public class VerifyYourNumberActivity extends BaseActivity {
 
           @Override
           public void afterTextChanged(Editable s) {
-            otpCode2.setFocusable(false);
-            otpCode3.setFocusable(true);
+            otpCode2.clearFocus();
+            otpCode3.requestFocus();
           }
         });
     otpCode3.addTextChangedListener(
@@ -84,9 +84,15 @@ public class VerifyYourNumberActivity extends BaseActivity {
 
           @Override
           public void afterTextChanged(Editable s) {
-            otpCode3.setFocusable(false);
-            otpCode4.setFocusable(true);
+            otpCode3.clearFocus();
+            otpCode4.requestFocus();
           }
         });
+  }
+
+  @Override
+  public boolean onSupportNavigateUp() {
+    onBackPressed();
+    return super.onSupportNavigateUp();
   }
 }
