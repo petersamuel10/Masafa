@@ -16,6 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewOutlineProvider;
 import android.widget.Button;
+import android.widget.RelativeLayout;
 
 import com.vavisa.masafah.R;
 import com.vavisa.masafah.util.BottomSpaceItemDecoration;
@@ -50,6 +51,7 @@ public class MyShipmentsFragment extends BaseFragment implements View.OnClickLis
       fragment = inflater.inflate(R.layout.fragment_my_shipments, container, false);
       Toolbar toolbar = fragment.findViewById(R.id.my_shipments_toolbar);
       ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
+      getActivity().setTitle("");
 
       buttonLayout = fragment.findViewById(R.id.profile_layout);
       myShipmentListView = fragment.findViewById(R.id.my_shipment_list);
@@ -61,12 +63,21 @@ public class MyShipmentsFragment extends BaseFragment implements View.OnClickLis
       acceptedButton.setOnClickListener(this);
       myShipmentListView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
+      myShipments.add("Test");
+
+      myShipmentListView.setAdapter(new MyShipmentsPendingAdapter());
+
+      myShipmentListView.addItemDecoration(new BottomSpaceItemDecoration(50));
+
       buttonLayout.post(
           new Runnable() {
             @Override
             public void run() {
               int height = buttonLayout.getHeight();
-              buttonLayout.setTranslationY(-(height / 2));
+              RelativeLayout.LayoutParams layoutParams =
+                  (RelativeLayout.LayoutParams) buttonLayout.getLayoutParams();
+              layoutParams.topMargin = -(height / 2);
+              buttonLayout.setLayoutParams(layoutParams);
             }
           });
     } else {
@@ -78,12 +89,6 @@ public class MyShipmentsFragment extends BaseFragment implements View.OnClickLis
       }
       navigationView.getMenu().getItem(0).setChecked(true);
     }
-
-    myShipments.add("Test");
-
-    myShipmentListView.setAdapter(new MyShipmentsPendingAdapter());
-
-    myShipmentListView.addItemDecoration(new BottomSpaceItemDecoration(50));
 
     return fragment;
   }

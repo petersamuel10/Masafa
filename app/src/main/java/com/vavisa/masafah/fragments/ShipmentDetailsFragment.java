@@ -1,5 +1,6 @@
 package com.vavisa.masafah.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -9,8 +10,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.vavisa.masafah.R;
+import com.vavisa.masafah.activities.CompanyDetailsActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,6 +25,7 @@ public class ShipmentDetailsFragment extends BaseFragment {
   private View fragment;
   private RecyclerView imagesListView;
   private List<Integer> images = new ArrayList<>();
+  private TextView deliveryCompanyName;
 
   @Nullable
   @Override
@@ -33,6 +37,7 @@ public class ShipmentDetailsFragment extends BaseFragment {
     if (fragment == null) {
       fragment = inflater.inflate(R.layout.fragment_shipment_details, container, false);
       imagesListView = fragment.findViewById(R.id.images_list);
+      deliveryCompanyName = fragment.findViewById(R.id.delivery_company_name);
 
       RecyclerView.LayoutManager layoutManager =
           new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
@@ -50,6 +55,14 @@ public class ShipmentDetailsFragment extends BaseFragment {
     images.add(R.drawable.fridge);
 
     imagesListView.setAdapter(new ImagesAdapter());
+
+    deliveryCompanyName.setOnClickListener(
+        new View.OnClickListener() {
+          @Override
+          public void onClick(View v) {
+            startActivity(new Intent(getActivity(), CompanyDetailsActivity.class));
+          }
+        });
 
     return fragment;
   }

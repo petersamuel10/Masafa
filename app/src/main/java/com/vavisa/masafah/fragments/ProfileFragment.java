@@ -59,6 +59,13 @@ public class ProfileFragment extends BaseFragment implements View.OnClickListene
 
       logout.setOnClickListener(this);
 
+      profileGridView.setLayoutManager(new GridLayoutManager(getActivity(), 2));
+      profileGridView.addItemDecoration(new GridSpaceItemDecoration(25));
+
+      setupProfileItems();
+
+      profileGridView.setAdapter(new ProfileAdapter());
+
       profileLayout.post(
           new Runnable() {
             @Override
@@ -73,13 +80,6 @@ public class ProfileFragment extends BaseFragment implements View.OnClickListene
       }
       navigationView.getMenu().getItem(1).setChecked(true);
     }
-
-    profileGridView.setLayoutManager(new GridLayoutManager(getActivity(), 2));
-    profileGridView.addItemDecoration(new GridSpaceItemDecoration(25));
-
-    setupProfileItems();
-
-    profileGridView.setAdapter(new ProfileAdapter());
 
     return fragment;
   }
