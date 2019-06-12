@@ -7,13 +7,13 @@
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginLeft="32dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="60dp"
         android:layout_marginEnd="32dp"
         android:layout_marginRight="32dp"
-        android:background="#E6FFFFFF"
+        android:background="@drawable/rounded_corners_white_less_opacity"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHeight_percent="0.8"
         app:layout_constraintStart_toStartOf="parent"
@@ -40,52 +40,43 @@
             android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp"
             android:layout_marginTop="8dp"
-            android:text="Sign in"
-            android:textColor="#000000"
+            android:text="Please enter your mobile number"
+            android:textColor="#333333"
             android:textSize="17sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/masafah_icon" />
 
-<android.support.design.widget.TextInputLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginStart="16dp"
-    android:layout_marginLeft="16dp"
-    android:layout_marginTop="0dp"
-    android:layout_marginEnd="16dp"
-    android:layout_marginRight="16dp"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toBottomOf="@+id/sign_in_tag">
-
-
-</android.support.design.widget.TextInputLayout>
-
-        <!--<com.github.florent37.materialtextfield.MaterialTextField
-            android:id="@+id/edit_text_layout"
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/mobile_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp"
+            android:background="@drawable/rounded_corners_white_filled"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:hint="Mobile"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/sign_in_tag">
 
-            app:mtf_animationDuration="100"
-            app:mtf_cardCollapsedHeight="5dp"
-            app:mtf_image="@drawable/ic_smartphone_grey_24dp"
-            app:mtf_labelColor="#666"
-            app:mtf_openKeyboardOnFocus="true">
-
-            <EditText
-                android:id="@+id/editText"
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/mobile_number"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="#FFFFFF"
-                android:hint="@string/mobile"
+                android:backgroundTint="#333333"
+                android:drawableStart="@drawable/ic_phone_android_grey_24dp"
+                android:drawableLeft="@drawable/ic_phone_android_grey_24dp"
                 android:inputType="number" />
 
-        </com.github.florent37.materialtextfield.MaterialTextField>-->
-
+        </android.support.design.widget.TextInputLayout>
 
         <Button
-            android:id="@+id/sign_in_button"
+            android:id="@+id/continue_buton"
             android:layout_width="0dp"
             android:layout_height="40dp"
             android:layout_marginStart="16dp"
@@ -93,51 +84,15 @@
             android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
             android:layout_marginRight="16dp"
+            android:layout_marginBottom="32dp"
             android:background="@color/colorPrimary"
-            android:text="Sign in"
+            android:text="@string/continue_button"
             android:textAllCaps="false"
             android:textColor="#FFFFFF"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="parent" />
-
-        <TextView
-            android:id="@+id/forgot_password"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginTop="24dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
-            android:text="Forgot your password"
-            android:textAlignment="center"
-            android:textColor="@color/colorPrimary"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/sign_in_button" />
-
-        <TextView
-            android:id="@+id/no_account_tag"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="No account?"
-            android:textColor="#9F9E9E"
-            app:layout_constraintStart_toStartOf="@+id/forgot_password"
-            app:layout_constraintTop_toBottomOf="@+id/forgot_password" />
-
-        <TextView
-            android:id="@+id/sign_up"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="Sign up"
-            android:textColor="@color/colorPrimary"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="@+id/forgot_password"
-            app:layout_constraintTop_toBottomOf="@+id/forgot_password" />
+            app:layout_constraintTop_toBottomOf="@+id/mobile_layout" />
 
     </android.support.constraint.ConstraintLayout>
 

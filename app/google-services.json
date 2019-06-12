@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "181872017890",
+    "firebase_url": "https://masafah-user.firebaseio.com",
+    "project_id": "masafah-user",
+    "storage_bucket": "masafah-user.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:181872017890:android:5e17dab0ab3457ca",
+        "android_client_info": {
+          "package_name": "com.vavisa.masafah"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "181872017890-f0j3tdamgp28959k0cqo2rmih0rb554p.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD5Mc4mK_BthupSSOns0UtIke87BD1zIY4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "181872017890-f0j3tdamgp28959k0cqo2rmih0rb554p.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
