@@ -2,19 +2,19 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/navigation_my_shipments"
+        android:id="@+id/navigation_shipments"
         android:icon="@drawable/ic_box"
-        android:title="@string/my_shipment" />
+        android:title="My shipments" />
 
     <item
         android:id="@+id/navigation_add_shipment"
         android:title="" />
 
+
     <item
         android:id="@+id/navigation_profile"
         android:icon="@drawable/ic_account_circle_primary_24dp"
-        android:title="@string/profile" />
-
+        android:title="Profile" />
 
 
 </menu>
