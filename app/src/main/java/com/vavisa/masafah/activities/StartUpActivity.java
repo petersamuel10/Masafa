@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 
 import com.vavisa.masafah.R;
+import com.vavisa.masafah.base.BaseActivity;
+import com.vavisa.masafah.login.LoginActivity;
 
 public class StartUpActivity extends BaseActivity {
 

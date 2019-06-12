@@ -1,6 +1,5 @@
-package com.vavisa.masafah.activities;
+package com.vavisa.masafah.tap_my_shipment.company_details;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.constraint.ConstraintLayout;
@@ -13,7 +12,7 @@ import android.widget.TextView;
 import com.orhanobut.dialogplus.DialogPlus;
 import com.orhanobut.dialogplus.ViewHolder;
 import com.vavisa.masafah.R;
-import com.vavisa.masafah.util.PopUpActivity;
+import com.vavisa.masafah.base.BaseActivity;
 
 public class CompanyDetailsActivity extends BaseActivity implements View.OnClickListener {
 
@@ -64,19 +63,27 @@ public class CompanyDetailsActivity extends BaseActivity implements View.OnClick
     switch (v.getId()) {
       case R.id.rating_icon:
       case R.id.rating_tag:
-        DialogPlus dialogPlus =
+        final DialogPlus dialogPlus =
             DialogPlus.newDialog(CompanyDetailsActivity.this)
                 .setGravity(Gravity.BOTTOM)
                 .setContentHolder(new ViewHolder(R.layout.rating_pop_up))
                 .setContentBackgroundResource(R.drawable.rounded_corners_white_filled)
                 .create();
 
+        ImageView close_btn = (ImageView) dialogPlus.findViewById(R.id.close_button);
+        close_btn.setOnClickListener(new View.OnClickListener() {
+          @Override
+          public void onClick(View v) {
+            dialogPlus.dismiss();
+          }
+        });
+
         dialogPlus.show();
         break;
 
       case R.id.call_icon:
       case R.id.call_us_tag:
-        startActivity(new Intent(CompanyDetailsActivity.this, PopUpActivity.class));
+       // startActivity(new Intent(CompanyDetailsActivity.this, PopUpActivity.class));
         break;
     }
   }

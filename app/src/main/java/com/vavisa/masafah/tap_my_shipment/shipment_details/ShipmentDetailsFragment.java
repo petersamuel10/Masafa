@@ -1,4 +1,4 @@
-package com.vavisa.masafah.fragments;
+package com.vavisa.masafah.tap_my_shipment.shipment_details;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,11 +9,11 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.vavisa.masafah.R;
-import com.vavisa.masafah.activities.CompanyDetailsActivity;
+import com.vavisa.masafah.tap_my_shipment.company_details.CompanyDetailsActivity;
+import com.vavisa.masafah.base.BaseFragment;
 
 import java.util.ArrayList;
 import java.util.List;

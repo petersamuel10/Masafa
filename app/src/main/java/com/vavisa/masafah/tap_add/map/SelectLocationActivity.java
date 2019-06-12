@@ -1,4 +1,4 @@
-package com.vavisa.masafah.activities;
+package com.vavisa.masafah.tap_add.map;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,7 +8,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 
 import com.vavisa.masafah.R;
-import com.vavisa.masafah.map.MapActivity;
+import com.vavisa.masafah.base.BaseActivity;
 
 public class SelectLocationActivity extends BaseActivity implements View.OnClickListener {
 

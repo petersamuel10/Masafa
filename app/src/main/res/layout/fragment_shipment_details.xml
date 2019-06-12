@@ -96,28 +96,6 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/shipment_number_tag" />
 
-                <TextView
-                    android:id="@+id/images_tag"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginTop="24dp"
-                    android:text="Images"
-                    android:textColor="@android:color/black"
-                    android:textStyle="bold"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/shipment_description" />
-
-                <android.support.v7.widget.RecyclerView
-                    android:id="@+id/images_list"
-                    android:layout_width="wrap_content"
-                    android:layout_height="0dp"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginTop="8dp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/images_tag" />
 
                 <View
                     android:id="@+id/horizontal_line"
@@ -128,7 +106,7 @@
                     android:layerType="software"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/images_list" />
+                    app:layout_constraintTop_toBottomOf="@+id/shipment_description" />
 
                 <TextView
                     android:id="@+id/pickup_location"
@@ -253,45 +231,6 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/filled_circle" />
 
-                <ImageView
-                    android:id="@+id/location_icon"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="24dp"
-                    android:layout_marginLeft="24dp"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginBottom="8dp"
-                    android:background="#E3EDFA"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/drop_person_name"
-                    app:layout_constraintVertical_bias="1.0"
-                    app:srcCompat="@drawable/ic_location_on_primary_32dp" />
-
-                <TextView
-                    android:id="@+id/distance_tag"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginLeft="8dp"
-                    android:text="@string/distance"
-                    android:textColor="@android:color/darker_gray"
-                    android:textSize="10sp"
-                    app:layout_constraintStart_toEndOf="@+id/location_icon"
-                    app:layout_constraintTop_toTopOf="@+id/location_icon" />
-
-                <TextView
-                    android:id="@+id/distance"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginLeft="8dp"
-                    android:text="12 km"
-                    android:textColor="@android:color/black"
-                    android:textSize="12sp"
-                    app:layout_constraintStart_toEndOf="@+id/location_icon"
-                    app:layout_constraintTop_toBottomOf="@+id/distance_tag" />
-
                 <View
                     android:id="@+id/horizontal_line_2"
                     android:layout_width="match_parent"
@@ -301,7 +240,7 @@
                     android:layerType="software"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/location_icon" />
+                    app:layout_constraintTop_toBottomOf="@+id/drop_person_name" />
 
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/delivery_company_logo"

@@ -15,14 +15,20 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".util.dialogs.FailedMessage"></activity>
+        <activity
+            android:name=".tap_add.invoice.Invoice"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".tap_add.companies.Companies"
+            android:theme="@style/AppTheme.NoActionBar" />
 
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
-
         <meta-data
-            android:name="com.google.android.maps.v2.API_KEY"
-            android:value="AIzaSyD8dTW12JInsDt352t9PFyLIbFFfE8G6vw" />
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyBpxL6cQvCyuD6lxrCFSsnflf3biyULc6s" />
 
         <activity
             android:name=".activities.StartUpActivity"
@@ -34,37 +40,36 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-
         <activity
             android:name=".activities.MainActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".activities.MapActivity"
+            android:name=".tap_add.map.MapActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".activities.LoginActivity"
+            android:name=".login.LoginActivity"
             android:noHistory="true"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".activities.VerifyYourNumberActivity"
+            android:name=".verify_phone_number.VerifyYourNumberActivity"
             android:noHistory="true"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".activities.AddAddressActivity"
+            android:name=".tap_add.add_address.AddAddress"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".activities.AddShipmentActivity"
+            android:name=".tap_add.AddShipmentActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".activities.SelectLocationActivity"
+            android:name=".tap_add.map.SelectLocationActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".activities.CompanyDetailsActivity"
+            android:name=".tap_my_shipment.company_details.CompanyDetailsActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".activities.PopUpActivity"
-            android:theme="@style/AppTheme.NoActionBar" />
+
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="54cc6074b05a01d36002627727aa0c29a5022a6c" />
     </application>
 
 </manifest>

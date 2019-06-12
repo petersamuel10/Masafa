@@ -2,7 +2,7 @@
     <string name="app_name">Masafah</string>
     <string name="mobile">Mobile</string>
     <string name="upload_shipment_photos">Upload shipment photos</string>
-    <string name="shipment_name">Shipment name*</string>
+    <string name="shipment_name">Shipment Category*</string>
     <string name="description">Description*</string>
     <string name="next">Next</string>
     <string name="items">Items</string>
@@ -33,4 +33,12 @@
         World Net owns the majority of shares.</string>
     <string name="continue_button">Continue</string>
     <string name="my_shipments">My shipments</string>
+    <string name="select_companies">Select companies</string>
+    <string name="select_all">Select all</string>
+    <string name="invoice">Invoice</string>
+    <string name="confirm">Confirm</string>
+    <string name="edit">Edit</string>
+    <string name="delete">Delete</string>
+    <string name="failed">Failed</string>
+    <string name="missing_data">Some information are missing.</string>
 </resources>

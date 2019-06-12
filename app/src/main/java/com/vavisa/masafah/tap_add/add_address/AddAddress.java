@@ -1,4 +1,4 @@
-package com.vavisa.masafah.add_address;
+package com.vavisa.masafah.tap_add.add_address;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,8 +9,8 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.vavisa.masafah.R;
-import com.vavisa.masafah.activities.BaseActivity;
-import com.vavisa.masafah.invoice.Invoice;
+import com.vavisa.masafah.base.BaseActivity;
+import com.vavisa.masafah.tap_add.invoice.Invoice;
 
 public class AddAddress extends BaseActivity {
 

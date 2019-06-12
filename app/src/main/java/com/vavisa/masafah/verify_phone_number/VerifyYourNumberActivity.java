@@ -1,4 +1,4 @@
-package com.vavisa.masafah.activities;
+package com.vavisa.masafah.verify_phone_number;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,6 +11,8 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.vavisa.masafah.R;
+import com.vavisa.masafah.base.BaseActivity;
+import com.vavisa.masafah.activities.MainActivity;
 
 public class VerifyYourNumberActivity extends BaseActivity {
 

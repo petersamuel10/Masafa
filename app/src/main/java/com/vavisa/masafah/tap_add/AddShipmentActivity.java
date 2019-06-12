@@ -1,4 +1,4 @@
-package com.vavisa.masafah.add_shipment;
+package com.vavisa.masafah.tap_add;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,8 +9,8 @@ import android.view.View;
 import android.widget.Button;
 
 import com.vavisa.masafah.R;
-import com.vavisa.masafah.activities.BaseActivity;
-import com.vavisa.masafah.companies.Companies;
+import com.vavisa.masafah.base.BaseActivity;
+import com.vavisa.masafah.tap_add.companies.Companies;
 import com.vavisa.masafah.util.BottomSpaceItemDecoration;
 
 import java.util.ArrayList;

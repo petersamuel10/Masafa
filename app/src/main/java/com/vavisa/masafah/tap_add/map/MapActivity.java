@@ -1,4 +1,4 @@
-package com.vavisa.masafah.map;
+package com.vavisa.masafah.tap_add.map;
 
 import android.Manifest;
 import android.content.Intent;
@@ -26,8 +26,8 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.vavisa.masafah.R;
-import com.vavisa.masafah.add_address.AddAddress;
-import com.vavisa.masafah.activities.BaseActivity;
+import com.vavisa.masafah.tap_add.add_address.AddAddress;
+import com.vavisa.masafah.base.BaseActivity;
 
 import java.io.IOException;
 import java.util.List;

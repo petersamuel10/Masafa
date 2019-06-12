@@ -1,4 +1,4 @@
-package com.vavisa.masafah.fragments;
+package com.vavisa.masafah.tap_profile;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -23,7 +23,9 @@ import android.widget.TextView;
 import com.orhanobut.dialogplus.DialogPlus;
 import com.orhanobut.dialogplus.ViewHolder;
 import com.vavisa.masafah.R;
-import com.vavisa.masafah.activities.LoginActivity;
+import com.vavisa.masafah.login.LoginActivity;
+import com.vavisa.masafah.base.BaseFragment;
+import com.vavisa.masafah.tap_profile.shipment_history.ShipmentHistoryFragment;
 import com.vavisa.masafah.util.GridSpaceItemDecoration;
 
 import java.util.ArrayList;
@@ -141,12 +143,20 @@ public class ProfileFragment extends BaseFragment implements View.OnClickListene
               Fragment fragment = null;
               switch (position) {
                 case 0:
-                  DialogPlus dialogPlus =
+                  final DialogPlus dialogPlus =
                       DialogPlus.newDialog(getActivity())
                           .setGravity(Gravity.BOTTOM)
                           .setContentBackgroundResource(R.drawable.rounded_corners_white_filled)
                           .setContentHolder(new ViewHolder(R.layout.profile_view))
                           .create();
+
+                  ImageView close_btn = (ImageView) dialogPlus.findViewById(R.id.imageView);
+                  close_btn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                      dialogPlus.dismiss();
+                    }
+                  });
 
                   dialogPlus.show();
                   break;

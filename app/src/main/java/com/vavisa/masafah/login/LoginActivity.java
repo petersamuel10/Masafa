@@ -1,4 +1,4 @@
-package com.vavisa.masafah.activities;
+package com.vavisa.masafah.login;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,6 +8,8 @@ import android.view.View;
 import android.widget.Button;
 
 import com.vavisa.masafah.R;
+import com.vavisa.masafah.base.BaseActivity;
+import com.vavisa.masafah.verify_phone_number.VerifyYourNumberActivity;
 
 public class LoginActivity extends BaseActivity {
 
