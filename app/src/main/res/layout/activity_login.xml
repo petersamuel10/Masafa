@@ -47,12 +47,24 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/masafah_icon" />
 
+        <Button
+            android:id="@+id/country_code"
+            android:layout_width="60dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:text="+965"
+            android:background="@drawable/rounded_corners_white_filled"
+            app:layout_constraintBottom_toBottomOf="@+id/mobile_layout"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/mobile_layout" />
+
         <android.support.design.widget.TextInputLayout
             android:id="@+id/mobile_layout"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginLeft="16dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginLeft="4dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="16dp"
             android:layout_marginRight="16dp"
@@ -61,7 +73,7 @@
             android:focusableInTouchMode="true"
             android:hint="Mobile"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/country_code"
             app:layout_constraintTop_toBottomOf="@+id/sign_in_tag">
 
             <android.support.design.widget.TextInputEditText

@@ -4,5 +4,5 @@ import com.vavisa.masafah.base.BaseView;
 
 public interface LoginView extends BaseView {
 
-    void Login();
+    void LoginResult(String otp);
 }

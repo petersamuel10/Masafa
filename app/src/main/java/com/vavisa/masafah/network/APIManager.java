@@ -1,5 +1,7 @@
 package com.vavisa.masafah.network;
 
+import com.vavisa.masafah.util.Constants;
+
 import java.io.IOException;
 
 import okhttp3.Interceptor;
@@ -12,7 +14,6 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class APIManager {
 
     private static APIManager mInstance;
-    private static final String BASE_URL = "";
     private Retrofit mRetrofit;
 
     public APIManager() {
@@ -25,17 +26,23 @@ public class APIManager {
                         Request request = chain.request();
 
                         Request.Builder builder = request.newBuilder()
-                                .addHeader("api-token", "");
+                                .addHeader("Accept-Language", "en")
+                                .addHeader("Content-Type","application/json");
 
                         Request newRequest = builder.build();
 
-                        return chain.proceed(newRequest);
+                        Response response = chain.proceed(newRequest);
+                        if (response.code() == 403) {
+
+                        }
+
+                        return response;
                     }
                 }).build();
 
 
         mRetrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
+                .baseUrl(Constants.BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(httpClient)
                 .build();

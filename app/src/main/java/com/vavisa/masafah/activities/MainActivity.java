@@ -13,11 +13,12 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.vavisa.masafah.R;
+import com.vavisa.masafah.base.BaseActivity;
 import com.vavisa.masafah.tap_add.AddShipmentActivity;
 import com.vavisa.masafah.tap_my_shipment.MyShipmentsFragment;
 import com.vavisa.masafah.tap_profile.ProfileFragment;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity {
 
   public static BottomNavigationView navigationView;
 
