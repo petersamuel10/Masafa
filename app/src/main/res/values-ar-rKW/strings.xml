@@ -3,6 +3,6 @@
     <string name="app_name">Masafah</string>
     <string name="mobile">موبايل</string>
     <string name="continue_button">أستمرار</string>
-    <string name="my_shipment">الشحنات</string>
+    <string name="my_shipments">الشحنات</string>
     <string name="profile">حسابي</string>
 </resources>

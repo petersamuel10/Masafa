@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 
 import com.vavisa.masafah.R;
+import com.vavisa.masafah.base.BaseActivity;
+import com.vavisa.masafah.login.LoginActivity;
 
 public class StartUpActivity extends BaseActivity {
 
@@ -17,10 +19,10 @@ public class StartUpActivity extends BaseActivity {
         new Thread() {
           public void run() {
             try {
-              sleep(3000);
+              sleep(1);
             } catch (InterruptedException e) {
             } finally {
-              startActivity(new Intent(StartUpActivity.this, AddAddressActivity.class));
+              startActivity(new Intent(StartUpActivity.this, LoginActivity.class));
             }
           }
         };
