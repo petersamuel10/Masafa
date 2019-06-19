@@ -1,6 +1,9 @@
 package com.vavisa.masafah.verify_phone_number;
 
+
 import android.graphics.Paint;
+
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.Toolbar;
@@ -140,4 +143,5 @@ public class VerifyYourNumberActivity extends BaseActivity implements VerifyView
     public void OTP(String otp) {
         loginModel.setOtp(otp);
     }
+
 }

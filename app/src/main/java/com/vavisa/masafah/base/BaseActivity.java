@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 
+
 import com.vavisa.masafah.util.dialogs.ConnectionMessage;
 import com.vavisa.masafah.util.dialogs.FailedMessage;
 import com.vavisa.masafah.util.dialogs.ProgressDialog;
@@ -37,6 +38,7 @@ public class BaseActivity extends AppCompatActivity implements BaseView {
     @Override
     public void showMissingData(Response response) {
         FailedMessage.getInstance().show(this, response);
+
     }
 
     @Override
@@ -57,5 +59,6 @@ public class BaseActivity extends AppCompatActivity implements BaseView {
     @Override
     public void showMessage() {
         Toast.makeText(this, "enter mobile number", Toast.LENGTH_SHORT).show();
+
     }
 }

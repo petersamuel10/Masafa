@@ -55,7 +55,7 @@ public class MainActivity extends BaseActivity {
           int backStackEntryAt;
 
           switch (menuItem.getItemId()) {
-            case R.id.navigation_shipments:
+            case R.id.navigation_my_shipments:
               backStackEntryAt = getFragmentBackStackEntryAt("myShipments");
 
               if (backStackEntryAt >= 0) {

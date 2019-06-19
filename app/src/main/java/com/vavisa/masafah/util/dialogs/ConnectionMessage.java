@@ -1,6 +1,8 @@
 package com.vavisa.masafah.util.dialogs;
 
+
 import android.app.Activity;
+
 import android.app.Dialog;
 import android.content.Context;
 import android.graphics.Color;
@@ -10,6 +12,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
+
+import android.view.Window;
+
 
 import com.vavisa.masafah.R;
 
@@ -45,17 +50,6 @@ public class ConnectionMessage {
 
         alertDialog.show();
     }
-
-
-/*
-        dialog = new Dialog(context);
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        dialog.setContentView(R.layout.connection_alert_layout);
-        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-      //  dialog.setCanceledOnTouchOutside(false);
-        dialog.show();
-    }
-*/
 
     public void dismiss(){
         if(dialog != null && dialog.isShowing())

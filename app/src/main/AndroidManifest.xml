@@ -16,7 +16,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".util.dialogs.FailedMessage"/>
+
         <activity
             android:name=".tap_add.invoice.Invoice"
             android:theme="@style/AppTheme.NoActionBar" />

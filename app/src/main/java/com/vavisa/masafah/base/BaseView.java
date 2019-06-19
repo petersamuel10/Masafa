@@ -1,5 +1,6 @@
 package com.vavisa.masafah.base;
 
+
 import retrofit2.Response;
 
 public interface BaseView {

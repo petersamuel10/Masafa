@@ -4,7 +4,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TextInputEditText;
+
 import android.text.TextUtils;
+
+import android.view.View;
+
 import android.widget.Button;
 
 import com.vavisa.masafah.R;
