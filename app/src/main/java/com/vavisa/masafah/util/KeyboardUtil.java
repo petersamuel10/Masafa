@@ -7,7 +7,7 @@ import android.view.inputmethod.InputMethodManager;
 
 public class KeyboardUtil {
 
-   /* public static void showKeyboard(Context context, View view) {
+    public static void showKeyboard(Context context, View view) {
         InputMethodManager imm =
                 (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
         imm.showSoftInput(view, InputMethodManager.SHOW_IMPLICIT);
@@ -17,5 +17,5 @@ public class KeyboardUtil {
         InputMethodManager imm =
                 (InputMethodManager) context.getSystemService(Activity.INPUT_METHOD_SERVICE);
         imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
-    }*/
+    }
 }

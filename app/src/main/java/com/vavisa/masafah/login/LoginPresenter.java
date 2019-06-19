@@ -25,8 +25,8 @@ public class LoginPresenter extends BasePresenter<LoginView> {
                 if (response.code() == 200) {
                     otp = response.body().getOtp();
                     getView().LoginResult(otp);
-                } else {
-
+                } else if (response.code() == 422 || response.code() == 401) {
+                    getView().showMissingData(response);
                 }
             }
 
@@ -34,7 +34,7 @@ public class LoginPresenter extends BasePresenter<LoginView> {
             public void onFailure(Call<LoginResponse> call, Throwable t) {
                 if (t instanceof HttpException) {
                     ResponseBody body = ((HttpException) t).response().errorBody();
-                    Log.d("response ttttt", body.toString());
+                    Log.d("response", body.toString());
                 }
                 getView().hideProgress();
             }

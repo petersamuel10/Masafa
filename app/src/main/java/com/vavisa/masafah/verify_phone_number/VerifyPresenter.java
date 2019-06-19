@@ -19,6 +19,9 @@ public class VerifyPresenter extends BasePresenter<VerifyViews> {
                 getView().hideProgress();
                 if (response.code() == 200)
                     getView().verify_opt(response.body());
+                else if (response.code() == 422 || response.code() == 417) {
+                    getView().showMissingData(response);
+                }
             }
 
             @Override
@@ -37,6 +40,9 @@ public class VerifyPresenter extends BasePresenter<VerifyViews> {
                 getView().hideProgress();
                 if (response.code() == 200)
                     getView().OTP(response.body().getOtp());
+                else if (response.code() == 422) {
+                    getView().showMissingData(response);
+                }
             }
 
             @Override

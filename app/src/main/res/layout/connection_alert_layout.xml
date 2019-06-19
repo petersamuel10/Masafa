@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
@@ -41,18 +42,17 @@
             android:text="Please check your network connection and try again"
             android:textAlignment="center"
             android:textColor="#a1a1a1"
-            android:textStyle="bold"
-            app:layout_constraintTop_toBottomOf="@+id/no_internet_title" />
+            android:textStyle="bold" />
 
         <Button
             android:id="@+id/ok_btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginLeft="32dp"
+            android:layout_marginStart="48dp"
+            android:layout_marginLeft="48dp"
             android:layout_marginTop="16dp"
-            android:layout_marginEnd="32dp"
-            android:layout_marginRight="32dp"
+            android:layout_marginEnd="48dp"
+            android:layout_marginRight="48dp"
             android:layout_marginBottom="16dp"
             android:background="@drawable/button_rounded_primary"
             android:text="OK"
@@ -74,74 +74,3 @@
 
 </android.support.constraint.ConstraintLayout>
 
-<!--<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@android:color/transparent">
-
-
-    <android.support.constraint.ConstraintLayout
-        android:id="@+id/pop_up_layout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@drawable/rounded_corners_white_filled"
-        app:layout_constraintTop_toTopOf="parent">
-
-
-        <TextView
-            android:id="@+id/no_internet_title"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
-            android:gravity="center"
-            android:text="No internet connection"
-            android:textColor="@android:color/black"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/no_internet_message"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:gravity="center"
-            android:text="Please check your network connection and try again"
-            android:textAlignment="center"
-            android:textColor="#a1a1a1"
-            android:textStyle="bold"
-            app:layout_constraintTop_toBottomOf="@+id/no_internet_title" />
-
-        <Button
-            android:id="@+id/ok_button"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginLeft="32dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="32dp"
-            android:layout_marginRight="32dp"
-            android:layout_marginBottom="16dp"
-            android:background="@drawable/button_rounded_primary"
-            android:text="OK"
-            android:textColor="@android:color/white"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/no_internet_message"
-            app:layout_constraintStart_toStartOf="@+id/no_internet_message"
-            app:layout_constraintTop_toBottomOf="@+id/no_internet_message" />
-    </android.support.constraint.ConstraintLayout>
-
-  &lt;!&ndash;  <ImageView
-        android:id="@+id/icon"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
-        android:translationY="-35dp"
-        app:layout_constraintEnd_toEndOf="@+id/pop_up_layout"
-        app:layout_constraintStart_toStartOf="@+id/pop_up_layout"
-        app:layout_constraintTop_toTopOf="@+id/pop_up_layout"
-        app:srcCompat="@drawable/ic_earth_globe" />&ndash;&gt;
-
-</android.support.constraint.ConstraintLayout>-->

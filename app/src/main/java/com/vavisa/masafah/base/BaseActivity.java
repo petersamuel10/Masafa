@@ -3,13 +3,14 @@ package com.vavisa.masafah.base;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 
 import com.vavisa.masafah.util.dialogs.ConnectionMessage;
 import com.vavisa.masafah.util.dialogs.FailedMessage;
 import com.vavisa.masafah.util.dialogs.ProgressDialog;
+
+import retrofit2.Response;
 
 public class BaseActivity extends AppCompatActivity implements BaseView {
     @Override
@@ -34,8 +35,8 @@ public class BaseActivity extends AppCompatActivity implements BaseView {
     }
 
     @Override
-    public void showMissingData() {
-        FailedMessage.getInstance().show(this);
+    public void showMissingData(Response response) {
+        FailedMessage.getInstance().show(this, response);
     }
 
     @Override

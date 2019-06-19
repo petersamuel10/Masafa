@@ -1,5 +1,6 @@
 package com.vavisa.masafah.verify_phone_number;
 
+import android.graphics.Paint;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.Toolbar;
@@ -119,6 +120,7 @@ public class VerifyYourNumberActivity extends BaseActivity implements VerifyView
         otpCode4 = findViewById(R.id.otp_code_4);
 
         resend_otp_txt = findViewById(R.id.resend_otp_txt);
+        resend_otp_txt.setPaintFlags(resend_otp_txt.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
 
         verifyButton = findViewById(R.id.verify_button);
     }

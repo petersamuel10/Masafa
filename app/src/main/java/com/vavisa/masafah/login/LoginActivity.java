@@ -10,6 +10,7 @@ import android.widget.Button;
 import com.vavisa.masafah.R;
 import com.vavisa.masafah.base.BaseActivity;
 import com.vavisa.masafah.util.Connectivity;
+import com.vavisa.masafah.util.Constants;
 import com.vavisa.masafah.util.KeyboardUtil;
 import com.vavisa.masafah.verify_phone_number.VerifyYourNumberActivity;
 
@@ -32,10 +33,10 @@ public class LoginActivity extends BaseActivity implements LoginView {
 
         continueButton.setOnClickListener(
                 v -> {
-                    KeyboardUtil.hideKeyboardFrom(this,continueButton);
+                    KeyboardUtil.hideKeyboardFrom(this, continueButton);
                     if (validate()) {
                         if (Connectivity.checkInternetConnection()) {
-                            Login loginModel = new Login(mobileNumber.getText().toString(), "4");
+                            Login loginModel = new Login(mobileNumber.getText().toString(), "4", Constants.oneSignalToken, 2);
                             loginPresenter.loginFun(loginModel);
                         } else
                             showErrorConnection();
@@ -57,6 +58,5 @@ public class LoginActivity extends BaseActivity implements LoginView {
         intent.putExtra("mobile_number", mobileNumber.getText().toString());
         intent.putExtra("otp", otp);
         startActivity(intent);
-        finish();
     }
 }

@@ -1,40 +1,71 @@
 package com.vavisa.masafah.util.dialogs;
 
-import android.app.Dialog;
-import android.content.Context;
+import android.app.Activity;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.view.Window;
+import android.support.v7.app.AlertDialog;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
 
 import com.vavisa.masafah.R;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
+
+import retrofit2.Response;
+
 public class FailedMessage {
 
-    private Dialog dialog;
+    private String error_msg;
     private static FailedMessage mInstance;
+    private AlertDialog alertDialog;
 
-    public static synchronized FailedMessage getInstance(){
-        if(mInstance == null)
+    public static synchronized FailedMessage getInstance() {
+        if (mInstance == null)
             mInstance = new FailedMessage();
         return mInstance;
     }
 
-    public void show(Context context){
-        if(dialog !=null && dialog.isShowing())
+    public void show(Activity activity, Response response) {
+        if (alertDialog != null && alertDialog.isShowing())
             return;
 
-        dialog = new Dialog(context);
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        dialog.setContentView(R.layout.failed_message_layout);
-        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        dialog.setCanceledOnTouchOutside(false);
-        dialog.show();
+        try {
+            JSONObject error_object = new JSONObject(response.errorBody().string());
+            error_msg = error_object.getString("error");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+
+        LayoutInflater inflater = activity.getLayoutInflater();
+        View view = inflater.inflate(R.layout.failed_message_layout, null);
+        builder.setView(view);
+        alertDialog = builder.create();
+        alertDialog.setCancelable(false);
+        alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+        TextView error_message = view.findViewById(R.id.error_message);
+        error_message.setText(error_msg);
+
+        Button ok_btn = view.findViewById(R.id.ok_btn);
+        ok_btn.setOnClickListener(v -> {
+            alertDialog.dismiss();
+        });
+
+        alertDialog.show();
+
     }
 
-    public void dismiss(){
-        if(dialog !=null && dialog.isShowing())
-            dialog.dismiss();
+    public void dismiss() {
+        if (alertDialog != null && alertDialog.isShowing())
+            alertDialog.dismiss();
     }
 }

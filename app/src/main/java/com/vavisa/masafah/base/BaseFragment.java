@@ -9,11 +9,14 @@ import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.vavisa.masafah.R;
 import com.vavisa.masafah.util.dialogs.ConnectionMessage;
 import com.vavisa.masafah.util.dialogs.FailedMessage;
 import com.vavisa.masafah.util.dialogs.ProgressDialog;
+
+import retrofit2.Response;
 
 public class BaseFragment extends Fragment implements BaseView {
 
@@ -56,8 +59,8 @@ public class BaseFragment extends Fragment implements BaseView {
     }
 
     @Override
-    public void showMissingData() {
-        FailedMessage.getInstance().show(getActivity());
+    public void showMissingData(Response response) {
+        FailedMessage.getInstance().show(getActivity(),response);
     }
 
     @Override
@@ -77,6 +80,6 @@ public class BaseFragment extends Fragment implements BaseView {
 
     @Override
     public void showMessage() {
-
+        Toast.makeText(getContext(), "enter mobile number", Toast.LENGTH_SHORT).show();
     }
 }
