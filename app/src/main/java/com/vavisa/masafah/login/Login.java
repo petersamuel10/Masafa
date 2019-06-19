@@ -1,7 +1,5 @@
 package com.vavisa.masafah.login;
 
-import android.content.Intent;
-
 import com.google.gson.annotations.SerializedName;
 
 public class Login {
@@ -10,7 +8,7 @@ public class Login {
     private String mobile;
 
     @SerializedName("country_id")
-    private String country_id;
+    private Integer country_id;
 
     @SerializedName("otp")
     private String otp;
@@ -22,11 +20,10 @@ public class Login {
     private Integer device_type;
 
 
-
     public Login() {
     }
 
-    public Login(String mobile, String country_id, String onSignal_player_id, Integer device_type) {
+    public Login(String mobile, Integer country_id, String onSignal_player_id, Integer device_type) {
         this.mobile = mobile;
         this.country_id = country_id;
         this.onSignal_player_id = onSignal_player_id;
@@ -41,11 +38,11 @@ public class Login {
         this.mobile = mobile;
     }
 
-    public String getCountry_id() {
+    public Integer getCountry_id() {
         return country_id;
     }
 
-    public void setCountry_id(String country_id) {
+    public void setCountry_id(Integer country_id) {
         this.country_id = country_id;
     }
 

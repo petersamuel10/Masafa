@@ -25,6 +25,7 @@ import com.orhanobut.dialogplus.ViewHolder;
 import com.vavisa.masafah.R;
 import com.vavisa.masafah.login.LoginActivity;
 import com.vavisa.masafah.base.BaseFragment;
+import com.vavisa.masafah.tap_profile.TermsAndCondition.TermsAndConditions;
 import com.vavisa.masafah.tap_profile.shipment_history.ShipmentHistoryFragment;
 import com.vavisa.masafah.util.GridSpaceItemDecoration;
 
@@ -163,6 +164,10 @@ public class ProfileFragment extends BaseFragment implements View.OnClickListene
 
                 case 2:
                   fragment = new ShipmentHistoryFragment();
+                  switchFragment(fragment);
+                  break;
+                case 3:
+                  fragment = new TermsAndConditions();
                   switchFragment(fragment);
                   break;
               }

@@ -1,17 +1,22 @@
 package com.vavisa.masafah.verify_phone_number;
 
+import android.util.Log;
+
 import com.vavisa.masafah.base.BasePresenter;
 import com.vavisa.masafah.login.Login;
 import com.vavisa.masafah.login.LoginResponse;
 import com.vavisa.masafah.network.APIManager;
 
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
+import retrofit2.HttpException;
 import retrofit2.Response;
 
 public class VerifyPresenter extends BasePresenter<VerifyViews> {
 
     public void verify_opt(Login login) {
+
         getView().showProgress();
         APIManager.getInstance().getAPI().verifyOtpCall(login).enqueue(new Callback<VerifyResponseModel>() {
             @Override
@@ -19,14 +24,19 @@ public class VerifyPresenter extends BasePresenter<VerifyViews> {
                 getView().hideProgress();
                 if (response.code() == 200)
                     getView().verify_opt(response.body());
-                else if (response.code() == 422 || response.code() == 417) {
+                else {
                     getView().showMissingData(response);
+                    getView().clearEditText();
                 }
             }
 
             @Override
             public void onFailure(Call<VerifyResponseModel> call, Throwable t) {
-
+                if (t instanceof HttpException) {
+                    ResponseBody body = ((HttpException) t).response().errorBody();
+                    Log.d("error", body.toString());
+                }
+                getView().hideProgress();
             }
         });
     }
@@ -47,7 +57,11 @@ public class VerifyPresenter extends BasePresenter<VerifyViews> {
 
             @Override
             public void onFailure(Call<LoginResponse> call, Throwable t) {
-
+                if (t instanceof HttpException) {
+                    ResponseBody body = ((HttpException) t).response().errorBody();
+                    Log.d("error", body.toString());
+                }
+                getView().hideProgress();
             }
         });
 

@@ -5,6 +5,9 @@ import com.vavisa.masafah.base.BaseView;
 public interface VerifyViews extends BaseView {
 
     void verify_opt(VerifyResponseModel verifyResponseModel);
+
     void OTP(String otp);
+
+    void clearEditText();
 
 }

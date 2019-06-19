@@ -5,6 +5,8 @@ import android.util.Log;
 import com.vavisa.masafah.base.BasePresenter;
 import com.vavisa.masafah.network.APIManager;
 
+import java.util.ArrayList;
+
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -34,7 +36,31 @@ public class LoginPresenter extends BasePresenter<LoginView> {
             public void onFailure(Call<LoginResponse> call, Throwable t) {
                 if (t instanceof HttpException) {
                     ResponseBody body = ((HttpException) t).response().errorBody();
-                    Log.d("response", body.toString());
+                    Log.d("error", body.toString());
+                }
+                getView().hideProgress();
+            }
+        });
+
+    }
+
+    public void getCountries() {
+        getView().showProgress();
+        APIManager.getInstance().getAPI().countryCall().enqueue(new Callback<ArrayList<CountryModel>>() {
+            @Override
+            public void onResponse(Call<ArrayList<CountryModel>> call, Response<ArrayList<CountryModel>> response) {
+                getView().hideProgress();
+                if (response.code() == 200)
+                    getView().countries(response.body());
+                else
+                    getView().showMissingData(response);
+            }
+
+            @Override
+            public void onFailure(Call<ArrayList<CountryModel>> call, Throwable t) {
+                if (t instanceof HttpException) {
+                    ResponseBody body = ((HttpException) t).response().errorBody();
+                    Log.d("error", body.toString());
                 }
                 getView().hideProgress();
             }

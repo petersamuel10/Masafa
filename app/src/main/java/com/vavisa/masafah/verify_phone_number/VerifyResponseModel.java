@@ -24,8 +24,9 @@ public class VerifyResponseModel {
     public void setUser(User user) {
         this.user = user;
     }
+}
 
-    private class User {
+ class User {
 
         @SerializedName("id")
         private String id;
@@ -157,5 +158,4 @@ public class VerifyResponseModel {
         public void setDeleted_at(String deleted_at) {
             this.deleted_at = deleted_at;
         }
-    }
 }
