@@ -16,6 +16,7 @@ import android.widget.RelativeLayout;
 
 import com.vavisa.masafah.R;
 import com.vavisa.masafah.base.BaseFragment;
+import com.vavisa.masafah.util.Connectivity;
 import com.vavisa.masafah.util.Preferences;
 
 import java.util.ArrayList;
@@ -56,7 +57,10 @@ public class MyShipmentsFragment extends BaseFragment implements MyShipmentsView
 
             presenter = new MyShipmentPresenter();
             presenter.attachView(this);
-            presenter.getShipment(Preferences.getInstance().getString("access_token"));
+            if (Connectivity.checkInternetConnection())
+                presenter.getShipment();
+            else
+                showErrorConnection();
 
         } else {
             for (int i = 1; i < navigationView.getMenu().size(); i++) {

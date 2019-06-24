@@ -5,6 +5,8 @@ import android.content.SharedPreferences;
 
 import com.vavisa.masafah.base.BaseApplication;
 
+import java.util.Set;
+
 public class Preferences {
 
     private static Preferences preferences = null;
@@ -31,6 +33,7 @@ public class Preferences {
     }
 
     public String getString(String key) {
+
         return getCurrent().getString(key, null);
     }
 
@@ -55,6 +58,10 @@ public class Preferences {
 
     public void clear(){
         editor.clear().apply();
+    }
+
+    public Boolean isHasKey(String key){
+        return getCurrent().contains(key);
     }
 
     private SharedPreferences getCurrent() {

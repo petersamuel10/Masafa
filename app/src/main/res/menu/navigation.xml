@@ -4,7 +4,7 @@
     <item
         android:id="@+id/navigation_shipments"
         android:icon="@drawable/ic_box"
-        android:title="My shipments" />
+        android:title="@string/my_shipments" />
 
     <item
         android:id="@+id/navigation_add_shipment"
@@ -14,7 +14,7 @@
     <item
         android:id="@+id/navigation_profile"
         android:icon="@drawable/ic_account_circle_primary_24dp"
-        android:title="Profile" />
+        android:title="@string/profile" />
 
 
 </menu>

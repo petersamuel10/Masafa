@@ -44,7 +44,22 @@
     <string name="resend_otp">Resend OTP</string>
     <string name="select_country">Select country</string>
     <string name="termsandconditions">Terms &amp; Conditions</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
+    <string name="select_category">Select category</string>
+    <string name="please_select_category_name_for_previous_shipment">Please select category name for previous shipment</string>
+    <string name="please_select_a_company_or_more_first">Please select a company or more first</string>
+    <string name="select_language">Select Language</string>
+    <string name="select_picture_from">Select picture from :</string>
+    <string name="camera">Camera</string>
+    <string name="gallery">Gallery</string>
+    <string name="edit_mobile">Edit mobile number</string>
+    <string name="cancel">Cancel</string>
+    <string name="please_enter_valid_mobile_number">* Please enter valid mobile number.</string>
+    <string name="count">Count</string>
+    <string name="language">Language</string>
+    <string name="my_details">My details</string>
+    <string name="update">Update</string>
+    <string name="full_name">Full name</string>
+    <string name="email">Email</string>
+    <string name="unselect_all">Unselect all</string>
 
 </resources>

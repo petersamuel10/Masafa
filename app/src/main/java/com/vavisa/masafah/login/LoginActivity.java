@@ -31,8 +31,10 @@ public class LoginActivity extends BaseActivity implements LoginView {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         initViews();
-        // get counties
-        loginPresenter.getCountries();
+        if (Connectivity.checkInternetConnection())
+            loginPresenter.getCountries();
+        else
+            showErrorConnection();
 
         country_code_btn.setOnClickListener(v -> {
 
@@ -40,7 +42,7 @@ public class LoginActivity extends BaseActivity implements LoginView {
             alert.setTitle(getString(R.string.select_country));
             String[] countries_name = new String[countriesList.size()];
             for (int i = 0; i < countriesList.size(); i++) {
-                countries_name[i] = "("+countriesList.get(i).getCountry_code()+") n    "+ countriesList.get(i).getName();
+                countries_name[i] = "(" + countriesList.get(i).getCountry_code() + ")    " + countriesList.get(i).getName();
             }
 
             alert.setSingleChoiceItems(countries_name, select_country_pos, (dialog, position) -> {
@@ -58,7 +60,7 @@ public class LoginActivity extends BaseActivity implements LoginView {
                     KeyboardUtil.hideKeyboardFrom(this, continueButton);
                     if (validate()) {
                         if (Connectivity.checkInternetConnection()) {
-                            Login loginModel = new Login(mobileNumber.getText().toString(), country_id, Constants.oneSignalToken, 2);
+                            Login loginModel = new Login(mobileNumber.getText().toString(), country_id, Constants.ONE_SIGNAL_TOKEN, 2);
                             loginPresenter.loginFun(loginModel);
                         } else
                             showErrorConnection();
@@ -85,7 +87,7 @@ public class LoginActivity extends BaseActivity implements LoginView {
 
     @Override
     public void LoginResult(String otp) {
-        Log.d("OTP",otp);
+        Log.d("OTP", otp);
         Intent intent = new Intent(this, VerifyYourNumberActivity.class);
         intent.putExtra("mobile_number", mobileNumber.getText().toString());
         startActivity(intent);

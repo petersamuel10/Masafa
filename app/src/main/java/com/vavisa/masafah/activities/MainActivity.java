@@ -1,6 +1,7 @@
 package com.vavisa.masafah.activities;
 
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -13,9 +14,12 @@ import android.view.View;
 
 import com.vavisa.masafah.R;
 import com.vavisa.masafah.base.BaseActivity;
-import com.vavisa.masafah.tap_add.AddShipmentActivity;
+import com.vavisa.masafah.tap_add.add_shipment.AddShipmentActivity;
 import com.vavisa.masafah.tap_my_shipment.my_shipments.MyShipmentsFragment;
-import com.vavisa.masafah.tap_profile.ProfileFragment;
+import com.vavisa.masafah.tap_profile.profile.ProfileFragment;
+import com.vavisa.masafah.util.Preferences;
+
+import java.util.Locale;
 
 public class MainActivity extends BaseActivity {
 
@@ -23,6 +27,7 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setLocalization();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -121,8 +126,6 @@ public class MainActivity extends BaseActivity {
         } else {
             finish();
         }
-
-        // super.onBackPressed();
     }
 
     private int getFragmentBackStackEntryAt(String fragmentTagName) {
@@ -133,5 +136,20 @@ public class MainActivity extends BaseActivity {
             }
         }
         return -1;
+    }
+
+    private void setLocalization() {
+        String lang;
+        if (Preferences.getInstance().isHasKey("lan"))
+            lang = (Preferences.getInstance().getString("lan").equals("English")) ? "en" : "ar";
+        else {
+            lang = "en";
+            Preferences.getInstance().putString("lan", "en");
+        }
+        Locale locale = new Locale(lang);
+        Locale.setDefault(locale);
+        Configuration config = new Configuration();
+        config.locale = locale;
+        getBaseContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
     }
 }

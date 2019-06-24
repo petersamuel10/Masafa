@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".tap_add.companies.Companies">
+    tools:context=".tap_add.companies.CompaniesActivity">
 
     <android.support.v7.widget.Toolbar
-        android:id="@+id/select_location_toolbar"
+        android:id="@+id/select_company_toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:theme="@style/ToolbarTheme"
@@ -24,7 +24,11 @@
             android:text="@string/select_companies"
             android:textColor="@android:color/white"
             android:textSize="17sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/select_all_tag"
@@ -32,10 +36,14 @@
             android:layout_height="wrap_content"
             android:layout_gravity="end"
             android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
             android:text="@string/select_all"
             android:textColor="@android:color/white"
             android:textSize="14sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
     </android.support.v7.widget.Toolbar>
 
@@ -47,7 +55,7 @@
         app:layoutManager="android.support.v7.widget.LinearLayoutManager"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/select_location_toolbar"/>
+        app:layout_constraintTop_toBottomOf="@+id/select_company_toolbar" />
 
     <Button
         android:id="@+id/next_button"

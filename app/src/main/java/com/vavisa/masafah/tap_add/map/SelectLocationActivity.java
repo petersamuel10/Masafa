@@ -9,6 +9,7 @@ import android.view.View;
 
 import com.vavisa.masafah.R;
 import com.vavisa.masafah.base.BaseActivity;
+import com.vavisa.masafah.util.Constants;
 
 public class SelectLocationActivity extends BaseActivity implements View.OnClickListener {
 

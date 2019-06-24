@@ -42,7 +42,7 @@
         app:layout_constraintTop_toBottomOf="@+id/company_details_toolbar">
 
         <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/profile_image"
+            android:id="@+id/company_image"
             android:layout_width="70dp"
             android:layout_height="70dp"
             android:layout_marginStart="24dp"
@@ -64,8 +64,8 @@
             android:textColor="@android:color/black"
             android:textSize="18sp"
             android:textStyle="bold"
-            app:layout_constraintStart_toEndOf="@+id/profile_image"
-            app:layout_constraintTop_toTopOf="@+id/profile_image" />
+            app:layout_constraintStart_toEndOf="@+id/company_image"
+            app:layout_constraintTop_toTopOf="@+id/company_image" />
 
         <TextView
             android:id="@+id/user_email"
@@ -76,11 +76,11 @@
             android:text="dhl@gmail.com"
             android:textColor="#A1A1A1"
             android:textSize="12sp"
-            app:layout_constraintStart_toEndOf="@+id/profile_image"
+            app:layout_constraintStart_toEndOf="@+id/company_image"
             app:layout_constraintTop_toBottomOf="@+id/user_name" />
 
         <RatingBar
-            android:id="@+id/ratingBar"
+            android:id="@+id/com_rating"
             style="?android:attr/ratingBarStyleSmall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -91,7 +91,7 @@
             android:progressTint="#ffc700"
             android:rating="4.0"
             android:stepSize="1.0"
-            app:layout_constraintStart_toEndOf="@+id/profile_image"
+            app:layout_constraintStart_toEndOf="@+id/company_image"
             app:layout_constraintTop_toBottomOf="@+id/user_email" />
 
         <TextView
@@ -103,7 +103,7 @@
             android:layout_marginTop="6dp"
             android:text="(245 reviews)"
             android:textColor="#A1A1A1"
-            app:layout_constraintStart_toEndOf="@+id/ratingBar"
+            app:layout_constraintStart_toEndOf="@+id/com_rating"
             app:layout_constraintTop_toBottomOf="@+id/user_email" />
 
     </android.support.constraint.ConstraintLayout>

@@ -2,12 +2,16 @@ package com.vavisa.masafah.base;
 
 import android.app.Application;
 import android.content.Context;
+import android.content.res.Configuration;
 import android.util.Log;
 
 import com.crashlytics.android.Crashlytics;
 import com.onesignal.OneSignal;
 import com.vavisa.masafah.R;
 import com.vavisa.masafah.util.Constants;
+import com.vavisa.masafah.util.Preferences;
+
+import java.util.Locale;
 
 import io.fabric.sdk.android.Fabric;
 
@@ -21,9 +25,8 @@ public class BaseApplication extends Application {
         super.onCreate();
         Fabric.with(this, new Crashlytics());
         context = this;
-
+        Constants.LANGUAGE = Locale.getDefault().getDisplayLanguage();
         setupOnSignal();
-
         error_msg = context.getString(R.string.error_occurred);
     }
 
@@ -39,7 +42,7 @@ public class BaseApplication extends Application {
                     @Override
                     public void idsAvailable(String userId, String registrationId) {
                         Log.d("debug", "User:" + userId);
-                        Constants.oneSignalToken = userId;
+                        Constants.ONE_SIGNAL_TOKEN = userId;
                         if (registrationId != null)
                             Log.d("debug", "registrationId:" + registrationId);
                     }

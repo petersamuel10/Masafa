@@ -91,7 +91,7 @@
         app:layout_constraintTop_toBottomOf="@+id/circleImageView2" />
 
     <RatingBar
-        android:id="@+id/ratingBar"
+        android:id="@+id/com_rating"
         style="?android:attr/ratingBarStyleSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -122,7 +122,7 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ratingBar" />
+        app:layout_constraintTop_toBottomOf="@+id/com_rating" />
 
     <TextView
         android:id="@+id/textView3"

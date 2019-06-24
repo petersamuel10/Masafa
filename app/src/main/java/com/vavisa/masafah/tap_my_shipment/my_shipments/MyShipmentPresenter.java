@@ -4,6 +4,7 @@ import android.util.Log;
 
 import com.vavisa.masafah.base.BasePresenter;
 import com.vavisa.masafah.network.APIManager;
+import com.vavisa.masafah.util.Preferences;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -13,10 +14,10 @@ import retrofit2.Response;
 
 public class MyShipmentPresenter extends BasePresenter<MyShipmentsView> {
 
-    public void getShipment(String user_access_token) {
+    public void getShipment() {
 
         getView().showProgress();
-        APIManager.getInstance().getAPI().getShipmentCall(user_access_token).enqueue(new Callback<ShipmentModel>() {
+        APIManager.getInstance().getAPI().getShipmentCall(Preferences.getInstance().getString("access_token")).enqueue(new Callback<ShipmentModel>() {
             @Override
             public void onResponse(Call<ShipmentModel> call, Response<ShipmentModel> response) {
                 getView().hideProgress();

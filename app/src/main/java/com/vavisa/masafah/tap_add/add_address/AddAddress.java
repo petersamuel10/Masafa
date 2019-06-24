@@ -11,6 +11,7 @@ import android.widget.TextView;
 import com.vavisa.masafah.R;
 import com.vavisa.masafah.base.BaseActivity;
 import com.vavisa.masafah.tap_add.invoice.Invoice;
+import com.vavisa.masafah.util.Constants;
 
 public class AddAddress extends BaseActivity {
 
@@ -25,7 +26,6 @@ public class AddAddress extends BaseActivity {
     setSupportActionBar(toolbar);
     setTitle("");
     TextView toolbarTitle = toolbar.findViewById(R.id.add_address_toolbar_title);
-
     toolbarTitle.setText("Pickup location");
 
     getSupportActionBar().setDisplayHomeAsUpEnabled(true);

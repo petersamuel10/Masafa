@@ -15,6 +15,7 @@ import android.widget.Toast;
 import com.chauthai.swipereveallayout.SwipeRevealLayout;
 import com.vavisa.masafah.R;
 import com.vavisa.masafah.tap_my_shipment.shipment_details.ShipmentDetailsFragment;
+import com.vavisa.masafah.util.Constants;
 
 public class MyShipmentsPendingAdapter extends RecyclerView.Adapter<MyShipmentsPendingAdapter.ViewHolder> {
 
@@ -65,7 +66,10 @@ public class MyShipmentsPendingAdapter extends RecyclerView.Adapter<MyShipmentsP
             super(itemView);
 
             sw = itemView.findViewById(R.id.sw);
-            sw.setDragEdge(2);
+            if(Constants.LANGUAGE == "en")
+                sw.setDragEdge(2);
+            else
+                sw.setDragEdge(1);
             edit_txt = itemView.findViewById(R.id.tv_edit);
             delete_txt = itemView.findViewById(R.id.tv_delete);
 

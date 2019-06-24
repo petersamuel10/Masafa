@@ -3,46 +3,63 @@
     <string name="app_name">Masafah</string>
     <string name="mobile">موبايل</string>
     <string name="shipment_name">تصنيف الشحنة*</string>
-    <string name="description">Description*</string>
-    <string name="next">Next</string>
-    <string name="items">Items</string>
-    <string name="add_new_shipment">Add new shipment</string>
-    <string name="add_new_item">Add new item</string>
-    <string name="select_location">Select location</string>
-    <string name="pickup_location">Pickup Location</string>
-    <string name="price">Price</string>
-    <string name="shipment_number">Shipment #</string>
-    <string name="test_description">This is the description for the shipment that has been added as a part of \'My Shipments\'</string>
-    <string name="pending">Pending</string>
-    <string name="distance">Distance</string>
-    <string name="accepted">Accepted</string>
-    <string name="by">By</string>
-    <string name="shipment_details">Shipment details</string>
-    <string name="delivered">Delivered</string>
-    <string name="total">Total:</string>
-    <string name="canceled">Canceled</string>
-    <string name="no_shipments_message">There are no shipments</string>
-    <string name="shipment_history">Shipment history</string>
-    <string name="profile">Profile</string>
-    <string name="logout">Logout</string>
-    <string name="company_details">Company details</string>
-    <string name="company_test_description">International shipping, courier, and packaging service. DHL was
-        established in 1969 by Adrian Dalsey, Larry Hillblom, and Robert Lynn. The name DHL is derived from the
-        first initial of each founder\'s last name. DHL has numerous cargo transport systems including planes,
-        trains, and boats. DHL serves more than 120,000 designations and 220 countries. As of 2002, Deutsche Post
-        World Net owns the majority of shares.</string>
-    <string name="continue_button">Continue</string>
-    <string name="my_shipments">My shipments</string>
-    <string name="select_companies">Select companies</string>
-    <string name="select_all">Select all</string>
-    <string name="invoice">Invoice</string>
-    <string name="confirm">Confirm</string>
-    <string name="edit">Edit</string>
-    <string name="delete">Delete</string>
-    <string name="failed">Failed</string>
-    <string name="missing_data">Some information are missing.</string>
+    <string name="description">الوصف*</string>
+    <string name="next">التالى</string>
+    <string name="items">عناصر</string>
+    <string name="add_new_shipment">اضافة شحنة جديدة</string>
+    <string name="add_new_item">اضافة عنصر جديد</string>
+    <string name="select_location">اختر الموقع</string>
+    <string name="pickup_location">اختر الموقع</string>
+    <string name="price">السعر</string>
+    <string name="shipment_number">شحنة #</string>
+    <string name="test_description">هذا هو وصف الشحنة التي تمت إضافتها كجزء من </string>
+    <string name="pending">قيد الانتظار</string>
+    <string name="distance">المسافة</string>
+    <string name="accepted">موافقة</string>
+    <string name="by">بواسطة</string>
+    <string name="shipment_details">تفاصيل الشحنة</string>
+    <string name="delivered">تم التوصيل</string>
+    <string name="total">اجمالى:</string>
+    <string name="canceled">الغاء</string>
+    <string name="no_shipments_message">لا توجد شحنات</string>
+    <string name="shipment_history">شحنات سابقة</string>
+    <string name="profile">حسابي</string>
+    <string name="logout">تسجيل خروج</string>
+    <string name="company_details">تفاصيل الشركة</string>
+    <string name="company_test_description">خدمة الشحن الدولي والبريد السريع والتعبئة والتغليف. كان DHL
+        أنشئ في عام 1969 من قبل أدريان دالسي ولاري هيلبلوم وروبرت لين. اسم DHL مشتق من
+        أول الاسم الأول من اسم كل مؤسس. DHL لديها العديد من أنظمة نقل البضائع بما في ذلك الطائرات ،
+        القطارات والقوارب. تقدم DHL أكثر من 120،000 تعيين و 220 دولة. اعتبارا من عام 2002 ، دويتشه بوست
+        تمتلك World World غالبية الأسهم.</string>
+    <string name="continue_button">استمرار</string>
+    <string name="my_shipments">شحناتي</string>
+    <string name="select_companies">اختر الشركات</string>
+    <string name="select_all">اختيار الكل</string>
+    <string name="invoice">فاتوره</string>
+    <string name="confirm">تأكيد</string>
+    <string name="edit">تعديل</string>
+    <string name="delete">حذف</string>
+    <string name="failed">فشل</string>
+    <string name="missing_data">بعض البيانات مفقوده.</string>
     <string name="error_occurred">حدث خطأ , حاول مرة اخرى.</string>
-    <string name="resend_otp">Resend OTP</string>
+    <string name="resend_otp">اعإده ارسال OTP</string>
     <string name="select_country">أختر الدولة</string>
     <string name="termsandconditions">الشروط والاحكام</string>
+    <string name="select_category">اختر التصنيف</string>
+    <string name="please_select_category_name_for_previous_shipment">الرجاء تحديد اسم الصنف للعنصر السابق</string>
+    <string name="please_select_a_company_or_more_first">اختر شركة او اكثر اولا</string>
+    <string name="select_language">أختر اللغة</string>
+    <string name="camera">الكاميرا</string>
+    <string name="gallery">الاستوديو</string>
+    <string name="select_picture_from">اختر صوره من :</string>
+    <string name="edit_mobile">تعديل رقم الجوال</string>
+    <string name="cancel">الغاء</string>
+    <string name="please_enter_valid_mobile_number">* الرجاء ادخال رقم جوال صالح</string>
+    <string name="count">العدد</string>
+    <string name="language">اللغة</string>
+    <string name="my_details">بياناتي</string>
+    <string name="update">تحديث</string>
+    <string name="full_name">الاسم</string>
+    <string name="email">البريد الالكتروني</string>
+    <string name="unselect_all">الغاء تحديد الكل</string>
 </resources>

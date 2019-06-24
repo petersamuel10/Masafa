@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/rounded_corners_white_filled">
 
-    <EditText
-        android:id="@+id/shipment_name"
+    <TextView
+        android:id="@+id/category_name"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:layout_marginStart="16dp"
@@ -16,16 +15,18 @@
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:background="@drawable/dotted_border_transparent"
+        android:drawableStart="@drawable/ic_box"
         android:drawableLeft="@drawable/ic_box"
-        android:drawableTint="@color/colorPrimary"
         android:drawablePadding="4dp"
-        android:focusable="true"
-        android:focusableInTouchMode="true"
+        android:drawableTint="@color/colorPrimary"
+        android:gravity="center_vertical"
         android:hint="@string/shipment_name"
         android:paddingStart="8dp"
-        android:paddingRight="8dp"
         android:paddingLeft="8dp"
+        android:paddingRight="8dp"
+        android:textColor="@android:color/black"
         android:textColorHint="#BDBDBD"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -38,11 +39,11 @@
         android:layout_marginLeft="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginBottom="16dp"
-        android:text="Count"
+        android:text="@string/count"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/shipment_name" />
+        app:layout_constraintTop_toBottomOf="@+id/category_name" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/add_quantity"
@@ -58,7 +59,7 @@
         app:fabCustomSize="24dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/shipment_name"
+        app:layout_constraintTop_toBottomOf="@+id/category_name"
         app:srcCompat="@drawable/ic_add_white_20dp" />
 
     <TextView
@@ -69,10 +70,10 @@
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginBottom="16dp"
-        android:text="12"
+        android:text="1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/add_quantity"
-        app:layout_constraintTop_toBottomOf="@+id/shipment_name" />
+        app:layout_constraintTop_toBottomOf="@+id/category_name" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/subtract_quantity"
@@ -88,7 +89,7 @@
         app:fabCustomSize="26dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/quantity"
-        app:layout_constraintTop_toBottomOf="@+id/shipment_name"
+        app:layout_constraintTop_toBottomOf="@+id/category_name"
         app:srcCompat="@drawable/ic_remove_white_20dp" />
 
 

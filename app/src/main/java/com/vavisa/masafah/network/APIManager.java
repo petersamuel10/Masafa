@@ -26,8 +26,8 @@ public class APIManager {
                         Request request = chain.request();
 
                         Request.Builder builder = request.newBuilder()
-                                .addHeader("Accept-Language", "en")
-                                .addHeader("Content-Type","application/json");
+                                .addHeader("Accept-Language", Constants.LANGUAGE)
+                                .addHeader("Content-Type", "application/json");
 
                         Request newRequest = builder.build();
 

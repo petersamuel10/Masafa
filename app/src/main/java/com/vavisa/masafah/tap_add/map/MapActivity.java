@@ -26,8 +26,8 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.vavisa.masafah.R;
-import com.vavisa.masafah.tap_add.add_address.AddAddress;
 import com.vavisa.masafah.base.BaseActivity;
+import com.vavisa.masafah.tap_add.add_address.AddAddress;
 
 import java.io.IOException;
 import java.util.List;
@@ -140,7 +140,7 @@ public class MapActivity extends BaseActivity
                         .title("My position"));
         try {
             Geocoder geocoder = new Geocoder(this, Locale.getDefault());
-            List<Address> addresses  = geocoder.getFromLocation(latLng.latitude, latLng.longitude, 1);
+            List<Address> addresses = geocoder.getFromLocation(latLng.latitude, latLng.longitude, 1);
             String governorate = addresses.get(0).getAdminArea();
             String area = addresses.get(0).getAdminArea();
             String street = addresses.get(0).getPostalCode();
@@ -148,7 +148,6 @@ public class MapActivity extends BaseActivity
         } catch (IOException e) {
             e.printStackTrace();
         }
-
 
 
     }

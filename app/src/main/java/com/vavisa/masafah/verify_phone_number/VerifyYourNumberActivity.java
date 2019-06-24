@@ -17,6 +17,7 @@ import com.vavisa.masafah.base.BaseActivity;
 import com.vavisa.masafah.login.Login;
 import com.vavisa.masafah.util.Connectivity;
 import com.vavisa.masafah.util.Preferences;
+import com.vavisa.masafah.verify_phone_number.model.VerifyResponseModel;
 
 public class VerifyYourNumberActivity extends BaseActivity implements VerifyViews {
 
@@ -40,9 +41,6 @@ public class VerifyYourNumberActivity extends BaseActivity implements VerifyView
         loginModel = new Login();
         loginModel.setMobile(getIntent().getExtras().getString("mobile_number"));
 
-        verifyPresenter = new VerifyPresenter();
-        verifyPresenter.attachView(this);
-
         verifyButton.setOnClickListener(v -> {
 
             otp_str = otpCode1.getText().toString() +
@@ -52,9 +50,14 @@ public class VerifyYourNumberActivity extends BaseActivity implements VerifyView
                     otpCode5.getText().toString();
 
             loginModel.setOtp(otp_str);
-            if (Connectivity.checkInternetConnection())
-                verifyPresenter.verify_opt(loginModel);
-            else
+            if (Connectivity.checkInternetConnection()) {
+                if (getIntent().getExtras().containsKey("update_mobile")) {
+                    loginModel.setMobile(getIntent().getExtras().getString("update_mobile"));
+                    verifyPresenter.update_mobile_verify(loginModel);
+                } else
+                    verifyPresenter.verify_opt(loginModel);
+
+            } else
                 showErrorConnection();
 
         });
@@ -126,9 +129,14 @@ public class VerifyYourNumberActivity extends BaseActivity implements VerifyView
 
         resend_otp_txt.setOnClickListener(v -> {
             clearEditText();
-            if (Connectivity.checkInternetConnection())
-                verifyPresenter.resendOTP(loginModel);
-            else
+            if (Connectivity.checkInternetConnection()) {
+                if (getIntent().getExtras().containsKey("update_mobile")) {
+                    loginModel.setMobile(getIntent().getExtras().getString("update_mobile"));
+                    verifyPresenter.resendOTP(loginModel);
+                } else
+                    verifyPresenter.resendOTP(loginModel);
+
+            } else
                 showErrorConnection();
 
         });
@@ -138,10 +146,8 @@ public class VerifyYourNumberActivity extends BaseActivity implements VerifyView
 
         Toolbar toolbar = findViewById(R.id.verify_number_toolbar);
         setSupportActionBar(toolbar);
-        setTitle("");
-
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        setTitle("");
 
         otpCode1 = findViewById(R.id.otp_code_1);
         otpCode2 = findViewById(R.id.otp_code_2);
@@ -153,6 +159,9 @@ public class VerifyYourNumberActivity extends BaseActivity implements VerifyView
         resend_otp_txt.setPaintFlags(resend_otp_txt.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
 
         verifyButton = findViewById(R.id.verify_button);
+
+        verifyPresenter = new VerifyPresenter();
+        verifyPresenter.attachView(this);
     }
 
     @Override
@@ -163,17 +172,12 @@ public class VerifyYourNumberActivity extends BaseActivity implements VerifyView
 
     @Override
     public void verify_opt(VerifyResponseModel verifyResModel) {
-
-        Preferences.getInstance().putString("access_token",verifyResModel.getAccess_token());
+        Preferences.getInstance().putString("access_token", verifyResModel.getAccess_token());
         Preferences.getInstance().putString("use_id", verifyResModel.getUser().getId());
-        Preferences.getInstance().putString("fullname",verifyResModel.getUser().getFullname());
-        Preferences.getInstance().putString("email", verifyResModel.getUser().getEmail());
-        Preferences.getInstance().putString("mobile",verifyResModel.getUser().getMobile());
-        Preferences.getInstance().putString("profile_image", verifyResModel.getUser().getProfile_image());
-        Preferences.getInstance().putString("address",verifyResModel.getUser().getAddress());
-        Preferences.getInstance().putString("phone", verifyResModel.getUser().getPhone());
-
-        start(MainActivity.class);
+        if (getIntent().getExtras().containsKey("update_mobile"))
+            onBackPressed();
+        else
+            start(MainActivity.class);
     }
 
     @Override

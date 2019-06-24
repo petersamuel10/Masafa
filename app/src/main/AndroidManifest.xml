@@ -21,7 +21,7 @@
             android:name=".tap_add.invoice.Invoice"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".tap_add.companies.Companies"
+            android:name=".tap_add.companies.CompaniesActivity"
             android:theme="@style/AppTheme.NoActionBar" />
 
         <meta-data
@@ -59,7 +59,7 @@
             android:name=".tap_add.add_address.AddAddress"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".tap_add.AddShipmentActivity"
+            android:name=".tap_add.add_shipment.AddShipmentActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".tap_add.map.SelectLocationActivity"
