@@ -13,6 +13,7 @@ import com.vavisa.masafah.verify_phone_number.model.User;
 import com.vavisa.masafah.verify_phone_number.model.VerifyResponseModel;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -55,10 +56,13 @@ public interface APIFunctions {
     Call<UpdateProfileResponseM> updateProfileCall(@Header("Authorization") String authorization, @Body EditProfileModel editProfileModel);
 
     @PATCH("public/api/user/changeMobileNumber")
-    Call<LoginResponse> changeMobileNumberCall(@Header("Authorization") String authorization, @Body EditProfileModel editProfileModel);
+    Call<LoginResponse> changeMobileNumberCall(@Header("Authorization") String authorization, @Body HashMap<String, String> mobile);
 
     @PATCH("public/api/user/updateMobileNumber")
-    Call<VerifyResponseModel> updateMobileNumberCall(@Body Login login);
+    Call<VerifyResponseModel> updateMobileNumberCall(@Header("Authorization") String Authorization,@Body Login login);
+
+    @GET("public/api/user/logout")
+    Call<HashMap<String,String>> logoutCall(@Header("Authorization") String Authorization);
 
 
 }

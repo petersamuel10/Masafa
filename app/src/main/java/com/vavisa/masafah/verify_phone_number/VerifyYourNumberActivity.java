@@ -16,6 +16,7 @@ import com.vavisa.masafah.activities.MainActivity;
 import com.vavisa.masafah.base.BaseActivity;
 import com.vavisa.masafah.login.Login;
 import com.vavisa.masafah.util.Connectivity;
+import com.vavisa.masafah.util.KeyboardUtil;
 import com.vavisa.masafah.util.Preferences;
 import com.vavisa.masafah.verify_phone_number.model.VerifyResponseModel;
 
@@ -61,6 +62,8 @@ public class VerifyYourNumberActivity extends BaseActivity implements VerifyView
                 showErrorConnection();
 
         });
+
+        otpCode1.requestFocus();
 
         otpCode1.addTextChangedListener(
                 new TextWatcher() {
@@ -172,12 +175,17 @@ public class VerifyYourNumberActivity extends BaseActivity implements VerifyView
 
     @Override
     public void verify_opt(VerifyResponseModel verifyResModel) {
+        // to update mobile in profile when come back again due to update mobile number
+        // to prevent load profile againn on onStart function
+        Preferences.getInstance().putString("mobile", verifyResModel.getUser().getMobile());
         Preferences.getInstance().putString("access_token", verifyResModel.getAccess_token());
         Preferences.getInstance().putString("use_id", verifyResModel.getUser().getId());
+
         if (getIntent().getExtras().containsKey("update_mobile"))
             onBackPressed();
         else
             start(MainActivity.class);
+
     }
 
     @Override

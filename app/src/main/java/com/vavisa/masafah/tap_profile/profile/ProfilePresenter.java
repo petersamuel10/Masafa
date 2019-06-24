@@ -15,6 +15,7 @@ import com.vavisa.masafah.util.Preferences;
 import com.vavisa.masafah.verify_phone_number.model.User;
 
 import java.io.ByteArrayOutputStream;
+import java.util.HashMap;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -23,6 +24,9 @@ import retrofit2.HttpException;
 import retrofit2.Response;
 
 public class ProfilePresenter extends BasePresenter<ProfileView> {
+
+    // to send to verify mobile to use with resend otp
+    String updated_mobile;
 
     public void getUserProfile() {
         getView().showProgress();
@@ -71,21 +75,49 @@ public class ProfilePresenter extends BasePresenter<ProfileView> {
         });
     }
 
-    public void changeMobile(EditProfileModel editProfileModel) {
+    public void changeMobile(HashMap<String, String> mobile) {
+
+        updated_mobile = mobile.get("mobile");
         getView().showProgress();
         APIManager.getInstance().getAPI().changeMobileNumberCall(Preferences.getInstance()
-                .getString("access_token"), editProfileModel).enqueue(new Callback<LoginResponse>() {
+                .getString("access_token"), mobile).enqueue(new Callback<LoginResponse>() {
             @Override
             public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
                 getView().hideProgress();
                 if (response.code() == 200)
-                    getView().changeMobileResponse(response.body().getOtp());
+                    getView().changeMobileResponse(updated_mobile, response.body().getOtp());
                 else
                     getView().showMissingData(response);
             }
 
             @Override
             public void onFailure(Call<LoginResponse> call, Throwable t) {
+                getView().hideProgress();
+                if (t instanceof HttpException) {
+                    ResponseBody body = ((HttpException) t).response().errorBody();
+                    Log.d("error", body.toString());
+                }
+            }
+        });
+    }
+
+    public void logout() {
+
+        getView().showProgress();
+        APIManager.getInstance().getAPI().logoutCall(Preferences.getInstance()
+                .getString("access_token")).enqueue(new Callback<HashMap<String, String>>() {
+            @Override
+            public void onResponse(Call<HashMap<String, String>> call, Response<HashMap<String, String>> response) {
+                getView().hideProgress();
+                if (response.code() == 200) {
+                    Preferences.getInstance().clear();
+                    getView().logout();
+                } else
+                    getView().showMissingData(response);
+            }
+
+            @Override
+            public void onFailure(Call<HashMap<String, String>> call, Throwable t) {
                 getView().hideProgress();
                 if (t instanceof HttpException) {
                     ResponseBody body = ((HttpException) t).response().errorBody();

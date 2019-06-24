@@ -21,6 +21,7 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -48,6 +49,7 @@ import com.vavisa.masafah.verify_phone_number.model.User;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -68,6 +70,7 @@ public class ProfileFragment extends BaseFragment implements View.OnClickListene
     private ProfilePresenter presenter;
     private boolean isImageChanged = false;
     private final int PICK_IMAGE_CAMERA = 1, PICK_IMAGE_GALLERY = 2;
+    private DialogPlus my_details_dialog;
 
     @Nullable
     @Override
@@ -88,6 +91,15 @@ public class ProfileFragment extends BaseFragment implements View.OnClickListene
         }
 
         return fragment;
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+
+        // to git when came back from verify updated mobile number
+        user_phone.setText(Preferences.getInstance().getString("mobile"));
+
     }
 
     private void initViews() {
@@ -131,12 +143,7 @@ public class ProfileFragment extends BaseFragment implements View.OnClickListene
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.logout_button:
-                getActivity()
-                        .getSupportFragmentManager()
-                        .popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
-                Intent intent = new Intent(getActivity(), LoginActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                startActivity(intent);
+                presenter.logout();
                 break;
         }
     }
@@ -174,28 +181,41 @@ public class ProfileFragment extends BaseFragment implements View.OnClickListene
     }
 
     @Override
-    public void changeMobileResponse(String otp) {
+    public void changeMobileResponse(String updated_mobile, String otp) {
         Intent i = new Intent(getContext(), VerifyYourNumberActivity.class);
-        //i.putExtra("update_mobile",);
+        i.putExtra("update_mobile", updated_mobile);
+        Log.d("resend_otp", otp);
         startActivity(i);
+    }
+
+    @Override
+    public void logout() {
+
+        getActivity()
+                .getSupportFragmentManager()
+                .popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+        Intent intent = new Intent(getActivity(), LoginActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+
+        startActivity(intent);
     }
 
     private void updateDialog() {
 
-        final DialogPlus dialogPlus =
+        my_details_dialog =
                 DialogPlus.newDialog(getActivity())
                         .setGravity(Gravity.BOTTOM)
                         .setContentBackgroundResource(R.drawable.rounded_corners_white_filled)
                         .setContentHolder(new ViewHolder(R.layout.profile_view))
                         .create();
 
-        ImageView close_btn = (ImageView) dialogPlus.findViewById(R.id.imageView);
-        Button update_btn = (Button) dialogPlus.findViewById(R.id.update_btn);
-        user_image_update = (CircleImageView) dialogPlus.findViewById(R.id.user_image_update);
-        FloatingActionButton add_image_btn = (FloatingActionButton) dialogPlus.findViewById(R.id.add_image_btn);
-        EditText fullName_ed = (EditText) dialogPlus.findViewById(R.id.full_name);
-        Button edit_mobile_btn = (Button) dialogPlus.findViewById(R.id.edit_mobile_btn);
-        EditText email_ed = (EditText) dialogPlus.findViewById(R.id.email);
+        ImageView close_btn = (ImageView) my_details_dialog.findViewById(R.id.imageView);
+        Button update_btn = (Button) my_details_dialog.findViewById(R.id.update_btn);
+        user_image_update = (CircleImageView) my_details_dialog.findViewById(R.id.user_image_update);
+        FloatingActionButton add_image_btn = (FloatingActionButton) my_details_dialog.findViewById(R.id.add_image_btn);
+        EditText fullName_ed = (EditText) my_details_dialog.findViewById(R.id.full_name);
+        Button edit_mobile_btn = (Button) my_details_dialog.findViewById(R.id.edit_mobile_btn);
+        EditText email_ed = (EditText) my_details_dialog.findViewById(R.id.email);
 
         fullName_ed.setText(user.getFullname());
         email_ed.setText(user.getEmail());
@@ -209,7 +229,7 @@ public class ProfileFragment extends BaseFragment implements View.OnClickListene
         update_btn.setOnClickListener(v -> {
             checkChangesFields(fullName_ed, email_ed);
             KeyboardUtil.hideKeyboardFrom(getContext(), update_btn);
-            dialogPlus.dismiss();
+            my_details_dialog.dismiss();
         });
 
         edit_mobile_btn.setOnClickListener(v -> {
@@ -218,9 +238,9 @@ public class ProfileFragment extends BaseFragment implements View.OnClickListene
 
         add_image_btn.setOnClickListener(v -> addNewImage());
 
-        close_btn.setOnClickListener(v -> dialogPlus.dismiss());
+        close_btn.setOnClickListener(v -> my_details_dialog.dismiss());
 
-        dialogPlus.show();
+        my_details_dialog.show();
     }
 
     private void showEditMobileDialog() {
@@ -244,12 +264,15 @@ public class ProfileFragment extends BaseFragment implements View.OnClickListene
 
         edit_btn.setOnClickListener(v -> {
             String mobile_str = mobile_ed_.getText().toString();
-            if (TextUtils.isEmpty(mobile_str) || mobile_str.length() < 8)
+            if (TextUtils.isEmpty(mobile_str) || mobile_str.length() != 8)
                 mobile_required_hint.setTextColor(Color.RED);
             else {
-                EditProfileModel editProfileModel = new EditProfileModel(mobile_str);
-                presenter.changeMobile(editProfileModel);
+//                EditProfileModel editProfileModel = new EditProfileModel(mobile_str);
+                HashMap<String, String> mobile = new HashMap<>();
+                mobile.put("mobile", mobile_str);
+                presenter.changeMobile(mobile);
                 dialog.dismiss();
+                my_details_dialog.dismiss();
             }
 
         });

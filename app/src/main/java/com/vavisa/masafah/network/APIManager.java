@@ -1,5 +1,6 @@
 package com.vavisa.masafah.network;
 
+import com.vavisa.masafah.base.BaseApplication;
 import com.vavisa.masafah.util.Constants;
 
 import java.io.IOException;
@@ -8,6 +9,7 @@ import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
+import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
@@ -17,6 +19,9 @@ public class APIManager {
     private Retrofit mRetrofit;
 
     public APIManager() {
+
+        HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
+        interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
 
         OkHttpClient httpClient = new OkHttpClient.Builder()
                 .addInterceptor(new Interceptor() {
@@ -33,13 +38,12 @@ public class APIManager {
 
                         Response response = chain.proceed(newRequest);
                         if (response.code() == 403) {
-
+                            BaseApplication.preventAccess();
                         }
 
                         return response;
                     }
-                }).build();
-
+                }).addInterceptor(interceptor).build();
 
         mRetrofit = new Retrofit.Builder()
                 .baseUrl(Constants.BASE_URL)

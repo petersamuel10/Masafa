@@ -49,6 +49,13 @@ public class BaseApplication extends Application {
                 });
     }
 
+    public static void preventAccess() {
+        Preferences.getInstance().remove("access_token");
+        Preferences.getInstance().remove("user_id");
+        Preferences.getInstance().remove("mobile");
+        android.os.Process.killProcess(android.os.Process.myPid());
+    }
+
     public static Context getAppContext() {
         return context;
     }

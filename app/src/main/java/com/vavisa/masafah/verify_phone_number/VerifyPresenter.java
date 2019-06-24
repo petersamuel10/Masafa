@@ -6,6 +6,7 @@ import com.vavisa.masafah.base.BasePresenter;
 import com.vavisa.masafah.login.Login;
 import com.vavisa.masafah.login.LoginResponse;
 import com.vavisa.masafah.network.APIManager;
+import com.vavisa.masafah.util.Preferences;
 import com.vavisa.masafah.verify_phone_number.model.VerifyResponseModel;
 
 import okhttp3.ResponseBody;
@@ -45,7 +46,8 @@ public class VerifyPresenter extends BasePresenter<VerifyViews> {
     public void update_mobile_verify(Login login) {
 
         getView().showProgress();
-        APIManager.getInstance().getAPI().updateMobileNumberCall(login).enqueue(new Callback<VerifyResponseModel>() {
+        APIManager.getInstance().getAPI().updateMobileNumberCall(Preferences.getInstance().getString("access_token"),
+                login).enqueue(new Callback<VerifyResponseModel>() {
             @Override
             public void onResponse(Call<VerifyResponseModel> call, Response<VerifyResponseModel> response) {
                 getView().hideProgress();
