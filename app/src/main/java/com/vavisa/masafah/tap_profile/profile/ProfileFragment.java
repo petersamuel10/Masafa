@@ -38,6 +38,7 @@ import com.vavisa.masafah.R;
 import com.vavisa.masafah.base.BaseFragment;
 import com.vavisa.masafah.login.LoginActivity;
 import com.vavisa.masafah.tap_profile.TermsAndCondition.TermsAndConditions;
+import com.vavisa.masafah.tap_profile.my_address.MyAddressActivity;
 import com.vavisa.masafah.tap_profile.profile.model.EditProfileModel;
 import com.vavisa.masafah.tap_profile.profile.model.UpdateProfileResponseM;
 import com.vavisa.masafah.tap_profile.shipment_history.ShipmentHistoryFragment;
@@ -399,7 +400,7 @@ public class ProfileFragment extends BaseFragment implements View.OnClickListene
                                     updateDialog();
                                     break;
                                 case 1:
-                                    changeLanguagePopMenu();
+                                    startActivity(new Intent(getContext(), MyAddressActivity.class));
                                     break;
                                 case 2:
                                     fragment = new ShipmentHistoryFragment();
@@ -408,6 +409,9 @@ public class ProfileFragment extends BaseFragment implements View.OnClickListene
                                 case 3:
                                     fragment = new TermsAndConditions();
                                     switchFragment(fragment);
+                                    break;
+                                case 4:
+                                    changeLanguagePopMenu();
                                     break;
                             }
                         }
@@ -452,8 +456,8 @@ public class ProfileFragment extends BaseFragment implements View.OnClickListene
         profileItems.add(profile);
 
         profile = new Profile();
-        profile.setImage(R.drawable.ic_language_primary_24dp);
-        profile.setName(getString(R.string.language));
+        profile.setImage(R.drawable.ic_location_on_primary_24dp);
+        profile.setName(getString(R.string.my_address));
 
         profileItems.add(profile);
 
@@ -466,6 +470,12 @@ public class ProfileFragment extends BaseFragment implements View.OnClickListene
         profile = new Profile();
         profile.setImage(R.drawable.ic_document);
         profile.setName(getString(R.string.termsandconditions));
+
+        profileItems.add(profile);
+
+        profile = new Profile();
+        profile.setImage(R.drawable.ic_language_primary_24dp);
+        profile.setName(getString(R.string.language));
 
         profileItems.add(profile);
     }

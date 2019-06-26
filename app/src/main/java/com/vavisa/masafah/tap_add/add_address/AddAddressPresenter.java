@@ -6,8 +6,6 @@ import com.vavisa.masafah.base.BasePresenter;
 import com.vavisa.masafah.network.APIManager;
 import com.vavisa.masafah.util.Preferences;
 
-import java.util.HashMap;
-
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -19,18 +17,18 @@ public class AddAddressPresenter extends BasePresenter<AddAddressView> {
     public void AddAddress(AddressModel addressModel) {
         getView().showProgress();
         APIManager.getInstance().getAPI().addAddressCall(Preferences.getInstance().getString("access_token"), addressModel)
-                .enqueue(new Callback<HashMap<String, String>>() {
+                .enqueue(new Callback<AddressModel>() {
                     @Override
-                    public void onResponse(Call<HashMap<String, String>> call, Response<HashMap<String, String>> response) {
+                    public void onResponse(Call<AddressModel> call, Response<AddressModel> response) {
                         getView().hideProgress();
                         if (response.code() == 200)
-                            getView().Address_id((response.body()).get("address_id"));
+                            getView().Address(response.body());
                         else
                             getView().showMissingData(response);
                     }
 
                     @Override
-                    public void onFailure(Call<HashMap<String, String>> call, Throwable t) {
+                    public void onFailure(Call<AddressModel> call, Throwable t) {
                         getView().hideProgress();
                         if (t instanceof HttpException) {
                             ResponseBody body = ((HttpException) t).response().errorBody();

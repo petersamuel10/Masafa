@@ -39,12 +39,14 @@ public class MyShipmentsFragment extends BaseFragment implements MyShipmentsView
         super.onResume();
     }
 
+
     @Nullable
     @Override
     public View onCreateView(
             @NonNull LayoutInflater inflater,
             @Nullable ViewGroup container,
             @Nullable Bundle savedInstanceState) {
+        super.onCreateView(inflater, container, savedInstanceState);
 
         if (fragment == null) {
             fragment = inflater.inflate(R.layout.fragment_my_shipments, container, false);
@@ -57,10 +59,11 @@ public class MyShipmentsFragment extends BaseFragment implements MyShipmentsView
 
             presenter = new MyShipmentPresenter();
             presenter.attachView(this);
-            if (Connectivity.checkInternetConnection())
-                presenter.getShipment();
-            else
-                showErrorConnection();
+            presenter.getShipment();
+
+//            if (Connectivity.checkInternetConnection())
+//            else
+//                showErrorConnection();
 
         } else {
             for (int i = 1; i < navigationView.getMenu().size(); i++) {

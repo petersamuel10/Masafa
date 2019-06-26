@@ -4,6 +4,8 @@ import com.google.gson.annotations.SerializedName;
 
 public class AddressModel {
 
+    @SerializedName("id")
+    private String id;
     @SerializedName("name")
     private String name;
     @SerializedName("block")
@@ -30,6 +32,13 @@ public class AddressModel {
         this.building = building;
         this.details = details;
         this.notes = notes;
+    }
+
+    public String getId() {
+        return id;
+    }
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getName() {

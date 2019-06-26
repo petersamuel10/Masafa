@@ -2,6 +2,8 @@ package com.vavisa.masafah.base;
 
 import android.app.Application;
 import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.util.Log;
 
 import com.crashlytics.android.Crashlytics;
@@ -51,7 +53,6 @@ public class BaseApplication extends Application {
         Preferences.getInstance().remove("mobile");
         android.os.Process.killProcess(android.os.Process.myPid());
     }
-
 
     public static Context getAppContext() {
         return context;

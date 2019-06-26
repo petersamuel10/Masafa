@@ -74,4 +74,6 @@
     <string name="please_enter_location_name">الرجاء ادخال اسم الموقع</string>
     <string name="please_enter_street">الرجاء ادخال الشارع</string>
     <string name="please_enter_block">الرجاء ادخال القطعة</string>
+    <string name="please_select_drop_address">الرجاء اختيار عنوان التوصيل</string>
+    <string name="please_select_pickup_address">الرجاء اختيار عنوان التحميل</string>
 </resources>

@@ -66,7 +66,7 @@ public interface APIFunctions {
     Call<HashMap<String,String>> logoutCall(@Header("Authorization") String Authorization);
 
     @POST("public/api/user/addAddress")
-    Call<HashMap<String,String>> addAddressCall(@Header("Authorization") String Authorization, @Body AddressModel addressModel);
+    Call<AddressModel> addAddressCall(@Header("Authorization") String Authorization, @Body AddressModel addressModel);
 
     @GET("public/api/user/getAddresses")
     Call<ArrayList<AddressModel>> getMyAddressesCall(@Header("Authorization") String Authorization);

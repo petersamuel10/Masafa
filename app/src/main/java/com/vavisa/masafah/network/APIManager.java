@@ -1,6 +1,11 @@
 package com.vavisa.masafah.network;
 
+import android.util.Log;
+
+import com.vavisa.masafah.activities.MainActivity;
 import com.vavisa.masafah.base.BaseApplication;
+import com.vavisa.masafah.tap_my_shipment.my_shipments.MyShipmentsFragment;
+import com.vavisa.masafah.util.Connectivity;
 import com.vavisa.masafah.util.Constants;
 
 import java.io.IOException;
@@ -17,6 +22,11 @@ public class APIManager {
 
     private static APIManager mInstance;
     private Retrofit mRetrofit;
+    private InternetConnectionListener mInternetConnectionListener;
+
+    public void setmInternetConnectionListener(InternetConnectionListener listener) {
+        this.mInternetConnectionListener = listener;
+    }
 
     public APIManager() {
 
@@ -33,7 +43,7 @@ public class APIManager {
                         Request.Builder builder = request.newBuilder()
                                 .addHeader("Accept-Language", Constants.LANGUAGE)
                                 .addHeader("Content-Type", "application/json; charset=UTF-8")
-                                .addHeader("Version","Android-1");
+                                .addHeader("Version", "Android-1");
 
                         Request newRequest = builder.build();
 
@@ -44,7 +54,22 @@ public class APIManager {
 
                         return response;
                     }
-                }).addInterceptor(interceptor).build();
+                }).addInterceptor(interceptor)
+                .addInterceptor(new NetworkConnectionInterceptor() {
+
+
+                    @Override
+                    public boolean isInternetAvailable() {
+                        return Connectivity.checkInternetConnection();
+                    }
+
+                    @Override
+                    public void onInternetUnavailable() {
+                        if (mInternetConnectionListener != null)
+                            mInternetConnectionListener.onInternetUnavailable();
+                    }
+                })
+                .build();
 
         mRetrofit = new Retrofit.Builder()
                 .baseUrl(Constants.BASE_URL)

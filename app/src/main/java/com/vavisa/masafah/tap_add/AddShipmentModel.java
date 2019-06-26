@@ -1,6 +1,7 @@
 package com.vavisa.masafah.tap_add;
 
 import com.google.gson.annotations.SerializedName;
+import com.vavisa.masafah.tap_add.add_address.AddressModel;
 import com.vavisa.masafah.tap_add.add_shipment.model.NewShipmentModel;
 
 import java.util.ArrayList;
@@ -17,6 +18,9 @@ public class AddShipmentModel {
     private String address_to_id;
     @SerializedName("pickup_time")
     private String pickup_time;
+
+    private AddressModel pickup_address;
+    private AddressModel drop_address;
 
     public ArrayList<NewShipmentModel> getShipmentList() {
         return shipmentList;
@@ -51,5 +55,19 @@ public class AddShipmentModel {
     }
     public void setPickup_time(String pickup_time) {
         this.pickup_time = pickup_time;
+    }
+
+    public AddressModel getPickup_address() {
+        return pickup_address;
+    }
+    public void setPickup_address(AddressModel pickup_address) {
+        this.pickup_address = pickup_address;
+    }
+
+    public AddressModel getDrop_address() {
+        return drop_address;
+    }
+    public void setDrop_address(AddressModel drop_address) {
+        this.drop_address = drop_address;
     }
 }

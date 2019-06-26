@@ -67,7 +67,6 @@ public class AddAddressActivity extends BaseActivity implements AddAddressView {
         return true;
     }
 
-
     private void initViews() {
 
         Toolbar toolbar = findViewById(R.id.add_address_toolbar);
@@ -110,8 +109,15 @@ public class AddAddressActivity extends BaseActivity implements AddAddressView {
     }
 
     @Override
-    public void Address_id(String address_id) {
+    public void Address(AddressModel addressModel) {
 
-        Constants.addShipmentModel.setAddress_from_id(address_id);
+        if (getIntent().getExtras().getString("tag").equals("pickup_tag")) {
+            Constants.addShipmentModel.setPickup_address(addressModel);
+            Constants.addShipmentModel.setAddress_from_id(addressModel.getId());
+        } else {
+            Constants.addShipmentModel.setDrop_address(addressModel);
+            Constants.addShipmentModel.setAddress_to_id(addressModel.getId());
+        }
+        finish();
     }
 }

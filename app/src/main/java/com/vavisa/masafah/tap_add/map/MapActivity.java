@@ -60,6 +60,7 @@ public class MapActivity extends BaseActivity
         selectButton.setOnClickListener(
                 v -> {
                     Intent intent = new Intent(MapActivity.this, AddAddressActivity.class);
+                    intent.putExtra("tag", getIntent().getExtras().getString("tag"));
                     intent.putExtra("city", city);
                     intent.putExtra("area", area);
                     intent.putExtra("street", street);

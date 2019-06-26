@@ -14,13 +14,15 @@ import android.widget.Toast;
 
 
 import com.vavisa.masafah.R;
+import com.vavisa.masafah.network.APIManager;
+import com.vavisa.masafah.network.InternetConnectionListener;
 import com.vavisa.masafah.util.dialogs.ConnectionMessage;
 import com.vavisa.masafah.util.dialogs.FailedMessage;
 import com.vavisa.masafah.util.dialogs.ProgressDialog;
 
 import retrofit2.Response;
 
-public class BaseFragment extends Fragment implements BaseView {
+public class BaseFragment extends Fragment implements BaseView, InternetConnectionListener {
 
     @Nullable
     @Override
@@ -29,6 +31,7 @@ public class BaseFragment extends Fragment implements BaseView {
             @Nullable ViewGroup container,
             @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_base, container, false);
+        APIManager.getInstance().setmInternetConnectionListener(this);
         return v;
     }
 
@@ -85,5 +88,10 @@ public class BaseFragment extends Fragment implements BaseView {
     public void showMessage(String msg) {
         Toast.makeText(getContext(), msg, Toast.LENGTH_SHORT).show();
 
+    }
+
+    @Override
+    public void onInternetUnavailable() {
+        showErrorConnection();
     }
 }

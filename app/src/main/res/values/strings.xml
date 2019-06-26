@@ -73,5 +73,10 @@
     <string name="please_enter_street">please enter street</string>
     <string name="please_enter_building">Please enter building</string>
     <string name="please_enter_block">Please enter block</string>
+    <string name="please_select_pickup_address">Please select pickup address</string>
+    <string name="please_select_drop_address">Please select drop address</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

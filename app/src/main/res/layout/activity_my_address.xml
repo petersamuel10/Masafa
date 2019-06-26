@@ -22,8 +22,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="@string/my_address"
-            android:textSize="22sp"
             android:textColor="@android:color/white"
+            android:textSize="22sp"
             android:textStyle="bold" />
 
     </android.support.v7.widget.Toolbar>
@@ -31,7 +31,7 @@
     <android.support.v7.widget.RecyclerView
         android:id="@+id/address_rec"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
@@ -43,7 +43,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/add_shipment_toolbar"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar"
         app:layout_constraintVertical_bias="0.0" />
 
 </android.support.constraint.ConstraintLayout>

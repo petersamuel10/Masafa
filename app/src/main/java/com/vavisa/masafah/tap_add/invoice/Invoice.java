@@ -8,8 +8,9 @@ import android.widget.Button;
 
 import com.vavisa.masafah.R;
 import com.vavisa.masafah.activities.MainActivity;
+import com.vavisa.masafah.base.BaseActivity;
 
-public class Invoice extends AppCompatActivity {
+public class Invoice extends BaseActivity {
 
     Button confirm_btn;
 

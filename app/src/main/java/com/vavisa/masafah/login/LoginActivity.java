@@ -31,10 +31,8 @@ public class LoginActivity extends BaseActivity implements LoginView {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         initViews();
-        if (Connectivity.checkInternetConnection())
-            loginPresenter.getCountries();
-        else
-            showErrorConnection();
+
+        loginPresenter.getCountries();
 
         country_code_btn.setOnClickListener(v -> {
 
