@@ -82,8 +82,8 @@ public class BaseFragment extends Fragment implements BaseView {
     }
 
     @Override
-    public void showMessage() {
-        Toast.makeText(getContext(), "enter mobile number", Toast.LENGTH_SHORT).show();
+    public void showMessage(String msg) {
+        Toast.makeText(getContext(), msg, Toast.LENGTH_SHORT).show();
 
     }
 }

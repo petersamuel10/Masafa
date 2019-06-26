@@ -6,7 +6,7 @@ public class CountryModel {
 
     @SerializedName("id")
     private Integer id;
-    @SerializedName("name_en")
+    @SerializedName("name")
     private String name;
     @SerializedName("country_code")
     private String country_code;
@@ -14,6 +14,7 @@ public class CountryModel {
     public Integer getId() {
         return id;
     }
+
     public void setId(Integer id) {
         this.id = id;
     }
@@ -21,6 +22,7 @@ public class CountryModel {
     public String getName() {
         return name;
     }
+
     public void setName(String name) {
         this.name = name;
     }
@@ -28,6 +30,7 @@ public class CountryModel {
     public String getCountry_code() {
         return country_code;
     }
+
     public void setCountry_code(String country_code) {
         this.country_code = country_code;
     }

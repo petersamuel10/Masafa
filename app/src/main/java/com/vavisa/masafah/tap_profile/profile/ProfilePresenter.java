@@ -110,7 +110,10 @@ public class ProfilePresenter extends BasePresenter<ProfileView> {
             public void onResponse(Call<HashMap<String, String>> call, Response<HashMap<String, String>> response) {
                 getView().hideProgress();
                 if (response.code() == 200) {
+                    // to open again app with the selection language
+                    String current_lan = Preferences.getInstance().getString("lan");
                     Preferences.getInstance().clear();
+                    Preferences.getInstance().putString("lan", current_lan);
                     getView().logout();
                 } else
                     getView().showMissingData(response);
@@ -137,4 +140,38 @@ public class ProfilePresenter extends BasePresenter<ProfileView> {
         }
         return "";
     }
+
+    /*public Bitmap rotateImage(String imagePath, Bitmap bitmap) {
+
+        ExifInterface exifInterface = null;
+        int orientation = 0;
+        try {
+            exifInterface = new ExifInterface(imagePath);
+            orientation = exifInterface.getAttributeInt(ExifInterface.TAG_ORIENTATION, ExifInterface.ORIENTATION_UNDEFINED);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        Matrix matrix = new Matrix();
+        switch (orientation) {
+            case ExifInterface.ORIENTATION_ROTATE_90:
+                matrix.setRotate(90);
+                break;
+            case ExifInterface.ORIENTATION_ROTATE_180:
+                matrix.setRotate(180);
+                break;
+            default:
+        }
+
+        Bitmap rotatedBitmap = Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrix, true);
+
+        return rotatedBitmap;
+    }
+
+    public String getImageUri(Context inContext, Bitmap inImage) {
+        ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+        inImage.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
+        String path = MediaStore.Images.Media.insertImage(inContext.getContentResolver(), inImage, "Title", null);
+        return path;
+    }*/
 }

@@ -74,10 +74,6 @@ public class CompaniesAdapter extends RecyclerView.Adapter<CompaniesAdapter.View
         return deliveryCompaniesIdList;
     }
 
-    public void selectAll() {
-
-    }
-
     public class ViewHolder extends RecyclerView.ViewHolder {
         ImageView check_true;
         CircleImageView company_image;

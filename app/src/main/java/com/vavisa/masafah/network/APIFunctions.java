@@ -3,6 +3,7 @@ package com.vavisa.masafah.network;
 import com.vavisa.masafah.login.CountryModel;
 import com.vavisa.masafah.login.Login;
 import com.vavisa.masafah.login.LoginResponse;
+import com.vavisa.masafah.tap_add.add_address.AddressModel;
 import com.vavisa.masafah.tap_add.add_shipment.model.CategoryModel;
 import com.vavisa.masafah.tap_add.companies.CompanyModel;
 import com.vavisa.masafah.tap_my_shipment.my_shipments.ShipmentModel;
@@ -63,6 +64,12 @@ public interface APIFunctions {
 
     @GET("public/api/user/logout")
     Call<HashMap<String,String>> logoutCall(@Header("Authorization") String Authorization);
+
+    @POST("public/api/user/addAddress")
+    Call<HashMap<String,String>> addAddressCall(@Header("Authorization") String Authorization, @Body AddressModel addressModel);
+
+    @GET("public/api/user/getAddresses")
+    Call<ArrayList<AddressModel>> getMyAddressesCall(@Header("Authorization") String Authorization);
 
 
 }

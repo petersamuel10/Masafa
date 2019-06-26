@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#f3f3f3">
@@ -72,35 +71,6 @@
 
 
             <TextView
-                android:id="@+id/governorate_tag"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginTop="16dp"
-                android:text="Governorate"
-                android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/location_name" />
-
-            <EditText
-                android:id="@+id/governorate"
-                android:layout_width="match_parent"
-                android:layout_height="35dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginRight="16dp"
-                android:background="@drawable/edit_text_rounded_white_filled"
-                android:focusableInTouchMode="true"
-                android:paddingStart="8dp"
-                android:paddingLeft="8dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/governorate_tag" />
-
-            <TextView
                 android:id="@+id/area_tag"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -110,7 +80,7 @@
                 android:text="Area"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/governorate" />
+                app:layout_constraintTop_toBottomOf="@+id/location_name" />
 
             <EditText
                 android:id="@+id/area"
@@ -189,35 +159,6 @@
 
 
             <TextView
-                android:id="@+id/avenue_tag"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginTop="16dp"
-                android:text="Avenue"
-                android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/street" />
-
-            <EditText
-                android:id="@+id/avenue"
-                android:layout_width="match_parent"
-                android:layout_height="35dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginRight="16dp"
-                android:background="@drawable/edit_text_rounded_white_filled"
-                android:focusableInTouchMode="true"
-                android:paddingStart="8dp"
-                android:paddingLeft="8dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/avenue_tag" />
-
-            <TextView
                 android:id="@+id/building_tag"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -227,7 +168,7 @@
                 android:text="Building"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/avenue" />
+                app:layout_constraintTop_toBottomOf="@+id/street" />
 
             <EditText
                 android:id="@+id/building"
@@ -247,6 +188,36 @@
                 app:layout_constraintTop_toBottomOf="@+id/building_tag" />
 
             <TextView
+                android:id="@+id/details_tag"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="16dp"
+                android:text="Address details"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/building" />
+
+            <EditText
+                android:id="@+id/details"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/edit_text_rounded_white_filled"
+                android:focusableInTouchMode="true"
+                android:paddingStart="8dp"
+                android:paddingLeft="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/details_tag" />
+
+            <TextView
                 android:id="@+id/extra_tag"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -256,7 +227,7 @@
                 android:text="Extra"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/building" />
+                app:layout_constraintTop_toBottomOf="@+id/details" />
 
             <EditText
                 android:id="@+id/extra"
@@ -268,7 +239,6 @@
                 android:layout_marginEnd="16dp"
                 android:layout_marginRight="16dp"
                 android:layout_marginBottom="8dp"
-
                 android:background="@drawable/edit_text_rounded_white_filled"
                 android:focusableInTouchMode="true"
                 android:paddingStart="8dp"
@@ -298,6 +268,5 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
-
 
 </android.support.constraint.ConstraintLayout>

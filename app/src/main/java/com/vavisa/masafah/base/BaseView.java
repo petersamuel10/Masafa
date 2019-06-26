@@ -17,5 +17,5 @@ public interface BaseView {
 
     void hideProgress();
 
-    void showMessage();
+    void showMessage(String msg);
 }

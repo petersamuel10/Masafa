@@ -12,9 +12,9 @@ public class AddShipmentModel {
     @SerializedName("delivery_companies_id")
     private ArrayList<Integer> deliveryCompaniesIdList;
     @SerializedName("address_from_id")
-    private Integer address_from_id;
+    private String address_from_id;
     @SerializedName("address_to_id")
-    private Integer address_to_id;
+    private String address_to_id;
     @SerializedName("pickup_time")
     private String pickup_time;
 
@@ -32,17 +32,17 @@ public class AddShipmentModel {
         this.deliveryCompaniesIdList = deliveryCompaniesIdList;
     }
 
-    public Integer getAddress_from_id() {
+    public String getAddress_from_id() {
         return address_from_id;
     }
-    public void setAddress_from_id(Integer address_from_id) {
+    public void setAddress_from_id(String address_from_id) {
         this.address_from_id = address_from_id;
     }
 
-    public Integer getAddress_to_id() {
+    public String getAddress_to_id() {
         return address_to_id;
     }
-    public void setAddress_to_id(Integer address_to_id) {
+    public void setAddress_to_id(String address_to_id) {
         this.address_to_id = address_to_id;
     }
 

@@ -62,4 +62,16 @@
     <string name="full_name">الاسم</string>
     <string name="email">البريد الالكتروني</string>
     <string name="unselect_all">الغاء تحديد الكل</string>
+    <string name="please_enter_mobile_number">الرجاء ادخال رقم الجوال</string>
+    <string name="verify_your_mobile_number">تأكيد رقم جوالك</string>
+    <string name="enter_your_otp_code_here">ادخل رمز otp هنا</string>
+    <string name="verify_now">تأكيد الان</string>
+    <string name="select_address_from">اختيار العنوان من</string>
+    <string name="my_address">عناوينى</string>
+    <string name="map">الخريطة</string>
+    <string name="please_enter_area">الرجاء ادخال النطقة</string>
+    <string name="please_enter_building">الرجاء ادخال المبنى</string>
+    <string name="please_enter_location_name">الرجاء ادخال اسم الموقع</string>
+    <string name="please_enter_street">الرجاء ادخال الشارع</string>
+    <string name="please_enter_block">الرجاء ادخال القطعة</string>
 </resources>

@@ -32,7 +32,8 @@ public class APIManager {
 
                         Request.Builder builder = request.newBuilder()
                                 .addHeader("Accept-Language", Constants.LANGUAGE)
-                                .addHeader("Content-Type", "application/json");
+                                .addHeader("Content-Type", "application/json; charset=UTF-8")
+                                .addHeader("Version","Android-1");
 
                         Request newRequest = builder.build();
 

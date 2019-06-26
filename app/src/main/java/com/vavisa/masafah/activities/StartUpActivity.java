@@ -8,6 +8,7 @@ import android.support.annotation.Nullable;
 import com.vavisa.masafah.R;
 import com.vavisa.masafah.base.BaseActivity;
 import com.vavisa.masafah.login.LoginActivity;
+import com.vavisa.masafah.util.Constants;
 import com.vavisa.masafah.util.Preferences;
 
 import java.util.Locale;
@@ -19,12 +20,12 @@ public class StartUpActivity extends BaseActivity {
         setLocalization();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_startup);
-
+        Constants.LANGUAGE = (Locale.getDefault().getDisplayLanguage().equals("English")) ? "en" : "ar";
         Thread timerThread =
                 new Thread() {
                     public void run() {
                         try {
-                            sleep(1);
+                            sleep(3);
                         } catch (InterruptedException e) {
                         } finally {
                             if (Preferences.getInstance().isHasKey("access_token"))
@@ -43,7 +44,7 @@ public class StartUpActivity extends BaseActivity {
             lang = (Preferences.getInstance().getString("lan").equals("English")) ? "en" : "ar";
         else {
             lang = "en";
-            Preferences.getInstance().putString("lan", "en");
+            Preferences.getInstance().putString("lan", "English");
         }
         Locale locale = new Locale(lang);
         Locale.setDefault(locale);

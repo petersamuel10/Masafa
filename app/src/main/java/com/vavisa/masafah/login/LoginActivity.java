@@ -42,7 +42,7 @@ public class LoginActivity extends BaseActivity implements LoginView {
             alert.setTitle(getString(R.string.select_country));
             String[] countries_name = new String[countriesList.size()];
             for (int i = 0; i < countriesList.size(); i++) {
-                countries_name[i] = "(" + countriesList.get(i).getCountry_code() + ")    " + countriesList.get(i).getName();
+                countries_name[i] = countriesList.get(i).getName();
             }
 
             alert.setSingleChoiceItems(countries_name, select_country_pos, (dialog, position) -> {
@@ -79,7 +79,7 @@ public class LoginActivity extends BaseActivity implements LoginView {
 
     private boolean validate() {
         if (TextUtils.isEmpty(mobileNumber.getText())) {
-            showMessage();
+            showMessage(getString(R.string.please_enter_mobile_number));
             return false;
         }
         return true;
@@ -87,7 +87,7 @@ public class LoginActivity extends BaseActivity implements LoginView {
 
     @Override
     public void LoginResult(String otp) {
-        Log.d("OTP", otp);
+        Log.d("otp", otp);
         Intent intent = new Intent(this, VerifyYourNumberActivity.class);
         intent.putExtra("mobile_number", mobileNumber.getText().toString());
         startActivity(intent);

@@ -10,7 +10,6 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -27,7 +26,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.vavisa.masafah.R;
 import com.vavisa.masafah.base.BaseActivity;
-import com.vavisa.masafah.tap_add.add_address.AddAddress;
+import com.vavisa.masafah.tap_add.add_address.AddAddressActivity;
 
 import java.io.IOException;
 import java.util.List;
@@ -37,9 +36,9 @@ public class MapActivity extends BaseActivity
         implements OnMapReadyCallback, GoogleMap.OnMyLocationClickListener, GoogleMap.OnMapClickListener {
 
     private GoogleMap map;
-    private static final String TAG = MapActivity.class.getName();
     private FusedLocationProviderClient fusedLocationProviderClient;
     private Button selectButton;
+    private String city, area, street, building;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,12 +58,14 @@ public class MapActivity extends BaseActivity
         mapFragment.getMapAsync(this);
 
         selectButton.setOnClickListener(
-                new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        startActivity(new Intent(MapActivity.this, AddAddress.class));
-                        finish();
-                    }
+                v -> {
+                    Intent intent = new Intent(MapActivity.this, AddAddressActivity.class);
+                    intent.putExtra("city", city);
+                    intent.putExtra("area", area);
+                    intent.putExtra("street", street);
+                    intent.putExtra("building", building);
+                    startActivity(intent);
+                    finish();
                 });
     }
 
@@ -141,14 +142,15 @@ public class MapActivity extends BaseActivity
         try {
             Geocoder geocoder = new Geocoder(this, Locale.getDefault());
             List<Address> addresses = geocoder.getFromLocation(latLng.latitude, latLng.longitude, 1);
-            String governorate = addresses.get(0).getAdminArea();
-            String area = addresses.get(0).getAdminArea();
-            String street = addresses.get(0).getPostalCode();
-            String building = addresses.get(0).getCountryName();
+            city = addresses.get(0).getLocality();
+            area = addresses.get(0).getSubLocality();
+            street = addresses.get(0).getThoroughfare();
+            building = addresses.get(0).getFeatureName();
+
+
         } catch (IOException e) {
             e.printStackTrace();
         }
-
 
     }
 }

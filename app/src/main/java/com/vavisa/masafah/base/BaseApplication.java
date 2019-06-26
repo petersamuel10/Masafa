@@ -2,7 +2,6 @@ package com.vavisa.masafah.base;
 
 import android.app.Application;
 import android.content.Context;
-import android.content.res.Configuration;
 import android.util.Log;
 
 import com.crashlytics.android.Crashlytics;
@@ -10,8 +9,6 @@ import com.onesignal.OneSignal;
 import com.vavisa.masafah.R;
 import com.vavisa.masafah.util.Constants;
 import com.vavisa.masafah.util.Preferences;
-
-import java.util.Locale;
 
 import io.fabric.sdk.android.Fabric;
 
@@ -25,7 +22,6 @@ public class BaseApplication extends Application {
         super.onCreate();
         Fabric.with(this, new Crashlytics());
         context = this;
-        Constants.LANGUAGE = Locale.getDefault().getDisplayLanguage();
         setupOnSignal();
         error_msg = context.getString(R.string.error_occurred);
     }
@@ -55,6 +51,7 @@ public class BaseApplication extends Application {
         Preferences.getInstance().remove("mobile");
         android.os.Process.killProcess(android.os.Process.myPid());
     }
+
 
     public static Context getAppContext() {
         return context;
