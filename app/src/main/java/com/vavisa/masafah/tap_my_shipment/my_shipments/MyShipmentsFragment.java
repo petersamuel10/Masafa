@@ -16,11 +16,9 @@ import android.widget.RelativeLayout;
 
 import com.vavisa.masafah.R;
 import com.vavisa.masafah.base.BaseFragment;
-import com.vavisa.masafah.util.Connectivity;
-import com.vavisa.masafah.util.Preferences;
 
 import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
 
 import static com.vavisa.masafah.activities.MainActivity.navigationView;
 
@@ -29,10 +27,11 @@ public class MyShipmentsFragment extends BaseFragment implements MyShipmentsView
     private View fragment;
     private ConstraintLayout buttonLayout;
     private RecyclerView myShipmentListView;
-    private List<String> myShipments = new ArrayList<>();
+    private ArrayList<ShipmentModel> pendingList, acceptList;
     private Button pendingButton;
     private Button acceptedButton;
     private MyShipmentPresenter presenter;
+    private MyShipmentsPendingAdapter adapter;
 
     @Override
     public void onResume() {
@@ -53,17 +52,12 @@ public class MyShipmentsFragment extends BaseFragment implements MyShipmentsView
             Toolbar toolbar = fragment.findViewById(R.id.my_shipments_toolbar);
             ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
             getActivity().setTitle("");
-
             initViews();
-            setupRecycler();
 
             presenter = new MyShipmentPresenter();
             presenter.attachView(this);
             presenter.getShipment();
 
-//            if (Connectivity.checkInternetConnection())
-//            else
-//                showErrorConnection();
 
         } else {
             for (int i = 1; i < navigationView.getMenu().size(); i++) {
@@ -85,6 +79,8 @@ public class MyShipmentsFragment extends BaseFragment implements MyShipmentsView
         pendingButton.setOnClickListener(this);
         acceptedButton.setOnClickListener(this);
 
+        myShipmentListView.setLayoutManager(new LinearLayoutManager(getActivity()));
+
         buttonLayout.post(
                 new Runnable() {
                     @Override
@@ -98,14 +94,9 @@ public class MyShipmentsFragment extends BaseFragment implements MyShipmentsView
                 });
     }
 
-    private void setupRecycler() {
+    public void deleteShipmentById(int position, String shipment_id) {
 
-        myShipmentListView.setLayoutManager(new LinearLayoutManager(getActivity()));
-
-        myShipments.add("Test");
-
-        myShipmentListView.setAdapter(new MyShipmentsPendingAdapter(this));
-
+        presenter.deleteShipment(position, shipment_id);
     }
 
     @Override
@@ -117,7 +108,7 @@ public class MyShipmentsFragment extends BaseFragment implements MyShipmentsView
                 pendingButton.setTextColor(getResources().getColor(android.R.color.white));
                 acceptedButton.setBackground(null);
                 acceptedButton.setTextColor(getResources().getColor(R.color.colorPrimary));
-                myShipmentListView.setAdapter(new MyShipmentsPendingAdapter(this));
+                myShipmentListView.setAdapter(new MyShipmentsPendingAdapter(this, pendingList));
                 break;
 
             case R.id.accepted_button:
@@ -126,13 +117,24 @@ public class MyShipmentsFragment extends BaseFragment implements MyShipmentsView
                 pendingButton.setBackground(null);
                 acceptedButton.setTextColor(getResources().getColor(android.R.color.white));
                 pendingButton.setTextColor(getResources().getColor(R.color.colorPrimary));
-                myShipmentListView.setAdapter(new MyShipmentsAcceptedAdapter(this));
+                myShipmentListView.setAdapter(new MyShipmentsAcceptedAdapter(this, acceptList));
                 break;
         }
     }
 
     @Override
-    public void Shipments(ShipmentModel shipmentModel) {
+    public void displayShipments(HashMap<String, ArrayList<ShipmentModel>> shipmentList) {
+        pendingList = shipmentList.get("pending");
+        acceptList = shipmentList.get("accepted");
+        adapter = new MyShipmentsPendingAdapter(this, pendingList);
+        myShipmentListView.setAdapter(adapter);
 
     }
+
+    @Override
+    public void deleteShipmentRes(int position) {
+        adapter.deleteShipmentFromRecycler(position);
+
+    }
+
 }

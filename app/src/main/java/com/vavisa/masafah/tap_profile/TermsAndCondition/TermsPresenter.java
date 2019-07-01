@@ -2,6 +2,7 @@ package com.vavisa.masafah.tap_profile.TermsAndCondition;
 
 import android.util.Log;
 
+import com.vavisa.masafah.base.BaseApplication;
 import com.vavisa.masafah.base.BasePresenter;
 import com.vavisa.masafah.network.APIManager;
 
@@ -27,11 +28,12 @@ public class TermsPresenter extends BasePresenter<TermsView> {
 
             @Override
             public void onFailure(Call<TermsModel> call, Throwable t) {
+                getView().hideProgress();
+                getView().showMessage(BaseApplication.error_msg);
                 if (t instanceof HttpException) {
                     ResponseBody body = ((HttpException) t).response().errorBody();
                     Log.d("error", body.toString());
                 }
-                getView().hideProgress();
             }
         });
     }

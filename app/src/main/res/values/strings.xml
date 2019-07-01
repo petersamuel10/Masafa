@@ -77,6 +77,23 @@
     <string name="please_select_drop_address">Please select drop address</string>
 
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="location_name">Location name</string>
+    <string name="area">Area</string>
+    <string name="street">Street</string>
+    <string name="block">Block</string>
+    <string name="building">Building</string>
+    <string name="address_details">Address details</string>
+    <string name="notes">Notes</string>
+    <string name="pickup_time">Pickup time</string>
+    <string name="to">To *</string>
+    <string name="from">From*</string>
+    <string name="please_select_pickup_time_from">Please select pickup time from.</string>
+    <string name="please_select_pickup_time_to">Please select pickup time to</string>
+    <string name="pickup_time_from">Pickup time from :</string>
+    <string name="pickup_time_to">Pickup time to :</string>
+    <string name="kd">Kd</string>
+    <string name="about_as">About us</string>
+    <string name="rate">Rate</string>
+    <string name="call">Call</string>
 
 </resources>

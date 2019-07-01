@@ -2,6 +2,7 @@ package com.vavisa.masafah.verify_phone_number;
 
 import android.util.Log;
 
+import com.vavisa.masafah.base.BaseApplication;
 import com.vavisa.masafah.base.BasePresenter;
 import com.vavisa.masafah.login.Login;
 import com.vavisa.masafah.login.LoginResponse;
@@ -34,11 +35,12 @@ public class VerifyPresenter extends BasePresenter<VerifyViews> {
 
             @Override
             public void onFailure(Call<VerifyResponseModel> call, Throwable t) {
+                getView().hideProgress();
+                getView().showMessage(BaseApplication.error_msg);
                 if (t instanceof HttpException) {
                     ResponseBody body = ((HttpException) t).response().errorBody();
                     Log.d("error", body.toString());
                 }
-                getView().hideProgress();
             }
         });
     }
@@ -61,11 +63,13 @@ public class VerifyPresenter extends BasePresenter<VerifyViews> {
 
             @Override
             public void onFailure(Call<VerifyResponseModel> call, Throwable t) {
+                getView().hideProgress();
+                getView().showMessage(BaseApplication.error_msg);
                 if (t instanceof HttpException) {
                     ResponseBody body = ((HttpException) t).response().errorBody();
                     Log.d("error", body.toString());
                 }
-                getView().hideProgress();
+
             }
         });
     }
@@ -86,11 +90,13 @@ public class VerifyPresenter extends BasePresenter<VerifyViews> {
 
             @Override
             public void onFailure(Call<LoginResponse> call, Throwable t) {
+                getView().hideProgress();
+                getView().showMessage(BaseApplication.error_msg);
                 if (t instanceof HttpException) {
                     ResponseBody body = ((HttpException) t).response().errorBody();
                     Log.d("error", body.toString());
                 }
-                getView().hideProgress();
+
             }
         });
 

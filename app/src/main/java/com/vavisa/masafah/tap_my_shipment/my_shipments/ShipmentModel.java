@@ -1,49 +1,113 @@
 package com.vavisa.masafah.tap_my_shipment.my_shipments;
 
 import com.google.gson.annotations.SerializedName;
+import com.vavisa.masafah.tap_add.add_address.AddressModel;
+import com.vavisa.masafah.tap_my_shipment.company_details.CompanyModel;
 
 import java.util.ArrayList;
 
 public class ShipmentModel {
 
-    @SerializedName("pending")
-    private ArrayList<String> pending;
-    @SerializedName("accepted")
-    private ArrayList<String> accepted;
-    @SerializedName("pickedUp")
-    private ArrayList<String> pickedUp;
-    @SerializedName("delivered")
-    private ArrayList<String> delivered;
+    @SerializedName("id")
+    private String id;
+    @SerializedName("price")
+    private String price;
+    @SerializedName("user_id")
+    private String user_id;
+    @SerializedName("pickup_time_from")
+    private String pickup_time_from;
+    @SerializedName("pickup_time_to")
+    private String pickup_time_to;
+    @SerializedName("status")
+    private String status;
+    @SerializedName("payment_type")
+    private String payment_type;
+    @SerializedName("address_from")
+    private AddressModel address_from;
+    @SerializedName("address_to")
+    private AddressModel address_to;
+    @SerializedName("items")
+    private ArrayList<Items> items;
+    @SerializedName("company")
+    private CompanyModel company;
 
-    public ArrayList<String> getPending() {
-        return pending;
+    public String getId() {
+        return id;
+    }
+    public void setId(String id) {
+        this.id = id;
     }
 
-    public void setPending(ArrayList<String> pending) {
-        this.pending = pending;
+    public String getPrice() {
+        return price;
+    }
+    public void setPrice(String price) {
+        this.price = price;
     }
 
-    public ArrayList<String> getAccepted() {
-        return accepted;
+    public String getUser_id() {
+        return user_id;
+    }
+    public void setUser_id(String user_id) {
+        this.user_id = user_id;
     }
 
-    public void setAccepted(ArrayList<String> accepted) {
-        this.accepted = accepted;
+    public String getPickup_time_from() {
+        return pickup_time_from;
     }
 
-    public ArrayList<String> getPickedUp() {
-        return pickedUp;
+    public void setPickup_time_from(String pickup_time_from) {
+        this.pickup_time_from = pickup_time_from;
     }
 
-    public void setPickedUp(ArrayList<String> pickedUp) {
-        this.pickedUp = pickedUp;
+    public String getPickup_time_to() {
+        return pickup_time_to;
     }
 
-    public ArrayList<String> getDelivered() {
-        return delivered;
+    public void setPickup_time_to(String pickup_time_to) {
+        this.pickup_time_to = pickup_time_to;
     }
 
-    public void setDelivered(ArrayList<String> delivered) {
-        this.delivered = delivered;
+
+    public String getStatus() {
+        return status;
+    }
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public String getPayment_type() {
+        return payment_type;
+    }
+    public void setPayment_type(String payment_type) {
+        this.payment_type = payment_type;
+    }
+
+    public AddressModel getAddress_from() {
+        return address_from;
+    }
+    public void setAddress_from(AddressModel address_from) {
+        this.address_from = address_from;
+    }
+
+    public AddressModel getAddress_to() {
+        return address_to;
+    }
+    public void setAddress_to(AddressModel address_to) {
+        this.address_to = address_to;
+    }
+
+    public ArrayList<Items> getItems() {
+        return items;
+    }
+    public void setItems(ArrayList<Items> items) {
+        this.items = items;
+    }
+
+    public CompanyModel getCompany() {
+        return company;
+    }
+    public void setCompany(CompanyModel company) {
+        this.company = company;
     }
 }

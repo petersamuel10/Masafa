@@ -16,7 +16,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".tap_profile.my_address.MyAddressActivity"
+        <activity android:name=".tap_add.map.MyAddressActivity"
             android:theme="@style/AppTheme.NoActionBar"/>
         <activity
             android:name=".tap_add.invoice.Invoice"

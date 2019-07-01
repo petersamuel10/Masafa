@@ -4,5 +4,9 @@ import com.vavisa.masafah.base.BaseView;
 
 public interface AddAddressView extends BaseView {
 
-    void Address(AddressModel address);
+    void addNewAddress(AddressModel address);
+
+    void getAddressDetails(AddressModel address);
+
+    void getEditAddress(AddressModel addressModel);
 }

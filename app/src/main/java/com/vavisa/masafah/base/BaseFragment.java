@@ -9,20 +9,16 @@ import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 import android.widget.Toast;
 
-
 import com.vavisa.masafah.R;
-import com.vavisa.masafah.network.APIManager;
-import com.vavisa.masafah.network.InternetConnectionListener;
 import com.vavisa.masafah.util.dialogs.ConnectionMessage;
 import com.vavisa.masafah.util.dialogs.FailedMessage;
 import com.vavisa.masafah.util.dialogs.ProgressDialog;
 
 import retrofit2.Response;
 
-public class BaseFragment extends Fragment implements BaseView, InternetConnectionListener {
+public class BaseFragment extends Fragment implements BaseView {
 
     @Nullable
     @Override
@@ -31,7 +27,6 @@ public class BaseFragment extends Fragment implements BaseView, InternetConnecti
             @Nullable ViewGroup container,
             @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_base, container, false);
-        APIManager.getInstance().setmInternetConnectionListener(this);
         return v;
     }
 
@@ -65,7 +60,7 @@ public class BaseFragment extends Fragment implements BaseView, InternetConnecti
 
     @Override
     public void showMissingData(Response response) {
-        FailedMessage.getInstance().show(getActivity(),response);
+        FailedMessage.getInstance().show(getActivity(), response);
 
     }
 
@@ -90,8 +85,4 @@ public class BaseFragment extends Fragment implements BaseView, InternetConnecti
 
     }
 
-    @Override
-    public void onInternetUnavailable() {
-        showErrorConnection();
-    }
 }

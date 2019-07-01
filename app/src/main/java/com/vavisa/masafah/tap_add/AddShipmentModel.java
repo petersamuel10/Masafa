@@ -16,8 +16,10 @@ public class AddShipmentModel {
     private String address_from_id;
     @SerializedName("address_to_id")
     private String address_to_id;
-    @SerializedName("pickup_time")
-    private String pickup_time;
+    @SerializedName("pickup_time_from")
+    private String pickup_time_from;
+    @SerializedName("pickup_time_to")
+    private String pickup_time_to;
 
     private AddressModel pickup_address;
     private AddressModel drop_address;
@@ -50,11 +52,18 @@ public class AddShipmentModel {
         this.address_to_id = address_to_id;
     }
 
-    public String getPickup_time() {
-        return pickup_time;
+    public String getPickup_time_from() {
+        return pickup_time_from;
     }
-    public void setPickup_time(String pickup_time) {
-        this.pickup_time = pickup_time;
+    public void setPickup_time_from(String pickup_time_from) {
+        this.pickup_time_from = pickup_time_from;
+    }
+
+    public String getPickup_time_to() {
+        return pickup_time_to;
+    }
+    public void setPickup_time_to(String pickup_time_to) {
+        this.pickup_time_to = pickup_time_to;
     }
 
     public AddressModel getPickup_address() {

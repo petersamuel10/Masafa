@@ -7,8 +7,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.Toast;
 
-
-import com.vavisa.masafah.network.APIManager;
 import com.vavisa.masafah.network.InternetConnectionListener;
 import com.vavisa.masafah.util.dialogs.ConnectionMessage;
 import com.vavisa.masafah.util.dialogs.FailedMessage;
@@ -16,13 +14,12 @@ import com.vavisa.masafah.util.dialogs.ProgressDialog;
 
 import retrofit2.Response;
 
-public class BaseActivity extends AppCompatActivity implements BaseView {
+public class BaseActivity extends AppCompatActivity implements BaseView, InternetConnectionListener {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        Log.d("vv","vv");
     }
 
     public void start(Class<? extends BaseActivity> activity) {
@@ -67,4 +64,10 @@ public class BaseActivity extends AppCompatActivity implements BaseView {
 
     }
 
+    @Override
+    public void onInternetUnavailable() {
+        runOnUiThread(() ->{
+            ConnectionMessage.getInstance().show(this);
+        });
+    }
 }

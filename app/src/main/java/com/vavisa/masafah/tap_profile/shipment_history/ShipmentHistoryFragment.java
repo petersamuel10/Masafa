@@ -24,16 +24,17 @@ import java.util.List;
 
 import static com.vavisa.masafah.activities.MainActivity.navigationView;
 
-public class ShipmentHistoryFragment extends BaseFragment implements View.OnClickListener {
+public class ShipmentHistoryFragment extends BaseFragment implements View.OnClickListener,ShipmentHistoryView {
 
     private View fragment;
-    private ConstraintLayout buttonLayout;
+  //  private ConstraintLayout buttonLayout;
     private RecyclerView myShipmentListView;
     private List<String> myShipments = new ArrayList<>();
     private ImageView noShipmentsImage;
     private TextView noShipmentsMessage;
-    private Button deliveredButton;
-    private Button canceledButton;
+   /* private Button deliveredButton;
+    private Button canceledButton;*/
+    private ShipmentHistoryPresenter presenter;
 
     @Nullable
     @Override
@@ -44,31 +45,12 @@ public class ShipmentHistoryFragment extends BaseFragment implements View.OnClic
 
         if (fragment == null) {
             fragment = inflater.inflate(R.layout.fragment_shipment_history, container, false);
+            initViews();
 
-            Toolbar toolbar = fragment.findViewById(R.id.shipment_history_toolbar);
-            ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
+            presenter = new ShipmentHistoryPresenter();
+            presenter.attachView(this);
+           // presenter.getShipments();
 
-            buttonLayout = fragment.findViewById(R.id.profile_layout);
-            myShipmentListView = fragment.findViewById(R.id.my_shipments_list);
-            noShipmentsImage = fragment.findViewById(R.id.no_shipments_image);
-            noShipmentsMessage = fragment.findViewById(R.id.no_shipments_message);
-
-            deliveredButton = buttonLayout.findViewById(R.id.delivered_button);
-            canceledButton = buttonLayout.findViewById(R.id.canceled_button);
-
-            deliveredButton.setOnClickListener(this);
-            canceledButton.setOnClickListener(this);
-
-            myShipmentListView.setLayoutManager(new LinearLayoutManager(getActivity()));
-
-            buttonLayout.post(
-                    new Runnable() {
-                        @Override
-                        public void run() {
-                            int height = buttonLayout.getHeight();
-                            buttonLayout.setTranslationY(-(height / 2));
-                        }
-                    });
         } else {
             for (int i = 1; i < navigationView.getMenu().size(); i++) {
                 navigationView.getMenu().getItem(i).setChecked(false);
@@ -76,24 +58,45 @@ public class ShipmentHistoryFragment extends BaseFragment implements View.OnClic
             navigationView.getMenu().getItem(1).setChecked(true);
         }
 
-        myShipments.add("Test");
+        return fragment;
+    }
 
-        myShipmentListView.setAdapter(new MyShipmentsDeliveredAdapter());
+    private void initViews() {
+
+        Toolbar toolbar = fragment.findViewById(R.id.shipment_history_toolbar);
+        ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
+
+      //  buttonLayout = fragment.findViewById(R.id.profile_layout);
+        myShipmentListView = fragment.findViewById(R.id.my_shipments_list);
+        noShipmentsImage = fragment.findViewById(R.id.no_shipments_image);
+        noShipmentsMessage = fragment.findViewById(R.id.no_shipments_message);
+
+    //    deliveredButton = buttonLayout.findViewById(R.id.delivered_button);
+   //     canceledButton = buttonLayout.findViewById(R.id.canceled_button);
+
+   //     deliveredButton.setOnClickListener(this);
+   //     canceledButton.setOnClickListener(this);
+
+        myShipmentListView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
         myShipmentListView.addItemDecoration(new BottomSpaceItemDecoration(50));
 
-        if (myShipments.size() == 0) {
-            noShipmentsMessage.setVisibility(View.VISIBLE);
-            noShipmentsImage.setVisibility(View.VISIBLE);
-        }
+   /*     buttonLayout.post(
+                new Runnable() {
+                    @Override
+                    public void run() {
+                        int height = buttonLayout.getHeight();
+                        buttonLayout.setTranslationY(-(height / 2));
+                    }
+                });*/
 
-        return fragment;
     }
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()) {
+     /*   switch (v.getId()) {
             case R.id.delivered_button:
+
                 deliveredButton.setBackground(
                         getResources().getDrawable(R.drawable.button_rounded_corners_primary_filled));
                 deliveredButton.setTextColor(getResources().getColor(android.R.color.white));
@@ -110,6 +113,20 @@ public class ShipmentHistoryFragment extends BaseFragment implements View.OnClic
                 deliveredButton.setTextColor(getResources().getColor(R.color.colorPrimary));
                 myShipmentListView.setAdapter(new MyShipmentsCanceledAdapter());
                 break;
+        }*/
+    }
+
+    @Override
+    public void displayShipment() {
+
+        myShipments.add("Test");
+
+        myShipmentListView.setAdapter(new MyShipmentsDeliveredAdapter());
+
+
+        if (myShipments.size() == 0) {
+            noShipmentsMessage.setVisibility(View.VISIBLE);
+            noShipmentsImage.setVisibility(View.VISIBLE);
         }
     }
 }

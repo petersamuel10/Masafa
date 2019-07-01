@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#f3f3f3">
@@ -49,18 +48,18 @@
             android:layout_marginLeft="24dp"
             android:layout_marginTop="12dp"
             android:layout_marginBottom="24dp"
-            android:src="@drawable/background_masafah"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_account_circle" />
 
         <TextView
-            android:id="@+id/user_name"
+            android:id="@+id/company_name"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp"
-            android:text="DHL"
+
             android:textColor="@android:color/black"
             android:textSize="18sp"
             android:textStyle="bold"
@@ -68,16 +67,16 @@
             app:layout_constraintTop_toTopOf="@+id/company_image" />
 
         <TextView
-            android:id="@+id/user_email"
+            android:id="@+id/company_email"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp"
-            android:text="dhl@gmail.com"
+
             android:textColor="#A1A1A1"
             android:textSize="12sp"
             app:layout_constraintStart_toEndOf="@+id/company_image"
-            app:layout_constraintTop_toBottomOf="@+id/user_name" />
+            app:layout_constraintTop_toBottomOf="@+id/company_name" />
 
         <RatingBar
             android:id="@+id/com_rating"
@@ -89,10 +88,10 @@
             android:layout_marginTop="8dp"
             android:numStars="5"
             android:progressTint="#ffc700"
-            android:rating="4.0"
-            android:stepSize="1.0"
+            android:rating="0.0"
+            android:stepSize="0.25"
             app:layout_constraintStart_toEndOf="@+id/company_image"
-            app:layout_constraintTop_toBottomOf="@+id/user_email" />
+            app:layout_constraintTop_toBottomOf="@+id/company_email" />
 
         <TextView
             android:id="@+id/reviews"
@@ -104,7 +103,7 @@
             android:text="(245 reviews)"
             android:textColor="#A1A1A1"
             app:layout_constraintStart_toEndOf="@+id/com_rating"
-            app:layout_constraintTop_toBottomOf="@+id/user_email" />
+            app:layout_constraintTop_toBottomOf="@+id/company_email" />
 
     </android.support.constraint.ConstraintLayout>
 
@@ -126,8 +125,8 @@
             android:id="@+id/call_icon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginLeft="16dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginLeft="32dp"
             android:layout_marginTop="16dp"
             android:layout_marginBottom="16dp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -141,8 +140,8 @@
             android:layout_height="0dp"
             android:layout_marginStart="4dp"
             android:layout_marginLeft="4dp"
-            android:text="Call"
             android:gravity="center_vertical"
+            android:text="@string/call"
             android:textColor="@android:color/black"
             app:layout_constraintBottom_toBottomOf="@+id/call_icon"
             app:layout_constraintStart_toEndOf="@+id/call_icon"
@@ -171,8 +170,8 @@
             android:layout_height="0dp"
             android:layout_marginStart="4dp"
             android:layout_marginLeft="4dp"
-            android:text="Mail"
             android:gravity="center_vertical"
+            android:text="@string/email"
             android:textColor="@android:color/black"
             app:layout_constraintBottom_toBottomOf="@+id/email_icon"
             app:layout_constraintStart_toEndOf="@+id/email_icon"
@@ -196,10 +195,10 @@
             android:id="@+id/rating_tag"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginRight="16dp"
-            android:text="Rate"
+            android:layout_marginEnd="32dp"
+            android:layout_marginRight="32dp"
             android:gravity="center_vertical"
+            android:text="@string/rate"
             android:textColor="@android:color/black"
             app:layout_constraintBottom_toBottomOf="@+id/rating_icon"
             app:layout_constraintEnd_toEndOf="parent"
@@ -229,7 +228,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp"
             android:layout_marginTop="16dp"
-            android:text="About us"
+            android:text="@string/about_as"
             android:textColor="@android:color/black"
             android:textSize="24sp"
             android:textStyle="bold"
@@ -246,7 +245,6 @@
             android:layout_marginEnd="16dp"
             android:layout_marginRight="16dp"
             android:layout_marginBottom="8dp"
-            android:text="@string/company_test_description"
             android:textColor="#A1A1A1"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

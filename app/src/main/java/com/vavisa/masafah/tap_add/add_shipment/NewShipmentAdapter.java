@@ -29,7 +29,7 @@ public class NewShipmentAdapter extends RecyclerView.Adapter<NewShipmentAdapter.
         this.categoryList = categoryList;
 
         this.shipmentsList = new ArrayList<>();
-        this.shipmentsList.add(new NewShipmentModel(-1, 1));
+        this.shipmentsList.add(new NewShipmentModel("",-1, 1));
     }
 
     @NonNull
@@ -62,7 +62,7 @@ public class NewShipmentAdapter extends RecyclerView.Adapter<NewShipmentAdapter.
                     if (shipmentsList.get(shipmentsList.size() - 1).getCategory_id() == -1)
                         Toast.makeText(context, context.getString(R.string.please_select_category_name_for_previous_shipment), Toast.LENGTH_SHORT).show();
                     else {
-                        shipmentsList.add(new NewShipmentModel(-1, 1));
+                        shipmentsList.add(new NewShipmentModel("",-1, 1));
                         notifyDataSetChanged();
                     }
                 }
@@ -86,6 +86,7 @@ public class NewShipmentAdapter extends RecyclerView.Adapter<NewShipmentAdapter.
                     select_category_pos = pos;
                     holder.category_name_ed.setText(categoryList.get(pos).getName());
                     shipmentsList.get(position).setCategory_id(categoryList.get(pos).getId());
+                    shipmentsList.get(position).setCat_name(categoryList.get(pos).getName());
                     // country_id = countriesList.get(position).getId();
                 });
                 alert.create().show();

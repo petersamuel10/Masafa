@@ -37,8 +37,8 @@ import com.orhanobut.dialogplus.ViewHolder;
 import com.vavisa.masafah.R;
 import com.vavisa.masafah.base.BaseFragment;
 import com.vavisa.masafah.login.LoginActivity;
+import com.vavisa.masafah.tap_profile.myAddresses.AddressesFragment;
 import com.vavisa.masafah.tap_profile.TermsAndCondition.TermsAndConditions;
-import com.vavisa.masafah.tap_profile.my_address.MyAddressActivity;
 import com.vavisa.masafah.tap_profile.profile.model.EditProfileModel;
 import com.vavisa.masafah.tap_profile.profile.model.UpdateProfileResponseM;
 import com.vavisa.masafah.tap_profile.shipment_history.ShipmentHistoryFragment;
@@ -166,9 +166,9 @@ public class ProfileFragment extends BaseFragment implements View.OnClickListene
     }
 
     @Override
-    public void updateProfileResponse(UpdateProfileResponseM updateProfileResponseM) {
+    public void updateProfileResponse(User user) {
 
-        this.user = updateProfileResponseM.getUser();
+        this.user = user;
 
         user_name.setText(user.getFullname());
         user_email.setText(user.getEmail());
@@ -400,7 +400,8 @@ public class ProfileFragment extends BaseFragment implements View.OnClickListene
                                     updateDialog();
                                     break;
                                 case 1:
-                                    startActivity(new Intent(getContext(), MyAddressActivity.class));
+                                    fragment = new AddressesFragment();
+                                    switchFragment(fragment);
                                     break;
                                 case 2:
                                     fragment = new ShipmentHistoryFragment();

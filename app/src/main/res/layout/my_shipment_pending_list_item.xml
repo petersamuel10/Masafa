@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.chauthai.swipereveallayout.SwipeRevealLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<com.chauthai.swipereveallayout.SwipeRevealLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/sw"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="12dp"
     android:layout_marginEnd="18dp"
     android:layout_marginRight="18dp"
+    android:layout_marginBottom="12dp"
     app:mode="same_level">
 
     <LinearLayout
@@ -81,18 +80,18 @@
             app:layout_constraintStart_toEndOf="@+id/shipment_number_tag"
             app:layout_constraintTop_toTopOf="parent" />
 
-          <TextView
-              android:id="@+id/shipment_description"
-              android:layout_width="0dp"
-              android:layout_height="wrap_content"
-              android:layout_marginStart="8dp"
-              android:layout_marginLeft="8dp"
-              android:layout_marginTop="8dp"
-              android:text="@string/test_description"
-              android:textColor="#A1A1A1"
-              app:layout_constraintStart_toEndOf="@+id/side_border"
-              app:layout_constraintTop_toBottomOf="@+id/shipment_number_tag"
-              app:layout_constraintWidth_percent="0.4" />
+        <TextView
+            android:id="@+id/shipment_description"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/test_description"
+            android:textColor="#A1A1A1"
+            app:layout_constraintStart_toEndOf="@+id/side_border"
+            app:layout_constraintTop_toBottomOf="@+id/shipment_number_tag"
+            app:layout_constraintWidth_percent="0.4" />
 
         <Button
             android:id="@+id/pending_button"
@@ -100,7 +99,7 @@
             android:layout_height="30dp"
             android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
             android:background="@drawable/button_oval_grey_filled"
             android:text="@string/pending"

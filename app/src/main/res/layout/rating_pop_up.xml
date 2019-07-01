@@ -44,14 +44,14 @@
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:numStars="5"
-        android:rating="4"
-        android:stepSize="1"
+        android:rating="0"
+        android:stepSize="0.25"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/rate_company_tag" />
 
     <Button
-        android:id="@+id/confirm_button"
+        android:id="@+id/rating_btn"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -61,7 +61,7 @@
         android:layout_marginRight="16dp"
         android:layout_marginBottom="32dp"
         android:background="@drawable/button_rounded_primary"
-        android:text="Rate"
+        android:text="@string/rate"
         android:textAllCaps="false"
         android:textColor="@android:color/white"
         app:layout_constraintBottom_toBottomOf="parent"

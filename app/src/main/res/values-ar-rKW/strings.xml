@@ -76,4 +76,22 @@
     <string name="please_enter_block">الرجاء ادخال القطعة</string>
     <string name="please_select_drop_address">الرجاء اختيار عنوان التوصيل</string>
     <string name="please_select_pickup_address">الرجاء اختيار عنوان التحميل</string>
+    <string name="address_details">تفاصيل العنوان</string>
+    <string name="area">المنطقة</string>
+    <string name="block">القطعة</string>
+    <string name="building">المبنى</string>
+    <string name="location_name">اسم الموقع</string>
+    <string name="notes">ملاحظات</string>
+    <string name="street">الشارع</string>
+    <string name="pickup_time">توقيت الاختيار</string>
+    <string name="to">الي *</string>
+    <string name="from">من *</string>
+    <string name="please_select_pickup_time_from">الرجاء اختيار وقت من *</string>
+    <string name="please_select_pickup_time_to">الرجاء اختيار الوقت الي *</string>
+    <string name="pickup_time_from">التوقيت من :</string>
+    <string name="pickup_time_to">التوقيت الي :</string>
+    <string name="kd">دك</string>
+    <string name="about_as">عن الشركة</string>
+    <string name="call">اتصال</string>
+    <string name="rate">تقييم</string>
 </resources>

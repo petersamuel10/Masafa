@@ -11,8 +11,8 @@ import android.widget.TextView;
 import com.chauthai.swipereveallayout.SwipeRevealLayout;
 import com.vavisa.masafah.R;
 import com.vavisa.masafah.tap_add.add_address.AddressModel;
-import com.vavisa.masafah.tap_profile.MyAddresses.AddressesFragment;
-import com.vavisa.masafah.tap_profile.my_address.MyAddressActivity;
+import com.vavisa.masafah.tap_add.map.MyAddressActivity;
+import com.vavisa.masafah.tap_profile.myAddresses.AddressesFragment;
 import com.vavisa.masafah.util.Constants;
 
 import java.util.ArrayList;
@@ -49,7 +49,7 @@ public class MyAddressAdapter extends RecyclerView.Adapter<MyAddressAdapter.View
                 holder.sw.setDragEdge(1);
             holder.sw.setLockDrag(false);
             holder.edit_txt.setOnClickListener(v -> ((AddressesFragment) view).handleEditAction(addressList.get(position)));
-            holder.delete_txt.setOnClickListener(v -> ((AddressesFragment) view).handleDeleteAction(addressList.get(position)));
+            holder.delete_txt.setOnClickListener(v -> ((AddressesFragment) view).handleDeleteAction(position,addressList.get(position)));
         }
 
     }
@@ -57,6 +57,17 @@ public class MyAddressAdapter extends RecyclerView.Adapter<MyAddressAdapter.View
     @Override
     public int getItemCount() {
         return addressList.size();
+    }
+
+    public void clearAddress(){
+
+        notifyDataSetChanged();
+    }
+
+    public void deleteAddress(int position){
+
+        addressList.remove(position);
+        notifyItemRemoved(position);
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {

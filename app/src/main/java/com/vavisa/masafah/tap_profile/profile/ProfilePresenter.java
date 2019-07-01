@@ -6,11 +6,11 @@ import android.util.Base64;
 import android.util.Log;
 import android.widget.ImageView;
 
+import com.vavisa.masafah.base.BaseApplication;
 import com.vavisa.masafah.base.BasePresenter;
 import com.vavisa.masafah.login.LoginResponse;
 import com.vavisa.masafah.network.APIManager;
 import com.vavisa.masafah.tap_profile.profile.model.EditProfileModel;
-import com.vavisa.masafah.tap_profile.profile.model.UpdateProfileResponseM;
 import com.vavisa.masafah.util.Preferences;
 import com.vavisa.masafah.verify_phone_number.model.User;
 
@@ -42,11 +42,12 @@ public class ProfilePresenter extends BasePresenter<ProfileView> {
 
             @Override
             public void onFailure(Call<User> call, Throwable t) {
+                getView().hideProgress();
+                getView().showMessage(BaseApplication.error_msg);
                 if (t instanceof HttpException) {
                     ResponseBody body = ((HttpException) t).response().errorBody();
                     Log.d("error", body.toString());
                 }
-                getView().hideProgress();
             }
         });
     }
@@ -54,9 +55,9 @@ public class ProfilePresenter extends BasePresenter<ProfileView> {
     public void updateProfile(EditProfileModel editProfileModel) {
         getView().showProgress();
         APIManager.getInstance().getAPI().updateProfileCall(Preferences.getInstance().getString("access_token"),
-                editProfileModel).enqueue(new Callback<UpdateProfileResponseM>() {
+                editProfileModel).enqueue(new Callback<User>() {
             @Override
-            public void onResponse(Call<UpdateProfileResponseM> call, Response<UpdateProfileResponseM> response) {
+            public void onResponse(Call<User> call, Response<User> response) {
                 getView().hideProgress();
                 if (response.code() == 200)
                     getView().updateProfileResponse(response.body());
@@ -65,8 +66,9 @@ public class ProfilePresenter extends BasePresenter<ProfileView> {
             }
 
             @Override
-            public void onFailure(Call<UpdateProfileResponseM> call, Throwable t) {
+            public void onFailure(Call<User> call, Throwable t) {
                 getView().hideProgress();
+                getView().showMessage(BaseApplication.error_msg);
                 if (t instanceof HttpException) {
                     ResponseBody body = ((HttpException) t).response().errorBody();
                     Log.d("error", body.toString());
@@ -93,6 +95,7 @@ public class ProfilePresenter extends BasePresenter<ProfileView> {
             @Override
             public void onFailure(Call<LoginResponse> call, Throwable t) {
                 getView().hideProgress();
+                getView().showMessage(BaseApplication.error_msg);
                 if (t instanceof HttpException) {
                     ResponseBody body = ((HttpException) t).response().errorBody();
                     Log.d("error", body.toString());
@@ -122,6 +125,7 @@ public class ProfilePresenter extends BasePresenter<ProfileView> {
             @Override
             public void onFailure(Call<HashMap<String, String>> call, Throwable t) {
                 getView().hideProgress();
+                getView().showMessage(BaseApplication.error_msg);
                 if (t instanceof HttpException) {
                     ResponseBody body = ((HttpException) t).response().errorBody();
                     Log.d("error", body.toString());
@@ -141,37 +145,4 @@ public class ProfilePresenter extends BasePresenter<ProfileView> {
         return "";
     }
 
-    /*public Bitmap rotateImage(String imagePath, Bitmap bitmap) {
-
-        ExifInterface exifInterface = null;
-        int orientation = 0;
-        try {
-            exifInterface = new ExifInterface(imagePath);
-            orientation = exifInterface.getAttributeInt(ExifInterface.TAG_ORIENTATION, ExifInterface.ORIENTATION_UNDEFINED);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        Matrix matrix = new Matrix();
-        switch (orientation) {
-            case ExifInterface.ORIENTATION_ROTATE_90:
-                matrix.setRotate(90);
-                break;
-            case ExifInterface.ORIENTATION_ROTATE_180:
-                matrix.setRotate(180);
-                break;
-            default:
-        }
-
-        Bitmap rotatedBitmap = Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrix, true);
-
-        return rotatedBitmap;
-    }
-
-    public String getImageUri(Context inContext, Bitmap inImage) {
-        ByteArrayOutputStream bytes = new ByteArrayOutputStream();
-        inImage.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
-        String path = MediaStore.Images.Media.insertImage(inContext.getContentResolver(), inImage, "Title", null);
-        return path;
-    }*/
 }

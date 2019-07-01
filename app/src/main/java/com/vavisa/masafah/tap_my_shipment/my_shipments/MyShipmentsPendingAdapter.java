@@ -17,14 +17,19 @@ import com.vavisa.masafah.R;
 import com.vavisa.masafah.tap_my_shipment.shipment_details.ShipmentDetailsFragment;
 import com.vavisa.masafah.util.Constants;
 
+import java.util.ArrayList;
+
 public class MyShipmentsPendingAdapter extends RecyclerView.Adapter<MyShipmentsPendingAdapter.ViewHolder> {
 
     private Context context;
     private MyShipmentsFragment activity;
+    private ArrayList<ShipmentModel> shipmentList;
 
-    public MyShipmentsPendingAdapter(MyShipmentsFragment activity) {
+
+    public MyShipmentsPendingAdapter(MyShipmentsFragment activity, ArrayList<ShipmentModel> pendingList) {
 
         this.activity = activity;
+        this.shipmentList = pendingList;
     }
 
     @NonNull
@@ -39,8 +44,9 @@ public class MyShipmentsPendingAdapter extends RecyclerView.Adapter<MyShipmentsP
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int i) {
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
+        holder.bind(shipmentList.get(position));
         holder.itemView.setOnClickListener(
                 new View.OnClickListener() {
                     @Override
@@ -49,11 +55,33 @@ public class MyShipmentsPendingAdapter extends RecyclerView.Adapter<MyShipmentsP
                         activity.switchFragment(activity.getFragmentManager(), fragment, "shipmentDetails");
                     }
                 });
+
+        holder.edit_txt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(context, "edit", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        holder.delete_txt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                (activity).deleteShipmentById(position,shipmentList.get(position).getId());
+            }
+        });
+
     }
 
     @Override
     public int getItemCount() {
-        return 3;
+        return shipmentList.size();
+    }
+
+    public void deleteShipmentFromRecycler(int index){
+
+        shipmentList.remove(index);
+        notifyItemRemoved(index);
+
     }
 
 
@@ -61,37 +89,43 @@ public class MyShipmentsPendingAdapter extends RecyclerView.Adapter<MyShipmentsP
 
         public SwipeRevealLayout sw;
         public TextView edit_txt, delete_txt;
+        public TextView shipment_number_txt, shipment_content_txt, pickup_location_txt, drop_location_txt;
+
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
             sw = itemView.findViewById(R.id.sw);
-            if(Constants.LANGUAGE == "en")
+            if (Constants.LANGUAGE == "en")
                 sw.setDragEdge(2);
             else
                 sw.setDragEdge(1);
             edit_txt = itemView.findViewById(R.id.tv_edit);
             delete_txt = itemView.findViewById(R.id.tv_delete);
-
-            edit_txt.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Toast.makeText(context, "edit", Toast.LENGTH_SHORT).show();
-                }
-            });
-
-            delete_txt.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Toast.makeText(context, "delete", Toast.LENGTH_SHORT).show();
-                }
-            });
+            shipment_number_txt = itemView.findViewById(R.id.shipment_number);
+            shipment_content_txt = itemView.findViewById(R.id.shipment_description);
+            pickup_location_txt = itemView.findViewById(R.id.pickup_location);
+            drop_location_txt = itemView.findViewById(R.id.drop_location_area);
 
 
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                 itemView.setOutlineProvider(ViewOutlineProvider.BACKGROUND);
                 itemView.setClipToOutline(true);
             }
+        }
+
+        public void bind(ShipmentModel shipmentModel) {
+
+            shipment_number_txt.setText(shipmentModel.getId());
+            pickup_location_txt.setText(shipmentModel.getAddress_from().getArea());
+            drop_location_txt.setText(shipmentModel.getAddress_to().getArea());
+            StringBuilder item_str = new StringBuilder();
+            for (Items item : shipmentModel.getItems()) {
+                item_str.append("\u25CF ").append(item.getQuantity()).append(" x   ").append(item.getCategory_name()).append("\n");
+            }
+
+            shipment_content_txt.setText(item_str.toString());
+
         }
     }
 }

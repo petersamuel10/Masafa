@@ -149,7 +149,7 @@
         app:layout_constraintStart_toEndOf="@+id/empty_circle"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
+   <!-- <ImageView
         android:id="@+id/location_icon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -190,7 +190,7 @@
         android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/location_icon"
-        app:layout_constraintTop_toBottomOf="@+id/distance_tag" />
+        app:layout_constraintTop_toBottomOf="@+id/distance_tag" />-->
 
     <View
         android:id="@+id/vertical_dotted_lines"

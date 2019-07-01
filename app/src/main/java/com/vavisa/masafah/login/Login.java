@@ -33,7 +33,6 @@ public class Login {
     public String getMobile() {
         return mobile;
     }
-
     public void setMobile(String mobile) {
         this.mobile = mobile;
     }
@@ -41,7 +40,6 @@ public class Login {
     public Integer getCountry_id() {
         return country_id;
     }
-
     public void setCountry_id(Integer country_id) {
         this.country_id = country_id;
     }
@@ -49,7 +47,6 @@ public class Login {
     public String getOtp() {
         return otp;
     }
-
     public void setOtp(String otp) {
         this.otp = otp;
     }
@@ -57,7 +54,6 @@ public class Login {
     public String getOnSignal_player_id() {
         return onSignal_player_id;
     }
-
     public void setOnSignal_player_id(String onSignal_player_id) {
         this.onSignal_player_id = onSignal_player_id;
     }
@@ -65,7 +61,6 @@ public class Login {
     public Integer getDevice_type() {
         return device_type;
     }
-
     public void setDevice_type(Integer device_type) {
         this.device_type = device_type;
     }

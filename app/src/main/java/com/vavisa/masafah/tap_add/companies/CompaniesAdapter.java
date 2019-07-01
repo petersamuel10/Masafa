@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.vavisa.masafah.R;
+import com.vavisa.masafah.tap_my_shipment.company_details.CompanyModel;
 
 import java.util.ArrayList;
 

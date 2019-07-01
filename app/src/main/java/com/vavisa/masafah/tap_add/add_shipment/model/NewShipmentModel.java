@@ -9,9 +9,20 @@ public class NewShipmentModel {
     @SerializedName("quantity")
     private Integer quantity;
 
-    public NewShipmentModel(Integer category_id, Integer quantity) {
+    private String cat_name;
+
+    public NewShipmentModel(String cat_name,Integer category_id, Integer quantity) {
+        this.cat_name = cat_name;
         this.category_id = category_id;
         this.quantity = quantity;
+    }
+
+
+    public String getCat_name() {
+        return cat_name;
+    }
+    public void setCat_name(String cat_name) {
+        this.cat_name = cat_name;
     }
 
     public Integer getCategory_id() {

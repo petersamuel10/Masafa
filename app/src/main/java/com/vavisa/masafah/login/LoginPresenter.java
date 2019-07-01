@@ -2,6 +2,7 @@ package com.vavisa.masafah.login;
 
 import android.util.Log;
 
+import com.vavisa.masafah.base.BaseApplication;
 import com.vavisa.masafah.base.BasePresenter;
 import com.vavisa.masafah.network.APIManager;
 
@@ -34,11 +35,13 @@ public class LoginPresenter extends BasePresenter<LoginView> {
 
             @Override
             public void onFailure(Call<LoginResponse> call, Throwable t) {
+                getView().hideProgress();
+                getView().showMessage(BaseApplication.error_msg);
                 if (t instanceof HttpException) {
                     ResponseBody body = ((HttpException) t).response().errorBody();
                     Log.d("error", body.toString());
                 }
-                getView().hideProgress();
+
             }
         });
 
@@ -50,6 +53,7 @@ public class LoginPresenter extends BasePresenter<LoginView> {
             @Override
             public void onResponse(Call<ArrayList<CountryModel>> call, Response<ArrayList<CountryModel>> response) {
                 getView().hideProgress();
+                getView().showMessage(BaseApplication.error_msg);
                 if (response.code() == 200)
                     getView().countries(response.body());
                 else

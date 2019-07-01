@@ -1,10 +1,6 @@
 package com.vavisa.masafah.network;
 
-import android.util.Log;
-
-import com.vavisa.masafah.activities.MainActivity;
 import com.vavisa.masafah.base.BaseApplication;
-import com.vavisa.masafah.tap_my_shipment.my_shipments.MyShipmentsFragment;
 import com.vavisa.masafah.util.Connectivity;
 import com.vavisa.masafah.util.Constants;
 
@@ -24,8 +20,12 @@ public class APIManager {
     private Retrofit mRetrofit;
     private InternetConnectionListener mInternetConnectionListener;
 
-    public void setmInternetConnectionListener(InternetConnectionListener listener) {
+    public void setInternetConnectionListener(InternetConnectionListener listener) {
         this.mInternetConnectionListener = listener;
+    }
+
+    public void removeInternetConnectionListener() {
+        mInternetConnectionListener = null;
     }
 
     public APIManager() {
@@ -56,8 +56,6 @@ public class APIManager {
                     }
                 }).addInterceptor(interceptor)
                 .addInterceptor(new NetworkConnectionInterceptor() {
-
-
                     @Override
                     public boolean isInternetAvailable() {
                         return Connectivity.checkInternetConnection();
@@ -68,8 +66,8 @@ public class APIManager {
                         if (mInternetConnectionListener != null)
                             mInternetConnectionListener.onInternetUnavailable();
                     }
-                })
-                .build();
+                }).build();
+
 
         mRetrofit = new Retrofit.Builder()
                 .baseUrl(Constants.BASE_URL)

@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -18,6 +19,7 @@ public class AddAddressActivity extends BaseActivity implements AddAddressView {
     private EditText location_name_ed, block_ed, area_ed, street_ed, building_ed, details_ed, extra_ed;
     private String location_name, city, block, area, street, building, details, extra;
     private AddAddressPresenter presenter;
+    private String address_id;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -25,10 +27,34 @@ public class AddAddressActivity extends BaseActivity implements AddAddressView {
         setContentView(R.layout.activity_add_address);
         initViews();
 
-        confirmButton.setOnClickListener(v -> {
-            if (valid())
-                presenter.AddAddress(new AddressModel(location_name, area, block, street, building, details, extra));
-        });
+        if (getIntent().getExtras().containsKey("address_id")) {
+            if (getIntent().getStringExtra("action").equals("showAddressDetails"))
+                disableViewsForDetails();
+            presenter.getAddressById(getIntent().getStringExtra("address_id"));
+            confirmButton.setOnClickListener(v -> {
+                if (valid()) {
+                    presenter.editAddress(new AddressModel(address_id, location_name, area, block, street, building, details, extra));
+                }
+            });
+        } else
+            confirmButton.setOnClickListener(v -> {
+                if (valid()) {
+                    presenter.AddAddress(new AddressModel(location_name, area, block, street, building, details, extra));
+                }
+            });
+    }
+
+    private void disableViewsForDetails() {
+
+        location_name_ed.setEnabled(false);
+        block_ed.setEnabled(false);
+        area_ed.setEnabled(false);
+        street_ed.setEnabled(false);
+        building_ed.setEnabled(false);
+        details_ed.setEnabled(false);
+        extra_ed.setEnabled(false);
+
+        confirmButton.setVisibility(View.GONE);
     }
 
     private boolean valid() {
@@ -109,15 +135,33 @@ public class AddAddressActivity extends BaseActivity implements AddAddressView {
     }
 
     @Override
-    public void Address(AddressModel addressModel) {
-
+    public void addNewAddress(AddressModel addressModel) {
         if (getIntent().getExtras().getString("tag").equals("pickup_tag")) {
             Constants.addShipmentModel.setPickup_address(addressModel);
             Constants.addShipmentModel.setAddress_from_id(addressModel.getId());
-        } else {
+        } else if (getIntent().getExtras().getString("tag").equals("drop_tag")) {
             Constants.addShipmentModel.setDrop_address(addressModel);
             Constants.addShipmentModel.setAddress_to_id(addressModel.getId());
         }
+        finish();
+    }
+
+    @Override
+    public void getAddressDetails(AddressModel address) {
+
+        address_id = address.getId();
+        location_name_ed.setText(address.getName());
+        block_ed.setText(address.getBlock());
+        area_ed.setText(address.getArea());
+        street_ed.setText(address.getStreet());
+        building_ed.setText(address.getBuilding());
+        details_ed.setText(address.getDetails());
+        extra_ed.setText(address.getNotes());
+
+    }
+
+    @Override
+    public void getEditAddress(AddressModel addressModel) {
         finish();
     }
 }

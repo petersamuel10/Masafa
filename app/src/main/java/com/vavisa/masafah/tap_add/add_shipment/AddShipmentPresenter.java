@@ -2,6 +2,7 @@ package com.vavisa.masafah.tap_add.add_shipment;
 
 import android.util.Log;
 
+import com.vavisa.masafah.base.BaseApplication;
 import com.vavisa.masafah.base.BasePresenter;
 import com.vavisa.masafah.network.APIManager;
 import com.vavisa.masafah.tap_add.add_shipment.model.CategoryModel;
@@ -32,12 +33,12 @@ public class AddShipmentPresenter extends BasePresenter<AddShipmentView> {
 
             @Override
             public void onFailure(Call<ArrayList<CategoryModel>> call, Throwable t) {
-
+                getView().hideProgress();
+                getView().showMessage(BaseApplication.error_msg);
                 if (t instanceof HttpException) {
                     ResponseBody body = ((HttpException) t).response().errorBody();
                     Log.d("error", body.toString());
                 }
-                getView().hideProgress();
             }
         });
     }

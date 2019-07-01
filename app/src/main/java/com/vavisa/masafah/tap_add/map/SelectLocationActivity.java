@@ -16,7 +16,6 @@ import com.vavisa.masafah.R;
 import com.vavisa.masafah.base.BaseActivity;
 import com.vavisa.masafah.tap_add.add_address.AddressModel;
 import com.vavisa.masafah.tap_add.invoice.Invoice;
-import com.vavisa.masafah.tap_profile.my_address.MyAddressActivity;
 import com.vavisa.masafah.util.Constants;
 
 public class SelectLocationActivity extends BaseActivity implements View.OnClickListener {
@@ -48,8 +47,8 @@ public class SelectLocationActivity extends BaseActivity implements View.OnClick
         pick_ic_done = findViewById(R.id.pick_ic_done);
         dropLayout = findViewById(R.id.drop_location_layout);
         drop_ic_done = findViewById(R.id.drop_ic_done);
-        pickup_address_txt = findViewById(R.id.pickup_address);
-        drop_address_txt = findViewById(R.id.drop_address);
+        pickup_address_txt = findViewById(R.id.pickup_location_tag);
+        drop_address_txt = findViewById(R.id.drop_location_tag);
         next_btn = findViewById(R.id.next_button);
 
         pickupLayout.setOnClickListener(this);
@@ -74,7 +73,7 @@ public class SelectLocationActivity extends BaseActivity implements View.OnClick
     }
 
     private String Address_to_string(AddressModel address) {
-        return address.getName() + ", " + address.getArea() + ", " + address.getBlock() + ", " + address.getStreet() + ", " + address.getBuilding();
+        return address.getName() + "\n" + address.getArea();
     }
 
     @Override
@@ -88,11 +87,11 @@ public class SelectLocationActivity extends BaseActivity implements View.OnClick
 
         switch (v.getId()) {
             case R.id.pickup_location_layout:
-                showPopAddressWay();
+                showPopAddressWay("pickup_tag");
                 break;
 
             case R.id.drop_location_layout:
-                showPopAddressWay();
+                showPopAddressWay("drop_tag");
                 break;
             case R.id.next_button:
                 if (valid())
@@ -113,7 +112,7 @@ public class SelectLocationActivity extends BaseActivity implements View.OnClick
         return true;
     }
 
-    private void showPopAddressWay() {
+    private void showPopAddressWay(String tag) {
         final AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle(getString(R.string.select_address_from));
 
@@ -123,11 +122,11 @@ public class SelectLocationActivity extends BaseActivity implements View.OnClick
             Intent intent = null;
             if (position == 0) {
                 intent = new Intent(new Intent(SelectLocationActivity.this, MyAddressActivity.class));
-                intent.putExtra("tag", "pickup_tag");
+                intent.putExtra("tag", tag);
 
             } else {
                 intent = new Intent(SelectLocationActivity.this, MapActivity.class);
-                intent.putExtra("tag", "drop_tag");
+                intent.putExtra("tag", tag);
             }
 
             startActivity(intent);
