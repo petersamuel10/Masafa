@@ -1,5 +1,6 @@
 package com.vavisa.masafah.tap_my_shipment.my_shipments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -16,6 +17,8 @@ import android.widget.RelativeLayout;
 
 import com.vavisa.masafah.R;
 import com.vavisa.masafah.base.BaseFragment;
+import com.vavisa.masafah.tap_add.add_shipment.AddShipmentActivity;
+import com.vavisa.masafah.util.Constants;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -94,8 +97,14 @@ public class MyShipmentsFragment extends BaseFragment implements MyShipmentsView
                 });
     }
 
-    public void deleteShipmentById(int position, String shipment_id) {
+    public void editShipment(ShipmentModel shipmentModel) {
+        Constants.isEditShipment = true;
+        Intent intent = new Intent(getContext(), AddShipmentActivity.class);
+        intent.putExtra("edit_shipment", shipmentModel);
+        startActivity(intent);
+    }
 
+    public void deleteShipmentById(int position, String shipment_id) {
         presenter.deleteShipment(position, shipment_id);
     }
 
@@ -134,7 +143,6 @@ public class MyShipmentsFragment extends BaseFragment implements MyShipmentsView
     @Override
     public void deleteShipmentRes(int position) {
         adapter.deleteShipmentFromRecycler(position);
-
     }
 
 }

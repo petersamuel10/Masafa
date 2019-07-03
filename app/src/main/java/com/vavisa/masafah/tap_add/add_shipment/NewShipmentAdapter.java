@@ -13,23 +13,22 @@ import android.widget.Toast;
 
 import com.vavisa.masafah.R;
 import com.vavisa.masafah.tap_add.add_shipment.model.CategoryModel;
-import com.vavisa.masafah.tap_add.add_shipment.model.NewShipmentModel;
+import com.vavisa.masafah.tap_add.add_shipment.model.ShipmentItemModel;
 
 import java.util.ArrayList;
 
 public class NewShipmentAdapter extends RecyclerView.Adapter<NewShipmentAdapter.ViewHolder> {
 
-    private ArrayList<NewShipmentModel> shipmentsList;
+    private ArrayList<ShipmentItemModel> shipmentsList;
     private ArrayList<CategoryModel> categoryList;
     private Context context;
     private Integer select_category_pos = 0;
 
 
-    public NewShipmentAdapter(ArrayList<CategoryModel> categoryList) {
+    public NewShipmentAdapter(ArrayList<CategoryModel> categoryList, ArrayList<ShipmentItemModel> shipmentsList) {
         this.categoryList = categoryList;
 
-        this.shipmentsList = new ArrayList<>();
-        this.shipmentsList.add(new NewShipmentModel("",-1, 1));
+        this.shipmentsList = shipmentsList;
     }
 
     @NonNull
@@ -56,19 +55,19 @@ public class NewShipmentAdapter extends RecyclerView.Adapter<NewShipmentAdapter.
     public void onBindViewHolder(@NonNull final ViewHolder holder, final int position) {
 
         if (position == shipmentsList.size())
-            holder.addMoreItems.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if (shipmentsList.get(shipmentsList.size() - 1).getCategory_id() == -1)
-                        Toast.makeText(context, context.getString(R.string.please_select_category_name_for_previous_shipment), Toast.LENGTH_SHORT).show();
-                    else {
-                        shipmentsList.add(new NewShipmentModel("",-1, 1));
-                        notifyDataSetChanged();
-                    }
+            holder.addMoreItems.setOnClickListener(v -> {
+                if (shipmentsList.get(shipmentsList.size() - 1).getCategory_id() == -1)
+                    Toast.makeText(context, context.getString(R.string.please_select_category_name_for_previous_shipment), Toast.LENGTH_SHORT).show();
+                else {
+                    shipmentsList.add(new ShipmentItemModel("", -1, 1));
+                    notifyDataSetChanged();
                 }
             });
         else {
 
+            // bind data if its edit shipment
+            if (!shipmentsList.get(0).getCat_name().equals(""))
+                holder.bind(shipmentsList.get(position));
             int[] quantity = new int[1];
 
             holder.category_name_ed.setOnClickListener(v -> {
@@ -91,7 +90,6 @@ public class NewShipmentAdapter extends RecyclerView.Adapter<NewShipmentAdapter.
                 });
                 alert.create().show();
             });
-
             holder.add_quantity.setOnClickListener(v -> {
 
                 quantity[0] = shipmentsList.get(position).getQuantity() + 1;
@@ -121,7 +119,7 @@ public class NewShipmentAdapter extends RecyclerView.Adapter<NewShipmentAdapter.
                 R.layout.add_shipment_list_item;
     }
 
-    public ArrayList<NewShipmentModel> getShipmentList() {
+    public ArrayList<ShipmentItemModel> getShipmentList() {
         return shipmentsList;
     }
 
@@ -139,6 +137,11 @@ public class NewShipmentAdapter extends RecyclerView.Adapter<NewShipmentAdapter.
             addMoreItems = itemView.findViewById(R.id.add_more_item);
             add_quantity = itemView.findViewById(R.id.add_quantity);
             subtract_quantity = itemView.findViewById(R.id.subtract_quantity);
+        }
+
+        public void bind(ShipmentItemModel shipmentItemModel) {
+            category_name_ed.setText(shipmentItemModel.getCat_name());
+            quantity_txt.setText(String.valueOf(shipmentItemModel.getQuantity()));
         }
     }
 }

@@ -16,6 +16,7 @@ import com.vavisa.masafah.base.BaseActivity;
 import com.vavisa.masafah.tap_add.add_shipment.AddShipmentActivity;
 import com.vavisa.masafah.tap_my_shipment.my_shipments.MyShipmentsFragment;
 import com.vavisa.masafah.tap_profile.profile.ProfileFragment;
+import com.vavisa.masafah.util.Constants;
 
 public class MainActivity extends BaseActivity {
 
@@ -78,6 +79,7 @@ public class MainActivity extends BaseActivity {
                             return true;
 
                         case R.id.navigation_add_shipment:
+                            Constants.isEditShipment = false;
                             startActivity(new Intent(MainActivity.this, AddShipmentActivity.class));
                             break;
 

@@ -12,7 +12,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.vavisa.masafah.R;
-import com.vavisa.masafah.tap_my_shipment.my_shipments.Items;
+import com.vavisa.masafah.tap_add.add_shipment.model.ShipmentItemModel;
 import com.vavisa.masafah.tap_my_shipment.my_shipments.ShipmentModel;
 
 import java.util.ArrayList;
@@ -80,8 +80,8 @@ class MyShipmentsDeliveredAdapter extends RecyclerView.Adapter<MyShipmentsDelive
             drop_location_txt.setText(shipmentModel.getAddress_to().getArea());
 
             StringBuilder item_str = new StringBuilder();
-            for (Items item : shipmentModel.getItems()) {
-                item_str.append("\u25CF ").append(item.getQuantity()).append(" x   ").append(item.getCategory_name()).append("\n");
+            for (ShipmentItemModel item : shipmentModel.getItems()) {
+                item_str.append("\u25CF ").append(item.getQuantity()).append(" x   ").append(item.getCat_name()).append("\n");
             }
 
             shipment_content_txt.setText(item_str.toString());

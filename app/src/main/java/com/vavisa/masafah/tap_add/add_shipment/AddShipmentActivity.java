@@ -13,9 +13,11 @@ import android.widget.Toast;
 
 import com.vavisa.masafah.R;
 import com.vavisa.masafah.base.BaseActivity;
+import com.vavisa.masafah.tap_add.Select_location.SelectLocationActivity;
 import com.vavisa.masafah.tap_add.add_shipment.model.CategoryModel;
-import com.vavisa.masafah.tap_add.add_shipment.model.NewShipmentModel;
+import com.vavisa.masafah.tap_add.add_shipment.model.ShipmentItemModel;
 import com.vavisa.masafah.tap_add.companies.CompaniesActivity;
+import com.vavisa.masafah.tap_my_shipment.my_shipments.ShipmentModel;
 import com.vavisa.masafah.util.BottomSpaceItemDecoration;
 import com.vavisa.masafah.util.Connectivity;
 import com.vavisa.masafah.util.Constants;
@@ -27,7 +29,7 @@ public class AddShipmentActivity extends BaseActivity implements AddShipmentView
 
     private RecyclerView shipmentList_rec;
     private NewShipmentAdapter adapter;
-    private ArrayList<NewShipmentModel> shipmentsList;
+    private ArrayList<ShipmentItemModel> shipmentsList;
     private Button nextButton;
     private AddShipmentPresenter presenter;
     private TextView pickup_time_from_txt, pickup_time_to_txt;
@@ -58,7 +60,10 @@ public class AddShipmentActivity extends BaseActivity implements AddShipmentView
                 Constants.addShipmentModel.setShipmentList(shipmentsList);
                 Constants.addShipmentModel.setPickup_time_from(pickup_time_from_txt.getText().toString());
                 Constants.addShipmentModel.setPickup_time_to(pickup_time_to_txt.getText().toString());
-                startActivity(new Intent(AddShipmentActivity.this, CompaniesActivity.class));
+                if (getIntent().hasExtra("edit_shipment"))
+                    startActivity(new Intent(AddShipmentActivity.this, SelectLocationActivity.class));
+                else
+                    startActivity(new Intent(AddShipmentActivity.this, CompaniesActivity.class));
             }
         });
     }
@@ -72,7 +77,7 @@ public class AddShipmentActivity extends BaseActivity implements AddShipmentView
         TimePickerDialog timePicker;
         timePicker = new TimePickerDialog(this, (view, hourOfDay, minute1) -> {
 
-            time_txt.setText(String.format("%02d", hourOfDay) + ":" + String.format("%02d", minute1)+":00");
+            time_txt.setText(String.format("%02d", hourOfDay) + ":" + String.format("%02d", minute1) + ":00");
         }, hour, minute, true);
 
         timePicker.show();
@@ -92,7 +97,6 @@ public class AddShipmentActivity extends BaseActivity implements AddShipmentView
         pickup_time_from_txt = findViewById(R.id.time_from);
         nextButton = findViewById(R.id.next_button);
 
-
         presenter = new AddShipmentPresenter();
         presenter.attachView(this);
     }
@@ -106,7 +110,21 @@ public class AddShipmentActivity extends BaseActivity implements AddShipmentView
     @Override
     public void categories(ArrayList<CategoryModel> categoryList) {
 
-        adapter = new NewShipmentAdapter(categoryList);
+        shipmentsList = new ArrayList<>();
+        if (getIntent().hasExtra("edit_shipment")) {
+            ShipmentModel shipmentModel = (ShipmentModel) getIntent().getParcelableExtra("edit_shipment");
+            shipmentsList = shipmentModel.getItems();
+            pickup_time_from_txt.setText(shipmentModel.getPickup_time_from());
+            pickup_time_to_txt.setText(shipmentModel.getPickup_time_to());
+            Constants.addShipmentModel.setShipment_id(shipmentModel.getId());
+            Constants.addShipmentModel.setAddress_from_id(shipmentModel.getAddress_from().getId());
+            Constants.addShipmentModel.setPickup_address(shipmentModel.getAddress_from());
+            Constants.addShipmentModel.setAddress_to_id(shipmentModel.getAddress_to().getId());
+            Constants.addShipmentModel.setDrop_address(shipmentModel.getAddress_to());
+        } else
+            shipmentsList.add(new ShipmentItemModel("", -1, 1));
+
+        adapter = new NewShipmentAdapter(categoryList, shipmentsList);
         shipmentList_rec.setAdapter(adapter);
     }
 }

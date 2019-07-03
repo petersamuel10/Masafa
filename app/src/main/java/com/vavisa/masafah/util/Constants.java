@@ -8,5 +8,6 @@ public class Constants {
     public static String LANGUAGE;
     public static final String BASE_URL = "http://173.231.196.229/~tvavisa/masafah/";
     public static AddShipmentModel addShipmentModel = new AddShipmentModel();
+    public static Boolean isEditShipment = false;
 
 }

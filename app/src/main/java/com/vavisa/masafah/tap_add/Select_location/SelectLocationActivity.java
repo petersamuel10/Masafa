@@ -20,13 +20,13 @@ import com.vavisa.masafah.tap_add.map.MapActivity;
 import com.vavisa.masafah.tap_add.map.MyAddressActivity;
 import com.vavisa.masafah.util.Constants;
 
-public class SelectLocationActivity extends BaseActivity implements View.OnClickListener,SelectLocationViews {
+public class SelectLocationActivity extends BaseActivity implements View.OnClickListener, SelectLocationViews {
 
     private ConstraintLayout pickupLayout;
     private ConstraintLayout dropLayout;
     private ImageView pick_ic_done, drop_ic_done;
     private Button next_btn;
-    private TextView pickup_address_txt, drop_address_txt , price_txt;
+    private TextView pickup_address_txt, drop_address_txt, price_txt;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -64,8 +64,8 @@ public class SelectLocationActivity extends BaseActivity implements View.OnClick
     }
 
     @Override
-    protected void onResume() {
-        super.onResume();
+    protected void onStart() {
+        super.onStart();
 
         if (!TextUtils.isEmpty(Constants.addShipmentModel.getAddress_from_id())) {
             pick_ic_done.setVisibility(View.VISIBLE);
@@ -76,7 +76,6 @@ public class SelectLocationActivity extends BaseActivity implements View.OnClick
             drop_ic_done.setVisibility(View.VISIBLE);
             drop_address_txt.setText(Address_to_string(Constants.addShipmentModel.getDrop_address()));
         }
-
     }
 
     private String Address_to_string(AddressModel address) {
@@ -145,7 +144,7 @@ public class SelectLocationActivity extends BaseActivity implements View.OnClick
     @Override
     public void displayPrice(String price) {
 
-        price_txt.setText(price+" "+getString(R.string.kd));
+        price_txt.setText(price + " " + getString(R.string.kd));
 
         Constants.addShipmentModel.setPrice(price_txt.getText().toString());
     }

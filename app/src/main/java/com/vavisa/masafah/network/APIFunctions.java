@@ -74,6 +74,9 @@ public interface APIFunctions {
     @POST("public/api/user/addShipment")
     Call<HashMap<String, String>> addShipmentCall(@Header("Authorization") String Authorization, @Body AddShipmentModel addShipmentModel);
 
+    @PUT("public/api/user/editShipment")
+    Call<HashMap<String, String>> editShipmentCall(@Header("Authorization") String Authorization, @Body AddShipmentModel addShipmentModel);
+
     @GET("public/api/user/getAddresses")
     Call<ArrayList<AddressModel>> getMyAddressesCall(@Header("Authorization") String Authorization);
 

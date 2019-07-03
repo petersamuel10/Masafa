@@ -1,8 +1,11 @@
 package com.vavisa.masafah.tap_add.add_address;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.SerializedName;
 
-public class AddressModel {
+public class AddressModel implements Parcelable {
 
     @SerializedName("address_id")
     private String address_id;
@@ -50,6 +53,31 @@ public class AddressModel {
         this.details = details;
         this.notes = notes;
     }
+
+    protected AddressModel(Parcel in) {
+        address_id = in.readString();
+        id = in.readString();
+        name = in.readString();
+        mobile = in.readString();
+        block = in.readString();
+        street = in.readString();
+        area = in.readString();
+        building = in.readString();
+        details = in.readString();
+        notes = in.readString();
+    }
+
+    public static final Creator<AddressModel> CREATOR = new Creator<AddressModel>() {
+        @Override
+        public AddressModel createFromParcel(Parcel in) {
+            return new AddressModel(in);
+        }
+
+        @Override
+        public AddressModel[] newArray(int size) {
+            return new AddressModel[size];
+        }
+    };
 
     public String getAddress_id() {
         return address_id;
@@ -119,5 +147,24 @@ public class AddressModel {
     }
     public void setNotes(String notes) {
         this.notes = notes;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(address_id);
+        dest.writeString(id);
+        dest.writeString(name);
+        dest.writeString(mobile);
+        dest.writeString(block);
+        dest.writeString(street);
+        dest.writeString(area);
+        dest.writeString(building);
+        dest.writeString(details);
+        dest.writeString(notes);
     }
 }

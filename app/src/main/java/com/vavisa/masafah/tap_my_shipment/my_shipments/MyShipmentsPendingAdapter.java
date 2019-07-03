@@ -10,10 +10,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewOutlineProvider;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.chauthai.swipereveallayout.SwipeRevealLayout;
 import com.vavisa.masafah.R;
+import com.vavisa.masafah.tap_add.add_shipment.model.ShipmentItemModel;
 import com.vavisa.masafah.tap_my_shipment.shipment_details.ShipmentDetailsFragment;
 import com.vavisa.masafah.util.Constants;
 
@@ -56,19 +56,11 @@ public class MyShipmentsPendingAdapter extends RecyclerView.Adapter<MyShipmentsP
                     }
                 });
 
-        holder.edit_txt.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(context, "edit", Toast.LENGTH_SHORT).show();
-            }
-        });
+        holder.edit_txt.setOnClickListener(v -> {
+            holder.sw.close(true);
+            (activity).editShipment(shipmentList.get(position)); });
 
-        holder.delete_txt.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                (activity).deleteShipmentById(position,shipmentList.get(position).getId());
-            }
-        });
+        holder.delete_txt.setOnClickListener(v -> (activity).deleteShipmentById(position,shipmentList.get(position).getId()));
 
     }
 
@@ -120,8 +112,8 @@ public class MyShipmentsPendingAdapter extends RecyclerView.Adapter<MyShipmentsP
             pickup_location_txt.setText(shipmentModel.getAddress_from().getArea());
             drop_location_txt.setText(shipmentModel.getAddress_to().getArea());
             StringBuilder item_str = new StringBuilder();
-            for (Items item : shipmentModel.getItems()) {
-                item_str.append("\u25CF ").append(item.getQuantity()).append(" x   ").append(item.getCategory_name()).append("\n");
+            for (ShipmentItemModel item : shipmentModel.getItems()) {
+                item_str.append("\u25CF ").append(item.getQuantity()).append(" x   ").append(item.getCat_name()).append("\n");
             }
 
             shipment_content_txt.setText(item_str.toString());

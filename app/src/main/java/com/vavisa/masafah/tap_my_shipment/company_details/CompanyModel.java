@@ -1,8 +1,11 @@
 package com.vavisa.masafah.tap_my_shipment.company_details;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.SerializedName;
 
-public class CompanyModel {
+public class CompanyModel implements Parcelable {
 
     @SerializedName("id")
     private Integer id;
@@ -20,6 +23,64 @@ public class CompanyModel {
     private Float rating;
     @SerializedName("image")
     private String image;
+
+    protected CompanyModel(Parcel in) {
+        if (in.readByte() == 0) {
+            id = null;
+        } else {
+            id = in.readInt();
+        }
+        name = in.readString();
+        email = in.readString();
+        mobile = in.readString();
+        phone = in.readString();
+        description = in.readString();
+        if (in.readByte() == 0) {
+            rating = null;
+        } else {
+            rating = in.readFloat();
+        }
+        image = in.readString();
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        if (id == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeInt(id);
+        }
+        dest.writeString(name);
+        dest.writeString(email);
+        dest.writeString(mobile);
+        dest.writeString(phone);
+        dest.writeString(description);
+        if (rating == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeFloat(rating);
+        }
+        dest.writeString(image);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    public static final Creator<CompanyModel> CREATOR = new Creator<CompanyModel>() {
+        @Override
+        public CompanyModel createFromParcel(Parcel in) {
+            return new CompanyModel(in);
+        }
+
+        @Override
+        public CompanyModel[] newArray(int size) {
+            return new CompanyModel[size];
+        }
+    };
 
     public Integer getId() {
         return id;

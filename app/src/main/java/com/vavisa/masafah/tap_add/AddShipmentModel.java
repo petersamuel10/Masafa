@@ -2,14 +2,16 @@ package com.vavisa.masafah.tap_add;
 
 import com.google.gson.annotations.SerializedName;
 import com.vavisa.masafah.tap_add.add_address.AddressModel;
-import com.vavisa.masafah.tap_add.add_shipment.model.NewShipmentModel;
+import com.vavisa.masafah.tap_add.add_shipment.model.ShipmentItemModel;
 
 import java.util.ArrayList;
 
 public class AddShipmentModel {
 
+    @SerializedName("shipment_id")
+    private String shipment_id;
     @SerializedName("shipments")
-    private ArrayList<NewShipmentModel> shipmentList;
+    private ArrayList<ShipmentItemModel> shipmentList;
     @SerializedName("delivery_companies_id")
     private ArrayList<Integer> deliveryCompaniesIdList;
     @SerializedName("address_from_id")
@@ -25,10 +27,17 @@ public class AddShipmentModel {
     private AddressModel drop_address;
     private String price;
 
-    public ArrayList<NewShipmentModel> getShipmentList() {
+    public String getShipment_id() {
+        return shipment_id;
+    }
+    public void setShipment_id(String shipment_id) {
+        this.shipment_id = shipment_id;
+    }
+
+    public ArrayList<ShipmentItemModel> getShipmentList() {
         return shipmentList;
     }
-    public void setShipmentList(ArrayList<NewShipmentModel> shipmentList) {
+    public void setShipmentList(ArrayList<ShipmentItemModel> shipmentList) {
         this.shipmentList = shipmentList;
     }
 
@@ -84,7 +93,6 @@ public class AddShipmentModel {
     public String getPrice() {
         return price;
     }
-
     public void setPrice(String price) {
         this.price = price;
     }

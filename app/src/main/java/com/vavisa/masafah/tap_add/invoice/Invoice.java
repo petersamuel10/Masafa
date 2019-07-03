@@ -9,7 +9,7 @@ import com.vavisa.masafah.R;
 import com.vavisa.masafah.activities.MainActivity;
 import com.vavisa.masafah.base.BaseActivity;
 import com.vavisa.masafah.tap_add.AddShipmentModel;
-import com.vavisa.masafah.tap_add.add_shipment.model.NewShipmentModel;
+import com.vavisa.masafah.tap_add.add_shipment.model.ShipmentItemModel;
 import com.vavisa.masafah.util.Constants;
 
 public class Invoice extends BaseActivity implements com.vavisa.masafah.tap_add.invoice.View {
@@ -33,7 +33,12 @@ public class Invoice extends BaseActivity implements com.vavisa.masafah.tap_add.
 
         bindData();
 
-        confirm_btn.setOnClickListener(v -> presenter.addShipment());
+        confirm_btn.setOnClickListener(v -> {
+            if (Constants.isEditShipment)
+                presenter.editShipment();
+            else
+                presenter.addShipment();
+        });
     }
 
     private void initViews() {
@@ -52,7 +57,7 @@ public class Invoice extends BaseActivity implements com.vavisa.masafah.tap_add.
     private void bindData() {
 
         StringBuilder item_str = new StringBuilder();
-        for (NewShipmentModel item : Constants.addShipmentModel.getShipmentList()) {
+        for (ShipmentItemModel item : Constants.addShipmentModel.getShipmentList()) {
             item_str.append("\u25CF ").append(item.getQuantity()).append(" x   ").append(item.getCat_name()).append("\n");
         }
 
@@ -78,7 +83,7 @@ public class Invoice extends BaseActivity implements com.vavisa.masafah.tap_add.
 
     @Override
     public void handleAddShipment(String msg) {
-
+        Constants.isEditShipment = false;
         Constants.addShipmentModel = new AddShipmentModel();
         showMessage(msg);
         startActivity(new Intent(Invoice.this, MainActivity.class));
