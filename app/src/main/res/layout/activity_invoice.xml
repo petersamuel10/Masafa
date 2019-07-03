@@ -102,10 +102,21 @@
                     android:layout_marginStart="4dp"
                     android:layout_marginLeft="4dp"
                     android:layout_marginTop="16dp"
-                    android:text="Salmiya"
+                    android:textStyle="bold"
                     android:textColor="@android:color/black"
                     app:layout_constraintStart_toEndOf="@+id/filled_circle"
                     app:layout_constraintTop_toBottomOf="@+id/horizontal_line" />
+
+                <TextView
+                    android:id="@+id/pickup_address"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="0dp"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginTop="2dp"
+                    android:textColor="@android:color/black"
+                    app:layout_constraintStart_toStartOf="@+id/pickup_location"
+                    app:layout_constraintTop_toBottomOf="@+id/pickup_location" />
 
                 <ImageView
                     android:id="@+id/filled_circle"
@@ -136,12 +147,22 @@
                     android:layout_marginLeft="4dp"
                     android:layout_marginEnd="8dp"
                     android:layout_marginRight="8dp"
-                    android:text="Hawalli"
+                    android:textStyle="bold"
                     android:textColor="@android:color/black"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/empty_circle"
                     app:layout_constraintTop_toBottomOf="@+id/vertical_dotted_lines" />
 
+                <TextView
+                    android:id="@+id/drop_address"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="0dp"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginTop="2dp"
+                    android:textColor="@android:color/black"
+                    app:layout_constraintStart_toStartOf="@+id/drop_location"
+                    app:layout_constraintTop_toBottomOf="@+id/drop_location" />
 
                 <View
                     android:id="@+id/vertical_dotted_lines"
@@ -165,7 +186,7 @@
                     android:layerType="software"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/drop_location" />
+                    app:layout_constraintTop_toBottomOf="@+id/drop_address" />
 
                 <TextView
                     android:id="@+id/pickup_time_from_tag"

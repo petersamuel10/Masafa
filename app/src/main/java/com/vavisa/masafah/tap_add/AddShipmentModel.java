@@ -23,6 +23,7 @@ public class AddShipmentModel {
 
     private AddressModel pickup_address;
     private AddressModel drop_address;
+    private String price;
 
     public ArrayList<NewShipmentModel> getShipmentList() {
         return shipmentList;
@@ -78,5 +79,13 @@ public class AddShipmentModel {
     }
     public void setDrop_address(AddressModel drop_address) {
         this.drop_address = drop_address;
+    }
+
+    public String getPrice() {
+        return price;
+    }
+
+    public void setPrice(String price) {
+        this.price = price;
     }
 }

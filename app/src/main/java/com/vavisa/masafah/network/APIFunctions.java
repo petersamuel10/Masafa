@@ -65,8 +65,8 @@ public interface APIFunctions {
     @PATCH("public/api/user/updateMobileNumber")
     Call<VerifyResponseModel> updateMobileNumberCall(@Header("Authorization") String Authorization,@Body Login login);
 
-    @GET("public/api/user/logout")
-    Call<HashMap<String,String>> logoutCall(@Header("Authorization") String Authorization);
+    @POST("public/api/user/logout")
+    Call<HashMap<String,String>> logoutCall(@Header("Authorization") String Authorization,@Body HashMap<String, String> player_id);
 
     @POST("public/api/user/addAddress")
     Call<AddressModel> addAddressCall(@Header("Authorization") String Authorization, @Body AddressModel addressModel);
@@ -86,8 +86,8 @@ public interface APIFunctions {
     @DELETE("public/api/user/deleteAddressById/{address_id}")
     Call<HashMap<String,String>> deleteAddressCall(@Header("Authorization") String Authorization, @Path("address_id") String address_id);
 
-    @GET("public/api/user/getShipments")
-    Call<HashMap<String,String>> getShipmentHistoryCall(@Header("Authorization") String Authorization);
+    @GET("public/api/user/getShipmentHistory")
+    Call<ArrayList<ShipmentModel>> getShipmentHistoryCall(@Header("Authorization") String Authorization);
 
     @DELETE("public/api/user/deleteShipmentById/{shipment_id}")
     Call<HashMap<String,String>> deleteShipmentCall(@Header("Authorization") String Authorization, @Path("shipment_id") String shipment_id);
@@ -100,4 +100,7 @@ public interface APIFunctions {
 
     @POST("public/api/user/rateCompany")
     Call<HashMap<String,String>> rateCompanyCall(@Header("Authorization") String Authorization, @Body RatingModel ratingModel);
+
+    @GET("public/api/user/getShipmentPrice")
+    Call<HashMap<String,String>> priceCall(@Header("Authorization") String Authorization);
 }

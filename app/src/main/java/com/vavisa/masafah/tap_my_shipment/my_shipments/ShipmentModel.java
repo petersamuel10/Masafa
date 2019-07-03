@@ -55,7 +55,6 @@ public class ShipmentModel {
     public String getPickup_time_from() {
         return pickup_time_from;
     }
-
     public void setPickup_time_from(String pickup_time_from) {
         this.pickup_time_from = pickup_time_from;
     }
@@ -63,11 +62,9 @@ public class ShipmentModel {
     public String getPickup_time_to() {
         return pickup_time_to;
     }
-
     public void setPickup_time_to(String pickup_time_to) {
         this.pickup_time_to = pickup_time_to;
     }
-
 
     public String getStatus() {
         return status;

@@ -95,5 +95,6 @@
     <string name="about_as">About us</string>
     <string name="rate">Rate</string>
     <string name="call">Call</string>
+    <string name="drop_location">Drop location</string>
 
 </resources>

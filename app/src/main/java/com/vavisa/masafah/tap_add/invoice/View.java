@@ -4,5 +4,5 @@ import com.vavisa.masafah.base.BaseView;
 
 public interface View extends BaseView {
 
-    void handleAddShipment();
+    void handleAddShipment(String msg);
 }

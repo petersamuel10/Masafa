@@ -66,7 +66,7 @@ public class BaseActivity extends AppCompatActivity implements BaseView, Interne
 
     @Override
     public void onInternetUnavailable() {
-        runOnUiThread(() ->{
+        runOnUiThread(() -> {
             ConnectionMessage.getInstance().show(this);
         });
     }

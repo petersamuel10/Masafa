@@ -94,4 +94,5 @@
     <string name="about_as">عن الشركة</string>
     <string name="call">اتصال</string>
     <string name="rate">تقييم</string>
+    <string name="drop_location">موقع التوصيل</string>
 </resources>

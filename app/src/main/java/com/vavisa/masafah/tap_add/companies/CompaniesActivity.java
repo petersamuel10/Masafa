@@ -11,7 +11,7 @@ import android.widget.Toast;
 
 import com.vavisa.masafah.R;
 import com.vavisa.masafah.base.BaseActivity;
-import com.vavisa.masafah.tap_add.map.SelectLocationActivity;
+import com.vavisa.masafah.tap_add.Select_location.SelectLocationActivity;
 import com.vavisa.masafah.tap_my_shipment.company_details.CompanyModel;
 import com.vavisa.masafah.util.Constants;
 

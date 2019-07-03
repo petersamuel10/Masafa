@@ -104,11 +104,11 @@ public class ProfilePresenter extends BasePresenter<ProfileView> {
         });
     }
 
-    public void logout() {
+    public void logout(HashMap<String, String> player_id) {
 
         getView().showProgress();
         APIManager.getInstance().getAPI().logoutCall(Preferences.getInstance()
-                .getString("access_token")).enqueue(new Callback<HashMap<String, String>>() {
+                .getString("access_token"), player_id).enqueue(new Callback<HashMap<String, String>>() {
             @Override
             public void onResponse(Call<HashMap<String, String>> call, Response<HashMap<String, String>> response) {
                 getView().hideProgress();

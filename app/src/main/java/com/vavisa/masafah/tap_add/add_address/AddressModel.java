@@ -10,6 +10,8 @@ public class AddressModel {
     private String id;
     @SerializedName("name")
     private String name;
+    @SerializedName("mobile")
+    private String mobile;
     @SerializedName("block")
     private String block;
     @SerializedName("street")
@@ -52,8 +54,6 @@ public class AddressModel {
     public String getAddress_id() {
         return address_id;
     }
-
-
     public void setAddress_id(String address_id) {
         this.address_id = address_id;
     }
@@ -70,6 +70,13 @@ public class AddressModel {
     }
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getMobile() {
+        return mobile;
+    }
+    public void setMobile(String mobile) {
+        this.mobile = mobile;
     }
 
     public String getBlock() {

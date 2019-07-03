@@ -28,7 +28,7 @@ public class ShipmentDetailsFragment extends BaseFragment implements ShipmentDet
     private View fragment;
     private RelativeLayout shipment_item_ly;
     private TextView shipment_num, shipment_description,
-            pickup_location, drop_location,
+            pickup_location, pickup_address, drop_location, drop_address,
             deliveryCompanyName, time_pickup,
             time_drop, total_amount;
     private CircleImageView com_img;
@@ -75,7 +75,9 @@ public class ShipmentDetailsFragment extends BaseFragment implements ShipmentDet
         shipment_num = fragment.findViewById(R.id.shipment_number);
         shipment_description = fragment.findViewById(R.id.shipment_description);
         pickup_location = fragment.findViewById(R.id.pickup_location);
+        pickup_address = fragment.findViewById(R.id.pickup_address);
         drop_location = fragment.findViewById(R.id.drop_location_area);
+        drop_address = fragment.findViewById(R.id.drop_address);
         deliveryCompanyName = fragment.findViewById(R.id.delivery_company_name);
         time_pickup = fragment.findViewById(R.id.time_pickup);
         time_drop = fragment.findViewById(R.id.time_drop);
@@ -88,7 +90,18 @@ public class ShipmentDetailsFragment extends BaseFragment implements ShipmentDet
         com_id = String.valueOf(shipmentModel.getCompany().getId());
         shipment_num.setText(shipmentModel.getId());
         pickup_location.setText(shipmentModel.getAddress_from().getArea());
+        String pickup_address_str =   shipmentModel.getAddress_from().getBlock() + " - "
+                                    + shipmentModel.getAddress_from().getStreet() + "\n"
+                                    + shipmentModel.getAddress_from().getBuilding() + " - "
+                                    + shipmentModel.getAddress_from().getMobile();
+
+        pickup_address.setText(pickup_address_str);
         drop_location.setText(shipmentModel.getAddress_to().getArea());
+        String drop_address_str =   shipmentModel.getAddress_to().getBlock() + " - "
+                                  + shipmentModel.getAddress_to().getStreet() + "\n"
+                                  + shipmentModel.getAddress_to().getBuilding() + " - "
+                                  + shipmentModel.getAddress_to().getMobile();
+        drop_address.setText(drop_address_str);
         deliveryCompanyName.setText(shipmentModel.getCompany().getName());
         com_img = fragment.findViewById(R.id.delivery_company_logo);
         time_pickup.setText(shipmentModel.getPickup_time_from());

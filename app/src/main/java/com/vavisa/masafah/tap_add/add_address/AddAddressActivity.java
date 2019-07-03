@@ -16,8 +16,8 @@ import com.vavisa.masafah.util.Constants;
 public class AddAddressActivity extends BaseActivity implements AddAddressView {
 
     private Button confirmButton;
-    private EditText location_name_ed, block_ed, area_ed, street_ed, building_ed, details_ed, extra_ed;
-    private String location_name, city, block, area, street, building, details, extra;
+    private EditText location_name_ed, mobile_ed, block_ed, area_ed, street_ed, building_ed, details_ed, extra_ed;
+    private String location_name, mobile, city, block, area, street, building, details, extra;
     private AddAddressPresenter presenter;
     private String address_id;
 
@@ -33,13 +33,17 @@ public class AddAddressActivity extends BaseActivity implements AddAddressView {
             presenter.getAddressById(getIntent().getStringExtra("address_id"));
             confirmButton.setOnClickListener(v -> {
                 if (valid()) {
-                    presenter.editAddress(new AddressModel(address_id, location_name, area, block, street, building, details, extra));
+                    AddressModel addressModel = new AddressModel(address_id, location_name, area, block, street, building, details, extra);
+                    addressModel.setMobile(mobile);
+                    presenter.editAddress(addressModel);
                 }
             });
         } else
             confirmButton.setOnClickListener(v -> {
                 if (valid()) {
-                    presenter.AddAddress(new AddressModel(location_name, area, block, street, building, details, extra));
+                    AddressModel addressModel = new AddressModel(location_name, area, block, street, building, details, extra);
+                    addressModel.setMobile(mobile);
+                    presenter.AddAddress(addressModel);
                 }
             });
     }
@@ -47,6 +51,7 @@ public class AddAddressActivity extends BaseActivity implements AddAddressView {
     private void disableViewsForDetails() {
 
         location_name_ed.setEnabled(false);
+        mobile_ed.setEnabled(false);
         block_ed.setEnabled(false);
         area_ed.setEnabled(false);
         street_ed.setEnabled(false);
@@ -63,6 +68,12 @@ public class AddAddressActivity extends BaseActivity implements AddAddressView {
             return false;
         } else
             location_name = location_name_ed.getText().toString();
+
+        if (TextUtils.isEmpty(mobile_ed.getText().toString())) {
+            showMessage(getString(R.string.please_enter_mobile_number));
+            return false;
+        } else
+            mobile = mobile_ed.getText().toString();
 
         if (TextUtils.isEmpty(area_ed.getText().toString())) {
             showMessage(getString(R.string.please_enter_area));
@@ -105,6 +116,7 @@ public class AddAddressActivity extends BaseActivity implements AddAddressView {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         location_name_ed = findViewById(R.id.location_name);
+        mobile_ed = findViewById(R.id.mobile);
         area_ed = findViewById(R.id.area);
         block_ed = findViewById(R.id.block);
         street_ed = findViewById(R.id.street);
@@ -151,6 +163,7 @@ public class AddAddressActivity extends BaseActivity implements AddAddressView {
 
         address_id = address.getId();
         location_name_ed.setText(address.getName());
+        mobile_ed.setText(address.getMobile());
         block_ed.setText(address.getBlock());
         area_ed.setText(address.getArea());
         street_ed.setText(address.getStreet());

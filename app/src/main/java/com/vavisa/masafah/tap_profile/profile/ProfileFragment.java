@@ -37,11 +37,11 @@ import com.orhanobut.dialogplus.ViewHolder;
 import com.vavisa.masafah.R;
 import com.vavisa.masafah.base.BaseFragment;
 import com.vavisa.masafah.login.LoginActivity;
-import com.vavisa.masafah.tap_profile.myAddresses.AddressesFragment;
 import com.vavisa.masafah.tap_profile.TermsAndCondition.TermsAndConditions;
+import com.vavisa.masafah.tap_profile.myAddresses.AddressesFragment;
 import com.vavisa.masafah.tap_profile.profile.model.EditProfileModel;
-import com.vavisa.masafah.tap_profile.profile.model.UpdateProfileResponseM;
 import com.vavisa.masafah.tap_profile.shipment_history.ShipmentHistoryFragment;
+import com.vavisa.masafah.util.Constants;
 import com.vavisa.masafah.util.GridSpaceItemDecoration;
 import com.vavisa.masafah.util.KeyboardUtil;
 import com.vavisa.masafah.util.Preferences;
@@ -144,7 +144,9 @@ public class ProfileFragment extends BaseFragment implements View.OnClickListene
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.logout_button:
-                presenter.logout();
+                HashMap<String, String> player_id = new HashMap<>();
+                player_id.put("player_id", Constants.ONE_SIGNAL_TOKEN);
+                presenter.logout(player_id);
                 break;
         }
     }
@@ -346,13 +348,6 @@ public class ProfileFragment extends BaseFragment implements View.OnClickListene
             Glide.with(getContext()).asBitmap().load(bitmap).into(user_image_update);
         }
     }
-
- /*   public Uri getImageUri(Context inContext, Bitmap inImage) {
-        ByteArrayOutputStream bytes = new ByteArrayOutputStream();
-        inImage.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
-        String path = MediaStore.Images.Media.insertImage(inContext.getContentResolver(), inImage, "Title", null);
-        return Uri.parse(path);
-    }*/
 
     private class ProfileViewHolder extends RecyclerView.ViewHolder {
 

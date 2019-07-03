@@ -26,7 +26,7 @@ public class Presenter extends BasePresenter<View> {
             public void onResponse(Call<HashMap<String, String>> call, Response<HashMap<String, String>> response) {
                 getView().hideProgress();
                 if(response.code() == 200)
-                    getView().handleAddShipment();
+                    getView().handleAddShipment(response.body().get("message"));
                 else
                     getView().showMissingData(response);
             }

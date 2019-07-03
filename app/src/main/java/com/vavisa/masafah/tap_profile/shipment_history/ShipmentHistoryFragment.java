@@ -17,6 +17,7 @@ import android.widget.TextView;
 
 import com.vavisa.masafah.R;
 import com.vavisa.masafah.base.BaseFragment;
+import com.vavisa.masafah.tap_my_shipment.my_shipments.ShipmentModel;
 import com.vavisa.masafah.util.BottomSpaceItemDecoration;
 
 import java.util.ArrayList;
@@ -24,12 +25,11 @@ import java.util.List;
 
 import static com.vavisa.masafah.activities.MainActivity.navigationView;
 
-public class ShipmentHistoryFragment extends BaseFragment implements View.OnClickListener,ShipmentHistoryView {
+public class ShipmentHistoryFragment extends BaseFragment implements ShipmentHistoryView {
 
     private View fragment;
   //  private ConstraintLayout buttonLayout;
     private RecyclerView myShipmentListView;
-    private List<String> myShipments = new ArrayList<>();
     private ImageView noShipmentsImage;
     private TextView noShipmentsMessage;
    /* private Button deliveredButton;
@@ -49,7 +49,7 @@ public class ShipmentHistoryFragment extends BaseFragment implements View.OnClic
 
             presenter = new ShipmentHistoryPresenter();
             presenter.attachView(this);
-           // presenter.getShipments();
+            presenter.getShipments();
 
         } else {
             for (int i = 1; i < navigationView.getMenu().size(); i++) {
@@ -92,9 +92,9 @@ public class ShipmentHistoryFragment extends BaseFragment implements View.OnClic
 
     }
 
-    @Override
+   /* @Override
     public void onClick(View v) {
-     /*   switch (v.getId()) {
+     *//*   switch (v.getId()) {
             case R.id.delivered_button:
 
                 deliveredButton.setBackground(
@@ -113,20 +113,17 @@ public class ShipmentHistoryFragment extends BaseFragment implements View.OnClic
                 deliveredButton.setTextColor(getResources().getColor(R.color.colorPrimary));
                 myShipmentListView.setAdapter(new MyShipmentsCanceledAdapter());
                 break;
-        }*/
-    }
+        }*//*
+    }*/
 
     @Override
-    public void displayShipment() {
+    public void displayShipment(ArrayList<ShipmentModel> shipmentList) {
 
-        myShipments.add("Test");
-
-        myShipmentListView.setAdapter(new MyShipmentsDeliveredAdapter());
-
-
-        if (myShipments.size() == 0) {
+        if (shipmentList.size() == 0) {
             noShipmentsMessage.setVisibility(View.VISIBLE);
             noShipmentsImage.setVisibility(View.VISIBLE);
-        }
+        }else
+            myShipmentListView.setAdapter(new MyShipmentsDeliveredAdapter(shipmentList));
+
     }
 }

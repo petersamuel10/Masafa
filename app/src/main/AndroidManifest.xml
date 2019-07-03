@@ -64,7 +64,7 @@
             android:name=".tap_add.add_shipment.AddShipmentActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".tap_add.map.SelectLocationActivity"
+            android:name=".tap_add.Select_location.SelectLocationActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".tap_my_shipment.company_details.CompanyDetailsActivity"
