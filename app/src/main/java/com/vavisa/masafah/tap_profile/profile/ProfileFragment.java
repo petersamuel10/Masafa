@@ -3,8 +3,6 @@ package com.vavisa.masafah.tap_profile.profile;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -20,7 +18,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -36,7 +33,11 @@ import com.orhanobut.dialogplus.DialogPlus;
 import com.orhanobut.dialogplus.ViewHolder;
 import com.vavisa.masafah.R;
 import com.vavisa.masafah.base.BaseFragment;
+import com.vavisa.masafah.helpers.OTP.CountryModel;
+import com.vavisa.masafah.helpers.OTP.OTPViews;
+import com.vavisa.masafah.helpers.OTP.SendOTPPresenter;
 import com.vavisa.masafah.login.LoginActivity;
+import com.vavisa.masafah.login.LoginModel;
 import com.vavisa.masafah.tap_profile.TermsAndCondition.TermsAndConditions;
 import com.vavisa.masafah.tap_profile.myAddresses.AddressesFragment;
 import com.vavisa.masafah.tap_profile.profile.model.EditProfileModel;
@@ -58,7 +59,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 import static android.app.Activity.RESULT_OK;
 import static com.vavisa.masafah.activities.MainActivity.navigationView;
 
-public class ProfileFragment extends BaseFragment implements View.OnClickListener, ProfileView {
+public class ProfileFragment extends BaseFragment implements View.OnClickListener, ProfileView, OTPViews {
 
     private View fragment;
     private CircleImageView user_image, user_image_update;
@@ -69,8 +70,13 @@ public class ProfileFragment extends BaseFragment implements View.OnClickListene
     private Button logout;
     private User user;
     private ProfilePresenter presenter;
+    private SendOTPPresenter otpPresenter;
+    private ArrayList<CountryModel> countriesList;
     private boolean isImageChanged = false;
     private final int PICK_IMAGE_CAMERA = 1, PICK_IMAGE_GALLERY = 2;
+    // for change mobile number
+    private int country_id = 1;
+    private String country_code, edited_mobile_number;
     private DialogPlus my_details_dialog;
 
     @Nullable
@@ -103,106 +109,6 @@ public class ProfileFragment extends BaseFragment implements View.OnClickListene
 
     }
 
-    private void initViews() {
-
-        Toolbar toolbar = fragment.findViewById(R.id.profile_toolbar);
-        ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
-        getActivity().setTitle("");
-
-        profileLayout = fragment.findViewById(R.id.profile_layout);
-        user_image = fragment.findViewById(R.id.company_image);
-        user_name = fragment.findViewById(R.id.user_name);
-        user_email = fragment.findViewById(R.id.user_email);
-        user_phone = fragment.findViewById(R.id.user_phone);
-        profileGridView = fragment.findViewById(R.id.profile_items);
-        logout = fragment.findViewById(R.id.logout_button);
-
-        logout.setOnClickListener(this);
-
-        presenter = new ProfilePresenter();
-        presenter.attachView(this);
-        presenter.getUserProfile();
-
-        profileGridView.setLayoutManager(new GridLayoutManager(getActivity(), 2));
-        profileGridView.addItemDecoration(new GridSpaceItemDecoration(25));
-
-        setupProfileItems();
-
-        profileGridView.setAdapter(new ProfileAdapter());
-
-        profileLayout.post(
-                new Runnable() {
-                    @Override
-                    public void run() {
-                        int height = profileLayout.getHeight();
-                        profileLayout.setTranslationY(-(height / 3));
-                    }
-                });
-    }
-
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.logout_button:
-                HashMap<String, String> player_id = new HashMap<>();
-                player_id.put("player_id", Constants.ONE_SIGNAL_TOKEN);
-                presenter.logout(player_id);
-                break;
-        }
-    }
-
-    @Override
-    public void user(User user) {
-        this.user = user;
-
-        user_name.setText(user.getFullname());
-        user_email.setText(user.getEmail());
-        user_phone.setText(user.getMobile());
-        Glide.with(this)
-                .load(user.getProfile_image())
-                .centerCrop()
-                .placeholder(R.drawable.ic_account_circle)
-                .error(R.drawable.ic_account_circle)
-                .into(user_image);
-
-    }
-
-    @Override
-    public void updateProfileResponse(User user) {
-
-        this.user = user;
-
-        user_name.setText(user.getFullname());
-        user_email.setText(user.getEmail());
-        user_phone.setText(user.getMobile());
-        Glide.with(this)
-                .load(user.getProfile_image())
-                .centerCrop()
-                .placeholder(R.drawable.ic_account_circle)
-                .error(R.drawable.ic_account_circle)
-                .into(user_image);
-    }
-
-    @Override
-    public void changeMobileResponse(String updated_mobile, String otp) {
-        Intent i = new Intent(getContext(), VerifyYourNumberActivity.class);
-        i.putExtra("update_mobile", updated_mobile);
-        Log.d("resend_otp", otp);
-        startActivity(i);
-    }
-
-    @Override
-    public void logout() {
-
-        getActivity()
-                .getSupportFragmentManager()
-                .popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
-        Intent intent = new Intent(getActivity(), LoginActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-
-        startActivity(intent);
-    }
-
     private void updateDialog() {
 
         my_details_dialog =
@@ -217,11 +123,15 @@ public class ProfileFragment extends BaseFragment implements View.OnClickListene
         user_image_update = (CircleImageView) my_details_dialog.findViewById(R.id.user_image_update);
         FloatingActionButton add_image_btn = (FloatingActionButton) my_details_dialog.findViewById(R.id.add_image_btn);
         EditText fullName_ed = (EditText) my_details_dialog.findViewById(R.id.full_name);
-        Button edit_mobile_btn = (Button) my_details_dialog.findViewById(R.id.edit_mobile_btn);
         EditText email_ed = (EditText) my_details_dialog.findViewById(R.id.email);
+        EditText phone_ed = (EditText) my_details_dialog.findViewById(R.id.phone);
+        Button country_code_btn = (Button) my_details_dialog.findViewById(R.id.country_code);
+        Button edit_mobile_btn = (Button) my_details_dialog.findViewById(R.id.edit_mobile_btn);
 
         fullName_ed.setText(user.getFullname());
         email_ed.setText(user.getEmail());
+        phone_ed.setText(user.getMobile());
+        country_code_btn.setText(user.getCountryModel().getCountry_code());
         Glide.with(this)
                 .load(user.getProfile_image())
                 .centerCrop()
@@ -234,52 +144,43 @@ public class ProfileFragment extends BaseFragment implements View.OnClickListene
             KeyboardUtil.hideKeyboardFrom(getContext(), update_btn);
             my_details_dialog.dismiss();
         });
-
         edit_mobile_btn.setOnClickListener(v -> {
-            showEditMobileDialog();
+            if (edit_mobile_btn.getText().equals(getString(R.string.edit_mobile))) {
+                otpPresenter.getCountries();
+                phone_ed.setEnabled(true);
+                country_code_btn.setEnabled(true);
+                edit_mobile_btn.setText(R.string.update_mobile_number);
+            } else if (user.getMobile().equals(phone_ed.getText()))
+                showMessage(getString(R.string.number_not_changed));
+            else {
+                country_code = country_code_btn.getText().toString();
+                edited_mobile_number = phone_ed.getText().toString();
+                otpPresenter.sendOtp(getActivity(),country_code_btn.getText().toString() + phone_ed.getText().toString());
+            }
         });
-
+        country_code_btn.setOnClickListener(v -> countryCodeAlert(country_code_btn));
         add_image_btn.setOnClickListener(v -> addNewImage());
-
         close_btn.setOnClickListener(v -> my_details_dialog.dismiss());
 
         my_details_dialog.show();
     }
 
-    private void showEditMobileDialog() {
+    private void countryCodeAlert(Button country_code_btn) {
 
-        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        android.app.AlertDialog.Builder alert = new android.app.AlertDialog.Builder(getContext());
+        alert.setTitle(getString(R.string.select_country));
+        String[] countries_name = new String[countriesList.size()];
+        for (int i = 0; i < countriesList.size(); i++) {
+            countries_name[i] = countriesList.get(i).getName();
+        }
 
-        LayoutInflater inflater = getActivity().getLayoutInflater();
-        View view = inflater.inflate(R.layout.custom_alert_edit_mobile, null);
-        builder.setView(view);
-        final AlertDialog dialog = builder.create();
-        dialog.setCancelable(false);
-        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-
-
-        TextView mobile_required_hint = view.findViewById(R.id.mobile_required_hint);
-        EditText mobile_ed_ = view.findViewById(R.id.mobile_edit_ed);
-        Button cancel_btn = view.findViewById(R.id.cancel_button);
-        Button edit_btn = view.findViewById(R.id.edit_btn);
-
-        cancel_btn.setOnClickListener(v -> dialog.dismiss());
-
-        edit_btn.setOnClickListener(v -> {
-            String mobile_str = mobile_ed_.getText().toString();
-            if (TextUtils.isEmpty(mobile_str) || mobile_str.length() != 8)
-                mobile_required_hint.setTextColor(Color.RED);
-            else {
-//                EditProfileModel editProfileModel = new EditProfileModel(mobile_str);
-                HashMap<String, String> mobile = new HashMap<>();
-                mobile.put("mobile", mobile_str);
-                presenter.changeMobile(mobile);
-                dialog.dismiss();
-                my_details_dialog.dismiss();
-            }
+        alert.setSingleChoiceItems(countries_name, 0, (dialog, position) -> {
+            dialog.dismiss();
+            country_code_btn.setText(countriesList.get(position).getCountry_code());
+            country_id = countriesList.get(position).getId();
 
         });
-        dialog.show();
+        alert.create().show();
     }
 
     private void checkChangesFields(EditText fullName_ed, EditText email_ed) {
@@ -347,6 +248,130 @@ public class ProfileFragment extends BaseFragment implements View.OnClickListene
 
             Glide.with(getContext()).asBitmap().load(bitmap).into(user_image_update);
         }
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.logout_button:
+                HashMap<String, String> player_id = new HashMap<>();
+                player_id.put("player_id", Constants.ONE_SIGNAL_TOKEN);
+                presenter.logout(player_id);
+                break;
+        }
+    }
+
+    @Override
+    public void user(User user) {
+        this.user = user;
+
+        user_name.setText(user.getFullname());
+        user_email.setText(user.getEmail());
+        user_phone.setText(user.getMobile());
+        Glide.with(this)
+                .load(user.getProfile_image())
+                .centerCrop()
+                .placeholder(R.drawable.ic_account_circle)
+                .error(R.drawable.ic_account_circle)
+                .into(user_image);
+
+    }
+
+    @Override
+    public void updateProfileResponse(User user) {
+
+        this.user = user;
+
+        user_name.setText(user.getFullname());
+        user_email.setText(user.getEmail());
+        user_phone.setText(user.getMobile());
+        Glide.with(this)
+                .load(user.getProfile_image())
+                .centerCrop()
+                .placeholder(R.drawable.ic_account_circle)
+                .error(R.drawable.ic_account_circle)
+                .into(user_image);
+    }
+
+    @Override
+    public void changeMobileResponse(String updated_mobile, String otp) {
+        Intent i = new Intent(getContext(), VerifyYourNumberActivity.class);
+        i.putExtra("update_mobile", updated_mobile);
+        Log.d("resend_otp", otp);
+        startActivity(i);
+    }
+
+    @Override
+    public void logout() {
+
+        getActivity()
+                .getSupportFragmentManager()
+                .popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+        Intent intent = new Intent(getActivity(), LoginActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+
+        startActivity(intent);
+    }
+
+    @Override
+    public void handleVerification_id(String verification_id) {
+        LoginModel loginModel =
+                new LoginModel(edited_mobile_number,
+                        country_id,
+                        Constants.ONE_SIGNAL_TOKEN,
+                        2,
+                        country_code,
+                        verification_id);
+        my_details_dialog.dismiss();
+        Intent intent = new Intent(getContext(), VerifyYourNumberActivity.class);
+        intent.putExtra("update_mobile", loginModel);
+        startActivity(intent);
+
+    }
+
+    @Override
+    public void countries(ArrayList<CountryModel> countriesList) {
+        this.countriesList = countriesList;
+    }
+
+    private void initViews() {
+
+        Toolbar toolbar = fragment.findViewById(R.id.profile_toolbar);
+        ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
+        getActivity().setTitle("");
+
+        profileLayout = fragment.findViewById(R.id.profile_layout);
+        user_image = fragment.findViewById(R.id.company_image);
+        user_name = fragment.findViewById(R.id.user_name);
+        user_email = fragment.findViewById(R.id.user_email);
+        user_phone = fragment.findViewById(R.id.user_phone);
+        profileGridView = fragment.findViewById(R.id.profile_items);
+        logout = fragment.findViewById(R.id.logout_button);
+
+        logout.setOnClickListener(this);
+
+        presenter = new ProfilePresenter();
+        presenter.attachView(this);
+        presenter.getUserProfile();
+
+        otpPresenter = new SendOTPPresenter();
+        otpPresenter.attachView(this);
+
+        profileGridView.setLayoutManager(new GridLayoutManager(getActivity(), 2));
+        profileGridView.addItemDecoration(new GridSpaceItemDecoration(25));
+
+        setupProfileItems();
+
+        profileGridView.setAdapter(new ProfileAdapter());
+
+        profileLayout.post(
+                new Runnable() {
+                    @Override
+                    public void run() {
+                        int height = profileLayout.getHeight();
+                        profileLayout.setTranslationY(-(height / 3));
+                    }
+                });
     }
 
     private class ProfileViewHolder extends RecyclerView.ViewHolder {

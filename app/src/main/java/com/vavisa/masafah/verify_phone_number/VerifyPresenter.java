@@ -1,14 +1,24 @@
 package com.vavisa.masafah.verify_phone_number;
 
+import android.app.Activity;
 import android.util.Log;
 
+import com.google.firebase.FirebaseApp;
+import com.google.firebase.FirebaseException;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.PhoneAuthCredential;
+import com.google.firebase.auth.PhoneAuthProvider;
+import com.vavisa.masafah.R;
 import com.vavisa.masafah.base.BaseApplication;
 import com.vavisa.masafah.base.BasePresenter;
-import com.vavisa.masafah.login.Login;
-import com.vavisa.masafah.login.LoginResponse;
+import com.vavisa.masafah.login.LoginModel;
 import com.vavisa.masafah.network.APIManager;
 import com.vavisa.masafah.util.Preferences;
 import com.vavisa.masafah.verify_phone_number.model.VerifyResponseModel;
+
+import java.util.concurrent.TimeUnit;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -18,19 +28,73 @@ import retrofit2.Response;
 
 public class VerifyPresenter extends BasePresenter<VerifyViews> {
 
-    public void verify_opt(Login login) {
+    private FirebaseAuth mAuth;
+    private LoginModel login_model;
+    private Boolean isChangeMobile;
 
+
+    VerifyPresenter(VerifyYourNumberActivity context, LoginModel loginModel, Boolean isChangeMobile) {
+        this.login_model = loginModel;
+        this.isChangeMobile = isChangeMobile;
+        FirebaseApp.initializeApp(context);
+        mAuth = FirebaseAuth.getInstance();
+        mAuth.useAppLanguage();
+    }
+
+    public void verifyOTP(String code) {
         getView().showProgress();
-        APIManager.getInstance().getAPI().verifyOtpCall(login).enqueue(new Callback<VerifyResponseModel>() {
+        try {
+            PhoneAuthCredential phoneAuthCredential = PhoneAuthProvider.getCredential(login_model.getVerification_id(), code);
+            signInWithPhoneAuthCredential(phoneAuthCredential);
+        } catch (Exception e) {
+            getView().hideProgress();
+            getView().showMessage(BaseApplication.error_msg);
+
+        }
+    }
+
+    private void signInWithPhoneAuthCredential(final PhoneAuthCredential credential) {
+
+        mAuth.signInWithCredential(credential)
+                .addOnCompleteListener((Activity) getView(), task -> {
+                    if (task.isSuccessful()) {
+                        FirebaseUser mUser = FirebaseAuth.getInstance().getCurrentUser();
+                        mUser.getIdToken(true)
+                                .addOnCompleteListener(task1 -> {
+                                    if (task1.isSuccessful()) {
+                                        String idToken = task1.getResult().getToken();
+                                        login_model.setId_token(idToken);
+                                        if (isChangeMobile) {
+                                            isChangeMobile = false;
+                                            update_mobile_verify();
+                                        } else
+                                            loginFun();
+                                    } else {
+                                        getView().clearEditText();
+                                        getView().showMessage(BaseApplication.error_msg);
+                                    }
+                                });
+
+                    } else {
+                        if (task.getException() instanceof FirebaseAuthInvalidCredentialsException) {
+                            getView().hideProgress();
+                            getView().clearEditText();
+                            getView().showMessage(((Activity) getView()).getString(R.string.wrong_code));
+                        }
+                    }
+                });
+    }
+
+    public void loginFun() {
+
+        APIManager.getInstance().getAPI().loginCall(login_model).enqueue(new Callback<VerifyResponseModel>() {
             @Override
             public void onResponse(Call<VerifyResponseModel> call, Response<VerifyResponseModel> response) {
                 getView().hideProgress();
                 if (response.code() == 200)
-                    getView().verify_opt(response.body());
-                else {
+                    getView().userInfo(response.body());
+                else if (response.code() == 422 || response.code() == 401)
                     getView().showMissingData(response);
-                    getView().clearEditText();
-                }
             }
 
             @Override
@@ -41,20 +105,22 @@ public class VerifyPresenter extends BasePresenter<VerifyViews> {
                     ResponseBody body = ((HttpException) t).response().errorBody();
                     Log.d("error", body.toString());
                 }
+
             }
         });
+
     }
 
-    public void update_mobile_verify(Login login) {
+    public void update_mobile_verify() {
 
         getView().showProgress();
         APIManager.getInstance().getAPI().updateMobileNumberCall(Preferences.getInstance().getString("access_token"),
-                login).enqueue(new Callback<VerifyResponseModel>() {
+                login_model).enqueue(new Callback<VerifyResponseModel>() {
             @Override
             public void onResponse(Call<VerifyResponseModel> call, Response<VerifyResponseModel> response) {
                 getView().hideProgress();
                 if (response.code() == 200)
-                    getView().verify_opt(response.body());
+                    getView().userInfo(response.body());
                 else {
                     getView().showMissingData(response);
                     getView().clearEditText();
@@ -74,31 +140,32 @@ public class VerifyPresenter extends BasePresenter<VerifyViews> {
         });
     }
 
-    public void resendOTP(Login login) {
+    public void resendOTP() {
 
-        getView().showProgress();
-        APIManager.getInstance().getAPI().resendOtpCall(login).enqueue(new Callback<LoginResponse>() {
-            @Override
-            public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
-                getView().hideProgress();
-                if (response.code() == 200)
-                    getView().OTP(response.body().getOtp());
-                else if (response.code() == 422) {
-                    getView().showMissingData(response);
+        PhoneAuthProvider.getInstance().verifyPhoneNumber(
+                login_model.getCountry_code() + login_model.getMobile(),
+                30,
+                TimeUnit.SECONDS,
+                (Activity) getView(),
+                new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
+                    @Override
+                    public void onVerificationCompleted(PhoneAuthCredential phoneAuthCredential) {
+                        //   signInWithPhoneAuthCredential(phoneAuthCredential);
+                    }
+
+                    @Override
+                    public void onVerificationFailed(FirebaseException e) {
+                        if (e instanceof FirebaseAuthInvalidCredentialsException)
+                            getView().showMessage(BaseApplication.getAppContext().getString(R.string.please_enter_valid_mobile_number));
+                    }
+
+                    @Override
+                    public void onCodeSent(String verification_id, PhoneAuthProvider.ForceResendingToken forceResendingToken) {
+                        super.onCodeSent(verification_id, forceResendingToken);
+                        login_model.setVerification_id(verification_id);
+                    }
                 }
-            }
-
-            @Override
-            public void onFailure(Call<LoginResponse> call, Throwable t) {
-                getView().hideProgress();
-                getView().showMessage(BaseApplication.error_msg);
-                if (t instanceof HttpException) {
-                    ResponseBody body = ((HttpException) t).response().errorBody();
-                    Log.d("error", body.toString());
-                }
-
-            }
-        });
+        );
 
     }
 }

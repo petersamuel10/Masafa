@@ -1,8 +1,7 @@
 package com.vavisa.masafah.network;
 
-import com.vavisa.masafah.login.CountryModel;
-import com.vavisa.masafah.login.Login;
-import com.vavisa.masafah.login.LoginResponse;
+import com.vavisa.masafah.helpers.OTP.CountryModel;
+import com.vavisa.masafah.login.LoginModel;
 import com.vavisa.masafah.tap_add.AddShipmentModel;
 import com.vavisa.masafah.tap_add.add_address.AddressModel;
 import com.vavisa.masafah.tap_add.add_shipment.model.CategoryModel;
@@ -22,7 +21,6 @@ import retrofit2.http.Body;
 import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
-import retrofit2.http.PATCH;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
 import retrofit2.http.Path;
@@ -33,19 +31,13 @@ public interface APIFunctions {
     Call<ArrayList<CountryModel>> countryCall();
 
     @POST("public/api/user/login")
-    Call<LoginResponse> loginCall(@Body Login login);
-
-    @POST("public/api/user/verifyOTP")
-    Call<VerifyResponseModel> verifyOtpCall(@Body Login login);
-
-    @POST("public/api/user/resendOTP")
-    Call<LoginResponse> resendOtpCall(@Body Login login);
+    Call<VerifyResponseModel> loginCall(@Body LoginModel login);
 
     @GET("public/api/user/getTermsAndConditions")
     Call<TermsModel> termsCall();
 
     @GET("public/api/user/getShipments")
-    Call<HashMap<String,ArrayList<ShipmentModel>>> getShipmentCall(@Header("Authorization") String authorization);
+    Call<HashMap<String, ArrayList<ShipmentModel>>> getShipmentCall(@Header("Authorization") String authorization);
 
     @GET("public/api/user/getCategories")
     Call<ArrayList<CategoryModel>> getCategoriesCall(@Header("Authorization") String authorization);
@@ -59,14 +51,11 @@ public interface APIFunctions {
     @PUT("public/api/user/updateProfile")
     Call<User> updateProfileCall(@Header("Authorization") String authorization, @Body EditProfileModel editProfileModel);
 
-    @PATCH("public/api/user/changeMobileNumber")
-    Call<LoginResponse> changeMobileNumberCall(@Header("Authorization") String authorization, @Body HashMap<String, String> mobile);
-
-    @PATCH("public/api/user/updateMobileNumber")
-    Call<VerifyResponseModel> updateMobileNumberCall(@Header("Authorization") String Authorization,@Body Login login);
+    @PUT("public/api/user/updateMobileNumber")
+    Call<VerifyResponseModel> updateMobileNumberCall(@Header("Authorization") String Authorization, @Body LoginModel login);
 
     @POST("public/api/user/logout")
-    Call<HashMap<String,String>> logoutCall(@Header("Authorization") String Authorization,@Body HashMap<String, String> player_id);
+    Call<HashMap<String, String>> logoutCall(@Header("Authorization") String Authorization, @Body HashMap<String, String> player_id);
 
     @POST("public/api/user/addAddress")
     Call<AddressModel> addAddressCall(@Header("Authorization") String Authorization, @Body AddressModel addressModel);
@@ -87,13 +76,13 @@ public interface APIFunctions {
     Call<AddressModel> editAddressCall(@Header("Authorization") String Authorization, @Body AddressModel addressModel);
 
     @DELETE("public/api/user/deleteAddressById/{address_id}")
-    Call<HashMap<String,String>> deleteAddressCall(@Header("Authorization") String Authorization, @Path("address_id") String address_id);
+    Call<HashMap<String, String>> deleteAddressCall(@Header("Authorization") String Authorization, @Path("address_id") String address_id);
 
     @GET("public/api/user/getShipmentHistory")
     Call<ArrayList<ShipmentModel>> getShipmentHistoryCall(@Header("Authorization") String Authorization);
 
     @DELETE("public/api/user/deleteShipmentById/{shipment_id}")
-    Call<HashMap<String,String>> deleteShipmentCall(@Header("Authorization") String Authorization, @Path("shipment_id") String shipment_id);
+    Call<HashMap<String, String>> deleteShipmentCall(@Header("Authorization") String Authorization, @Path("shipment_id") String shipment_id);
 
     @GET("public/api/user/getShipmentDetails/{shipment_id}")
     Call<ShipmentModel> getShipmentDetailsCall(@Header("Authorization") String Authorization, @Path("shipment_id") String shipment_id);
@@ -102,8 +91,8 @@ public interface APIFunctions {
     Call<CompanyModel> getCompanyDetailsCall(@Header("Authorization") String Authorization, @Path("company_id") String company_id);
 
     @POST("public/api/user/rateCompany")
-    Call<HashMap<String,String>> rateCompanyCall(@Header("Authorization") String Authorization, @Body RatingModel ratingModel);
+    Call<HashMap<String, String>> rateCompanyCall(@Header("Authorization") String Authorization, @Body RatingModel ratingModel);
 
     @GET("public/api/user/getShipmentPrice")
-    Call<HashMap<String,String>> priceCall(@Header("Authorization") String Authorization);
+    Call<HashMap<String, String>> priceCall(@Header("Authorization") String Authorization);
 }

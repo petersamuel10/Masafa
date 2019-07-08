@@ -6,11 +6,13 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TextInputEditText;
 import android.text.TextUtils;
-import android.util.Log;
 import android.widget.Button;
 
 import com.vavisa.masafah.R;
 import com.vavisa.masafah.base.BaseActivity;
+import com.vavisa.masafah.helpers.OTP.CountryModel;
+import com.vavisa.masafah.helpers.OTP.OTPViews;
+import com.vavisa.masafah.helpers.OTP.SendOTPPresenter;
 import com.vavisa.masafah.util.Connectivity;
 import com.vavisa.masafah.util.Constants;
 import com.vavisa.masafah.util.KeyboardUtil;
@@ -18,11 +20,11 @@ import com.vavisa.masafah.verify_phone_number.VerifyYourNumberActivity;
 
 import java.util.ArrayList;
 
-public class LoginActivity extends BaseActivity implements LoginView {
+public class LoginActivity extends BaseActivity implements OTPViews {
 
     private TextInputEditText mobileNumber;
     private Button country_code_btn, continueButton;
-    private LoginPresenter loginPresenter;
+    private SendOTPPresenter OTPPresenter;
     private ArrayList<CountryModel> countriesList;
     private Integer select_country_pos = 0, country_id = 1;
 
@@ -32,7 +34,7 @@ public class LoginActivity extends BaseActivity implements LoginView {
         setContentView(R.layout.activity_login);
         initViews();
 
-        loginPresenter.getCountries();
+        OTPPresenter.getCountries();
 
         country_code_btn.setOnClickListener(v -> {
 
@@ -57,19 +59,18 @@ public class LoginActivity extends BaseActivity implements LoginView {
                 v -> {
                     KeyboardUtil.hideKeyboardFrom(this, continueButton);
                     if (validate()) {
-                        if (Connectivity.checkInternetConnection()) {
-                            Login loginModel = new Login(mobileNumber.getText().toString(), country_id, Constants.ONE_SIGNAL_TOKEN, 2);
-                            loginPresenter.loginFun(loginModel);
-                        } else
+                        if (Connectivity.checkInternetConnection())
+                            OTPPresenter.sendOtp(this,country_code_btn.getText() + mobileNumber.getText().toString());
+                        else
                             showErrorConnection();
                     }
                 });
     }
 
     private void initViews() {
-        loginPresenter = new LoginPresenter();
-        loginPresenter.attachView(this);
 
+        OTPPresenter = new SendOTPPresenter();
+        OTPPresenter.attachView(this);
         country_code_btn = findViewById(R.id.country_code);
         mobileNumber = findViewById(R.id.mobile_number);
         continueButton = findViewById(R.id.continue_buton);
@@ -84,11 +85,20 @@ public class LoginActivity extends BaseActivity implements LoginView {
     }
 
     @Override
-    public void LoginResult(String otp) {
-        Log.d("otp", otp);
+    public void handleVerification_id(String verification_id) {
+
+        LoginModel loginModel =
+                new LoginModel(mobileNumber.getText().toString(),
+                               country_id,
+                               Constants.ONE_SIGNAL_TOKEN,
+                                2,
+                                country_code_btn.getText().toString(),
+                                 verification_id);
+
         Intent intent = new Intent(this, VerifyYourNumberActivity.class);
-        intent.putExtra("mobile_number", mobileNumber.getText().toString());
+        intent.putExtra("login_model", loginModel);
         startActivity(intent);
+
     }
 
     @Override

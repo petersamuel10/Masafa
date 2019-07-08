@@ -25,7 +25,6 @@ public class MyShipmentsPendingAdapter extends RecyclerView.Adapter<MyShipmentsP
     private MyShipmentsFragment activity;
     private ArrayList<ShipmentModel> shipmentList;
 
-
     public MyShipmentsPendingAdapter(MyShipmentsFragment activity, ArrayList<ShipmentModel> pendingList) {
 
         this.activity = activity;
@@ -58,9 +57,10 @@ public class MyShipmentsPendingAdapter extends RecyclerView.Adapter<MyShipmentsP
 
         holder.edit_txt.setOnClickListener(v -> {
             holder.sw.close(true);
-            (activity).editShipment(shipmentList.get(position)); });
+            (activity).editShipment(shipmentList.get(position));
+        });
 
-        holder.delete_txt.setOnClickListener(v -> (activity).deleteShipmentById(position,shipmentList.get(position).getId()));
+        holder.delete_txt.setOnClickListener(v -> (activity).deleteShipmentById(position, shipmentList.get(position).getId()));
 
     }
 
@@ -69,13 +69,12 @@ public class MyShipmentsPendingAdapter extends RecyclerView.Adapter<MyShipmentsP
         return shipmentList.size();
     }
 
-    public void deleteShipmentFromRecycler(int index){
+    public void deleteShipmentFromRecycler(int index) {
 
         shipmentList.remove(index);
         notifyItemRemoved(index);
 
     }
-
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 

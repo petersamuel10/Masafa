@@ -28,7 +28,6 @@
 
     </android.support.v7.widget.Toolbar>
 
-
     <TextView
         android:id="@+id/terms_txt"
         android:layout_width="match_parent"

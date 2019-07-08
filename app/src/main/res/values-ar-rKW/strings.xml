@@ -95,4 +95,8 @@
     <string name="call">اتصال</string>
     <string name="rate">تقييم</string>
     <string name="drop_location">موقع التوصيل</string>
+    <string name="wrong_code">خطأ فى الرمز</string>
+    <string name="today">اليوم</string>
+    <string name="update_mobile_number">تحديث رقم الهاتف</string>
+    <string name="number_not_changed">رقم الهاتف لم يتغير</string>
 </resources>

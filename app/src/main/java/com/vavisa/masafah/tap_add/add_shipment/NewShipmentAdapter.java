@@ -27,7 +27,6 @@ public class NewShipmentAdapter extends RecyclerView.Adapter<NewShipmentAdapter.
 
     public NewShipmentAdapter(ArrayList<CategoryModel> categoryList, ArrayList<ShipmentItemModel> shipmentsList) {
         this.categoryList = categoryList;
-
         this.shipmentsList = shipmentsList;
     }
 

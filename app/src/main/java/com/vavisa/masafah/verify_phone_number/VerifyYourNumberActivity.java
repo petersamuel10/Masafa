@@ -6,7 +6,6 @@ import android.support.annotation.Nullable;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -14,24 +13,19 @@ import android.widget.TextView;
 import com.vavisa.masafah.R;
 import com.vavisa.masafah.activities.MainActivity;
 import com.vavisa.masafah.base.BaseActivity;
-import com.vavisa.masafah.login.Login;
-import com.vavisa.masafah.util.Connectivity;
-import com.vavisa.masafah.util.KeyboardUtil;
+import com.vavisa.masafah.login.LoginModel;
 import com.vavisa.masafah.util.Preferences;
 import com.vavisa.masafah.verify_phone_number.model.VerifyResponseModel;
 
 public class VerifyYourNumberActivity extends BaseActivity implements VerifyViews {
 
-    private EditText otpCode1;
-    private EditText otpCode2;
-    private EditText otpCode3;
-    private EditText otpCode4;
-    private EditText otpCode5;
+    private EditText otpCode1, otpCode2, otpCode3, otpCode4, otpCode5, otpCode6;
     private TextView resend_otp_txt;
     private Button verifyButton;
     private String otp_str;
     private VerifyPresenter verifyPresenter;
-    Login loginModel;
+    private LoginModel loginModel;
+    private Boolean isChangeMobile;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -39,27 +33,27 @@ public class VerifyYourNumberActivity extends BaseActivity implements VerifyView
         setContentView(R.layout.activity_verify_phone_number);
         initViews();
 
-        loginModel = new Login();
-        loginModel.setMobile(getIntent().getExtras().getString("mobile_number"));
-
         verifyButton.setOnClickListener(v -> {
 
             otp_str = otpCode1.getText().toString() +
                     otpCode2.getText().toString() +
                     otpCode3.getText().toString() +
                     otpCode4.getText().toString() +
-                    otpCode5.getText().toString();
+                    otpCode5.getText().toString() +
+                    otpCode6.getText().toString();
 
-            loginModel.setOtp(otp_str);
-            if (Connectivity.checkInternetConnection()) {
-                if (getIntent().getExtras().containsKey("update_mobile")) {
-                    loginModel.setMobile(getIntent().getExtras().getString("update_mobile"));
-                    verifyPresenter.update_mobile_verify(loginModel);
-                } else
-                    verifyPresenter.verify_opt(loginModel);
+            if (getIntent().getExtras().containsKey("update_mobile")) {
+                isChangeMobile = true;
+                loginModel = getIntent().getParcelableExtra("update_mobile");
+            } else {
+                isChangeMobile = false;
+                loginModel = getIntent().getParcelableExtra("login_model");
+            }
 
-            } else
-                showErrorConnection();
+            verifyPresenter = new VerifyPresenter(this, loginModel, isChangeMobile);
+            verifyPresenter.attachView(this);
+            verifyPresenter.verifyOTP(otp_str);
+
 
         });
 
@@ -129,19 +123,26 @@ public class VerifyYourNumberActivity extends BaseActivity implements VerifyView
                         otpCode5.requestFocus();
                     }
                 });
+        otpCode5.addTextChangedListener(
+                new TextWatcher() {
+                    @Override
+                    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                    }
+
+                    @Override
+                    public void onTextChanged(CharSequence s, int start, int before, int count) {
+                    }
+
+                    @Override
+                    public void afterTextChanged(Editable s) {
+                        otpCode5.clearFocus();
+                        otpCode6.requestFocus();
+                    }
+                });
 
         resend_otp_txt.setOnClickListener(v -> {
             clearEditText();
-            if (Connectivity.checkInternetConnection()) {
-                if (getIntent().getExtras().containsKey("update_mobile")) {
-                    loginModel.setMobile(getIntent().getExtras().getString("update_mobile"));
-                    verifyPresenter.resendOTP(loginModel);
-                } else
-                    verifyPresenter.resendOTP(loginModel);
-
-            } else
-                showErrorConnection();
-
+            verifyPresenter.resendOTP();
         });
     }
 
@@ -157,14 +158,12 @@ public class VerifyYourNumberActivity extends BaseActivity implements VerifyView
         otpCode3 = findViewById(R.id.otp_code_3);
         otpCode4 = findViewById(R.id.otp_code_4);
         otpCode5 = findViewById(R.id.otp_code_5);
+        otpCode6 = findViewById(R.id.otp_code_6);
 
         resend_otp_txt = findViewById(R.id.resend_otp_txt);
         resend_otp_txt.setPaintFlags(resend_otp_txt.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
 
         verifyButton = findViewById(R.id.verify_button);
-
-        verifyPresenter = new VerifyPresenter();
-        verifyPresenter.attachView(this);
     }
 
     @Override
@@ -174,7 +173,7 @@ public class VerifyYourNumberActivity extends BaseActivity implements VerifyView
     }
 
     @Override
-    public void verify_opt(VerifyResponseModel verifyResModel) {
+    public void userInfo(VerifyResponseModel verifyResModel) {
         // to update mobile in profile when come back again due to update mobile number
         // to prevent load profile againn on onStart function
         Preferences.getInstance().putString("mobile", verifyResModel.getUser().getMobile());
@@ -189,17 +188,13 @@ public class VerifyYourNumberActivity extends BaseActivity implements VerifyView
     }
 
     @Override
-    public void OTP(String otp) {
-        Log.d("resend_otp", otp);
-    }
-
-    @Override
     public void clearEditText() {
         otpCode1.setText("");
         otpCode2.setText("");
         otpCode3.setText("");
         otpCode4.setText("");
         otpCode5.setText("");
+        otpCode6.setText("");
         otpCode1.requestFocus();
     }
 

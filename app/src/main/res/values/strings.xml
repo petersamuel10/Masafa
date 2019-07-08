@@ -51,7 +51,7 @@
     <string name="select_picture_from">Select picture from :</string>
     <string name="camera">Camera</string>
     <string name="gallery">Gallery</string>
-    <string name="edit_mobile">Edit mobile number</string>
+    <string name="edit_mobile">Change mobile number</string>
     <string name="cancel">Cancel</string>
     <string name="please_enter_valid_mobile_number">* Please enter valid mobile number.</string>
     <string name="count">Count</string>
@@ -96,5 +96,9 @@
     <string name="rate">Rate</string>
     <string name="call">Call</string>
     <string name="drop_location">Drop location</string>
+    <string name="wrong_code">Wrong code</string>
+    <string name="today">Today</string>
+    <string name="update_mobile_number">Update mobile number</string>
+    <string name="number_not_changed">Number not changed</string>
 
 </resources>

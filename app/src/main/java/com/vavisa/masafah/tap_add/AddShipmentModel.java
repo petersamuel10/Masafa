@@ -18,6 +18,8 @@ public class AddShipmentModel {
     private String address_from_id;
     @SerializedName("address_to_id")
     private String address_to_id;
+    @SerializedName("is_today")
+    private Boolean is_today;
     @SerializedName("pickup_time_from")
     private String pickup_time_from;
     @SerializedName("pickup_time_to")
@@ -81,6 +83,13 @@ public class AddShipmentModel {
     }
     public void setPickup_address(AddressModel pickup_address) {
         this.pickup_address = pickup_address;
+    }
+
+    public Boolean getIs_today() {
+        return is_today;
+    }
+    public void setIs_today(Boolean is_today) {
+        this.is_today = is_today;
     }
 
     public AddressModel getDrop_address() {

@@ -25,8 +25,6 @@ import retrofit2.Response;
 
 public class ProfilePresenter extends BasePresenter<ProfileView> {
 
-    // to send to verify mobile to use with resend otp
-    String updated_mobile;
 
     public void getUserProfile() {
         getView().showProgress();
@@ -67,33 +65,6 @@ public class ProfilePresenter extends BasePresenter<ProfileView> {
 
             @Override
             public void onFailure(Call<User> call, Throwable t) {
-                getView().hideProgress();
-                getView().showMessage(BaseApplication.error_msg);
-                if (t instanceof HttpException) {
-                    ResponseBody body = ((HttpException) t).response().errorBody();
-                    Log.d("error", body.toString());
-                }
-            }
-        });
-    }
-
-    public void changeMobile(HashMap<String, String> mobile) {
-
-        updated_mobile = mobile.get("mobile");
-        getView().showProgress();
-        APIManager.getInstance().getAPI().changeMobileNumberCall(Preferences.getInstance()
-                .getString("access_token"), mobile).enqueue(new Callback<LoginResponse>() {
-            @Override
-            public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
-                getView().hideProgress();
-                if (response.code() == 200)
-                    getView().changeMobileResponse(updated_mobile, response.body().getOtp());
-                else
-                    getView().showMissingData(response);
-            }
-
-            @Override
-            public void onFailure(Call<LoginResponse> call, Throwable t) {
                 getView().hideProgress();
                 getView().showMessage(BaseApplication.error_msg);
                 if (t instanceof HttpException) {

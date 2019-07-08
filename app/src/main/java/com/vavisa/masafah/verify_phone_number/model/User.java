@@ -1,6 +1,7 @@
 package com.vavisa.masafah.verify_phone_number.model;
 
 import com.google.gson.annotations.SerializedName;
+import com.vavisa.masafah.helpers.OTP.CountryModel;
 
 public class User {
 
@@ -30,11 +31,12 @@ public class User {
        private String player_id;
        @SerializedName("deleted_at")
        private String deleted_at;
+       @SerializedName("country")
+       private CountryModel countryModel;
 
        public String getId() {
            return id;
        }
-
        public void setId(String id) {
            this.id = id;
        }
@@ -42,7 +44,6 @@ public class User {
        public String getFullname() {
            return fullname;
        }
-
        public void setFullname(String fullname) {
            this.fullname = fullname;
        }
@@ -50,7 +51,6 @@ public class User {
        public String getEmail() {
            return email;
        }
-
        public void setEmail(String email) {
            this.email = email;
        }
@@ -58,7 +58,6 @@ public class User {
        public String getOriginal_password() {
            return original_password;
        }
-
        public void setOriginal_password(String original_password) {
            this.original_password = original_password;
        }
@@ -66,7 +65,6 @@ public class User {
        public String getMobile() {
            return mobile;
        }
-
        public void setMobile(String mobile) {
            this.mobile = mobile;
        }
@@ -74,7 +72,6 @@ public class User {
        public String getProfile_image() {
            return profile_image;
        }
-
        public void setProfile_image(String profile_image) {
            this.profile_image = profile_image;
        }
@@ -82,7 +79,6 @@ public class User {
        public String getStatus() {
            return status;
        }
-
        public void setStatus(String status) {
            this.status = status;
        }
@@ -90,7 +86,6 @@ public class User {
        public String getCountry_id() {
            return country_id;
        }
-
        public void setCountry_id(String country_id) {
            this.country_id = country_id;
        }
@@ -98,7 +93,6 @@ public class User {
        public String getAddress() {
            return address;
        }
-
        public void setAddress(String address) {
            this.address = address;
        }
@@ -106,7 +100,6 @@ public class User {
        public String getLocation() {
            return location;
        }
-
        public void setLocation(String location) {
            this.location = location;
        }
@@ -114,7 +107,6 @@ public class User {
        public String getPhone() {
            return phone;
        }
-
        public void setPhone(String phone) {
            this.phone = phone;
        }
@@ -122,7 +114,6 @@ public class User {
        public String getPlayer_id() {
            return player_id;
        }
-
        public void setPlayer_id(String player_id) {
            this.player_id = player_id;
        }
@@ -130,8 +121,14 @@ public class User {
        public String getDeleted_at() {
            return deleted_at;
        }
-
        public void setDeleted_at(String deleted_at) {
            this.deleted_at = deleted_at;
        }
+
+       public CountryModel getCountryModel() {
+        return countryModel;
+    }
+       public void setCountryModel(CountryModel countryModel) {
+        this.countryModel = countryModel;
+    }
 }
