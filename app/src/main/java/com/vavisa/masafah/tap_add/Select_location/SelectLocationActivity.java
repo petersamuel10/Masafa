@@ -18,6 +18,7 @@ import com.vavisa.masafah.tap_add.add_address.AddressModel;
 import com.vavisa.masafah.tap_add.invoice.Invoice;
 import com.vavisa.masafah.tap_add.map.MapActivity;
 import com.vavisa.masafah.tap_add.map.MyAddressActivity;
+import com.vavisa.masafah.util.Connectivity;
 import com.vavisa.masafah.util.Constants;
 
 public class SelectLocationActivity extends BaseActivity implements View.OnClickListener, SelectLocationViews {
@@ -36,7 +37,10 @@ public class SelectLocationActivity extends BaseActivity implements View.OnClick
 
         SelectLocationPresenter presenter = new SelectLocationPresenter();
         presenter.attachView(this);
-        presenter.getPrice();
+        if(Connectivity.checkInternetConnection())
+            presenter.getPrice();
+        else
+            showErrorConnection();
 
     }
 

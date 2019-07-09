@@ -24,7 +24,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class MyShipmentsAcceptedAdapter extends RecyclerView.Adapter<MyShipmentsAcceptedAdapter.ViewHolder> {
 
     private MyShipmentsFragment activity;
-    private ArrayList<ShipmentModel> shipmentList;
+    private ArrayList<ShipmentModel> shipmentList = new ArrayList<>();
     private Context context;
 
     public MyShipmentsAcceptedAdapter(MyShipmentsFragment activity, ArrayList<ShipmentModel> acceptList) {

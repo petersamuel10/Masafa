@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.vavisa.masafah.network.APIManager;
 import com.vavisa.masafah.network.InternetConnectionListener;
 import com.vavisa.masafah.util.dialogs.ConnectionMessage;
 import com.vavisa.masafah.util.dialogs.FailedMessage;
@@ -22,9 +23,22 @@ public class BaseActivity extends AppCompatActivity implements BaseView, Interne
         super.onCreate(savedInstanceState);
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        APIManager.getInstance().setInternetConnectionListener(this);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        APIManager.getInstance().removeInternetConnectionListener();
+    }
+
     public void start(Class<? extends BaseActivity> activity) {
         startActivity(new Intent(this, activity));
     }
+
 
     @Override
     public void showErrorConnection() {

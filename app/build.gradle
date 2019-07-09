@@ -20,6 +20,10 @@ repositories {
 }
 
 android {
+
+    lintOptions {
+        checkReleaseBuilds false
+    }
     compileSdkVersion 28
     defaultConfig {
         applicationId "com.vavisa.masafah"
@@ -37,6 +41,8 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary true
     }
+
+
     buildTypes {
         release {
             minifyEnabled false

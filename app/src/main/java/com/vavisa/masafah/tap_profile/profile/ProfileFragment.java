@@ -42,6 +42,7 @@ import com.vavisa.masafah.tap_profile.TermsAndCondition.TermsAndConditions;
 import com.vavisa.masafah.tap_profile.myAddresses.AddressesFragment;
 import com.vavisa.masafah.tap_profile.profile.model.EditProfileModel;
 import com.vavisa.masafah.tap_profile.shipment_history.ShipmentHistoryFragment;
+import com.vavisa.masafah.util.Connectivity;
 import com.vavisa.masafah.util.Constants;
 import com.vavisa.masafah.util.GridSpaceItemDecoration;
 import com.vavisa.masafah.util.KeyboardUtil;
@@ -195,7 +196,10 @@ public class ProfileFragment extends BaseFragment implements View.OnClickListene
             editProfileModel.setImage(image_str);
         }
 
-        presenter.updateProfile(editProfileModel);
+        if(Connectivity.checkInternetConnection())
+            presenter.updateProfile(editProfileModel);
+        else
+            showErrorConnection();
     }
 
     private void addNewImage() {
@@ -256,7 +260,10 @@ public class ProfileFragment extends BaseFragment implements View.OnClickListene
             case R.id.logout_button:
                 HashMap<String, String> player_id = new HashMap<>();
                 player_id.put("player_id", Constants.ONE_SIGNAL_TOKEN);
-                presenter.logout(player_id);
+                if(Connectivity.checkInternetConnection())
+                    presenter.logout(player_id);
+                else
+                    showErrorConnection();
                 break;
         }
     }
@@ -352,7 +359,10 @@ public class ProfileFragment extends BaseFragment implements View.OnClickListene
 
         presenter = new ProfilePresenter();
         presenter.attachView(this);
-        presenter.getUserProfile();
+        if(Connectivity.checkInternetConnection())
+            presenter.getUserProfile();
+        else
+            showErrorConnection();
 
         otpPresenter = new SendOTPPresenter();
         otpPresenter.attachView(this);

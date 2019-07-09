@@ -51,7 +51,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
-        android:text="@string/test_description"
+        android:text="@string/category_already_added"
         android:textColor="#A1A1A1"
         app:layout_constraintStart_toEndOf="@+id/side_border"
         app:layout_constraintTop_toBottomOf="@+id/shipment_number_tag"

@@ -10,6 +10,7 @@ import com.vavisa.masafah.activities.MainActivity;
 import com.vavisa.masafah.base.BaseActivity;
 import com.vavisa.masafah.tap_add.AddShipmentModel;
 import com.vavisa.masafah.tap_add.add_shipment.model.ShipmentItemModel;
+import com.vavisa.masafah.util.Connectivity;
 import com.vavisa.masafah.util.Constants;
 
 public class Invoice extends BaseActivity implements com.vavisa.masafah.tap_add.invoice.View {
@@ -34,10 +35,13 @@ public class Invoice extends BaseActivity implements com.vavisa.masafah.tap_add.
         bindData();
 
         confirm_btn.setOnClickListener(v -> {
-            if (Constants.isEditShipment)
-                presenter.editShipment();
-            else
-                presenter.addShipment();
+            if(Connectivity.checkInternetConnection()) {
+                if (Constants.isEditShipment)
+                    presenter.editShipment();
+                else
+                    presenter.addShipment();
+            }else
+                showErrorConnection();
         });
     }
 
@@ -91,7 +95,9 @@ public class Invoice extends BaseActivity implements com.vavisa.masafah.tap_add.
         Constants.isEditShipment = false;
         Constants.addShipmentModel = new AddShipmentModel();
         showMessage(msg);
-        startActivity(new Intent(Invoice.this, MainActivity.class));
+        Intent i = new Intent(Invoice.this, MainActivity.class);
+        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(i);
         finish();
     }
 }

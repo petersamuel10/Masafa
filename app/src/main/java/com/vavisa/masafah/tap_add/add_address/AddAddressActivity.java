@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.vavisa.masafah.R;
 import com.vavisa.masafah.base.BaseActivity;
+import com.vavisa.masafah.util.Connectivity;
 import com.vavisa.masafah.util.Constants;
 
 public class AddAddressActivity extends BaseActivity implements AddAddressView {
@@ -30,12 +31,18 @@ public class AddAddressActivity extends BaseActivity implements AddAddressView {
         if (getIntent().getExtras().containsKey("address_id")) {
             if (getIntent().getStringExtra("action").equals("showAddressDetails"))
                 disableViewsForDetails();
-            presenter.getAddressById(getIntent().getStringExtra("address_id"));
+            if(Connectivity.checkInternetConnection())
+                presenter.getAddressById(getIntent().getStringExtra("address_id"));
+            else
+                showErrorConnection();
             confirmButton.setOnClickListener(v -> {
                 if (valid()) {
                     AddressModel addressModel = new AddressModel(address_id, location_name, area, block, street, building, details, extra);
                     addressModel.setMobile(mobile);
-                    presenter.editAddress(addressModel);
+                    if(Connectivity.checkInternetConnection())
+                        presenter.editAddress(addressModel);
+                    else
+                        showErrorConnection();
                 }
             });
         } else
@@ -43,7 +50,10 @@ public class AddAddressActivity extends BaseActivity implements AddAddressView {
                 if (valid()) {
                     AddressModel addressModel = new AddressModel(location_name, area, block, street, building, details, extra);
                     addressModel.setMobile(mobile);
-                    presenter.AddAddress(addressModel);
+                    if(Connectivity.checkInternetConnection())
+                        presenter.AddAddress(addressModel);
+                    else
+                        showErrorConnection();
                 }
             });
     }

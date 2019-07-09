@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import com.vavisa.masafah.R;
 import com.vavisa.masafah.base.BaseFragment;
+import com.vavisa.masafah.util.Connectivity;
 
 public class TermsAndConditions extends BaseFragment implements TermsView {
 
@@ -23,8 +24,10 @@ public class TermsAndConditions extends BaseFragment implements TermsView {
 
         presenter = new TermsPresenter();
         presenter.attachView(this);
-
-        presenter.getTerms();
+        if(Connectivity.checkInternetConnection())
+            presenter.getTerms();
+        else
+            showErrorConnection();
 
         return view;
     }

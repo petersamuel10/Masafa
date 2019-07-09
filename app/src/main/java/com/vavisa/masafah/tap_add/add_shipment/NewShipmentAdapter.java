@@ -53,7 +53,7 @@ public class NewShipmentAdapter extends RecyclerView.Adapter<NewShipmentAdapter.
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder, final int position) {
 
-        if (position == shipmentsList.size())
+        if (position == shipmentsList.size()) {
             holder.addMoreItems.setOnClickListener(v -> {
                 if (shipmentsList.get(shipmentsList.size() - 1).getCategory_id() == -1)
                     Toast.makeText(context, context.getString(R.string.please_select_category_name_for_previous_shipment), Toast.LENGTH_SHORT).show();
@@ -62,8 +62,7 @@ public class NewShipmentAdapter extends RecyclerView.Adapter<NewShipmentAdapter.
                     notifyDataSetChanged();
                 }
             });
-        else {
-
+        } else {
             // bind data if its edit shipment
             if (!shipmentsList.get(0).getCat_name().equals(""))
                 holder.bind(shipmentsList.get(position));
@@ -82,12 +81,25 @@ public class NewShipmentAdapter extends RecyclerView.Adapter<NewShipmentAdapter.
                 alert.setSingleChoiceItems(countries_name, select_category_pos, (dialog, pos) -> {
                     dialog.dismiss();
                     select_category_pos = pos;
-                    holder.category_name_ed.setText(categoryList.get(pos).getName());
-                    shipmentsList.get(position).setCategory_id(categoryList.get(pos).getId());
-                    shipmentsList.get(position).setCat_name(categoryList.get(pos).getName());
-                    // country_id = countriesList.get(position).getId();
+
+                    if (categoryExist(categoryList.get(pos).getId()))
+                        Toast.makeText(context, context.getString(R.string.category_already_added), Toast.LENGTH_SHORT).show();
+                    else {
+                        holder.category_name_ed.setText(categoryList.get(pos).getName());
+                        shipmentsList.get(position).setCategory_id(categoryList.get(pos).getId());
+                        shipmentsList.get(position).setCat_name(categoryList.get(pos).getName());
+                    }
                 });
                 alert.create().show();
+            });
+
+            holder.ic_delete.setOnClickListener(v -> {
+                if (shipmentsList.size() == 1)
+                    Toast.makeText(context, context.getString(R.string.you_must_add_at_least_one_shipment), Toast.LENGTH_SHORT).show();
+                else {
+                    shipmentsList.remove(position);
+                    notifyItemRemoved(position);
+                }
             });
             holder.add_quantity.setOnClickListener(v -> {
 
@@ -104,6 +116,15 @@ public class NewShipmentAdapter extends RecyclerView.Adapter<NewShipmentAdapter.
             });
         }
 
+    }
+
+    private boolean categoryExist(Integer cat_id) {
+
+        for (ShipmentItemModel item : shipmentsList) {
+            if (cat_id == item.getCategory_id())
+                return true;
+        }
+        return false;
     }
 
     @Override
@@ -124,7 +145,7 @@ public class NewShipmentAdapter extends RecyclerView.Adapter<NewShipmentAdapter.
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        FloatingActionButton addMoreItems, subtract_quantity, add_quantity;
+        FloatingActionButton addMoreItems, ic_delete, subtract_quantity, add_quantity;
         TextView quantity_txt, category_name_ed;
 
 
@@ -132,6 +153,7 @@ public class NewShipmentAdapter extends RecyclerView.Adapter<NewShipmentAdapter.
             super(itemView);
 
             category_name_ed = itemView.findViewById(R.id.category_name);
+            ic_delete = itemView.findViewById(R.id.ic_del);
             quantity_txt = itemView.findViewById(R.id.quantity);
             addMoreItems = itemView.findViewById(R.id.add_more_item);
             add_quantity = itemView.findViewById(R.id.add_quantity);

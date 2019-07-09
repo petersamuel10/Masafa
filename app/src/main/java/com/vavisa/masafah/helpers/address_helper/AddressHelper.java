@@ -5,6 +5,7 @@ import android.support.v7.widget.RecyclerView;
 import com.vavisa.masafah.tap_add.add_address.AddressModel;
 import com.vavisa.masafah.tap_add.map.MyAddressActivity;
 import com.vavisa.masafah.tap_profile.myAddresses.AddressesFragment;
+import com.vavisa.masafah.util.Connectivity;
 
 import java.util.ArrayList;
 
@@ -18,7 +19,10 @@ public class AddressHelper  {
         MyAddressPresenter presenter = new MyAddressPresenter();
         view = fragment == null ? activity : fragment;
         presenter.attachView(view);
-        presenter.getAddresses();
+        if(Connectivity.checkInternetConnection())
+            presenter.getAddresses();
+        else
+            view.showErrorConnection();
         this.address_rec = address_rec;
     }
 

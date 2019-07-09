@@ -18,6 +18,7 @@ import com.vavisa.masafah.base.BaseFragment;
 import com.vavisa.masafah.tap_add.add_shipment.model.ShipmentItemModel;
 import com.vavisa.masafah.tap_my_shipment.company_details.CompanyDetailsActivity;
 import com.vavisa.masafah.tap_my_shipment.my_shipments.ShipmentModel;
+import com.vavisa.masafah.util.Connectivity;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -48,7 +49,10 @@ public class ShipmentDetailsFragment extends BaseFragment implements ShipmentDet
 
             presenter = new ShipmentDetailsPresenter();
             presenter.attachView(this);
-            presenter.getShipmentDetails(getArguments().getString("shipment_id"));
+            if(Connectivity.checkInternetConnection())
+                presenter.getShipmentDetails(getArguments().getString("shipment_id"));
+            else
+                showErrorConnection();
 
         } else {
             for (int i = 1; i < navigationView.getMenu().size(); i++) {

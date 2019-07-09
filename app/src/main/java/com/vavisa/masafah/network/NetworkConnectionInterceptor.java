@@ -1,9 +1,12 @@
 package com.vavisa.masafah.network;
 
 
+import android.util.Log;
+
 import java.io.IOException;
 
 import okhttp3.Interceptor;
+import okhttp3.Protocol;
 import okhttp3.Request;
 import okhttp3.Response;
 

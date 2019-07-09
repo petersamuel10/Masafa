@@ -14,6 +14,7 @@ import com.vavisa.masafah.R;
 import com.vavisa.masafah.activities.MainActivity;
 import com.vavisa.masafah.base.BaseActivity;
 import com.vavisa.masafah.login.LoginModel;
+import com.vavisa.masafah.util.Connectivity;
 import com.vavisa.masafah.util.Preferences;
 import com.vavisa.masafah.verify_phone_number.model.VerifyResponseModel;
 
@@ -52,8 +53,10 @@ public class VerifyYourNumberActivity extends BaseActivity implements VerifyView
 
             verifyPresenter = new VerifyPresenter(this, loginModel, isChangeMobile);
             verifyPresenter.attachView(this);
-            verifyPresenter.verifyOTP(otp_str);
-
+            if (Connectivity.checkInternetConnection())
+                verifyPresenter.verifyOTP(otp_str);
+            else
+                showErrorConnection();
 
         });
 
@@ -142,7 +145,10 @@ public class VerifyYourNumberActivity extends BaseActivity implements VerifyView
 
         resend_otp_txt.setOnClickListener(v -> {
             clearEditText();
-            verifyPresenter.resendOTP();
+            if (Connectivity.checkInternetConnection())
+                verifyPresenter.resendOTP();
+            else
+                showErrorConnection();
         });
     }
 

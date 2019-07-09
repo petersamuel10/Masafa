@@ -7,6 +7,7 @@ import com.vavisa.masafah.base.BasePresenter;
 import com.vavisa.masafah.network.APIManager;
 import com.vavisa.masafah.util.Preferences;
 
+import java.net.ConnectException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -34,8 +35,10 @@ public class MyShipmentPresenter extends BasePresenter<MyShipmentsView> {
 
                     @Override
                     public void onFailure(Call<HashMap<String, ArrayList<ShipmentModel>>> call, Throwable t) {
-                        getView().hideProgress();
-                        getView().showMessage(BaseApplication.error_msg);
+                        if (!(t instanceof ConnectException)) {
+                            getView().hideProgress();
+                            getView().showMessage(BaseApplication.error_msg);
+                        }
                         if (t instanceof HttpException) {
                             ResponseBody body = ((HttpException) t).response().errorBody();
                             Log.d("error", body.toString());

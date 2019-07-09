@@ -18,6 +18,7 @@ import android.widget.RelativeLayout;
 import com.vavisa.masafah.R;
 import com.vavisa.masafah.base.BaseFragment;
 import com.vavisa.masafah.tap_add.add_shipment.AddShipmentActivity;
+import com.vavisa.masafah.util.Connectivity;
 import com.vavisa.masafah.util.Constants;
 
 import java.util.ArrayList;
@@ -59,7 +60,10 @@ public class MyShipmentsFragment extends BaseFragment implements MyShipmentsView
 
             presenter = new MyShipmentPresenter();
             presenter.attachView(this);
-            presenter.getShipment();
+            if(Connectivity.checkInternetConnection())
+                presenter.getShipment();
+            else
+                showErrorConnection();
 
 
         } else {
@@ -105,7 +109,10 @@ public class MyShipmentsFragment extends BaseFragment implements MyShipmentsView
     }
 
     public void deleteShipmentById(int position, String shipment_id) {
-        presenter.deleteShipment(position, shipment_id);
+        if(Connectivity.checkInternetConnection())
+            presenter.deleteShipment(position, shipment_id);
+        else
+            showErrorConnection();
     }
 
     @Override

@@ -43,10 +43,12 @@ public class AddShipmentActivity extends BaseActivity implements AddShipmentView
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_new_shipment);
         initViews();
-        if (Connectivity.checkInternetConnection())
+        if(Connectivity.checkInternetConnection())
             presenter.getCategories();
-        else
+        else{
             showErrorConnection();
+            nextButton.setEnabled(false);
+        }
 
         pickup_time_to_txt.setOnClickListener(v -> showPickerTime((TextView) v));
 

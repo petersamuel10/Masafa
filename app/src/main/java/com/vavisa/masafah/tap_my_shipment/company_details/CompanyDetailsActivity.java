@@ -16,6 +16,7 @@ import com.orhanobut.dialogplus.DialogPlus;
 import com.orhanobut.dialogplus.ViewHolder;
 import com.vavisa.masafah.R;
 import com.vavisa.masafah.base.BaseActivity;
+import com.vavisa.masafah.util.Connectivity;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -43,8 +44,10 @@ public class CompanyDetailsActivity extends BaseActivity implements View.OnClick
 
         presenter = new CompanyDetailsPresenter();
         presenter.attachView(this);
-        presenter.getCompanyDetails(getIntent().getStringExtra("company_id"));
-
+        if(Connectivity.checkInternetConnection())
+            presenter.getCompanyDetails(getIntent().getStringExtra("company_id"));
+        else
+            showErrorConnection();
     }
 
     private void initViews() {
@@ -100,7 +103,10 @@ public class CompanyDetailsActivity extends BaseActivity implements View.OnClick
                 ratingBar.setOnRatingBarChangeListener((ratingBar1, rating, fromUser) -> { rating_value = rating; });
                 close_btn.setOnClickListener(v1 -> dialogPlus.dismiss());
                 rating_btn.setOnClickListener(v2 -> {
-                    presenter.rateCompanyDetails(new RatingModel(getIntent().getStringExtra("company_id"), rating_value));
+                    if(Connectivity.checkInternetConnection())
+                        presenter.rateCompanyDetails(new RatingModel(getIntent().getStringExtra("company_id"), rating_value));
+                    else
+                        showErrorConnection();
                 });
                 dialogPlus.show();
                 break;

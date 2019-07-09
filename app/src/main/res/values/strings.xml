@@ -11,7 +11,7 @@
     <string name="pickup_location">Pickup Location</string>
     <string name="price">Price</string>
     <string name="shipment_number">Shipment #</string>
-    <string name="test_description">This is the description for the shipment that has been added as a part of \'My Shipments\'</string>
+    <string name="category_already_added">Category already added.</string>
     <string name="pending">Pending</string>
     <string name="distance">Distance</string>
     <string name="accepted">Accepted</string>
@@ -100,5 +100,6 @@
     <string name="today">Today</string>
     <string name="update_mobile_number">Update mobile number</string>
     <string name="number_not_changed">Number not changed</string>
+    <string name="you_must_add_at_least_one_shipment">You must add at least one shipment</string>
 
 </resources>

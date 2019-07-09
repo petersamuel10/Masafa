@@ -17,6 +17,7 @@ import com.vavisa.masafah.R;
 import com.vavisa.masafah.base.BaseFragment;
 import com.vavisa.masafah.tap_my_shipment.my_shipments.ShipmentModel;
 import com.vavisa.masafah.util.BottomSpaceItemDecoration;
+import com.vavisa.masafah.util.Connectivity;
 
 import java.util.ArrayList;
 
@@ -43,7 +44,10 @@ public class ShipmentHistoryFragment extends BaseFragment implements ShipmentHis
 
             presenter = new ShipmentHistoryPresenter();
             presenter.attachView(this);
-            presenter.getShipments();
+            if(Connectivity.checkInternetConnection())
+                presenter.getShipments();
+            else
+                showErrorConnection();
 
         } else {
             for (int i = 1; i < navigationView.getMenu().size(); i++) {

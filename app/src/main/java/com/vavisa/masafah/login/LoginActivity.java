@@ -34,7 +34,10 @@ public class LoginActivity extends BaseActivity implements OTPViews {
         setContentView(R.layout.activity_login);
         initViews();
 
-        OTPPresenter.getCountries();
+        if(Connectivity.checkInternetConnection())
+            OTPPresenter.getCountries();
+        else
+            showErrorConnection();
 
         country_code_btn.setOnClickListener(v -> {
 

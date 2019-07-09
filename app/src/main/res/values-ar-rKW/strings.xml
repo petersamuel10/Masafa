@@ -12,7 +12,7 @@
     <string name="pickup_location">اختر الموقع</string>
     <string name="price">السعر</string>
     <string name="shipment_number">شحنة #</string>
-    <string name="test_description">هذا هو وصف الشحنة التي تمت إضافتها كجزء من </string>
+    <string name="category_already_added">العنصر مضاف بالفعل</string>
     <string name="pending">قيد الانتظار</string>
     <string name="distance">المسافة</string>
     <string name="accepted">موافقة</string>
@@ -99,4 +99,5 @@
     <string name="today">اليوم</string>
     <string name="update_mobile_number">تحديث رقم الهاتف</string>
     <string name="number_not_changed">رقم الهاتف لم يتغير</string>
+    <string name="you_must_add_at_least_one_shipment">يجب اضافة ع الاقل عنصر واحد</string>
 </resources>

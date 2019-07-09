@@ -18,6 +18,7 @@ import com.vavisa.masafah.helpers.address_helper.MyAddressView;
 import com.vavisa.masafah.tap_add.add_address.AddAddressActivity;
 import com.vavisa.masafah.tap_add.add_address.AddressModel;
 import com.vavisa.masafah.tap_my_shipment.my_shipments.MyShipmentPresenter;
+import com.vavisa.masafah.util.Connectivity;
 
 import java.util.ArrayList;
 
@@ -74,8 +75,10 @@ public class AddressesFragment extends BaseFragment implements MyAddressView {
     }
 
     public void handleDeleteAction(int position,AddressModel addressModel) {
-
-        presenter.deleteAddresses(this,addressModel.getId());
+        if(Connectivity.checkInternetConnection())
+            presenter.deleteAddresses(this,addressModel.getId());
+        else
+            showErrorConnection();
 
     }
 

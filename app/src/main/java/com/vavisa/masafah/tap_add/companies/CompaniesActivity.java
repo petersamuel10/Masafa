@@ -13,6 +13,7 @@ import com.vavisa.masafah.R;
 import com.vavisa.masafah.base.BaseActivity;
 import com.vavisa.masafah.tap_add.Select_location.SelectLocationActivity;
 import com.vavisa.masafah.tap_my_shipment.company_details.CompanyModel;
+import com.vavisa.masafah.util.Connectivity;
 import com.vavisa.masafah.util.Constants;
 
 import java.util.ArrayList;
@@ -32,7 +33,13 @@ public class CompaniesActivity extends BaseActivity implements CompaniesView {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_companies);
         initView();
-        presenter.getCompanies();
+        if(Connectivity.checkInternetConnection())
+            presenter.getCompanies();
+        else {
+            showErrorConnection();
+            nextButton.setEnabled(false);
+            select_all_tag.setEnabled(false);
+        }
         select_all_tag.setOnClickListener(v -> {
             if (select_all_tag.getText().toString().equals(getString(R.string.select_all))) {
                 select_all_tag.setText(getString(R.string.unselect_all));
