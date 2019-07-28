@@ -26,6 +26,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -76,7 +77,7 @@ public class ProfileFragment extends BaseFragment implements View.OnClickListene
     private boolean isImageChanged = false;
     private final int PICK_IMAGE_CAMERA = 1, PICK_IMAGE_GALLERY = 2;
     // for change mobile number
-    private int country_id = 1;
+    private String country_id;
     private String country_code, edited_mobile_number;
     private DialogPlus my_details_dialog;
 
@@ -133,6 +134,7 @@ public class ProfileFragment extends BaseFragment implements View.OnClickListene
         email_ed.setText(user.getEmail());
         phone_ed.setText(user.getMobile());
         country_code_btn.setText(user.getCountryModel().getCountry_code());
+        country_id = user.getCountryModel().getId();
         Glide.with(this)
                 .load(user.getProfile_image())
                 .centerCrop()
@@ -156,7 +158,7 @@ public class ProfileFragment extends BaseFragment implements View.OnClickListene
             else {
                 country_code = country_code_btn.getText().toString();
                 edited_mobile_number = phone_ed.getText().toString();
-                otpPresenter.sendOtp(getActivity(),country_code_btn.getText().toString() + phone_ed.getText().toString());
+                otpPresenter.sendOtp(getActivity(), country_code_btn.getText().toString() + phone_ed.getText().toString());
             }
         });
         country_code_btn.setOnClickListener(v -> countryCodeAlert(country_code_btn));
@@ -196,7 +198,7 @@ public class ProfileFragment extends BaseFragment implements View.OnClickListene
             editProfileModel.setImage(image_str);
         }
 
-        if(Connectivity.checkInternetConnection())
+        if (Connectivity.checkInternetConnection())
             presenter.updateProfile(editProfileModel);
         else
             showErrorConnection();
@@ -260,7 +262,7 @@ public class ProfileFragment extends BaseFragment implements View.OnClickListene
             case R.id.logout_button:
                 HashMap<String, String> player_id = new HashMap<>();
                 player_id.put("player_id", Constants.ONE_SIGNAL_TOKEN);
-                if(Connectivity.checkInternetConnection())
+                if (Connectivity.checkInternetConnection())
                     presenter.logout(player_id);
                 else
                     showErrorConnection();
@@ -359,7 +361,7 @@ public class ProfileFragment extends BaseFragment implements View.OnClickListene
 
         presenter = new ProfilePresenter();
         presenter.attachView(this);
-        if(Connectivity.checkInternetConnection())
+        if (Connectivity.checkInternetConnection())
             presenter.getUserProfile();
         else
             showErrorConnection();
@@ -374,14 +376,14 @@ public class ProfileFragment extends BaseFragment implements View.OnClickListene
 
         profileGridView.setAdapter(new ProfileAdapter());
 
-        profileLayout.post(
-                new Runnable() {
-                    @Override
-                    public void run() {
-                        int height = profileLayout.getHeight();
-                        profileLayout.setTranslationY(-(height / 3));
-                    }
-                });
+
+        profileLayout.post(() -> {
+            int height = profileLayout.getHeight();
+            RelativeLayout.LayoutParams layoutParams =
+                    (RelativeLayout.LayoutParams) profileLayout.getLayoutParams();
+            layoutParams.topMargin = -(height / 3);
+            profileLayout.setLayoutParams(layoutParams);
+        });
     }
 
     private class ProfileViewHolder extends RecyclerView.ViewHolder {

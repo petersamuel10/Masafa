@@ -4,11 +4,10 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 import com.google.gson.annotations.SerializedName;
+import com.vavisa.masafah.helpers.OTP.CountryModel;
 
 public class AddressModel implements Parcelable {
 
-    @SerializedName("address_id")
-    private String address_id;
     @SerializedName("id")
     private String id;
     @SerializedName("name")
@@ -19,52 +18,89 @@ public class AddressModel implements Parcelable {
     private String block;
     @SerializedName("street")
     private String street;
-    @SerializedName("area")
-    private String area;
+    @SerializedName("country")
+    private CountryModel country;
+    @SerializedName("city")
+    private CountryModel city;
+    @SerializedName("governorate")
+    private CountryModel governorate;
     @SerializedName("building")
     private String building;
     @SerializedName("details")
     private String details;
     @SerializedName("notes")
     private String notes;
+    @SerializedName("country_id")
+    private String country_id;
+    @SerializedName("governorate_id")
+    private String governorate_id;
+    @SerializedName("city_id")
+    private String city_id;
 
     public AddressModel() {
     }
 
     // for add new address
-    public AddressModel(String name, String block, String street, String area, String building, String details, String notes) {
+    public AddressModel(String name, String mobile,
+                        String country_id, String governorate_id, String city_id,
+                        String block, String street,String building, String details, String notes) {
         this.name = name;
+        this.mobile = mobile;
+        this.country_id = country_id;
+        this.governorate_id = governorate_id;
+        this.city_id = city_id;
         this.block = block;
         this.street = street;
-        this.area = area;
         this.building = building;
         this.details = details;
         this.notes = notes;
     }
 
     //for edit address
-    public AddressModel(String address_id, String name, String block, String street, String area, String building, String details, String notes) {
-        this.address_id = address_id;
+    public AddressModel(String address_id, String name, String mobile,
+                        String country_id, String governorate_id, String city_id,
+                        String block, String street,String building, String details, String notes ){
+        this.id = address_id;
         this.name = name;
+        this.mobile = mobile;
+        this.country_id = country_id;
+        this.governorate_id = governorate_id;
+        this.city_id = city_id;
         this.block = block;
         this.street = street;
-        this.area = area;
         this.building = building;
         this.details = details;
         this.notes = notes;
     }
 
+
     protected AddressModel(Parcel in) {
-        address_id = in.readString();
         id = in.readString();
         name = in.readString();
         mobile = in.readString();
         block = in.readString();
         street = in.readString();
-        area = in.readString();
         building = in.readString();
         details = in.readString();
         notes = in.readString();
+        country_id = in.readString();
+        governorate_id = in.readString();
+        city_id = in.readString();
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(id);
+        dest.writeString(name);
+        dest.writeString(mobile);
+        dest.writeString(block);
+        dest.writeString(street);
+        dest.writeString(building);
+        dest.writeString(details);
+        dest.writeString(notes);
+        dest.writeString(country_id);
+        dest.writeString(governorate_id);
+        dest.writeString(city_id);
     }
 
     public static final Creator<AddressModel> CREATOR = new Creator<AddressModel>() {
@@ -78,13 +114,6 @@ public class AddressModel implements Parcelable {
             return new AddressModel[size];
         }
     };
-
-    public String getAddress_id() {
-        return address_id;
-    }
-    public void setAddress_id(String address_id) {
-        this.address_id = address_id;
-    }
 
     public String getId() {
         return id;
@@ -121,11 +150,25 @@ public class AddressModel implements Parcelable {
         this.street = street;
     }
 
-    public String getArea() {
-        return area;
+    public CountryModel getCountry() {
+        return country;
     }
-    public void setArea(String area) {
-        this.area = area;
+    public void setCountry(CountryModel country) {
+        this.country = country;
+    }
+
+    public CountryModel getCity() {
+        return city;
+    }
+    public void setCity(CountryModel city) {
+        this.city = city;
+    }
+
+    public CountryModel getGovernorate() {
+        return governorate;
+    }
+    public void setGovernorate(CountryModel governorate) {
+        this.governorate = governorate;
     }
 
     public String getBuilding() {
@@ -149,22 +192,30 @@ public class AddressModel implements Parcelable {
         this.notes = notes;
     }
 
+    public String getCountry_id() {
+        return country_id;
+    }
+    public void setCountry_id(String country_id) {
+        this.country_id = country_id;
+    }
+
+    public String getGovernorate_id() {
+        return governorate_id;
+    }
+    public void setGovernorate_id(String governorate_id) {
+        this.governorate_id = governorate_id;
+    }
+
+    public String getCity_id() {
+        return city_id;
+    }
+    public void setCity_id(String city_id) {
+        this.city_id = city_id;
+    }
+
     @Override
     public int describeContents() {
         return 0;
     }
 
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(address_id);
-        dest.writeString(id);
-        dest.writeString(name);
-        dest.writeString(mobile);
-        dest.writeString(block);
-        dest.writeString(street);
-        dest.writeString(area);
-        dest.writeString(building);
-        dest.writeString(details);
-        dest.writeString(notes);
-    }
 }

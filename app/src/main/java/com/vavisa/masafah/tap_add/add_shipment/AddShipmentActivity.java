@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.vavisa.masafah.R;
 import com.vavisa.masafah.base.BaseActivity;
+import com.vavisa.masafah.tap_add.AddShipmentModel;
 import com.vavisa.masafah.tap_add.Select_location.SelectLocationActivity;
 import com.vavisa.masafah.tap_add.add_shipment.model.CategoryModel;
 import com.vavisa.masafah.tap_add.add_shipment.model.ShipmentItemModel;
@@ -43,9 +44,9 @@ public class AddShipmentActivity extends BaseActivity implements AddShipmentView
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_new_shipment);
         initViews();
-        if(Connectivity.checkInternetConnection())
+        if (Connectivity.checkInternetConnection())
             presenter.getCategories();
-        else{
+        else {
             showErrorConnection();
             nextButton.setEnabled(false);
         }
@@ -111,6 +112,7 @@ public class AddShipmentActivity extends BaseActivity implements AddShipmentView
         pickup_time_to_txt = findViewById(R.id.time_to);
         pickup_time_from_txt = findViewById(R.id.time_from);
         nextButton = findViewById(R.id.next_button);
+        Constants.addShipmentModel = new AddShipmentModel();
 
         rg.setOnCheckedChangeListener((group, checkedId) -> {
             if (checkedId == R.id.pickup_time_rb) {

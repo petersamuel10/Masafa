@@ -73,12 +73,12 @@ public class NewShipmentAdapter extends RecyclerView.Adapter<NewShipmentAdapter.
                 AlertDialog.Builder alert = new AlertDialog.Builder(context);
                 alert.setTitle(context.getString(R.string.select_category));
                 alert.setCancelable(false);
-                String[] countries_name = new String[categoryList.size()];
+                String[] categories_name = new String[categoryList.size()];
                 for (int i = 0; i < categoryList.size(); i++) {
-                    countries_name[i] = categoryList.get(i).getName();
+                    categories_name[i] = categoryList.get(i).getName();
                 }
 
-                alert.setSingleChoiceItems(countries_name, select_category_pos, (dialog, pos) -> {
+                alert.setSingleChoiceItems(categories_name, select_category_pos, (dialog, pos) -> {
                     dialog.dismiss();
                     select_category_pos = pos;
 

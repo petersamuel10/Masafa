@@ -55,9 +55,8 @@
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.511"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/profile_layout"
+        app:layout_constraintTop_toBottomOf="@+id/shipment_history_toolbar"
         app:srcCompat="@drawable/ic_box" />
 
     <TextView

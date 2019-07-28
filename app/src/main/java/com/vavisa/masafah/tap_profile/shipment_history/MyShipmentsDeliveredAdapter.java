@@ -76,8 +76,8 @@ class MyShipmentsDeliveredAdapter extends RecyclerView.Adapter<MyShipmentsDelive
         public void bind(ShipmentModel shipmentModel) {
 
             shipment_number_txt.setText(shipmentModel.getId());
-            pickup_location_txt.setText(shipmentModel.getAddress_from().getArea());
-            drop_location_txt.setText(shipmentModel.getAddress_to().getArea());
+            pickup_location_txt.setText(shipmentModel.getAddress_from().getCity().getName());
+            drop_location_txt.setText(shipmentModel.getAddress_to().getCity().getName());
 
             StringBuilder item_str = new StringBuilder();
             for (ShipmentItemModel item : shipmentModel.getItems()) {

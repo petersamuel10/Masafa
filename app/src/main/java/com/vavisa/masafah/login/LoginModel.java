@@ -12,7 +12,7 @@ public class LoginModel implements Parcelable {
     @SerializedName("mobile")
     private String mobile;
     @SerializedName("country_id")
-    private Integer country_id;
+    private String country_id;
     @SerializedName("player_id")
     private String onSignal_player_id;
     @SerializedName("device_type")
@@ -24,7 +24,7 @@ public class LoginModel implements Parcelable {
     public LoginModel() {
     }
 
-    public LoginModel(String mobile, Integer country_id, String onSignal_player_id,
+    public LoginModel(String mobile, String country_id, String onSignal_player_id,
                       Integer device_type, String country_code, String verification_id) {
         this.mobile = mobile;
         this.country_id = country_id;
@@ -40,7 +40,7 @@ public class LoginModel implements Parcelable {
         if (in.readByte() == 0) {
             country_id = null;
         } else {
-            country_id = in.readInt();
+            country_id = in.readString();
         }
         onSignal_player_id = in.readString();
         if (in.readByte() == 0) {
@@ -60,7 +60,7 @@ public class LoginModel implements Parcelable {
             dest.writeByte((byte) 0);
         } else {
             dest.writeByte((byte) 1);
-            dest.writeInt(country_id);
+            dest.writeString(country_id);
         }
         dest.writeString(onSignal_player_id);
         if (device_type == null) {
@@ -104,10 +104,10 @@ public class LoginModel implements Parcelable {
         this.mobile = mobile;
     }
 
-    public Integer getCountry_id() {
+    public String getCountry_id() {
         return country_id;
     }
-    public void setCountry_id(Integer country_id) {
+    public void setCountry_id(String country_id) {
         this.country_id = country_id;
     }
 

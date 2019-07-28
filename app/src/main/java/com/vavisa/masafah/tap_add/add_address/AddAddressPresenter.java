@@ -4,9 +4,11 @@ import android.util.Log;
 
 import com.vavisa.masafah.base.BaseApplication;
 import com.vavisa.masafah.base.BasePresenter;
+import com.vavisa.masafah.helpers.OTP.CountryModel;
 import com.vavisa.masafah.network.APIManager;
 import com.vavisa.masafah.util.Preferences;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import okhttp3.ResponseBody;
@@ -41,7 +43,6 @@ public class AddAddressPresenter extends BasePresenter<AddAddressView> {
                     }
                 });
     }
-
     public void getAddressById(String address_id) {
         getView().showProgress();
         APIManager.getInstance().getAPI().getAddressDetailsCall(Preferences.getInstance().getString("access_token"), address_id)
@@ -66,7 +67,6 @@ public class AddAddressPresenter extends BasePresenter<AddAddressView> {
                     }
                 });
     }
-
     public void editAddress(AddressModel addressModel) {
         getView().showProgress();
         APIManager.getInstance().getAPI().editAddressCall(Preferences.getInstance().getString("access_token"), addressModel)
@@ -90,5 +90,55 @@ public class AddAddressPresenter extends BasePresenter<AddAddressView> {
                         }
                     }
                 });
+    }
+    public void getGovernorate(String country_id) {
+        getView().showProgress();
+        APIManager.getInstance().getAPI().governCall(Preferences.getInstance().getString("access_token"),country_id)
+                .enqueue(new Callback<ArrayList<CountryModel>>() {
+            @Override
+            public void onResponse(Call<ArrayList<CountryModel>> call, Response<ArrayList<CountryModel>> response) {
+                getView().hideProgress();
+                if (response.code() == 200)
+                    getView().displayGovernorate(response.body());
+                else
+                    getView().showMissingData(response);
+            }
+
+            @Override
+            public void onFailure(Call<ArrayList<CountryModel>> call, Throwable t) {
+                getView().hideProgress();
+                getView().showMessage(BaseApplication.error_msg);
+                if (t instanceof HttpException) {
+                    ResponseBody body = ((HttpException) t).response().errorBody();
+                    Log.d("error", body.toString());
+                }
+            }
+        });
+
+    }
+    public void getCities(String govern_id) {
+        getView().showProgress();
+        APIManager.getInstance().getAPI().cityCall(Preferences.getInstance().getString("access_token"),govern_id)
+                .enqueue(new Callback<ArrayList<CountryModel>>() {
+            @Override
+            public void onResponse(Call<ArrayList<CountryModel>> call, Response<ArrayList<CountryModel>> response) {
+                getView().hideProgress();
+                if (response.code() == 200)
+                    getView().displayCities(response.body());
+                else
+                    getView().showMissingData(response);
+            }
+
+            @Override
+            public void onFailure(Call<ArrayList<CountryModel>> call, Throwable t) {
+                getView().hideProgress();
+                getView().showMessage(BaseApplication.error_msg);
+                if (t instanceof HttpException) {
+                    ResponseBody body = ((HttpException) t).response().errorBody();
+                    Log.d("error", body.toString());
+                }
+            }
+        });
+
     }
 }

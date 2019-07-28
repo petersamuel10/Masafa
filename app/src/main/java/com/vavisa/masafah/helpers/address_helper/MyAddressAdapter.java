@@ -59,11 +59,6 @@ public class MyAddressAdapter extends RecyclerView.Adapter<MyAddressAdapter.View
         return addressList.size();
     }
 
-    public void clearAddress(){
-
-        notifyDataSetChanged();
-    }
-
     public void deleteAddress(int position){
 
         addressList.remove(position);
@@ -99,8 +94,8 @@ public class MyAddressAdapter extends RecyclerView.Adapter<MyAddressAdapter.View
         public void bind(AddressModel addressModel) {
 
             address_name.setText(addressModel.getName());
-            address_area.setText(addressModel.getArea());
-            address_block_street.setText(addressModel.getBlock() + "  -  " + addressModel.getStreet());
+            address_area.setText(addressModel.getGovernorate().getName().concat(" - ").concat(addressModel.getCity().getName()));
+            address_block_street.setText(addressModel.getBlock().concat("  -  ").concat(addressModel.getStreet()));
             address_building.setText(addressModel.getBuilding());
             address_details.setText(addressModel.getDetails());
             address_notes.setText(addressModel.getNotes());

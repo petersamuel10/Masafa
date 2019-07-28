@@ -14,9 +14,9 @@ import android.widget.TextView;
 
 import com.vavisa.masafah.R;
 import com.vavisa.masafah.base.BaseActivity;
+import com.vavisa.masafah.tap_add.add_address.AddAddressActivity;
 import com.vavisa.masafah.tap_add.add_address.AddressModel;
-import com.vavisa.masafah.tap_add.invoice.Invoice;
-import com.vavisa.masafah.tap_add.map.MapActivity;
+import com.vavisa.masafah.tap_add.invoice.InvoiceActivity;
 import com.vavisa.masafah.tap_add.map.MyAddressActivity;
 import com.vavisa.masafah.util.Connectivity;
 import com.vavisa.masafah.util.Constants;
@@ -37,7 +37,7 @@ public class SelectLocationActivity extends BaseActivity implements View.OnClick
 
         SelectLocationPresenter presenter = new SelectLocationPresenter();
         presenter.attachView(this);
-        if(Connectivity.checkInternetConnection())
+        if (Connectivity.checkInternetConnection())
             presenter.getPrice();
         else
             showErrorConnection();
@@ -83,7 +83,7 @@ public class SelectLocationActivity extends BaseActivity implements View.OnClick
     }
 
     private String Address_to_string(AddressModel address) {
-        return address.getName() + "\n" + address.getArea();
+        return address.getName() + "\n" + address.getCity().getName();
     }
 
     @Override
@@ -105,7 +105,7 @@ public class SelectLocationActivity extends BaseActivity implements View.OnClick
                 break;
             case R.id.next_button:
                 if (valid())
-                    start(Invoice.class);
+                    start(InvoiceActivity.class);
                 break;
         }
     }
@@ -126,16 +126,15 @@ public class SelectLocationActivity extends BaseActivity implements View.OnClick
         final AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle(getString(R.string.select_address_from));
 
-        String[] address_ways_items = new String[]{getString(R.string.my_address), getString(R.string.map)};
+        String[] address_ways_items = new String[]{getString(R.string.add_new_address), getString(R.string.my_address)};
 
         builder.setItems(address_ways_items, (dialog, position) -> {
             Intent intent = null;
             if (position == 0) {
-                intent = new Intent(new Intent(SelectLocationActivity.this, MyAddressActivity.class));
+                intent = new Intent(SelectLocationActivity.this, AddAddressActivity.class);
                 intent.putExtra("tag", tag);
-
             } else {
-                intent = new Intent(SelectLocationActivity.this, MapActivity.class);
+                intent = new Intent(new Intent(SelectLocationActivity.this, MyAddressActivity.class));
                 intent.putExtra("tag", tag);
             }
 

@@ -100,4 +100,9 @@
     <string name="update_mobile_number">تحديث رقم الهاتف</string>
     <string name="number_not_changed">رقم الهاتف لم يتغير</string>
     <string name="you_must_add_at_least_one_shipment">يجب اضافة ع الاقل عنصر واحد</string>
+    <string name="country">الدولة</string>
+    <string name="governorate">المحافظة</string>
+    <string name="city">المدينة</string>
+    <string name="add_new_address">إضافة عنوان جديد</string>
+    <string name="otp_resend_successfully">تم اعاده ارسال الكود</string>
 </resources>

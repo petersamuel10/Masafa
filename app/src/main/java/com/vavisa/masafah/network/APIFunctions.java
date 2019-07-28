@@ -27,72 +27,78 @@ import retrofit2.http.Path;
 
 public interface APIFunctions {
 
-    @GET("public/api/user/getCountries")
+    @GET("getCountries")
     Call<ArrayList<CountryModel>> countryCall();
 
-    @POST("public/api/user/login")
+    @GET("getGovernoratesByCountry/{country_id}")
+    Call<ArrayList<CountryModel>> governCall(@Header("Authorization") String authorization,@Path("country_id") String country_id);
+
+    @GET("getCitiesByGovernorate/{governorate_id}")
+    Call<ArrayList<CountryModel>> cityCall(@Header("Authorization") String authorization,@Path("governorate_id") String governorate_id);
+
+    @POST("login")
     Call<VerifyResponseModel> loginCall(@Body LoginModel login);
 
-    @GET("public/api/user/getTermsAndConditions")
+    @GET("getTermsAndConditions")
     Call<TermsModel> termsCall();
 
-    @GET("public/api/user/getShipments")
+    @GET("getShipments")
     Call<HashMap<String, ArrayList<ShipmentModel>>> getShipmentCall(@Header("Authorization") String authorization);
 
-    @GET("public/api/user/getCategories")
+    @GET("getCategories")
     Call<ArrayList<CategoryModel>> getCategoriesCall(@Header("Authorization") String authorization);
 
-    @GET("public/api/user/getCompanies")
+    @GET("getCompanies")
     Call<ArrayList<CompanyModel>> getCompaniesCall(@Header("Authorization") String authorization);
 
-    @GET("public/api/user/getProfile")
+    @GET("getProfile")
     Call<User> getProfileCall(@Header("Authorization") String authorization);
 
-    @PUT("public/api/user/updateProfile")
+    @PUT("updateProfile")
     Call<User> updateProfileCall(@Header("Authorization") String authorization, @Body EditProfileModel editProfileModel);
 
-    @PUT("public/api/user/updateMobileNumber")
+    @PUT("updateMobileNumber")
     Call<VerifyResponseModel> updateMobileNumberCall(@Header("Authorization") String Authorization, @Body LoginModel login);
 
-    @POST("public/api/user/logout")
+    @POST("logout")
     Call<HashMap<String, String>> logoutCall(@Header("Authorization") String Authorization, @Body HashMap<String, String> player_id);
 
-    @POST("public/api/user/addAddress")
+    @POST("addAddress")
     Call<AddressModel> addAddressCall(@Header("Authorization") String Authorization, @Body AddressModel addressModel);
 
-    @POST("public/api/user/addShipment")
+    @POST("addShipment")
     Call<HashMap<String, String>> addShipmentCall(@Header("Authorization") String Authorization, @Body AddShipmentModel addShipmentModel);
 
-    @PUT("public/api/user/editShipment")
+    @PUT("editShipment")
     Call<HashMap<String, String>> editShipmentCall(@Header("Authorization") String Authorization, @Body AddShipmentModel addShipmentModel);
 
-    @GET("public/api/user/getAddresses")
+    @GET("getAddresses")
     Call<ArrayList<AddressModel>> getMyAddressesCall(@Header("Authorization") String Authorization);
 
-    @GET("public/api/user/getAddressById/{id}")
+    @GET("getAddressById/{id}")
     Call<AddressModel> getAddressDetailsCall(@Header("Authorization") String Authorization, @Path("id") String address_id);
 
-    @PUT("public/api/user/editAddress")
+    @PUT("editAddress")
     Call<AddressModel> editAddressCall(@Header("Authorization") String Authorization, @Body AddressModel addressModel);
 
-    @DELETE("public/api/user/deleteAddressById/{address_id}")
+    @DELETE("deleteAddressById/{address_id}")
     Call<HashMap<String, String>> deleteAddressCall(@Header("Authorization") String Authorization, @Path("address_id") String address_id);
 
-    @GET("public/api/user/getShipmentHistory")
+    @GET("getShipmentHistory")
     Call<ArrayList<ShipmentModel>> getShipmentHistoryCall(@Header("Authorization") String Authorization);
 
-    @DELETE("public/api/user/deleteShipmentById/{shipment_id}")
+    @DELETE("deleteShipmentById/{shipment_id}")
     Call<HashMap<String, String>> deleteShipmentCall(@Header("Authorization") String Authorization, @Path("shipment_id") String shipment_id);
 
-    @GET("public/api/user/getShipmentDetails/{shipment_id}")
+    @GET("getShipmentDetails/{shipment_id}")
     Call<ShipmentModel> getShipmentDetailsCall(@Header("Authorization") String Authorization, @Path("shipment_id") String shipment_id);
 
-    @GET("public/api/user/getCompanyDetailsById/{company_id}")
+    @GET("getCompanyDetailsById/{company_id}")
     Call<CompanyModel> getCompanyDetailsCall(@Header("Authorization") String Authorization, @Path("company_id") String company_id);
 
-    @POST("public/api/user/rateCompany")
+    @POST("rateCompany")
     Call<HashMap<String, String>> rateCompanyCall(@Header("Authorization") String Authorization, @Body RatingModel ratingModel);
 
-    @GET("public/api/user/getShipmentPrice")
+    @GET("getShipmentPrice")
     Call<HashMap<String, String>> priceCall(@Header("Authorization") String Authorization);
 }

@@ -93,14 +93,14 @@ public class ShipmentDetailsFragment extends BaseFragment implements ShipmentDet
 
         com_id = String.valueOf(shipmentModel.getCompany().getId());
         shipment_num.setText(shipmentModel.getId());
-        pickup_location.setText(shipmentModel.getAddress_from().getArea());
+        pickup_location.setText(shipmentModel.getAddress_from().getCity().getName());
         String pickup_address_str =   shipmentModel.getAddress_from().getBlock() + " - "
                                     + shipmentModel.getAddress_from().getStreet() + "\n"
                                     + shipmentModel.getAddress_from().getBuilding() + " - "
                                     + shipmentModel.getAddress_from().getMobile();
 
         pickup_address.setText(pickup_address_str);
-        drop_location.setText(shipmentModel.getAddress_to().getArea());
+        drop_location.setText(shipmentModel.getAddress_to().getCity().getName());
         String drop_address_str =   shipmentModel.getAddress_to().getBlock() + " - "
                                   + shipmentModel.getAddress_to().getStreet() + "\n"
                                   + shipmentModel.getAddress_to().getBuilding() + " - "

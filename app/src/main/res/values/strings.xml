@@ -101,5 +101,10 @@
     <string name="update_mobile_number">Update mobile number</string>
     <string name="number_not_changed">Number not changed</string>
     <string name="you_must_add_at_least_one_shipment">You must add at least one shipment</string>
+    <string name="country">Country</string>
+    <string name="governorate">Governorate</string>
+    <string name="city">City</string>
+    <string name="add_new_address">Add new address</string>
+    <string name="otp_resend_successfully">OTP resend successfully</string>
 
 </resources>

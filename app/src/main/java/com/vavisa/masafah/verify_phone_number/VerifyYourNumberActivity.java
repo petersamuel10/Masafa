@@ -1,5 +1,6 @@
 package com.vavisa.masafah.verify_phone_number;
 
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -34,6 +35,17 @@ public class VerifyYourNumberActivity extends BaseActivity implements VerifyView
         setContentView(R.layout.activity_verify_phone_number);
         initViews();
 
+        if (getIntent().getExtras().containsKey("update_mobile")) {
+            isChangeMobile = true;
+            loginModel = getIntent().getParcelableExtra("update_mobile");
+        } else {
+            isChangeMobile = false;
+            loginModel = getIntent().getParcelableExtra("login_model");
+        }
+
+        verifyPresenter = new VerifyPresenter(this, loginModel, isChangeMobile);
+        verifyPresenter.attachView(this);
+
         verifyButton.setOnClickListener(v -> {
 
             otp_str = otpCode1.getText().toString() +
@@ -43,16 +55,6 @@ public class VerifyYourNumberActivity extends BaseActivity implements VerifyView
                     otpCode5.getText().toString() +
                     otpCode6.getText().toString();
 
-            if (getIntent().getExtras().containsKey("update_mobile")) {
-                isChangeMobile = true;
-                loginModel = getIntent().getParcelableExtra("update_mobile");
-            } else {
-                isChangeMobile = false;
-                loginModel = getIntent().getParcelableExtra("login_model");
-            }
-
-            verifyPresenter = new VerifyPresenter(this, loginModel, isChangeMobile);
-            verifyPresenter.attachView(this);
             if (Connectivity.checkInternetConnection())
                 verifyPresenter.verifyOTP(otp_str);
             else
@@ -145,6 +147,8 @@ public class VerifyYourNumberActivity extends BaseActivity implements VerifyView
 
         resend_otp_txt.setOnClickListener(v -> {
             clearEditText();
+            resend_otp_txt.setTextColor(Color.RED);
+            showMessage(getString(R.string.otp_resend_successfully));
             if (Connectivity.checkInternetConnection())
                 verifyPresenter.resendOTP();
             else
@@ -181,10 +185,10 @@ public class VerifyYourNumberActivity extends BaseActivity implements VerifyView
     @Override
     public void userInfo(VerifyResponseModel verifyResModel) {
         // to update mobile in profile when come back again due to update mobile number
-        // to prevent load profile againn on onStart function
+        // to prevent load profile again on onStart function
         Preferences.getInstance().putString("mobile", verifyResModel.getUser().getMobile());
         Preferences.getInstance().putString("access_token", verifyResModel.getAccess_token());
-        Preferences.getInstance().putString("use_id", verifyResModel.getUser().getId());
+        Preferences.getInstance().putString("country_id", verifyResModel.getUser().getCountry_id());
 
         if (getIntent().getExtras().containsKey("update_mobile"))
             onBackPressed();

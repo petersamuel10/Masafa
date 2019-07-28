@@ -25,7 +25,7 @@ public class StartUpActivity extends BaseActivity {
                 new Thread() {
                     public void run() {
                         try {
-                            sleep(3);
+                            sleep(3000);
                         } catch (InterruptedException e) {
                         } finally {
                             if (Preferences.getInstance().isHasKey("access_token"))

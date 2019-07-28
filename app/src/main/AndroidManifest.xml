@@ -19,7 +19,7 @@
         <activity android:name=".tap_add.map.MyAddressActivity"
             android:theme="@style/AppTheme.NoActionBar"/>
         <activity
-            android:name=".tap_add.invoice.Invoice"
+            android:name=".tap_add.invoice.InvoiceActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".tap_add.companies.CompaniesActivity"

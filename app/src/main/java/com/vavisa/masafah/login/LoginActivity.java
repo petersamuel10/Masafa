@@ -26,7 +26,8 @@ public class LoginActivity extends BaseActivity implements OTPViews {
     private Button country_code_btn, continueButton;
     private SendOTPPresenter OTPPresenter;
     private ArrayList<CountryModel> countriesList;
-    private Integer select_country_pos = 0, country_id = 1;
+    private Integer select_country_pos = 0;
+    private String country_id;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -107,5 +108,7 @@ public class LoginActivity extends BaseActivity implements OTPViews {
     @Override
     public void countries(ArrayList<CountryModel> countriesList) {
         this.countriesList = countriesList;
+        country_code_btn.setText(countriesList.get(0).getCountry_code());
+        country_id = countriesList.get(0).getId();
     }
 }
