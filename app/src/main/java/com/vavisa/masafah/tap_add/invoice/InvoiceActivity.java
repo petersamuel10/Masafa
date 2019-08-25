@@ -35,12 +35,12 @@ public class InvoiceActivity extends BaseActivity implements InvoiceView {
         bindData();
 
         confirm_btn.setOnClickListener(v -> {
-            if(Connectivity.checkInternetConnection()) {
+            if (Connectivity.checkInternetConnection()) {
                 if (Constants.isEditShipment)
                     presenter.editShipment();
                 else
                     presenter.addShipment();
-            }else
+            } else
                 showErrorConnection();
         });
     }
@@ -79,13 +79,9 @@ public class InvoiceActivity extends BaseActivity implements InvoiceView {
                 + Constants.addShipmentModel.getDrop_address().getBuilding() + " - "
                 + Constants.addShipmentModel.getDrop_address().getMobile();
         drop_address.setText(drop_address_str);
-        if (Constants.addShipmentModel.getIs_today()) {
-            time_from_txt.setVisibility(android.view.View.GONE);
-            time_to_txt.setVisibility(android.view.View.GONE);
-        } else {
-            time_from_txt.setText(Constants.addShipmentModel.getPickup_time_from());
-            time_to_txt.setText(Constants.addShipmentModel.getPickup_time_to());
-        }
+
+        time_from_txt.setText(Constants.addShipmentModel.getPickup_time_from());
+        time_to_txt.setText(Constants.addShipmentModel.getPickup_time_to());
         total_txt.setText(Constants.addShipmentModel.getPrice());
 
     }

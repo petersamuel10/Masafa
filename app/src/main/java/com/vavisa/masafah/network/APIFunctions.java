@@ -19,11 +19,14 @@ import java.util.HashMap;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.DELETE;
+import retrofit2.http.Field;
+import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 public interface APIFunctions {
 
@@ -99,6 +102,11 @@ public interface APIFunctions {
     @POST("rateCompany")
     Call<HashMap<String, String>> rateCompanyCall(@Header("Authorization") String Authorization, @Body RatingModel ratingModel);
 
-    @GET("getShipmentPrice")
-    Call<HashMap<String, String>> priceCall(@Header("Authorization") String Authorization);
+    @FormUrlEncoded
+    @POST("getShipmentPrice")
+    Call<HashMap<String, String>> priceCall(@Header("Authorization") String Authorization,
+                                            @Field("governorate_id_from") String governorate_id_from,
+                                            @Field("governorate_id_to") String governorate_id_to,
+                                            @Field("city_id_from") String city_id_from,
+                                            @Field("city_id_to") String city_id_to);
 }

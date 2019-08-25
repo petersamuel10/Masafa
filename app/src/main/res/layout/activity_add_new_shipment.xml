@@ -73,64 +73,15 @@
 
             <RadioGroup
                 android:id="@+id/time_rg"
+                android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/shipment_items">
 
                 <RadioButton
-                    android:id="@+id/pickup_time_rb"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginTop="32dp"
-                    android:text="@string/pickup_time"
-                    android:textColor="@android:color/black"
-                    android:textSize="16sp"
-                    android:textStyle="bold"
-                    android:checked="true"/>
-
-                <TextView
-                    android:id="@+id/time_from"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginEnd="16dp"
-                    android:layout_marginRight="16dp"
-                    android:textSize="16sp"
-                    android:padding="4dp"
-                    android:hint="@string/from"
-                    android:textColor="@android:color/black"
-                    android:drawableStart="@drawable/ic_time"
-                    android:drawablePadding="4dp"
-                    android:background="@drawable/edit_text_rounded_white_filled"
-                    android:drawableLeft="@drawable/ic_time" />
-
-                <TextView
-                    android:id="@+id/time_to"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginEnd="16dp"
-                    android:layout_marginRight="16dp"
-                    android:layout_marginBottom="16dp"
-                    android:background="@drawable/edit_text_rounded_white_filled"
-                    android:drawableStart="@drawable/ic_time"
-                    android:drawableLeft="@drawable/ic_time"
-                    android:drawablePadding="4dp"
-                    android:hint="@string/to"
-                    android:textColor="@android:color/black"
-                    android:padding="4dp"
-                    android:textSize="16sp" />
-
-                <RadioButton
                     android:id="@+id/today_rb"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:layout_marginLeft="8dp"
@@ -138,10 +89,65 @@
                     android:text="@string/today"
                     android:textColor="@android:color/black"
                     android:textSize="16sp"
-                    android:textStyle="bold"/>
+                    android:textStyle="bold"
+                    android:checked="true"/>
+
+                <RadioButton
+                    android:id="@+id/pickup_time_rb"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/pickup_time"
+                    android:textColor="@android:color/black"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
 
 
             </RadioGroup>
+
+            <TextView
+                android:id="@+id/time_from"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginRight="16dp"
+                android:background="@drawable/edit_text_rounded_white_filled"
+                android:drawableStart="@drawable/ic_time"
+                android:drawableLeft="@drawable/ic_time"
+                android:drawablePadding="4dp"
+                android:hint="@string/from"
+                android:padding="4dp"
+                android:textColor="@android:color/black"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/time_rg" />
+
+            <TextView
+                android:id="@+id/time_to"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginRight="16dp"
+                android:background="@drawable/edit_text_rounded_white_filled"
+                android:drawableStart="@drawable/ic_time"
+                android:drawableLeft="@drawable/ic_time"
+                android:drawablePadding="4dp"
+                android:hint="@string/to"
+                android:padding="4dp"
+                android:textColor="@android:color/black"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/time_from" />
 
           <!--  <TextView
                 android:id="@+id/textView5"

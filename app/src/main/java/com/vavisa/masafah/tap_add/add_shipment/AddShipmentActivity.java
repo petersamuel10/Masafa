@@ -7,7 +7,6 @@ import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
-import android.view.View;
 import android.widget.Button;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -37,7 +36,7 @@ public class AddShipmentActivity extends BaseActivity implements AddShipmentView
     private Button nextButton;
     private AddShipmentPresenter presenter;
     private TextView pickup_time_from_txt, pickup_time_to_txt;
-    private Boolean isToday_picker = false;
+    private Boolean isToday_picker = true;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -59,14 +58,11 @@ public class AddShipmentActivity extends BaseActivity implements AddShipmentView
             shipmentsList = adapter.getShipmentList();
             if (shipmentsList.get(shipmentsList.size() - 1).getCategory_id() == -1)
                 Toast.makeText(this, getString(R.string.please_select_category_name_for_previous_shipment), Toast.LENGTH_SHORT).show();
-            else if (!isToday_picker) {
-                if (TextUtils.isEmpty(pickup_time_from_txt.getText().toString()))
-                    Toast.makeText(this, getString(R.string.please_select_pickup_time_from), Toast.LENGTH_SHORT).show();
-                else if (TextUtils.isEmpty(pickup_time_to_txt.getText().toString()))
-                    Toast.makeText(this, getString(R.string.please_select_pickup_time_to), Toast.LENGTH_SHORT).show();
-                else
-                    selectCompanies();
-            } else
+            else if (TextUtils.isEmpty(pickup_time_from_txt.getText().toString()))
+                Toast.makeText(this, getString(R.string.please_select_pickup_time_from), Toast.LENGTH_SHORT).show();
+            else if (TextUtils.isEmpty(pickup_time_to_txt.getText().toString()))
+                Toast.makeText(this, getString(R.string.please_select_pickup_time_to), Toast.LENGTH_SHORT).show();
+            else
                 selectCompanies();
         });
     }
@@ -115,16 +111,10 @@ public class AddShipmentActivity extends BaseActivity implements AddShipmentView
         Constants.addShipmentModel = new AddShipmentModel();
 
         rg.setOnCheckedChangeListener((group, checkedId) -> {
-            if (checkedId == R.id.pickup_time_rb) {
+            if (checkedId == R.id.pickup_time_rb)
                 isToday_picker = false;
-
-                pickup_time_from_txt.setVisibility(View.VISIBLE);
-                pickup_time_to_txt.setVisibility(View.VISIBLE);
-            } else {
+            else
                 isToday_picker = true;
-                pickup_time_from_txt.setVisibility(View.GONE);
-                pickup_time_to_txt.setVisibility(View.GONE);
-            }
         });
         presenter = new AddShipmentPresenter();
         presenter.attachView(this);

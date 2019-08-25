@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +18,9 @@ import com.vavisa.masafah.R;
 import com.vavisa.masafah.tap_my_shipment.company_details.CompanyModel;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -25,11 +29,9 @@ public class CompaniesAdapter extends RecyclerView.Adapter<CompaniesAdapter.View
     private ArrayList<CompanyModel> companyList;
     private Context context;
     public static ArrayList<Integer> deliveryCompaniesIdList;
-    private boolean isSelectAll;
 
-    CompaniesAdapter(ArrayList<CompanyModel> companyList, boolean isSelectAll) {
+    CompaniesAdapter(ArrayList<CompanyModel> companyList) {
         this.companyList = companyList;
-        this.isSelectAll = isSelectAll;
         deliveryCompaniesIdList = new ArrayList<>();
     }
 
@@ -46,24 +48,27 @@ public class CompaniesAdapter extends RecyclerView.Adapter<CompaniesAdapter.View
     public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
 
         holder.bind(companyList.get(position));
-
-        if (isSelectAll) {
-            deliveryCompaniesIdList.clear();
-            holder.check_true.setVisibility(View.VISIBLE);
-            for (CompanyModel company : companyList) {
-                deliveryCompaniesIdList.add(company.getId());
+        holder.itemView.setOnClickListener(v -> {
+            if (companyList.get(position).isSelected()) {
+                companyList.get(position).setSelected(false);
+                deliveryCompaniesIdList.remove(getIndexOf(companyList.get(position).getId()));
+                if (deliveryCompaniesIdList.size() == 0)
+                    CompaniesActivity.select_all_tag.setText(context.getString(R.string.select_all));
+            } else {
+                companyList.get(position).setSelected(true);
+                deliveryCompaniesIdList.add(companyList.get(position).getId());
             }
-        } else {
-            holder.itemView.setOnClickListener(v -> {
-                if (holder.check_true.getVisibility() == View.GONE) {
-                    holder.check_true.setVisibility(View.VISIBLE);
-                    deliveryCompaniesIdList.add(companyList.get(position).getId());
-                } else {
-                    holder.check_true.setVisibility(View.GONE);
-                    deliveryCompaniesIdList.remove(companyList.get(position).getId());
-                }
-            });
+            notifyDataSetChanged();
+        });
+    }
+
+    private int getIndexOf(Integer companyId) {
+        int index = 0;
+        for (int i = 0; i < deliveryCompaniesIdList.size(); i++) {
+            if (companyId.equals(deliveryCompaniesIdList.get(i)))
+                return i;
         }
+        return index;
     }
 
     @Override
@@ -71,18 +76,18 @@ public class CompaniesAdapter extends RecyclerView.Adapter<CompaniesAdapter.View
         return companyList.size();
     }
 
-    public ArrayList<Integer> getDeliveryCompaniesIdList() {
+    ArrayList<Integer> getDeliveryCompaniesIdList() {
         return deliveryCompaniesIdList;
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    class ViewHolder extends RecyclerView.ViewHolder {
         ImageView check_true;
         CircleImageView company_image;
         TextView company_name;
         RatingBar company_rating;
 
 
-        public ViewHolder(@NonNull View itemView) {
+        ViewHolder(@NonNull View itemView) {
             super(itemView);
 
             company_image = itemView.findViewById(R.id.company_image);
@@ -91,7 +96,11 @@ public class CompaniesAdapter extends RecyclerView.Adapter<CompaniesAdapter.View
             check_true = itemView.findViewById(R.id.ic_check);
         }
 
-        public void bind(CompanyModel companyModel) {
+        void bind(CompanyModel companyModel) {
+            if (companyModel.isSelected())
+                check_true.setVisibility(View.VISIBLE);
+            else
+                check_true.setVisibility(View.GONE);
 
             company_name.setText(companyModel.getName());
             company_rating.setRating(companyModel.getRating());
@@ -101,5 +110,15 @@ public class CompaniesAdapter extends RecyclerView.Adapter<CompaniesAdapter.View
                     .placeholder(new ColorDrawable(Color.rgb(192, 192, 192)))
                     .into(company_image);
         }
+    }
+
+    void changeSelectionState(Boolean selected) {
+        deliveryCompaniesIdList.clear();
+        for (int i=0; i<companyList.size(); i++) {
+            companyList.get(i).setSelected(selected);
+            if (selected)
+                deliveryCompaniesIdList.add(companyList.get(i).getId());
+        }
+        notifyDataSetChanged();
     }
 }

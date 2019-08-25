@@ -105,4 +105,6 @@
     <string name="city">المدينة</string>
     <string name="add_new_address">إضافة عنوان جديد</string>
     <string name="otp_resend_successfully">تم اعاده ارسال الكود</string>
+    <string name="are_you_want_to_call">"هل تريد الاتصال ب "</string>
+    <string name="question_mark">؟</string>
 </resources>

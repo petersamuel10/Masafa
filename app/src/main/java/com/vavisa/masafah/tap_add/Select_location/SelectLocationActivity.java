@@ -23,11 +23,11 @@ import com.vavisa.masafah.util.Constants;
 
 public class SelectLocationActivity extends BaseActivity implements View.OnClickListener, SelectLocationViews {
 
-    private ConstraintLayout pickupLayout;
-    private ConstraintLayout dropLayout;
+    private ConstraintLayout pickupLayout, dropLayout, price_layout;
     private ImageView pick_ic_done, drop_ic_done;
     private Button next_btn;
     private TextView pickup_address_txt, drop_address_txt, price_txt;
+    private SelectLocationPresenter presenter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -35,12 +35,8 @@ public class SelectLocationActivity extends BaseActivity implements View.OnClick
         setContentView(R.layout.activity_select_location);
         initViews();
 
-        SelectLocationPresenter presenter = new SelectLocationPresenter();
+        presenter = new SelectLocationPresenter();
         presenter.attachView(this);
-        if (Connectivity.checkInternetConnection())
-            presenter.getPrice();
-        else
-            showErrorConnection();
 
     }
 
@@ -59,6 +55,7 @@ public class SelectLocationActivity extends BaseActivity implements View.OnClick
         drop_ic_done = findViewById(R.id.drop_ic_done);
         pickup_address_txt = findViewById(R.id.pickup_location_tag);
         drop_address_txt = findViewById(R.id.drop_location_tag);
+        price_layout = findViewById(R.id.price_layout);
         price_txt = findViewById(R.id.price);
         next_btn = findViewById(R.id.next_button);
 
@@ -68,7 +65,7 @@ public class SelectLocationActivity extends BaseActivity implements View.OnClick
     }
 
     @Override
-    protected void onStart() {
+    protected void onStart(){
         super.onStart();
 
         if (!TextUtils.isEmpty(Constants.addShipmentModel.getAddress_from_id())) {
@@ -80,6 +77,17 @@ public class SelectLocationActivity extends BaseActivity implements View.OnClick
             drop_ic_done.setVisibility(View.VISIBLE);
             drop_address_txt.setText(Address_to_string(Constants.addShipmentModel.getDrop_address()));
         }
+
+        if (valid())
+            if (Connectivity.checkInternetConnection())
+                presenter.getPrice(Constants.addShipmentModel.getPickup_address().getGovernorate().getId(),
+                        Constants.addShipmentModel.getDrop_address().getGovernorate().getId(),
+                        Constants.addShipmentModel.getPickup_address().getCity().getId(),
+                        Constants.addShipmentModel.getDrop_address().getCity().getId());
+            else
+                showErrorConnection();
+
+
     }
 
     private String Address_to_string(AddressModel address) {
@@ -148,7 +156,7 @@ public class SelectLocationActivity extends BaseActivity implements View.OnClick
     public void displayPrice(String price) {
 
         price_txt.setText(price + " " + getString(R.string.kd));
-
+        price_layout.setVisibility(View.VISIBLE);
         Constants.addShipmentModel.setPrice(price_txt.getText().toString());
     }
 }

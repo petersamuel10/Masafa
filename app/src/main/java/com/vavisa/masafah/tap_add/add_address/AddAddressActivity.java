@@ -1,6 +1,5 @@
 package com.vavisa.masafah.tap_add.add_address;
 
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.Toolbar;
@@ -43,7 +42,7 @@ public class AddAddressActivity extends BaseActivity implements AddAddressView, 
         initViews();
         country_id = Preferences.getInstance().getString("country_id");
         presenter.getGovernorate(country_id);
-        isEditORDisplayAddress = getIntent().getExtras().containsKey("address_id")? true : false;
+        isEditORDisplayAddress = getIntent().getExtras().containsKey("address_id") ? true : false;
         if (isEditORDisplayAddress) {
             if (getIntent().getStringExtra("action").equals("showAddressDetails"))
                 disableViewsForDetails();
@@ -194,7 +193,7 @@ public class AddAddressActivity extends BaseActivity implements AddAddressView, 
         building_ed.setText(address.getBuilding());
         details_ed.setText(address.getDetails());
         extra_ed.setText(address.getNotes());
-        if(isEditORDisplayAddress)
+        if (isEditORDisplayAddress)
             govern_sp.setSelection(governAdapter.getPosition(address.getGovernorate().getName()));
     }
 
@@ -224,7 +223,7 @@ public class AddAddressActivity extends BaseActivity implements AddAddressView, 
         }
         cityAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, citiesListNames);
         city_sp.setAdapter(cityAdapter);
-        if(isEditORDisplayAddress)
+        if (isEditORDisplayAddress)
             city_sp.setSelection(cityAdapter.getPosition(currentAddress.getCity().getName()));
     }
 

@@ -7,6 +7,8 @@ import com.google.gson.annotations.SerializedName;
 
 public class CompanyModel implements Parcelable {
 
+    private boolean isSelected;
+
     @SerializedName("id")
     private Integer id;
     @SerializedName("name")
@@ -24,7 +26,13 @@ public class CompanyModel implements Parcelable {
     @SerializedName("image")
     private String image;
 
+
+    public CompanyModel() {
+        this.isSelected = true;
+    }
+
     protected CompanyModel(Parcel in) {
+        isSelected = in.readByte() != 0;
         if (in.readByte() == 0) {
             id = null;
         } else {
@@ -45,6 +53,7 @@ public class CompanyModel implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
+        dest.writeByte((byte) (isSelected ? 1 : 0));
         if (id == null) {
             dest.writeByte((byte) 0);
         } else {
@@ -81,6 +90,13 @@ public class CompanyModel implements Parcelable {
             return new CompanyModel[size];
         }
     };
+
+    public boolean isSelected() {
+        return isSelected;
+    }
+    public void setSelected(boolean selected) {
+        isSelected = selected;
+    }
 
     public Integer getId() {
         return id;

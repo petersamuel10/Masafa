@@ -106,5 +106,7 @@
     <string name="city">City</string>
     <string name="add_new_address">Add new address</string>
     <string name="otp_resend_successfully">OTP resend successfully</string>
+    <string name="are_you_want_to_call">Are you want to call</string>
+    <string name="question_mark">\?</string>
 
 </resources>

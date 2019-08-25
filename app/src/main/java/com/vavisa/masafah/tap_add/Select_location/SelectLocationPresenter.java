@@ -17,9 +17,11 @@ import retrofit2.Response;
 
 public class SelectLocationPresenter extends BasePresenter<SelectLocationViews> {
 
-    public void getPrice() {
+    public void getPrice(String governorate_id_from, String governorate_id_to, String city_id_from, String city_id_to) {
         getView().showProgress();
-        APIManager.getInstance().getAPI().priceCall(Preferences.getInstance().getString("access_token")).enqueue(new Callback<HashMap<String, String>>() {
+        APIManager.getInstance().getAPI().priceCall(Preferences.getInstance().getString("access_token"),
+                governorate_id_from, governorate_id_to, city_id_from, city_id_to)
+                .enqueue(new Callback<HashMap<String, String>>() {
             @Override
             public void onResponse(Call<HashMap<String, String>> call, Response<HashMap<String, String>> response) {
                 getView().hideProgress();

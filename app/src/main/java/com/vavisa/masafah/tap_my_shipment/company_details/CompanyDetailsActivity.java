@@ -1,8 +1,13 @@
 package com.vavisa.masafah.tap_my_shipment.company_details;
 
+import android.app.Notification;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.constraint.ConstraintLayout;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
 import android.view.Gravity;
 import android.view.View;
@@ -25,16 +30,14 @@ public class CompanyDetailsActivity extends BaseActivity implements View.OnClick
     private ConstraintLayout profileLayout;
     private ConstraintLayout contactUsLayout;
     private ConstraintLayout descriptionLayout;
-    private ImageView rateIcon;
-    private TextView rateTag;
-    private ImageView callIcon;
-    private TextView callTag;
+    private TextView callTag, emailTag, rateTag;
     private CircleImageView company_image;
     private TextView company_name, company_email, company_reviews, description;
     private RatingBar company_rating;
     private CompanyDetailsPresenter presenter;
     private Float rating_value;
     private DialogPlus dialogPlus;
+    private CompanyModel companyModel;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -44,7 +47,7 @@ public class CompanyDetailsActivity extends BaseActivity implements View.OnClick
 
         presenter = new CompanyDetailsPresenter();
         presenter.attachView(this);
-        if(Connectivity.checkInternetConnection())
+        if (Connectivity.checkInternetConnection())
             presenter.getCompanyDetails(getIntent().getStringExtra("company_id"));
         else
             showErrorConnection();
@@ -64,15 +67,13 @@ public class CompanyDetailsActivity extends BaseActivity implements View.OnClick
         company_rating = findViewById(R.id.com_rating);
         company_image = findViewById(R.id.company_image);
         description = findViewById(R.id.description);
-        rateIcon = findViewById(R.id.rating_icon);
-        rateTag = findViewById(R.id.rating_tag);
-        callIcon = findViewById(R.id.call_icon);
         callTag = findViewById(R.id.call_us_tag);
+        emailTag = findViewById(R.id.email_tag);
+        rateTag = findViewById(R.id.rating_tag);
 
-        rateIcon.setOnClickListener(this);
-        rateTag.setOnClickListener(this);
-        callIcon.setOnClickListener(this);
         callTag.setOnClickListener(this);
+        emailTag.setOnClickListener(this);
+        rateTag.setOnClickListener(this);
 
         profileLayout.post(
                 () -> {
@@ -88,7 +89,39 @@ public class CompanyDetailsActivity extends BaseActivity implements View.OnClick
     public void onClick(View v) {
 
         switch (v.getId()) {
-            case R.id.rating_icon:
+
+            case R.id.call_us_tag:
+
+                AlertDialog.Builder callAlert = new AlertDialog.Builder(this);
+                callAlert.setTitle(R.string.call);
+                callAlert.setMessage(getString(R.string.are_you_want_to_call) + " " + companyModel.getMobile() + " " +
+                        getString(R.string.question_mark));
+
+                callAlert.setPositiveButton(R.string.call, (dialog, which) -> {
+                    boolean call = getPackageManager().hasSystemFeature(PackageManager.FEATURE_TELEPHONY);
+                    if (call) {
+                        Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + companyModel.getMobile()));
+                        startActivity(intent);
+                        dialog.dismiss();
+                    }
+                });
+
+                callAlert.setNegativeButton(R.string.cancel, (dialog, which) -> dialog.dismiss());
+
+                callAlert.create().show();
+                break;
+
+            case R.id.email_tag:
+
+                Intent i = new Intent(Intent.ACTION_SEND);
+                i.setType("message/");
+                i.putExtra(Intent.EXTRA_EMAIL, new String[]{companyModel.getEmail()});
+                try {
+                    startActivity(i);
+                } catch (android.content.ActivityNotFoundException ex) {
+                }
+                break;
+
             case R.id.rating_tag:
                 dialogPlus =
                         DialogPlus.newDialog(CompanyDetailsActivity.this)
@@ -100,20 +133,17 @@ public class CompanyDetailsActivity extends BaseActivity implements View.OnClick
                 ImageView close_btn = (ImageView) dialogPlus.findViewById(R.id.close_button);
                 Button rating_btn = (Button) dialogPlus.findViewById(R.id.rating_btn);
                 RatingBar ratingBar = (RatingBar) dialogPlus.findViewById(R.id.rating_bar);
-                ratingBar.setOnRatingBarChangeListener((ratingBar1, rating, fromUser) -> { rating_value = rating; });
+                ratingBar.setOnRatingBarChangeListener((ratingBar1, rating, fromUser) -> {
+                    rating_value = rating;
+                });
                 close_btn.setOnClickListener(v1 -> dialogPlus.dismiss());
                 rating_btn.setOnClickListener(v2 -> {
-                    if(Connectivity.checkInternetConnection())
+                    if (Connectivity.checkInternetConnection())
                         presenter.rateCompanyDetails(new RatingModel(getIntent().getStringExtra("company_id"), rating_value));
                     else
                         showErrorConnection();
                 });
                 dialogPlus.show();
-                break;
-
-            case R.id.call_icon:
-            case R.id.call_us_tag:
-                // startActivity(new Intent(CompanyDetailsActivity.this, PopUpActivity.class));
                 break;
         }
     }
@@ -121,6 +151,7 @@ public class CompanyDetailsActivity extends BaseActivity implements View.OnClick
     @Override
     public void displayCompanyDetails(CompanyModel companyModel) {
 
+        this.companyModel = companyModel;
         company_name.setText(companyModel.getName());
         company_email.setText(companyModel.getEmail());
         company_rating.setRating(companyModel.getRating());
@@ -132,7 +163,6 @@ public class CompanyDetailsActivity extends BaseActivity implements View.OnClick
                 .placeholder(R.drawable.ic_account_circle)
                 .error(R.drawable.ic_account_circle)
                 .into(company_image);
-
     }
 
     @Override

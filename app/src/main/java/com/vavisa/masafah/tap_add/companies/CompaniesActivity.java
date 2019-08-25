@@ -21,7 +21,7 @@ import java.util.ArrayList;
 public class CompaniesActivity extends BaseActivity implements CompaniesView {
 
     private RecyclerView companies_rec;
-    private TextView select_all_tag;
+    public static TextView select_all_tag;
     private CompaniesAdapter adapter;
     private Button nextButton;
     private CompaniesPresenter presenter;
@@ -33,7 +33,7 @@ public class CompaniesActivity extends BaseActivity implements CompaniesView {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_companies);
         initView();
-        if(Connectivity.checkInternetConnection())
+        if (Connectivity.checkInternetConnection())
             presenter.getCompanies();
         else {
             showErrorConnection();
@@ -43,10 +43,10 @@ public class CompaniesActivity extends BaseActivity implements CompaniesView {
         select_all_tag.setOnClickListener(v -> {
             if (select_all_tag.getText().toString().equals(getString(R.string.select_all))) {
                 select_all_tag.setText(getString(R.string.unselect_all));
-                companies_rec.setAdapter(new CompaniesAdapter(companyList, true));
+                adapter.changeSelectionState(true);
             } else {
                 select_all_tag.setText(getString(R.string.select_all));
-                companies_rec.setAdapter(new CompaniesAdapter(companyList, false));
+                adapter.changeSelectionState(false);
             }
         });
         nextButton.setOnClickListener(v -> {
@@ -78,7 +78,6 @@ public class CompaniesActivity extends BaseActivity implements CompaniesView {
         presenter = new CompaniesPresenter();
         presenter.attachView(this);
 
-        adapter = new CompaniesAdapter(null, false);
     }
 
     @Override
@@ -90,6 +89,8 @@ public class CompaniesActivity extends BaseActivity implements CompaniesView {
     @Override
     public void companies(ArrayList<CompanyModel> companyList) {
         this.companyList = companyList;
-        companies_rec.setAdapter(new CompaniesAdapter(companyList, false));
+        adapter = new CompaniesAdapter(companyList);
+        adapter.changeSelectionState(true);
+        companies_rec.setAdapter(adapter);
     }
 }
