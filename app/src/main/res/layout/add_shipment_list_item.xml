@@ -27,9 +27,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-
         <TextView
-            android:id="@+id/category_name"
+            android:id="@+id/drop_address"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:layout_marginStart="16dp"
@@ -38,10 +37,34 @@
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
             android:background="@drawable/dotted_border_transparent"
+            android:drawableStart="@drawable/ic_location_on_primary_24dp"
+            android:drawableLeft="@drawable/ic_location_on_primary_24dp"
+            android:drawablePadding="4dp"
+            android:gravity="center_vertical"
+            android:hint="@string/please_select_drop_address"
+            android:paddingStart="8dp"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:textColor="@android:color/black"
+            android:textColorHint="#BDBDBD"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/category_name"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:background="@drawable/dotted_border_transparent"
             android:drawableStart="@drawable/ic_box"
             android:drawableLeft="@drawable/ic_box"
             android:drawablePadding="4dp"
-            android:drawableTint="@color/colorPrimary"
             android:gravity="center_vertical"
             android:hint="@string/shipment_name"
             android:paddingStart="8dp"
@@ -52,7 +75,7 @@
             android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/drop_address"/>
 
         <TextView
             android:id="@+id/count_tag"

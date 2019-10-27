@@ -1,16 +1,15 @@
 package com.vavisa.masafah.tap_add.map;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.widget.Toast;
 
 import com.vavisa.masafah.R;
 import com.vavisa.masafah.base.BaseActivity;
 import com.vavisa.masafah.helpers.address_helper.AddressHelper;
 import com.vavisa.masafah.helpers.address_helper.MyAddressView;
 import com.vavisa.masafah.tap_add.add_address.AddressModel;
-import com.vavisa.masafah.util.Constants;
 
 import java.util.ArrayList;
 
@@ -49,13 +48,18 @@ public class MyAddressActivity extends BaseActivity implements MyAddressView {
     @Override
     public void handleClickAction(AddressModel addressModel) {
 
-        if (getIntent().getExtras().getString("tag").equals("pickup_tag")) {
-            Constants.addShipmentModel.setPickup_address(addressModel);
-            Constants.addShipmentModel.setAddress_from_id(addressModel.getId());
-        } else if (getIntent().getExtras().getString("tag").equals("drop_tag")) {
-            Constants.addShipmentModel.setDrop_address(addressModel);
-            Constants.addShipmentModel.setAddress_to_id(addressModel.getId());
-        }
+        Intent resultIntent = new Intent();
+        resultIntent.putExtra("selectedAddress", addressModel);
+        setResult(RESULT_OK, resultIntent);
+
+//        if (getIntent().getExtras().getString("tag").equals("pickup_tag")) {
+//            Constants.addShipmentModel.setPickup_address(addressModel);
+//            Constants.addShipmentModel.setAddress_from_id(Integer.valueOf(addressModel.getId()));
+//        } else if (getIntent().getExtras().getString("tag").equals("drop_tag")) {
+//            int shipmentSize = Constants.addShipmentModel.getShipmentList().size();
+//            Constants.addShipmentModel.getShipmentList().get(shipmentSize == 0 ? 0 : shipmentSize - 1).setDrop_address(addressModel);
+//            Constants.addShipmentModel.getShipmentList().get(shipmentSize == 0 ? 0 : shipmentSize - 1).setAddress_to_id(Integer.valueOf(addressModel.getId()));
+//        }
         finish();
 
     }

@@ -1,12 +1,15 @@
 package com.vavisa.masafah.tap_add;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.SerializedName;
 import com.vavisa.masafah.tap_add.add_address.AddressModel;
 import com.vavisa.masafah.tap_add.add_shipment.model.ShipmentItemModel;
 
 import java.util.ArrayList;
 
-public class AddShipmentModel {
+public class AddShipmentModel implements Parcelable {
 
     @SerializedName("shipment_id")
     private String shipment_id;
@@ -15,9 +18,7 @@ public class AddShipmentModel {
     @SerializedName("delivery_companies_id")
     private ArrayList<Integer> deliveryCompaniesIdList;
     @SerializedName("address_from_id")
-    private String address_from_id;
-    @SerializedName("address_to_id")
-    private String address_to_id;
+    private Integer address_from_id;
     @SerializedName("is_today")
     private Boolean is_today;
     @SerializedName("pickup_time_from")
@@ -26,8 +27,65 @@ public class AddShipmentModel {
     private String pickup_time_to;
 
     private AddressModel pickup_address;
-    private AddressModel drop_address;
     private String price;
+
+
+
+    public AddShipmentModel() {
+    }
+
+    public AddShipmentModel(Parcel in) {
+        shipment_id = in.readString();
+        shipmentList = in.createTypedArrayList(ShipmentItemModel.CREATOR);
+        deliveryCompaniesIdList = new ArrayList<>();
+        in.readList(deliveryCompaniesIdList, Integer.class.getClassLoader());
+        if (in.readByte() == 0) {
+            address_from_id = null;
+        } else {
+            address_from_id = in.readInt();
+        }
+        byte tmpIs_today = in.readByte();
+        is_today = tmpIs_today == 0 ? null : tmpIs_today == 1;
+        pickup_time_from = in.readString();
+        pickup_time_to = in.readString();
+        pickup_address = in.readParcelable(AddressModel.class.getClassLoader());
+        price = in.readString();
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(shipment_id);
+        dest.writeTypedList(shipmentList);
+        dest.writeList(deliveryCompaniesIdList);
+        if (address_from_id == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeInt(address_from_id);
+        }
+        dest.writeByte((byte) (is_today == null ? 0 : is_today ? 1 : 2));
+        dest.writeString(pickup_time_from);
+        dest.writeString(pickup_time_to);
+        dest.writeParcelable(pickup_address, flags);
+        dest.writeString(price);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    public static final Creator<AddShipmentModel> CREATOR = new Creator<AddShipmentModel>() {
+        @Override
+        public AddShipmentModel createFromParcel(Parcel in) {
+            return new AddShipmentModel(in);
+        }
+
+        @Override
+        public AddShipmentModel[] newArray(int size) {
+            return new AddShipmentModel[size];
+        }
+    };
 
     public String getShipment_id() {
         return shipment_id;
@@ -50,18 +108,11 @@ public class AddShipmentModel {
         this.deliveryCompaniesIdList = deliveryCompaniesIdList;
     }
 
-    public String getAddress_from_id() {
+    public Integer getAddress_from_id() {
         return address_from_id;
     }
-    public void setAddress_from_id(String address_from_id) {
+    public void setAddress_from_id(Integer address_from_id) {
         this.address_from_id = address_from_id;
-    }
-
-    public String getAddress_to_id() {
-        return address_to_id;
-    }
-    public void setAddress_to_id(String address_to_id) {
-        this.address_to_id = address_to_id;
     }
 
     public String getPickup_time_from() {
@@ -92,17 +143,11 @@ public class AddShipmentModel {
         this.is_today = is_today;
     }
 
-    public AddressModel getDrop_address() {
-        return drop_address;
-    }
-    public void setDrop_address(AddressModel drop_address) {
-        this.drop_address = drop_address;
-    }
-
     public String getPrice() {
         return price;
     }
     public void setPrice(String price) {
         this.price = price;
     }
+
 }

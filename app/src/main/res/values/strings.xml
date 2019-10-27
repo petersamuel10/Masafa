@@ -25,11 +25,6 @@
     <string name="profile">Profile</string>
     <string name="logout">Logout</string>
     <string name="company_details">Company details</string>
-    <string name="company_test_description">International shipping, courier, and packaging service. DHL was
-        established in 1969 by Adrian Dalsey, Larry Hillblom, and Robert Lynn. The name DHL is derived from the
-        first initial of each founder\'s last name. DHL has numerous cargo transport systems including planes,
-        trains, and boats. DHL serves more than 120,000 designations and 220 countries. As of 2002, Deutsche Post
-        World Net owns the majority of shares.</string>
     <string name="continue_button">Continue</string>
     <string name="my_shipments">My shipments</string>
     <string name="select_companies">Select companies</string>
@@ -45,7 +40,7 @@
     <string name="select_country">Select country</string>
     <string name="termsandconditions">Terms &amp; Conditions</string>
     <string name="select_category">Select category</string>
-    <string name="please_select_category_name_for_previous_shipment">Please select category name for previous shipment</string>
+    <string name="please_select_drop_address_and_category_name_for_previous_shipment">Please select drop address and category name for previous shipment</string>
     <string name="please_select_a_company_or_more_first">Please select a company or more first</string>
     <string name="select_language">Select Language</string>
     <string name="select_picture_from">Select picture from :</string>
@@ -74,7 +69,7 @@
     <string name="please_enter_building">Please enter building</string>
     <string name="please_enter_block">Please enter block</string>
     <string name="please_select_pickup_address">Please select pickup address</string>
-    <string name="please_select_drop_address">Please select drop address</string>
+    <string name="please_select_drop_address">Select drop address</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="location_name">Location name</string>

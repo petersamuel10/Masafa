@@ -70,6 +70,21 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
+                    android:id="@+id/pickup_address_tag"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="6dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginRight="8dp"
+                    android:text="@string/category_already_added"
+                    android:textColor="#A1A1A1"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/items_tag" />
+
+                <TextView
                     android:id="@+id/shipment_description"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -82,7 +97,7 @@
                     android:textColor="#A1A1A1"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/items_tag" />
+                    app:layout_constraintTop_toBottomOf="@+id/pickup_address_tag" />
 
                 <View
                     android:id="@+id/horizontal_line"
@@ -140,7 +155,7 @@
                     app:srcCompat="@drawable/ic_empty_circle" />
 
                 <TextView
-                    android:id="@+id/drop_location"
+                    android:id="@+id/drop_address"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="4dp"
@@ -152,17 +167,6 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/empty_circle"
                     app:layout_constraintTop_toBottomOf="@+id/vertical_dotted_lines" />
-
-                <TextView
-                    android:id="@+id/drop_address"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="0dp"
-                    android:layout_marginLeft="4dp"
-                    android:layout_marginTop="2dp"
-                    android:textColor="@android:color/black"
-                    app:layout_constraintStart_toStartOf="@+id/drop_location"
-                    app:layout_constraintTop_toBottomOf="@+id/drop_location" />
 
                 <View
                     android:id="@+id/vertical_dotted_lines"
@@ -207,7 +211,7 @@
                     android:layout_marginTop="16dp"
                     android:layout_marginEnd="16dp"
                     android:layout_marginRight="16dp"
-                    android:text="25 KD"
+                    tools:text="25 KD"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/horizontal_line_2" />
@@ -230,7 +234,7 @@
                     android:layout_marginTop="8dp"
                     android:layout_marginEnd="16dp"
                     android:layout_marginRight="16dp"
-                    android:text="25 KD"
+                    tools:text="25 KD"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/pickup_time_from_tag" />
@@ -256,7 +260,7 @@
                     android:layout_marginEnd="16dp"
                     android:layout_marginRight="16dp"
                     android:layout_marginBottom="16dp"
-                    android:text="25 KD"
+                    tools:text="25 KD"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"

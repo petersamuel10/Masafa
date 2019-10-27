@@ -80,6 +80,9 @@ public class AddressModel implements Parcelable {
         mobile = in.readString();
         block = in.readString();
         street = in.readString();
+        country = in.readParcelable(CountryModel.class.getClassLoader());
+        city = in.readParcelable(CountryModel.class.getClassLoader());
+        governorate = in.readParcelable(CountryModel.class.getClassLoader());
         building = in.readString();
         details = in.readString();
         notes = in.readString();
@@ -95,12 +98,20 @@ public class AddressModel implements Parcelable {
         dest.writeString(mobile);
         dest.writeString(block);
         dest.writeString(street);
+        dest.writeParcelable(country, flags);
+        dest.writeParcelable(city, flags);
+        dest.writeParcelable(governorate, flags);
         dest.writeString(building);
         dest.writeString(details);
         dest.writeString(notes);
         dest.writeString(country_id);
         dest.writeString(governorate_id);
         dest.writeString(city_id);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
     }
 
     public static final Creator<AddressModel> CREATOR = new Creator<AddressModel>() {
@@ -211,11 +222,6 @@ public class AddressModel implements Parcelable {
     }
     public void setCity_id(String city_id) {
         this.city_id = city_id;
-    }
-
-    @Override
-    public int describeContents() {
-        return 0;
     }
 
 }

@@ -14,6 +14,7 @@ public class CountryModel implements Parcelable {
     @SerializedName("country_code")
     private String country_code;
 
+
     protected CountryModel(Parcel in) {
         id = in.readString();
         name = in.readString();

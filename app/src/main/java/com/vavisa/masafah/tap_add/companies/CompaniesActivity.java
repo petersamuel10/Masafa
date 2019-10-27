@@ -11,10 +11,10 @@ import android.widget.Toast;
 
 import com.vavisa.masafah.R;
 import com.vavisa.masafah.base.BaseActivity;
-import com.vavisa.masafah.tap_add.Select_location.SelectLocationActivity;
+import com.vavisa.masafah.tap_add.AddShipmentModel;
+import com.vavisa.masafah.tap_add.invoice.InvoiceActivity;
 import com.vavisa.masafah.tap_my_shipment.company_details.CompanyModel;
 import com.vavisa.masafah.util.Connectivity;
-import com.vavisa.masafah.util.Constants;
 
 import java.util.ArrayList;
 
@@ -27,12 +27,15 @@ public class CompaniesActivity extends BaseActivity implements CompaniesView {
     private CompaniesPresenter presenter;
     private ArrayList<CompanyModel> companyList;
     private ArrayList<Integer> deliveryCompaniesIdList;
+    private AddShipmentModel addShipmentModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_companies);
         initView();
+
+        addShipmentModel = getIntent().getParcelableExtra("shipmentModel");
         if (Connectivity.checkInternetConnection())
             presenter.getCompanies();
         else {
@@ -54,11 +57,12 @@ public class CompaniesActivity extends BaseActivity implements CompaniesView {
             if (deliveryCompaniesIdList.size() == 0)
                 Toast.makeText(this, getString(R.string.please_select_a_company_or_more_first), Toast.LENGTH_SHORT).show();
             else {
-                Constants.addShipmentModel.setDeliveryCompaniesIdList(deliveryCompaniesIdList);
-                startActivity(new Intent(CompaniesActivity.this, SelectLocationActivity.class));
+                addShipmentModel.setDeliveryCompaniesIdList(deliveryCompaniesIdList);
+                Intent invoiceIntent = new Intent(CompaniesActivity.this, InvoiceActivity.class);
+                invoiceIntent.putExtra("shipmentModel", addShipmentModel);
+                startActivity(invoiceIntent);
             }
         });
-
     }
 
     private void initView() {

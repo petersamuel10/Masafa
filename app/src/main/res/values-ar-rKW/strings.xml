@@ -26,11 +26,6 @@
     <string name="profile">حسابي</string>
     <string name="logout">تسجيل خروج</string>
     <string name="company_details">تفاصيل الشركة</string>
-    <string name="company_test_description">خدمة الشحن الدولي والبريد السريع والتعبئة والتغليف. كان DHL
-        أنشئ في عام 1969 من قبل أدريان دالسي ولاري هيلبلوم وروبرت لين. اسم DHL مشتق من
-        أول الاسم الأول من اسم كل مؤسس. DHL لديها العديد من أنظمة نقل البضائع بما في ذلك الطائرات ،
-        القطارات والقوارب. تقدم DHL أكثر من 120،000 تعيين و 220 دولة. اعتبارا من عام 2002 ، دويتشه بوست
-        تمتلك World World غالبية الأسهم.</string>
     <string name="continue_button">استمرار</string>
     <string name="my_shipments">شحناتي</string>
     <string name="select_companies">اختر الشركات</string>
@@ -46,7 +41,7 @@
     <string name="select_country">أختر الدولة</string>
     <string name="termsandconditions">الشروط والاحكام</string>
     <string name="select_category">اختر التصنيف</string>
-    <string name="please_select_category_name_for_previous_shipment">الرجاء تحديد اسم الصنف للعنصر السابق</string>
+    <string name="please_select_drop_address_and_category_name_for_previous_shipment">الرجاء تحديد عنوان التوصيل  اسم الصنف للعنصر السابق</string>
     <string name="please_select_a_company_or_more_first">اختر شركة او اكثر اولا</string>
     <string name="select_language">أختر اللغة</string>
     <string name="camera">الكاميرا</string>
@@ -74,7 +69,7 @@
     <string name="please_enter_location_name">الرجاء ادخال اسم الموقع</string>
     <string name="please_enter_street">الرجاء ادخال الشارع</string>
     <string name="please_enter_block">الرجاء ادخال القطعة</string>
-    <string name="please_select_drop_address">الرجاء اختيار عنوان التوصيل</string>
+    <string name="please_select_drop_address">اختيار عنوان التوصيل</string>
     <string name="please_select_pickup_address">الرجاء اختيار عنوان التحميل</string>
     <string name="address_details">تفاصيل العنوان</string>
     <string name="area">المنطقة</string>

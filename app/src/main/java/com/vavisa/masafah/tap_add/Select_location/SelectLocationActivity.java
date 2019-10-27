@@ -67,25 +67,25 @@ public class SelectLocationActivity extends BaseActivity implements View.OnClick
     @Override
     protected void onStart(){
         super.onStart();
+//
+//        if (!TextUtils.isEmpty(Constants.addShipmentModel.getAddress_from_id())) {
+//            pick_ic_done.setVisibility(View.VISIBLE);
+//            pickup_address_txt.setText(Address_to_string(Constants.addShipmentModel.getPickup_address()));
+//        }
+//
+//        if (!TextUtils.isEmpty(Constants.addShipmentModel.getAddress_to_id())) {
+//            drop_ic_done.setVisibility(View.VISIBLE);
+//            drop_address_txt.setText(Address_to_string(Constants.addShipmentModel.getDrop_address()));
+//        }
 
-        if (!TextUtils.isEmpty(Constants.addShipmentModel.getAddress_from_id())) {
-            pick_ic_done.setVisibility(View.VISIBLE);
-            pickup_address_txt.setText(Address_to_string(Constants.addShipmentModel.getPickup_address()));
-        }
-
-        if (!TextUtils.isEmpty(Constants.addShipmentModel.getAddress_to_id())) {
-            drop_ic_done.setVisibility(View.VISIBLE);
-            drop_address_txt.setText(Address_to_string(Constants.addShipmentModel.getDrop_address()));
-        }
-
-        if (valid())
-            if (Connectivity.checkInternetConnection())
-                presenter.getPrice(Constants.addShipmentModel.getPickup_address().getGovernorate().getId(),
-                        Constants.addShipmentModel.getDrop_address().getGovernorate().getId(),
-                        Constants.addShipmentModel.getPickup_address().getCity().getId(),
-                        Constants.addShipmentModel.getDrop_address().getCity().getId());
-            else
-                showErrorConnection();
+      //  if (valid())
+//            if (Connectivity.checkInternetConnection())
+//                presenter.getPrice(Constants.addShipmentModel.getPickup_address().getGovernorate().getId(),
+//                        Constants.addShipmentModel.getDrop_address().getGovernorate().getId(),
+//                        Constants.addShipmentModel.getPickup_address().getCity().getId(),
+//                        Constants.addShipmentModel.getDrop_address().getCity().getId());
+//            else
+//                showErrorConnection();
 
 
     }
@@ -112,23 +112,23 @@ public class SelectLocationActivity extends BaseActivity implements View.OnClick
                 showPopAddressWay("drop_tag");
                 break;
             case R.id.next_button:
-                if (valid())
+              //  if (valid())
                     start(InvoiceActivity.class);
                 break;
         }
     }
 
-    private boolean valid() {
-        if (TextUtils.isEmpty(Constants.addShipmentModel.getAddress_from_id())) {
-            showMessage(getString(R.string.please_select_pickup_address));
-            return false;
-        }
-        if (TextUtils.isEmpty(Constants.addShipmentModel.getAddress_to_id())) {
-            showMessage(getString(R.string.please_select_drop_address));
-            return false;
-        }
-        return true;
-    }
+//    private boolean valid() {
+//        if (TextUtils.isEmpty(Constants.addShipmentModel.getAddress_from_id())) {
+//            showMessage(getString(R.string.please_select_pickup_address));
+//            return false;
+//        }
+//        if (TextUtils.isEmpty(Constants.addShipmentModel.getAddress_to_id())) {
+//            showMessage(getString(R.string.please_select_drop_address));
+//            return false;
+//        }
+//        return true;
+//    }
 
     private void showPopAddressWay(String tag) {
         final AlertDialog.Builder builder = new AlertDialog.Builder(this);

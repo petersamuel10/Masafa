@@ -42,7 +42,7 @@ public class AddAddressActivity extends BaseActivity implements AddAddressView, 
         initViews();
         country_id = Preferences.getInstance().getString("country_id");
         presenter.getGovernorate(country_id);
-        isEditORDisplayAddress = getIntent().getExtras().containsKey("address_id") ? true : false;
+//        isEditORDisplayAddress = getIntent().getExtras().containsKey("address_id") ? true : false;
         if (isEditORDisplayAddress) {
             if (getIntent().getStringExtra("action").equals("showAddressDetails"))
                 disableViewsForDetails();
@@ -171,13 +171,13 @@ public class AddAddressActivity extends BaseActivity implements AddAddressView, 
 
     @Override
     public void addNewAddress(AddressModel addressModel) {
-        if (getIntent().getExtras().getString("tag").equals("pickup_tag")) {
-            Constants.addShipmentModel.setPickup_address(addressModel);
-            Constants.addShipmentModel.setAddress_from_id(addressModel.getId());
-        } else if (getIntent().getExtras().getString("tag").equals("drop_tag")) {
-            Constants.addShipmentModel.setDrop_address(addressModel);
-            Constants.addShipmentModel.setAddress_to_id(addressModel.getId());
-        }
+//        if (getIntent().getExtras().getString("tag").equals("pickup_tag")) {
+//            Constants.addShipmentModel.setPickup_address(addressModel);
+//            Constants.addShipmentModel.setAddress_from_id(addressModel.getId());
+//        } else if (getIntent().getExtras().getString("tag").equals("drop_tag")) {
+//            Constants.addShipmentModel.setDrop_address(addressModel);
+//            Constants.addShipmentModel.setAddress_to_id(addressModel.getId());
+//        }
         finish();
     }
 

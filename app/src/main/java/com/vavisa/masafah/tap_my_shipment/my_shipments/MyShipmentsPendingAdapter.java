@@ -107,15 +107,15 @@ public class MyShipmentsPendingAdapter extends RecyclerView.Adapter<MyShipmentsP
 
         public void bind(ShipmentModel shipmentModel) {
 
-            shipment_number_txt.setText(shipmentModel.getId());
-            pickup_location_txt.setText(shipmentModel.getAddress_from().getCity().getName());
-            drop_location_txt.setText(shipmentModel.getAddress_to().getCity().getName());
-            StringBuilder item_str = new StringBuilder();
-            for (ShipmentItemModel item : shipmentModel.getItems()) {
-                item_str.append("\u25CF ").append(item.getQuantity()).append(" x   ").append(item.getCat_name()).append("\n");
-            }
-
-            shipment_content_txt.setText(item_str.toString());
+//            shipment_number_txt.setText(shipmentModel.getId());
+//            pickup_location_txt.setText(shipmentModel.getAddress_from().getCity().getName());
+//            drop_location_txt.setText(shipmentModel.getAddress_to().getCity().getName());
+//            StringBuilder item_str = new StringBuilder();
+//            for (ShipmentItemModel item : shipmentModel.getItems()) {
+//                item_str.append("\u25CF ").append(item.getQuantity()).append(" x   ").append(item.getCat_name()).append("\n");
+//            }
+//
+//            shipment_content_txt.setText(item_str.toString());
 
         }
     }

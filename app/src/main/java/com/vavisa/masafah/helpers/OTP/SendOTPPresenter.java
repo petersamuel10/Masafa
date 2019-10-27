@@ -38,7 +38,7 @@ public class SendOTPPresenter extends BasePresenter<OTPViews> {
                 new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
                     @Override
                     public void onVerificationCompleted(PhoneAuthCredential phoneAuthCredential) {
-                        //   signInWithPhoneAuthCredential(phoneAuthCredential);
+                          //signInWithPhoneAuthCredential(phoneAuthCredential);
                     }
 
                     @Override
