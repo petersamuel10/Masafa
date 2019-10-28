@@ -2,18 +2,21 @@ package com.vavisa.masafah.tap_my_shipment.my_shipments;
 
 import android.content.Context;
 import android.os.Build;
-import android.support.annotation.NonNull;
-import android.support.v4.app.Fragment;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewOutlineProvider;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.chauthai.swipereveallayout.SwipeRevealLayout;
 import com.vavisa.masafah.R;
-import com.vavisa.masafah.tap_add.add_shipment.model.ShipmentItemModel;
+import com.vavisa.masafah.tap_add.add_shipment.model.Shipment;
+import com.vavisa.masafah.tap_my_shipment.my_shipments.model.ShipmentItems;
+import com.vavisa.masafah.tap_my_shipment.my_shipments.model.ShipmentModel;
 import com.vavisa.masafah.tap_my_shipment.shipment_details.ShipmentDetailsFragment;
 import com.vavisa.masafah.util.Constants;
 
@@ -21,11 +24,10 @@ import java.util.ArrayList;
 
 public class MyShipmentsPendingAdapter extends RecyclerView.Adapter<MyShipmentsPendingAdapter.ViewHolder> {
 
-    private Context context;
     private MyShipmentsFragment activity;
     private ArrayList<ShipmentModel> shipmentList;
 
-    public MyShipmentsPendingAdapter(MyShipmentsFragment activity, ArrayList<ShipmentModel> pendingList) {
+    MyShipmentsPendingAdapter(MyShipmentsFragment activity, ArrayList<ShipmentModel> pendingList) {
 
         this.activity = activity;
         this.shipmentList = pendingList;
@@ -38,7 +40,7 @@ public class MyShipmentsPendingAdapter extends RecyclerView.Adapter<MyShipmentsP
                 LayoutInflater.from(viewGroup.getContext())
                         .inflate(R.layout.my_shipment_pending_list_item, viewGroup, false);
 
-        context = viewGroup.getContext();
+        Context context = viewGroup.getContext();
         return new ViewHolder(v);
     }
 
@@ -47,19 +49,15 @@ public class MyShipmentsPendingAdapter extends RecyclerView.Adapter<MyShipmentsP
 
         holder.bind(shipmentList.get(position));
         holder.itemView.setOnClickListener(
-                new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Fragment fragment = new ShipmentDetailsFragment();
-                        activity.switchFragment(activity.getFragmentManager(), fragment, "shipmentDetails");
-                    }
+                v -> {
+                    Fragment fragment = new ShipmentDetailsFragment();
+                    activity.switchFragment(activity.getFragmentManager(), fragment, "shipmentDetails");
                 });
 
         holder.edit_txt.setOnClickListener(v -> {
             holder.sw.close(true);
             (activity).editShipment(shipmentList.get(position));
         });
-
         holder.delete_txt.setOnClickListener(v -> (activity).deleteShipmentById(position, shipmentList.get(position).getId()));
 
     }
@@ -69,21 +67,21 @@ public class MyShipmentsPendingAdapter extends RecyclerView.Adapter<MyShipmentsP
         return shipmentList.size();
     }
 
-    public void deleteShipmentFromRecycler(int index) {
+    void deleteShipmentFromRecycler(int index) {
 
         shipmentList.remove(index);
         notifyItemRemoved(index);
 
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    class ViewHolder extends RecyclerView.ViewHolder {
 
-        public SwipeRevealLayout sw;
-        public TextView edit_txt, delete_txt;
-        public TextView shipment_number_txt, shipment_content_txt, pickup_location_txt, drop_location_txt;
+        SwipeRevealLayout sw;
+        TextView edit_txt, delete_txt;
+        TextView shipment_number_txt, shipment_content_txt, pickup_location_txt, drop_location_txt;
 
 
-        public ViewHolder(@NonNull View itemView) {
+        ViewHolder(@NonNull View itemView) {
             super(itemView);
 
             sw = itemView.findViewById(R.id.sw);
@@ -105,17 +103,22 @@ public class MyShipmentsPendingAdapter extends RecyclerView.Adapter<MyShipmentsP
             }
         }
 
-        public void bind(ShipmentModel shipmentModel) {
+        void bind(ShipmentModel shipmentModel) {
 
-//            shipment_number_txt.setText(shipmentModel.getId());
-//            pickup_location_txt.setText(shipmentModel.getAddress_from().getCity().getName());
-//            drop_location_txt.setText(shipmentModel.getAddress_to().getCity().getName());
-//            StringBuilder item_str = new StringBuilder();
-//            for (ShipmentItemModel item : shipmentModel.getItems()) {
-//                item_str.append("\u25CF ").append(item.getQuantity()).append(" x   ").append(item.getCat_name()).append("\n");
-//            }
-//
-//            shipment_content_txt.setText(item_str.toString());
+            shipment_number_txt.setText(shipmentModel.getId());
+            pickup_location_txt.setText(shipmentModel.getAddress_from().getCity().getName());
+            StringBuilder item_str = new StringBuilder();
+            StringBuilder drop_address_str = new StringBuilder();
+            for (ShipmentItems item : shipmentModel.getItems()) {
+                drop_address_str.append("\u25CF").append(item.getAddressTo().getCity().getName()).append("\n");
+                item_str.append("\n\u25CF ").append(item.getAddressTo().getCity().getName()).append("\n");
+                for (Shipment shipment : item.getShipmentList()) {
+                    item_str.append("\t\t\t\u25CF").append(shipment.getQuantity()).append(" x   ").append(shipment.getCat_name()).append("\n");
+                }
+            }
+
+            drop_location_txt.setText(drop_address_str);
+            shipment_content_txt.setText(item_str.toString());
 
         }
     }

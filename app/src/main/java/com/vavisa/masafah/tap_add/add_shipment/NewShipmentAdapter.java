@@ -1,32 +1,33 @@
 package com.vavisa.masafah.tap_add.add_shipment;
 
-import android.app.Activity;
-import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
-import android.support.annotation.NonNull;
-import android.support.design.widget.FloatingActionButton;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.vavisa.masafah.R;
 import com.vavisa.masafah.tap_add.add_address.AddAddressActivity;
 import com.vavisa.masafah.tap_add.add_address.AddressModel;
 import com.vavisa.masafah.tap_add.add_shipment.model.CategoryModel;
-import com.vavisa.masafah.tap_add.add_shipment.model.ShipmentItemModel;
-import com.vavisa.masafah.tap_add.map.MyAddressActivity;
+import com.vavisa.masafah.tap_add.add_shipment.model.Shipment;
+import com.vavisa.masafah.tap_add.myAddress.MyAddressActivity;
 
 import java.util.ArrayList;
 
-import static android.app.Activity.RESULT_OK;
+import static androidx.appcompat.app.AppCompatActivity.RESULT_OK;
 
 public class NewShipmentAdapter extends RecyclerView.Adapter<NewShipmentAdapter.ViewHolder> {
 
-    private ArrayList<ShipmentItemModel> shipmentsList;
+    private ArrayList<Shipment> shipmentsList;
     private ArrayList<CategoryModel> categoryList;
     private Context context;
     private Integer select_category_pos = 0;
@@ -34,7 +35,7 @@ public class NewShipmentAdapter extends RecyclerView.Adapter<NewShipmentAdapter.
     private final int DROP_ADDRESS = 5;
 
 
-    NewShipmentAdapter(ArrayList<CategoryModel> categoryList, ArrayList<ShipmentItemModel> shipmentsList) {
+    NewShipmentAdapter(ArrayList<CategoryModel> categoryList, ArrayList<Shipment> shipmentsList) {
         this.categoryList = categoryList;
         this.shipmentsList = shipmentsList;
     }
@@ -67,7 +68,9 @@ public class NewShipmentAdapter extends RecyclerView.Adapter<NewShipmentAdapter.
                 if (shipmentsList.get(shipmentsList.size() - 1).getAddress_to_id() == -1 || shipmentsList.get(shipmentsList.size() - 1).getCategory_id() == -1) {
                     Toast.makeText(context, context.getString(R.string.please_select_drop_address_and_category_name_for_previous_shipment), Toast.LENGTH_SHORT).show();
                 } else {
-                    shipmentsList.add(new ShipmentItemModel(-1, "", 1, shipmentsList.get(shipmentsList.size() - 1).getAddress_to_id()));
+                    shipmentsList.add(new Shipment(-1, "", 1, shipmentsList.get(shipmentsList.size() - 1).getAddress_to_id()));
+
+                    // set address of the previous item
                     shipmentsList.get(shipmentsList.size() - 1).setDrop_address(shipmentsList.get(shipmentsList.size() - 2).getDrop_address());
                     notifyDataSetChanged();
                 }
@@ -144,7 +147,7 @@ public class NewShipmentAdapter extends RecyclerView.Adapter<NewShipmentAdapter.
             else
                 intent = new Intent(new Intent(context, MyAddressActivity.class));
 
-            ((Activity) context).startActivityForResult(intent, DROP_ADDRESS);
+            ((AppCompatActivity) context).startActivityForResult(intent, DROP_ADDRESS);
         });
 
         builder.create().show();
@@ -164,7 +167,7 @@ public class NewShipmentAdapter extends RecyclerView.Adapter<NewShipmentAdapter.
 
     private boolean categoryExist(Integer cat_id) {
 
-        for (ShipmentItemModel item : shipmentsList) {
+        for (Shipment item : shipmentsList) {
             if (cat_id == item.getCategory_id())
                 return true;
         }
@@ -183,7 +186,7 @@ public class NewShipmentAdapter extends RecyclerView.Adapter<NewShipmentAdapter.
                 R.layout.add_shipment_list_item;
     }
 
-    ArrayList<ShipmentItemModel> getShipmentList() {
+    ArrayList<Shipment> getShipmentList() {
         return shipmentsList;
     }
 
@@ -205,7 +208,7 @@ public class NewShipmentAdapter extends RecyclerView.Adapter<NewShipmentAdapter.
             subtract_quantity = itemView.findViewById(R.id.subtract_quantity);
         }
 
-        void bind(ShipmentItemModel shipmentItemModel) {
+        void bind(Shipment shipmentItemModel) {
 
             drop_address.setText(shipmentItemModel.getDrop_address().getGovernorate().getName().concat(", ").concat(shipmentItemModel.getDrop_address().getCity().getName()));
             category_name_ed.setText(shipmentItemModel.getCat_name());

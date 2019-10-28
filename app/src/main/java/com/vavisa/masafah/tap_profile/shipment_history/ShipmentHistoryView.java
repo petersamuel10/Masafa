@@ -1,7 +1,7 @@
 package com.vavisa.masafah.tap_profile.shipment_history;
 
 import com.vavisa.masafah.base.BaseView;
-import com.vavisa.masafah.tap_my_shipment.my_shipments.ShipmentModel;
+import com.vavisa.masafah.tap_my_shipment.my_shipments.model.ShipmentModel;
 
 import java.util.ArrayList;
 

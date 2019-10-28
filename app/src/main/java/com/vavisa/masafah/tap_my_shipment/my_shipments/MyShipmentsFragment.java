@@ -2,22 +2,24 @@ package com.vavisa.masafah.tap_my_shipment.my_shipments;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.constraint.ConstraintLayout;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.RelativeLayout;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.vavisa.masafah.R;
 import com.vavisa.masafah.base.BaseFragment;
 import com.vavisa.masafah.tap_add.add_shipment.AddShipmentActivity;
+import com.vavisa.masafah.tap_my_shipment.my_shipments.model.ShipmentModel;
 import com.vavisa.masafah.util.Connectivity;
 import com.vavisa.masafah.util.Constants;
 
@@ -60,7 +62,7 @@ public class MyShipmentsFragment extends BaseFragment implements MyShipmentsView
 
             presenter = new MyShipmentPresenter();
             presenter.attachView(this);
-            if(Connectivity.checkInternetConnection())
+            if (Connectivity.checkInternetConnection())
                 presenter.getShipment();
             else
                 showErrorConnection();
@@ -101,15 +103,15 @@ public class MyShipmentsFragment extends BaseFragment implements MyShipmentsView
                 });
     }
 
-    public void editShipment(ShipmentModel shipmentModel) {
+    void editShipment(ShipmentModel shipmentModel) {
         Constants.isEditShipment = true;
         Intent intent = new Intent(getContext(), AddShipmentActivity.class);
         intent.putExtra("edit_shipment", shipmentModel);
         startActivity(intent);
     }
 
-    public void deleteShipmentById(int position, String shipment_id) {
-        if(Connectivity.checkInternetConnection())
+    void deleteShipmentById(int position, String shipment_id) {
+        if (Connectivity.checkInternetConnection())
             presenter.deleteShipment(position, shipment_id);
         else
             showErrorConnection();

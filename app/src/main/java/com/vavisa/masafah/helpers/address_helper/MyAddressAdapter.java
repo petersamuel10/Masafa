@@ -1,17 +1,18 @@
 package com.vavisa.masafah.helpers.address_helper;
 
-import android.support.annotation.NonNull;
-import android.support.constraint.ConstraintLayout;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.chauthai.swipereveallayout.SwipeRevealLayout;
 import com.vavisa.masafah.R;
 import com.vavisa.masafah.tap_add.add_address.AddressModel;
-import com.vavisa.masafah.tap_add.map.MyAddressActivity;
+import com.vavisa.masafah.tap_add.myAddress.MyAddressActivity;
 import com.vavisa.masafah.tap_profile.myAddresses.AddressesFragment;
 import com.vavisa.masafah.util.Constants;
 
@@ -49,7 +50,7 @@ public class MyAddressAdapter extends RecyclerView.Adapter<MyAddressAdapter.View
                 holder.sw.setDragEdge(1);
             holder.sw.setLockDrag(false);
             holder.edit_txt.setOnClickListener(v -> ((AddressesFragment) view).handleEditAction(addressList.get(position)));
-            holder.delete_txt.setOnClickListener(v -> ((AddressesFragment) view).handleDeleteAction(position,addressList.get(position)));
+            holder.delete_txt.setOnClickListener(v -> ((AddressesFragment) view).handleDeleteAction(position, addressList.get(position)));
         }
 
     }
@@ -59,22 +60,22 @@ public class MyAddressAdapter extends RecyclerView.Adapter<MyAddressAdapter.View
         return addressList.size();
     }
 
-    public void deleteAddress(int position){
+    void deleteAddress(int position) {
 
         addressList.remove(position);
         notifyItemRemoved(position);
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    class ViewHolder extends RecyclerView.ViewHolder {
 
-        public SwipeRevealLayout sw;
+        SwipeRevealLayout sw;
         private TextView address_name, address_area,
                 address_block_street, address_building,
                 address_details, address_notes;
         private TextView edit_txt, delete_txt;
         private ConstraintLayout item;
 
-        public ViewHolder(@NonNull View itemView) {
+        ViewHolder(@NonNull View itemView) {
 
             super(itemView);
 
@@ -91,7 +92,7 @@ public class MyAddressAdapter extends RecyclerView.Adapter<MyAddressAdapter.View
 
         }
 
-        public void bind(AddressModel addressModel) {
+        void bind(AddressModel addressModel) {
 
             address_name.setText(addressModel.getName());
             address_area.setText(addressModel.getGovernorate().getName().concat(" - ").concat(addressModel.getCity().getName()));

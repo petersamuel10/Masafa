@@ -16,11 +16,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".tap_add.map.MyAddressActivity"
+        <activity android:name=".tap_add.myAddress.MyAddressActivity"
             android:theme="@style/AppTheme.NoActionBar"/>
-        <activity
-            android:name=".tap_add.invoice.InvoiceActivity"
-            android:theme="@style/AppTheme.NoActionBar" />
+
         <activity
             android:name=".tap_add.companies.CompaniesActivity"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -31,6 +29,10 @@
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyBpxL6cQvCyuD6lxrCFSsnflf3biyULc6s" />
+
+        <activity
+            android:name=".tap_add.invoice.InvoiceActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
 
         <activity
             android:name=".activities.StartUpActivity"
@@ -47,9 +49,6 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".tap_add.map.MapActivity"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
             android:name=".login.LoginActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
@@ -60,9 +59,6 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".tap_add.add_shipment.AddShipmentActivity"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".tap_add.Select_location.SelectLocationActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".tap_my_shipment.company_details.CompanyDetailsActivity"

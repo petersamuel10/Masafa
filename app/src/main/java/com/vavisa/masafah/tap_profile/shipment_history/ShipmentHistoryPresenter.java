@@ -5,7 +5,7 @@ import android.util.Log;
 import com.vavisa.masafah.base.BaseApplication;
 import com.vavisa.masafah.base.BasePresenter;
 import com.vavisa.masafah.network.APIManager;
-import com.vavisa.masafah.tap_my_shipment.my_shipments.ShipmentModel;
+import com.vavisa.masafah.tap_my_shipment.my_shipments.model.ShipmentModel;
 import com.vavisa.masafah.util.Preferences;
 
 import java.util.ArrayList;

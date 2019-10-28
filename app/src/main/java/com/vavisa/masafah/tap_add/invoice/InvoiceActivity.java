@@ -9,7 +9,7 @@ import com.vavisa.masafah.R;
 import com.vavisa.masafah.activities.MainActivity;
 import com.vavisa.masafah.base.BaseActivity;
 import com.vavisa.masafah.tap_add.AddShipmentModel;
-import com.vavisa.masafah.tap_add.add_shipment.model.ShipmentItemModel;
+import com.vavisa.masafah.tap_add.add_shipment.model.Shipment;
 import com.vavisa.masafah.util.Connectivity;
 import com.vavisa.masafah.util.Constants;
 
@@ -31,14 +31,14 @@ public class InvoiceActivity extends BaseActivity implements InvoiceView {
         initViews();
         presenter = new InvoicePresenter();
         presenter.attachView(this);
-       // presenter.getPrice();
+        // presenter.getPrice();
         addShipmentModel = getIntent().getParcelableExtra("shipmentModel");
         bindData();
 
         confirm_btn.setOnClickListener(v -> {
             if (Connectivity.checkInternetConnection()) {
-                if (Constants.isEditShipment)
-                    presenter.editShipment();
+                if (getIntent().hasExtra("isEdit"))
+                    presenter.editShipment(addShipmentModel);
                 else
                     presenter.addShipment(addShipmentModel);
             } else
@@ -50,7 +50,7 @@ public class InvoiceActivity extends BaseActivity implements InvoiceView {
 
         StringBuilder item_str = new StringBuilder();
 
-        ShipmentItemModel item;
+        Shipment item;
         for (int i = 0; i < addShipmentModel.getShipmentList().size(); i++) {
 
             item = addShipmentModel.getShipmentList().get(i);
@@ -59,7 +59,7 @@ public class InvoiceActivity extends BaseActivity implements InvoiceView {
                 drop_address_str += ("\u25CF ").concat(item.getDrop_address().getGovernorate().getName()).concat(", ").concat(item.getDrop_address().getCity().getName()).concat("\n");
 
                 for (int x = 0; x < addShipmentModel.getShipmentList().size(); x++) {
-                    ShipmentItemModel item1 = addShipmentModel.getShipmentList().get(x);
+                    Shipment item1 = addShipmentModel.getShipmentList().get(x);
                     if (item.getAddress_to_id().equals(item1.getAddress_to_id())) {
                         item_str.append("\t\t\t\u25CF ").append(item1.getQuantity()).append(" x   ").append(item1.getCat_name()).append("\n");
                         item1.setVisited(true);

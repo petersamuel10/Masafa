@@ -3,9 +3,6 @@ package com.vavisa.masafah.tap_add.companies;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
-import android.support.annotation.NonNull;
-import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,14 +10,14 @@ import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.bumptech.glide.Glide;
 import com.vavisa.masafah.R;
 import com.vavisa.masafah.tap_my_shipment.company_details.CompanyModel;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -114,7 +111,7 @@ public class CompaniesAdapter extends RecyclerView.Adapter<CompaniesAdapter.View
 
     void changeSelectionState(Boolean selected) {
         deliveryCompaniesIdList.clear();
-        for (int i=0; i<companyList.size(); i++) {
+        for (int i = 0; i < companyList.size(); i++) {
             companyList.get(i).setSelected(selected);
             if (selected)
                 deliveryCompaniesIdList.add(companyList.get(i).getId());

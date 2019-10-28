@@ -44,10 +44,10 @@ class InvoicePresenter extends BasePresenter<InvoiceView> {
         });
     }
 
-     void editShipment() {
+     void editShipment(AddShipmentModel addShipmentModel) {
         getView().showProgress();
         APIManager.getInstance().getAPI().editShipmentCall(Preferences.getInstance().getString("access_token"),
-                Constants.addShipmentModel).enqueue(new Callback<HashMap<String, String>>() {
+                addShipmentModel).enqueue(new Callback<HashMap<String, String>>() {
             @Override
             public void onResponse(Call<HashMap<String, String>> call, Response<HashMap<String, String>> response) {
                 getView().hideProgress();

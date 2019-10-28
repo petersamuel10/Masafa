@@ -1,9 +1,9 @@
 package com.vavisa.masafah.helpers.OTP;
 
 import android.app.Activity;
-import android.content.Context;
-import android.support.v4.app.Fragment;
 import android.util.Log;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.FirebaseException;
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
@@ -12,8 +12,6 @@ import com.google.firebase.auth.PhoneAuthProvider;
 import com.vavisa.masafah.R;
 import com.vavisa.masafah.base.BaseApplication;
 import com.vavisa.masafah.base.BasePresenter;
-import com.vavisa.masafah.login.LoginActivity;
-import com.vavisa.masafah.login.LoginModel;
 import com.vavisa.masafah.network.APIManager;
 
 import java.util.ArrayList;

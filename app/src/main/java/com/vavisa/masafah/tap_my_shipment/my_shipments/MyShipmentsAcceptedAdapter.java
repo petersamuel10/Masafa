@@ -3,18 +3,21 @@ package com.vavisa.masafah.tap_my_shipment.my_shipments;
 import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.v4.app.Fragment;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewOutlineProvider;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.bumptech.glide.Glide;
 import com.vavisa.masafah.R;
-import com.vavisa.masafah.tap_add.add_shipment.model.ShipmentItemModel;
+import com.vavisa.masafah.tap_add.add_shipment.model.Shipment;
+import com.vavisa.masafah.tap_my_shipment.my_shipments.model.ShipmentItems;
+import com.vavisa.masafah.tap_my_shipment.my_shipments.model.ShipmentModel;
 import com.vavisa.masafah.tap_my_shipment.shipment_details.ShipmentDetailsFragment;
 
 import java.util.ArrayList;
@@ -27,7 +30,7 @@ public class MyShipmentsAcceptedAdapter extends RecyclerView.Adapter<MyShipments
     private ArrayList<ShipmentModel> shipmentList = new ArrayList<>();
     private Context context;
 
-    public MyShipmentsAcceptedAdapter(MyShipmentsFragment activity, ArrayList<ShipmentModel> acceptList) {
+    MyShipmentsAcceptedAdapter(MyShipmentsFragment activity, ArrayList<ShipmentModel> acceptList) {
         this.activity = activity;
         this.shipmentList = acceptList;
     }
@@ -62,12 +65,12 @@ public class MyShipmentsAcceptedAdapter extends RecyclerView.Adapter<MyShipments
         return shipmentList.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    class ViewHolder extends RecyclerView.ViewHolder {
 
-        public CircleImageView com_delivery_image;
-        public TextView shipment_number_txt, shipment_content_txt, pickup_location_txt, drop_location_txt;
+        CircleImageView com_delivery_image;
+        TextView shipment_number_txt, shipment_content_txt, pickup_location_txt, drop_location_txt;
 
-        public ViewHolder(@NonNull View itemView) {
+        ViewHolder(@NonNull View itemView) {
             super(itemView);
 
             shipment_content_txt = itemView.findViewById(R.id.shipment_description);
@@ -82,17 +85,22 @@ public class MyShipmentsAcceptedAdapter extends RecyclerView.Adapter<MyShipments
             }
         }
 
-        public void bind(ShipmentModel shipmentModel) {
+        void bind(ShipmentModel shipmentModel) {
 
             shipment_number_txt.setText(shipmentModel.getId());
             pickup_location_txt.setText(shipmentModel.getAddress_from().getCity().getName());
-            drop_location_txt.setText(shipmentModel.getAddress_to().getCity().getName());
-
             StringBuilder item_str = new StringBuilder();
-            for (ShipmentItemModel item : shipmentModel.getItems()) {
-                item_str.append("\u25CF ").append(item.getQuantity()).append(" x   ").append(item.getCat_name()).append("\n");
+            StringBuilder drop_address_str = new StringBuilder();
+            for (ShipmentItems item : shipmentModel.getItems()) {
+                drop_address_str.append("\u25CF").append(item.getAddressTo().getCity().getName()).append("\n");
+                for (Shipment shipment : item.getShipmentList()) {
+
+                    item_str.append("\u25CF ").append(item.getAddressTo().getCity().getName()).append("\n")
+                            .append("\t\t\t\u25CF").append(shipment.getQuantity()).append(" x   ").append(shipment.getCat_name()).append("\n");
+                }
             }
 
+            drop_location_txt.setText(drop_address_str);
             shipment_content_txt.setText(item_str.toString());
 
             Glide.with(context).load(shipmentModel.getCompany().getImage()).into(com_delivery_image);

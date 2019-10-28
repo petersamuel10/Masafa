@@ -102,4 +102,5 @@
     <string name="otp_resend_successfully">تم اعاده ارسال الكود</string>
     <string name="are_you_want_to_call">"هل تريد الاتصال ب "</string>
     <string name="question_mark">؟</string>
+    <string name="rate_company">تقييمك للشركه</string>
 </resources>

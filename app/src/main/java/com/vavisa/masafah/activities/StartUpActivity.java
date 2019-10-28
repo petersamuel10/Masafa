@@ -3,7 +3,7 @@ package com.vavisa.masafah.activities;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 
 import com.vavisa.masafah.R;
 import com.vavisa.masafah.base.BaseActivity;

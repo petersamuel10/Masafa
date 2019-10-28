@@ -7,7 +7,7 @@ import com.vavisa.masafah.tap_add.add_address.AddressModel;
 import com.vavisa.masafah.tap_add.add_shipment.model.CategoryModel;
 import com.vavisa.masafah.tap_my_shipment.company_details.CompanyModel;
 import com.vavisa.masafah.tap_my_shipment.company_details.RatingModel;
-import com.vavisa.masafah.tap_my_shipment.my_shipments.ShipmentModel;
+import com.vavisa.masafah.tap_my_shipment.my_shipments.model.ShipmentModel;
 import com.vavisa.masafah.tap_profile.TermsAndCondition.TermsModel;
 import com.vavisa.masafah.tap_profile.profile.model.EditProfileModel;
 import com.vavisa.masafah.verify_phone_number.model.User;
@@ -26,7 +26,6 @@ import retrofit2.http.Header;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
 import retrofit2.http.Path;
-import retrofit2.http.Query;
 
 public interface APIFunctions {
 

@@ -1,21 +1,22 @@
 package com.vavisa.masafah.tap_profile.shipment_history;
 
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.vavisa.masafah.R;
 import com.vavisa.masafah.base.BaseFragment;
-import com.vavisa.masafah.tap_my_shipment.my_shipments.ShipmentModel;
+import com.vavisa.masafah.tap_my_shipment.my_shipments.model.ShipmentModel;
 import com.vavisa.masafah.util.BottomSpaceItemDecoration;
 import com.vavisa.masafah.util.Connectivity;
 
@@ -44,7 +45,7 @@ public class ShipmentHistoryFragment extends BaseFragment implements ShipmentHis
 
             presenter = new ShipmentHistoryPresenter();
             presenter.attachView(this);
-            if(Connectivity.checkInternetConnection())
+            if (Connectivity.checkInternetConnection())
                 presenter.getShipments();
             else
                 showErrorConnection();

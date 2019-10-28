@@ -16,9 +16,9 @@ import retrofit2.Callback;
 import retrofit2.HttpException;
 import retrofit2.Response;
 
-public class AddShipmentPresenter extends BasePresenter<AddShipmentView> {
+ class AddShipmentPresenter extends BasePresenter<AddShipmentView> {
 
-    public void getCategories() {
+     void getCategories() {
 
         getView().showProgress();
         APIManager.getInstance().getAPI().getCategoriesCall(Preferences.getInstance().getString("access_token")).enqueue(new Callback<ArrayList<CategoryModel>>() {

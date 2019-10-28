@@ -1,13 +1,14 @@
 package com.vavisa.masafah.login;
 
-import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.design.widget.TextInputEditText;
 import android.text.TextUtils;
 import android.widget.Button;
 
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
+
+import com.google.android.material.textfield.TextInputEditText;
 import com.vavisa.masafah.R;
 import com.vavisa.masafah.base.BaseActivity;
 import com.vavisa.masafah.helpers.OTP.CountryModel;
@@ -35,7 +36,7 @@ public class LoginActivity extends BaseActivity implements OTPViews {
         setContentView(R.layout.activity_login);
         initViews();
 
-        if(Connectivity.checkInternetConnection())
+        if (Connectivity.checkInternetConnection())
             OTPPresenter.getCountries();
         else
             showErrorConnection();
@@ -64,7 +65,7 @@ public class LoginActivity extends BaseActivity implements OTPViews {
                     KeyboardUtil.hideKeyboardFrom(this, continueButton);
                     if (validate()) {
                         if (Connectivity.checkInternetConnection())
-                            OTPPresenter.sendOtp(this,country_code_btn.getText() + mobileNumber.getText().toString());
+                            OTPPresenter.sendOtp(this, country_code_btn.getText() + mobileNumber.getText().toString());
                         else
                             showErrorConnection();
                     }
@@ -93,11 +94,11 @@ public class LoginActivity extends BaseActivity implements OTPViews {
 
         LoginModel loginModel =
                 new LoginModel(mobileNumber.getText().toString(),
-                               country_id,
-                               Constants.ONE_SIGNAL_TOKEN,
-                                2,
-                                country_code_btn.getText().toString(),
-                                 verification_id);
+                        country_id,
+                        Constants.ONE_SIGNAL_TOKEN,
+                        2,
+                        country_code_btn.getText().toString(),
+                        verification_id);
 
         Intent intent = new Intent(this, VerifyYourNumberActivity.class);
         intent.putExtra("login_model", loginModel);

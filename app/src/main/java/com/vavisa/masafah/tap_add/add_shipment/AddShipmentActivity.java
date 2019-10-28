@@ -1,17 +1,18 @@
 package com.vavisa.masafah.tap_add.add_shipment;
 
-import android.app.AlertDialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.widget.Button;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.vavisa.masafah.R;
 import com.vavisa.masafah.base.BaseActivity;
@@ -19,11 +20,12 @@ import com.vavisa.masafah.tap_add.AddShipmentModel;
 import com.vavisa.masafah.tap_add.add_address.AddAddressActivity;
 import com.vavisa.masafah.tap_add.add_address.AddressModel;
 import com.vavisa.masafah.tap_add.add_shipment.model.CategoryModel;
-import com.vavisa.masafah.tap_add.add_shipment.model.ShipmentItemModel;
+import com.vavisa.masafah.tap_add.add_shipment.model.Shipment;
 import com.vavisa.masafah.tap_add.companies.CompaniesActivity;
 import com.vavisa.masafah.tap_add.invoice.InvoiceActivity;
-import com.vavisa.masafah.tap_add.map.MyAddressActivity;
-import com.vavisa.masafah.tap_my_shipment.my_shipments.ShipmentModel;
+import com.vavisa.masafah.tap_add.myAddress.MyAddressActivity;
+import com.vavisa.masafah.tap_my_shipment.my_shipments.model.ShipmentItems;
+import com.vavisa.masafah.tap_my_shipment.my_shipments.model.ShipmentModel;
 import com.vavisa.masafah.util.BottomSpaceItemDecoration;
 import com.vavisa.masafah.util.Connectivity;
 
@@ -36,7 +38,7 @@ public class AddShipmentActivity extends BaseActivity implements AddShipmentView
     private RecyclerView shipmentList_rec;
     private RadioGroup rg;
     private NewShipmentAdapter adapter;
-    private ArrayList<ShipmentItemModel> shipmentsList;
+    private ArrayList<Shipment> shipmentsList;
     private Button nextButton;
     private AddShipmentPresenter presenter;
     private TextView pickupAddress, pickup_time_from_txt, pickup_time_to_txt;
@@ -99,9 +101,12 @@ public class AddShipmentActivity extends BaseActivity implements AddShipmentView
         addShipmentModel.setIs_today(isToday_picker);
         addShipmentModel.setPickup_time_from(pickup_time_from_txt.getText().toString());
         addShipmentModel.setPickup_time_to(pickup_time_to_txt.getText().toString());
-        if (getIntent().hasExtra("edit_shipment"))
-            startActivity(new Intent(AddShipmentActivity.this, InvoiceActivity.class));
-        else {
+        if (getIntent().hasExtra("edit_shipment")) {
+            Intent invoiceIntent = new Intent(AddShipmentActivity.this, InvoiceActivity.class);
+            invoiceIntent.putExtra("shipmentModel", addShipmentModel);
+            invoiceIntent.putExtra("isEdit", true);
+            startActivity(invoiceIntent);
+        } else {
             Intent companiesIntent = new Intent(AddShipmentActivity.this, CompaniesActivity.class);
             companiesIntent.putExtra("shipmentModel", addShipmentModel);
             startActivity(companiesIntent);
@@ -160,23 +165,42 @@ public class AddShipmentActivity extends BaseActivity implements AddShipmentView
         shipmentsList = new ArrayList<>();
         if (getIntent().hasExtra("edit_shipment")) {
             ShipmentModel shipmentModel = (ShipmentModel) getIntent().getParcelableExtra("edit_shipment");
-            shipmentsList = shipmentModel.getItems();
+
+            for (ShipmentItems item : shipmentModel.getItems()) {
+
+                AddressModel dropAddress = item.getAddressTo();
+
+                for (Shipment shipment : item.getShipmentList()) {
+
+                    shipment.setDrop_address(dropAddress);
+                    shipment.setAddress_to_id(Integer.valueOf(dropAddress.getId()));
+                    shipmentsList.add(shipment);
+                }
+            }
+
+            addShipmentModel.setShipment_id(shipmentModel.getId());
+            addShipmentModel.setShipmentList(shipmentsList);
+            addShipmentModel.setAddress_from_id(Integer.valueOf(shipmentModel.getAddress_from().getId()));
+            addShipmentModel.setIs_today(shipmentModel.getToday());
+            addShipmentModel.setPickup_time_from(shipmentModel.getPickup_time_from());
+            addShipmentModel.setPickup_time_to(shipmentModel.getPickup_time_to());
+            addShipmentModel.setPickup_address(shipmentModel.getAddress_from());
+            addShipmentModel.setPrice(shipmentModel.getPrice());
+
+            pickupAddress.setText(shipmentModel.getAddress_from().getGovernorate().getName().concat(", ").concat(shipmentModel.getAddress_from().getCity().getName()));
             pickup_time_from_txt.setText(shipmentModel.getPickup_time_from());
             pickup_time_to_txt.setText(shipmentModel.getPickup_time_to());
-//            Constants.addShipmentModel.setShipment_id(shipmentModel.getId());
-//            Constants.addShipmentModel.setAddress_from_id(shipmentModel.getAddress_from().getId());
-//            Constants.addShipmentModel.setPickup_address(shipmentModel.getAddress_from());
-//            // Constants.addShipmentModel.setAddress_to_id(shipmentModel.getAddress_to().getId());
-//            Constants.addShipmentModel.setDrop_address(shipmentModel.getAddress_to());
         } else
-            shipmentsList.add(new ShipmentItemModel(-1, "", 1, -1));
+            shipmentsList.add(new Shipment(-1, "", 1, -1));
 
         adapter = new NewShipmentAdapter(categoryList, shipmentsList);
         shipmentList_rec.setAdapter(adapter);
     }
 
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == RESULT_OK)
             if (requestCode == PICKUP_ADDRESS) {
                 AddressModel address = data.getParcelableExtra("selectedAddress");

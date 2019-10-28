@@ -5,7 +5,7 @@ import android.os.Parcelable;
 
 import com.google.gson.annotations.SerializedName;
 import com.vavisa.masafah.tap_add.add_address.AddressModel;
-import com.vavisa.masafah.tap_add.add_shipment.model.ShipmentItemModel;
+import com.vavisa.masafah.tap_add.add_shipment.model.Shipment;
 
 import java.util.ArrayList;
 
@@ -14,7 +14,7 @@ public class AddShipmentModel implements Parcelable {
     @SerializedName("shipment_id")
     private String shipment_id;
     @SerializedName("shipments")
-    private ArrayList<ShipmentItemModel> shipmentList;
+    private ArrayList<Shipment> shipmentList;
     @SerializedName("delivery_companies_id")
     private ArrayList<Integer> deliveryCompaniesIdList;
     @SerializedName("address_from_id")
@@ -30,13 +30,12 @@ public class AddShipmentModel implements Parcelable {
     private String price;
 
 
-
     public AddShipmentModel() {
     }
 
-    public AddShipmentModel(Parcel in) {
+    private AddShipmentModel(Parcel in) {
         shipment_id = in.readString();
-        shipmentList = in.createTypedArrayList(ShipmentItemModel.CREATOR);
+        shipmentList = in.createTypedArrayList(Shipment.CREATOR);
         deliveryCompaniesIdList = new ArrayList<>();
         in.readList(deliveryCompaniesIdList, Integer.class.getClassLoader());
         if (in.readByte() == 0) {
@@ -94,10 +93,10 @@ public class AddShipmentModel implements Parcelable {
         this.shipment_id = shipment_id;
     }
 
-    public ArrayList<ShipmentItemModel> getShipmentList() {
+    public ArrayList<Shipment> getShipmentList() {
         return shipmentList;
     }
-    public void setShipmentList(ArrayList<ShipmentItemModel> shipmentList) {
+    public void setShipmentList(ArrayList<Shipment> shipmentList) {
         this.shipmentList = shipmentList;
     }
 

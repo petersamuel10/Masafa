@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/my_shipments_constraint_layout"
@@ -38,11 +38,11 @@
         android:layout_marginStart="4dp"
         android:layout_marginLeft="4dp"
         android:layout_marginTop="8dp"
-        android:text="122232"
         android:textColor="@android:color/black"
         android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@+id/shipment_number_tag"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="122232" />
 
     <TextView
         android:id="@+id/shipment_description"
@@ -66,13 +66,13 @@
         android:layout_marginTop="32dp"
         android:layout_marginBottom="8dp"
         android:background="@drawable/button_oval_green_filled"
-        android:text="Delivered"
         android:textAllCaps="false"
         android:textColor="@android:color/white"
         android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/side_border"
-        app:layout_constraintTop_toBottomOf="@+id/shipment_description" />
+        app:layout_constraintTop_toBottomOf="@+id/shipment_description"
+        tools:text="Delivered" />
 
     <View
         android:id="@+id/light_divider"
@@ -99,11 +99,11 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
-        android:text="Salmiya"
         android:textColor="@android:color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/filled_circle"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Salmiya" />
 
     <ImageView
         android:id="@+id/filled_circle"
@@ -141,12 +141,12 @@
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
-        android:text="Hawalli"
         android:textColor="@android:color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/empty_circle"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Hawalli" />
 
     <View
         android:id="@+id/vertical_dotted_lines"
@@ -187,4 +187,4 @@
         app:layout_constraintStart_toEndOf="@+id/by_tag"
         app:layout_constraintTop_toTopOf="@+id/by_tag" />
 
-</android.support.constraint.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

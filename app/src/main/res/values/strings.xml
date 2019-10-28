@@ -103,5 +103,6 @@
     <string name="otp_resend_successfully">OTP resend successfully</string>
     <string name="are_you_want_to_call">Are you want to call</string>
     <string name="question_mark">\?</string>
+    <string name="rate_company">Rating company</string>
 
 </resources>

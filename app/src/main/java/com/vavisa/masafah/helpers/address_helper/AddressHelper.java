@@ -1,15 +1,15 @@
 package com.vavisa.masafah.helpers.address_helper;
 
-import android.support.v7.widget.RecyclerView;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.vavisa.masafah.tap_add.add_address.AddressModel;
-import com.vavisa.masafah.tap_add.map.MyAddressActivity;
+import com.vavisa.masafah.tap_add.myAddress.MyAddressActivity;
 import com.vavisa.masafah.tap_profile.myAddresses.AddressesFragment;
 import com.vavisa.masafah.util.Connectivity;
 
 import java.util.ArrayList;
 
-public class AddressHelper  {
+public class AddressHelper {
 
     private RecyclerView address_rec;
     private MyAddressView view;
@@ -19,19 +19,19 @@ public class AddressHelper  {
         MyAddressPresenter presenter = new MyAddressPresenter();
         view = fragment == null ? activity : fragment;
         presenter.attachView(view);
-        if(Connectivity.checkInternetConnection())
+        if (Connectivity.checkInternetConnection())
             presenter.getAddresses();
         else
             view.showErrorConnection();
         this.address_rec = address_rec;
     }
 
-    public void displayAddress(ArrayList<AddressModel> addressList){
+    public void displayAddress(ArrayList<AddressModel> addressList) {
         adapter = new MyAddressAdapter(addressList, view);
         address_rec.setAdapter(adapter);
     }
 
-    public void deleteAddressFromRecycler(int position){
+    public void deleteAddressFromRecycler(int position) {
         adapter.deleteAddress(position);
     }
 }

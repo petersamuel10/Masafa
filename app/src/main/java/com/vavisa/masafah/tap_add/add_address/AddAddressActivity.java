@@ -1,8 +1,9 @@
 package com.vavisa.masafah.tap_add.add_address;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v7.widget.Toolbar;
+import androidx.annotation.Nullable;
+import androidx.appcompat.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.AdapterView;
@@ -10,13 +11,11 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.TextView;
 
 import com.vavisa.masafah.R;
 import com.vavisa.masafah.base.BaseActivity;
 import com.vavisa.masafah.helpers.OTP.CountryModel;
 import com.vavisa.masafah.util.Connectivity;
-import com.vavisa.masafah.util.Constants;
 import com.vavisa.masafah.util.Preferences;
 
 import java.util.ArrayList;
@@ -32,7 +31,6 @@ public class AddAddressActivity extends BaseActivity implements AddAddressView, 
     private String address_id;
     private ArrayList<CountryModel> governorateList, citiesList;
     private ArrayAdapter<String> governAdapter, cityAdapter;
-    private boolean isEditORDisplayAddress;
     private AddressModel currentAddress;
 
     @Override
@@ -42,14 +40,16 @@ public class AddAddressActivity extends BaseActivity implements AddAddressView, 
         initViews();
         country_id = Preferences.getInstance().getString("country_id");
         presenter.getGovernorate(country_id);
-//        isEditORDisplayAddress = getIntent().getExtras().containsKey("address_id") ? true : false;
-        if (isEditORDisplayAddress) {
+
+        if (getIntent().hasExtra("address_id")) {
             if (getIntent().getStringExtra("action").equals("showAddressDetails"))
                 disableViewsForDetails();
             if (Connectivity.checkInternetConnection())
                 presenter.getAddressById(getIntent().getStringExtra("address_id"));
             else
                 showErrorConnection();
+
+            confirmButton.setText(getString(R.string.edit));
             confirmButton.setOnClickListener(v -> {
                 if (valid()) {
                     AddressModel addressModel =
@@ -138,8 +138,6 @@ public class AddAddressActivity extends BaseActivity implements AddAddressView, 
         Toolbar toolbar = findViewById(R.id.add_address_toolbar);
         setSupportActionBar(toolbar);
         setTitle("");
-        TextView toolbarTitle = toolbar.findViewById(R.id.add_address_toolbar_title);
-        toolbarTitle.setText("Pickup location");
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
@@ -171,13 +169,9 @@ public class AddAddressActivity extends BaseActivity implements AddAddressView, 
 
     @Override
     public void addNewAddress(AddressModel addressModel) {
-//        if (getIntent().getExtras().getString("tag").equals("pickup_tag")) {
-//            Constants.addShipmentModel.setPickup_address(addressModel);
-//            Constants.addShipmentModel.setAddress_from_id(addressModel.getId());
-//        } else if (getIntent().getExtras().getString("tag").equals("drop_tag")) {
-//            Constants.addShipmentModel.setDrop_address(addressModel);
-//            Constants.addShipmentModel.setAddress_to_id(addressModel.getId());
-//        }
+        Intent resultIntent = new Intent();
+        resultIntent.putExtra("selectedAddress", addressModel);
+        setResult(RESULT_OK, resultIntent);
         finish();
     }
 
@@ -193,7 +187,7 @@ public class AddAddressActivity extends BaseActivity implements AddAddressView, 
         building_ed.setText(address.getBuilding());
         details_ed.setText(address.getDetails());
         extra_ed.setText(address.getNotes());
-        if (isEditORDisplayAddress)
+        if (getIntent().hasExtra("address_id"))
             govern_sp.setSelection(governAdapter.getPosition(address.getGovernorate().getName()));
     }
 
@@ -223,7 +217,7 @@ public class AddAddressActivity extends BaseActivity implements AddAddressView, 
         }
         cityAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, citiesListNames);
         city_sp.setAdapter(cityAdapter);
-        if (isEditORDisplayAddress)
+        if (getIntent().hasExtra("address_id"))
             city_sp.setSelection(cityAdapter.getPosition(currentAddress.getCity().getName()));
     }
 

@@ -1,7 +1,8 @@
 package com.vavisa.masafah.verify_phone_number;
 
-import android.app.Activity;
 import android.util.Log;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.FirebaseException;
@@ -56,7 +57,7 @@ public class VerifyPresenter extends BasePresenter<VerifyViews> {
     private void signInWithPhoneAuthCredential(final PhoneAuthCredential credential) {
 
         mAuth.signInWithCredential(credential)
-                .addOnCompleteListener((Activity) getView(), task -> {
+                .addOnCompleteListener((AppCompatActivity) getView(), task -> {
                     if (task.isSuccessful()) {
                         FirebaseUser mUser = FirebaseAuth.getInstance().getCurrentUser();
                         mUser.getIdToken(true)
@@ -79,7 +80,7 @@ public class VerifyPresenter extends BasePresenter<VerifyViews> {
                         if (task.getException() instanceof FirebaseAuthInvalidCredentialsException) {
                             getView().hideProgress();
                             getView().clearEditText();
-                            getView().showMessage(((Activity) getView()).getString(R.string.wrong_code));
+                            getView().showMessage(((AppCompatActivity) getView()).getString(R.string.wrong_code));
                         }
                     }
                 });
@@ -146,7 +147,7 @@ public class VerifyPresenter extends BasePresenter<VerifyViews> {
                 login_model.getCountry_code() + login_model.getMobile(),
                 30,
                 TimeUnit.SECONDS,
-                (Activity) getView(),
+                (AppCompatActivity) getView(),
                 new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
                     @Override
                     public void onVerificationCompleted(PhoneAuthCredential phoneAuthCredential) {

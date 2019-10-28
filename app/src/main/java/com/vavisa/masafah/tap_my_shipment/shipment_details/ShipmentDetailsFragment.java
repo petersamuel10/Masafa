@@ -2,10 +2,10 @@ package com.vavisa.masafah.tap_my_shipment.shipment_details;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,9 +15,10 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.vavisa.masafah.R;
 import com.vavisa.masafah.base.BaseFragment;
-import com.vavisa.masafah.tap_add.add_shipment.model.ShipmentItemModel;
+import com.vavisa.masafah.tap_add.add_shipment.model.Shipment;
 import com.vavisa.masafah.tap_my_shipment.company_details.CompanyDetailsActivity;
-import com.vavisa.masafah.tap_my_shipment.my_shipments.ShipmentModel;
+import com.vavisa.masafah.tap_my_shipment.my_shipments.model.ShipmentItems;
+import com.vavisa.masafah.tap_my_shipment.my_shipments.model.ShipmentModel;
 import com.vavisa.masafah.util.Connectivity;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -29,7 +30,7 @@ public class ShipmentDetailsFragment extends BaseFragment implements ShipmentDet
     private View fragment;
     private RelativeLayout shipment_item_ly;
     private TextView shipment_num, shipment_description,
-            pickup_location, pickup_address, drop_location, drop_address,
+            pickup_location, pickup_address, drop_address,
             deliveryCompanyName, time_pickup,
             time_drop, total_amount;
     private CircleImageView com_img;
@@ -49,7 +50,7 @@ public class ShipmentDetailsFragment extends BaseFragment implements ShipmentDet
 
             presenter = new ShipmentDetailsPresenter();
             presenter.attachView(this);
-            if(Connectivity.checkInternetConnection())
+            if (Connectivity.checkInternetConnection())
                 presenter.getShipmentDetails(getArguments().getString("shipment_id"));
             else
                 showErrorConnection();
@@ -80,7 +81,6 @@ public class ShipmentDetailsFragment extends BaseFragment implements ShipmentDet
         shipment_description = fragment.findViewById(R.id.shipment_description);
         pickup_location = fragment.findViewById(R.id.pickup_location);
         pickup_address = fragment.findViewById(R.id.pickup_address);
-        drop_location = fragment.findViewById(R.id.drop_location_area);
         drop_address = fragment.findViewById(R.id.drop_address);
         deliveryCompanyName = fragment.findViewById(R.id.delivery_company_name);
         time_pickup = fragment.findViewById(R.id.time_pickup);
@@ -94,18 +94,12 @@ public class ShipmentDetailsFragment extends BaseFragment implements ShipmentDet
         com_id = String.valueOf(shipmentModel.getCompany().getId());
         shipment_num.setText(shipmentModel.getId());
         pickup_location.setText(shipmentModel.getAddress_from().getCity().getName());
-        String pickup_address_str =   shipmentModel.getAddress_from().getBlock() + " - "
-                                    + shipmentModel.getAddress_from().getStreet() + "\n"
-                                    + shipmentModel.getAddress_from().getBuilding() + " - "
-                                    + shipmentModel.getAddress_from().getMobile();
+        String pickup_address_str = shipmentModel.getAddress_from().getBlock() + " - "
+                + shipmentModel.getAddress_from().getStreet() + "\n"
+                + shipmentModel.getAddress_from().getBuilding() + " - "
+                + shipmentModel.getAddress_from().getMobile();
 
         pickup_address.setText(pickup_address_str);
-        drop_location.setText(shipmentModel.getAddress_to().getCity().getName());
-        String drop_address_str =   shipmentModel.getAddress_to().getBlock() + " - "
-                                  + shipmentModel.getAddress_to().getStreet() + "\n"
-                                  + shipmentModel.getAddress_to().getBuilding() + " - "
-                                  + shipmentModel.getAddress_to().getMobile();
-        drop_address.setText(drop_address_str);
         deliveryCompanyName.setText(shipmentModel.getCompany().getName());
         com_img = fragment.findViewById(R.id.delivery_company_logo);
         time_pickup.setText(shipmentModel.getPickup_time_from());
@@ -113,11 +107,18 @@ public class ShipmentDetailsFragment extends BaseFragment implements ShipmentDet
         total_amount.setText(shipmentModel.getPrice() + " " + getString(R.string.kd));
 
         StringBuilder item_str = new StringBuilder();
-        for (ShipmentItemModel item : shipmentModel.getItems()) {
-            item_str.append("\u25CF ").append(item.getQuantity()).append(" x   ").append(item.getCat_name()).append("\n");
-        }
-        shipment_description.setText(item_str.toString());
+        StringBuilder drop_address_str = new StringBuilder();
+        for (ShipmentItems item : shipmentModel.getItems()) {
+            drop_address_str.append("\u25CF").append(item.getAddressTo().getCity().getName()).append("\n");
+            item_str.append("\n\u25CF ").append(item.getAddressTo().getCity().getName()).append("\n");
+            for (Shipment shipment : item.getShipmentList()) {
 
+                item_str.append("\t\t\t\u25CF").append(shipment.getQuantity()).append(" x   ").append(shipment.getCat_name()).append("\n");
+            }
+        }
+
+        drop_address.setText(drop_address_str);
+        shipment_description.setText(item_str.toString());
         Glide.with(getContext()).load(shipmentModel.getCompany().getImage()).into(com_img);
 
         shipment_item_ly.setVisibility(View.VISIBLE);

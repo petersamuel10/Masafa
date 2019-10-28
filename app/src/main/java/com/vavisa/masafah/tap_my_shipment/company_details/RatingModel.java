@@ -9,7 +9,7 @@ public class RatingModel {
     @SerializedName("rating")
     private Float rating;
 
-    public RatingModel(String company_id, Float rating) {
+     RatingModel(String company_id, Float rating) {
         this.company_id = company_id;
         this.rating = rating;
     }

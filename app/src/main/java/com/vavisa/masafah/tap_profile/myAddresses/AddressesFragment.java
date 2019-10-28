@@ -2,13 +2,13 @@ package com.vavisa.masafah.tap_profile.myAddresses;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.vavisa.masafah.R;
 import com.vavisa.masafah.base.BaseFragment;
@@ -17,7 +17,6 @@ import com.vavisa.masafah.helpers.address_helper.MyAddressPresenter;
 import com.vavisa.masafah.helpers.address_helper.MyAddressView;
 import com.vavisa.masafah.tap_add.add_address.AddAddressActivity;
 import com.vavisa.masafah.tap_add.add_address.AddressModel;
-import com.vavisa.masafah.tap_my_shipment.my_shipments.MyShipmentPresenter;
 import com.vavisa.masafah.util.Connectivity;
 
 import java.util.ArrayList;
@@ -74,9 +73,9 @@ public class AddressesFragment extends BaseFragment implements MyAddressView {
         startActivity(intent);
     }
 
-    public void handleDeleteAction(int position,AddressModel addressModel) {
-        if(Connectivity.checkInternetConnection())
-            presenter.deleteAddresses(this,addressModel.getId());
+    public void handleDeleteAction(int position, AddressModel addressModel) {
+        if (Connectivity.checkInternetConnection())
+            presenter.deleteAddresses(this, addressModel.getId());
         else
             showErrorConnection();
 
