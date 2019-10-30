@@ -5,6 +5,7 @@ import com.vavisa.masafah.login.LoginModel;
 import com.vavisa.masafah.tap_add.AddShipmentModel;
 import com.vavisa.masafah.tap_add.add_address.AddressModel;
 import com.vavisa.masafah.tap_add.add_shipment.model.CategoryModel;
+import com.vavisa.masafah.tap_add.invoice.AddressIDs;
 import com.vavisa.masafah.tap_my_shipment.company_details.CompanyModel;
 import com.vavisa.masafah.tap_my_shipment.company_details.RatingModel;
 import com.vavisa.masafah.tap_my_shipment.my_shipments.model.ShipmentModel;
@@ -101,11 +102,6 @@ public interface APIFunctions {
     @POST("rateCompany")
     Call<HashMap<String, String>> rateCompanyCall(@Header("Authorization") String Authorization, @Body RatingModel ratingModel);
 
-    @FormUrlEncoded
     @POST("getShipmentPrice")
-    Call<HashMap<String, String>> priceCall(@Header("Authorization") String Authorization,
-                                            @Field("governorate_id_from") String governorate_id_from,
-                                            @Field("governorate_id_to") String governorate_id_to,
-                                            @Field("city_id_from") String city_id_from,
-                                            @Field("city_id_to") String city_id_to);
+    Call<HashMap<String, String>> priceCall(@Header("Authorization") String Authorization, @Body AddressIDs addressIDs);
 }

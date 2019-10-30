@@ -21,7 +21,6 @@ import com.vavisa.masafah.base.BaseFragment;
 import com.vavisa.masafah.tap_add.add_shipment.AddShipmentActivity;
 import com.vavisa.masafah.tap_my_shipment.my_shipments.model.ShipmentModel;
 import com.vavisa.masafah.util.Connectivity;
-import com.vavisa.masafah.util.Constants;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -104,7 +103,6 @@ public class MyShipmentsFragment extends BaseFragment implements MyShipmentsView
     }
 
     void editShipment(ShipmentModel shipmentModel) {
-        Constants.isEditShipment = true;
         Intent intent = new Intent(getContext(), AddShipmentActivity.class);
         intent.putExtra("edit_shipment", shipmentModel);
         startActivity(intent);

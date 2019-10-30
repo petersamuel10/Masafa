@@ -6,7 +6,6 @@ import com.vavisa.masafah.base.BaseApplication;
 import com.vavisa.masafah.base.BasePresenter;
 import com.vavisa.masafah.network.APIManager;
 import com.vavisa.masafah.tap_add.AddShipmentModel;
-import com.vavisa.masafah.util.Constants;
 import com.vavisa.masafah.util.Preferences;
 
 import java.util.HashMap;
@@ -19,7 +18,7 @@ import retrofit2.Response;
 
 class InvoicePresenter extends BasePresenter<InvoiceView> {
 
-     void addShipment(AddShipmentModel addShipmentModel) {
+    void addShipment(AddShipmentModel addShipmentModel) {
         getView().showProgress();
         APIManager.getInstance().getAPI().addShipmentCall(Preferences.getInstance().getString("access_token"),
                 addShipmentModel).enqueue(new Callback<HashMap<String, String>>() {
@@ -44,7 +43,7 @@ class InvoicePresenter extends BasePresenter<InvoiceView> {
         });
     }
 
-     void editShipment(AddShipmentModel addShipmentModel) {
+    void editShipment(AddShipmentModel addShipmentModel) {
         getView().showProgress();
         APIManager.getInstance().getAPI().editShipmentCall(Preferences.getInstance().getString("access_token"),
                 addShipmentModel).enqueue(new Callback<HashMap<String, String>>() {
@@ -69,10 +68,9 @@ class InvoicePresenter extends BasePresenter<InvoiceView> {
         });
     }
 
-     void getPrice(String governorate_id_from, String governorate_id_to, String city_id_from, String city_id_to) {
+    void getPrice(AddressIDs addressIDs) {
         getView().showProgress();
-        APIManager.getInstance().getAPI().priceCall(Preferences.getInstance().getString("access_token"),
-                governorate_id_from, governorate_id_to, city_id_from, city_id_to)
+        APIManager.getInstance().getAPI().priceCall(Preferences.getInstance().getString("access_token"), addressIDs)
                 .enqueue(new Callback<HashMap<String, String>>() {
                     @Override
                     public void onResponse(Call<HashMap<String, String>> call, Response<HashMap<String, String>> response) {

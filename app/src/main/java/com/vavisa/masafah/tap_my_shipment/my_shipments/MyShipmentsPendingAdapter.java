@@ -1,6 +1,5 @@
 package com.vavisa.masafah.tap_my_shipment.my_shipments;
 
-import android.content.Context;
 import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -39,8 +38,6 @@ public class MyShipmentsPendingAdapter extends RecyclerView.Adapter<MyShipmentsP
         View v =
                 LayoutInflater.from(viewGroup.getContext())
                         .inflate(R.layout.my_shipment_pending_list_item, viewGroup, false);
-
-        Context context = viewGroup.getContext();
         return new ViewHolder(v);
     }
 
@@ -48,8 +45,7 @@ public class MyShipmentsPendingAdapter extends RecyclerView.Adapter<MyShipmentsP
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
         holder.bind(shipmentList.get(position));
-        holder.itemView.setOnClickListener(
-                v -> {
+        holder.itemView.setOnClickListener( v -> {
                     Fragment fragment = new ShipmentDetailsFragment();
                     activity.switchFragment(activity.getFragmentManager(), fragment, "shipmentDetails");
                 });
@@ -79,7 +75,6 @@ public class MyShipmentsPendingAdapter extends RecyclerView.Adapter<MyShipmentsP
         SwipeRevealLayout sw;
         TextView edit_txt, delete_txt;
         TextView shipment_number_txt, shipment_content_txt, pickup_location_txt, drop_location_txt;
-
 
         ViewHolder(@NonNull View itemView) {
             super(itemView);

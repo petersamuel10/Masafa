@@ -11,7 +11,11 @@ import com.vavisa.masafah.base.BaseActivity;
 import com.vavisa.masafah.tap_add.AddShipmentModel;
 import com.vavisa.masafah.tap_add.add_shipment.model.Shipment;
 import com.vavisa.masafah.util.Connectivity;
-import com.vavisa.masafah.util.Constants;
+
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 public class InvoiceActivity extends BaseActivity implements InvoiceView {
 
@@ -31,10 +35,10 @@ public class InvoiceActivity extends BaseActivity implements InvoiceView {
         initViews();
         presenter = new InvoicePresenter();
         presenter.attachView(this);
-        // presenter.getPrice();
-        addShipmentModel = getIntent().getParcelableExtra("shipmentModel");
-        bindData();
 
+        addShipmentModel = getIntent().getParcelableExtra("shipmentModel");
+        getPrice();
+        bindData();
         confirm_btn.setOnClickListener(v -> {
             if (Connectivity.checkInternetConnection()) {
                 if (getIntent().hasExtra("isEdit"))
@@ -44,6 +48,21 @@ public class InvoiceActivity extends BaseActivity implements InvoiceView {
             } else
                 showErrorConnection();
         });
+    }
+
+    private void getPrice() {
+
+        List<Integer> addressToList = new ArrayList<>();
+        for (Shipment shipment : addShipmentModel.getShipmentList()) {
+            addressToList.add(shipment.getAddress_to_id());
+        }
+
+        Set<Integer> set = new HashSet<>(addressToList);
+        addressToList.clear();
+        addressToList.addAll(set);
+
+        AddressIDs addressIds = new AddressIDs(addShipmentModel.getAddress_from_id(), addressToList);
+        presenter.getPrice(addressIds);
     }
 
     private void bindData() {
@@ -79,8 +98,6 @@ public class InvoiceActivity extends BaseActivity implements InvoiceView {
         drop_address.setText(drop_address_str);
         time_from_txt.setText(addShipmentModel.getPickup_time_from());
         time_to_txt.setText(addShipmentModel.getPickup_time_to());
-        total_txt.setText(addShipmentModel.getPrice());
-
     }
 
     private void initViews() {
@@ -97,7 +114,6 @@ public class InvoiceActivity extends BaseActivity implements InvoiceView {
 
     @Override
     public void handleAddShipment(String msg) {
-        Constants.isEditShipment = false;
         showMessage(msg);
         Intent i = new Intent(InvoiceActivity.this, MainActivity.class);
         i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -108,6 +124,6 @@ public class InvoiceActivity extends BaseActivity implements InvoiceView {
     @Override
     public void displayPrice(String price) {
 
-        total_txt.setText(price);
+        total_txt.setText(price.concat(getString(R.string.kd)));
     }
 }

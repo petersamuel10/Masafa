@@ -38,7 +38,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:scrollbars="none"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/confirm_btn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/shipment_details_toolbar">
@@ -65,8 +65,8 @@
                     android:layout_marginEnd="8dp"
                     android:layout_marginRight="8dp"
                     android:text="@string/items"
-                    android:textSize="16sp"
                     android:textColor="@android:color/black"
+                    android:textSize="16sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -119,8 +119,8 @@
                     android:layout_marginStart="4dp"
                     android:layout_marginLeft="4dp"
                     android:layout_marginTop="16dp"
-                    android:textStyle="bold"
                     android:textColor="@android:color/black"
+                    android:textStyle="bold"
                     app:layout_constraintStart_toEndOf="@+id/filled_circle"
                     app:layout_constraintTop_toBottomOf="@+id/horizontal_line" />
 
@@ -164,8 +164,8 @@
                     android:layout_marginLeft="4dp"
                     android:layout_marginEnd="8dp"
                     android:layout_marginRight="8dp"
-                    android:textStyle="bold"
                     android:textColor="@android:color/black"
+                    android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/empty_circle"
                     app:layout_constraintTop_toBottomOf="@+id/vertical_dotted_lines" />
@@ -213,10 +213,10 @@
                     android:layout_marginTop="16dp"
                     android:layout_marginEnd="16dp"
                     android:layout_marginRight="16dp"
-                    tools:text="25 KD"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/horizontal_line_2" />
+                    app:layout_constraintTop_toBottomOf="@id/horizontal_line_2"
+                    tools:text="25 KD" />
 
                 <TextView
                     android:id="@+id/pickup_time_to_tag"
@@ -229,6 +229,7 @@
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/pickup_time_from_tag" />
+
                 <TextView
                     android:id="@+id/time_to"
                     android:layout_width="wrap_content"
@@ -236,10 +237,10 @@
                     android:layout_marginTop="8dp"
                     android:layout_marginEnd="16dp"
                     android:layout_marginRight="16dp"
-                    tools:text="25 KD"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/pickup_time_from_tag" />
+                    app:layout_constraintTop_toBottomOf="@id/pickup_time_from_tag"
+                    tools:text="25 KD" />
 
                 <TextView
                     android:id="@+id/total_tag"
@@ -254,6 +255,7 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/pickup_time_to_tag" />
+
                 <TextView
                     android:id="@+id/total_amount"
                     android:layout_width="wrap_content"
@@ -262,11 +264,11 @@
                     android:layout_marginEnd="16dp"
                     android:layout_marginRight="16dp"
                     android:layout_marginBottom="16dp"
-                    tools:text="25 KD"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/pickup_time_to_tag" />
+                    app:layout_constraintTop_toBottomOf="@id/pickup_time_to_tag"
+                    tools:text="25 KD" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </RelativeLayout>
