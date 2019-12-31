@@ -1,9 +1,6 @@
 package com.vavisa.masafah.network;
 
-import android.util.Log;
-
 import com.vavisa.masafah.base.BaseApplication;
-import com.vavisa.masafah.util.Connectivity;
 import com.vavisa.masafah.util.Constants;
 
 import java.io.IOException;
@@ -54,8 +51,6 @@ public class APIManager {
                         if (response.code() == 403) {
                             BaseApplication.preventAccess();
                         }
-
-
 
                         return response;
                     }

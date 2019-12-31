@@ -3,8 +3,6 @@ package com.vavisa.masafah.helpers.OTP;
 import android.app.Activity;
 import android.util.Log;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import com.google.firebase.FirebaseException;
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.PhoneAuthCredential;
@@ -36,7 +34,7 @@ public class SendOTPPresenter extends BasePresenter<OTPViews> {
                 new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
                     @Override
                     public void onVerificationCompleted(PhoneAuthCredential phoneAuthCredential) {
-                          //signInWithPhoneAuthCredential(phoneAuthCredential);
+                        //signInWithPhoneAuthCredential(phoneAuthCredential);
                     }
 
                     @Override

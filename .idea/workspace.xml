@@ -11,17 +11,41 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ff145acc-d749-4b38-bda4-21cb18048150" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.gradle/5.1.1/executionHistory/executionHistory.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/5.1.1/executionHistory/executionHistory.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/5.1.1/fileChanges/last-build.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/5.1.1/fileContent/fileContent.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/5.1.1/fileHashes/fileHashes.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/5.1.1/fileHashes/fileHashes.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/5.1.1/fileHashes/resourceHashesCache.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/5.1.1/gc.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/5.1.1/javaCompile/classAnalysis.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/5.1.1/javaCompile/jarAnalysis.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/5.1.1/javaCompile/javaCompile.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/5.1.1/javaCompile/taskHistory.bin" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/caches/gradle_models.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/gradle_models.ser" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_chauthai_swipereveallayout_swipe_reveal_layout_1_4_1_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_chauthai_swipereveallayout_swipe_reveal_layout_1_4_1_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_crashlytics_sdk_android_answers_1_4_7_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_crashlytics_sdk_android_answers_1_4_7_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_crashlytics_sdk_android_crashlytics_2_10_1_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_crashlytics_sdk_android_crashlytics_2_10_1_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_gms_play_services_location_16_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_gms_play_services_location_16_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_gms_play_services_stats_16_0_1_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_gms_play_services_stats_16_0_1_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_firebase_firebase_iid_17_0_3_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_firebase_firebase_iid_17_0_3_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_firebase_firebase_iid_interop_16_0_1_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_firebase_firebase_iid_interop_16_0_1_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_firebase_firebase_measurement_connector_17_0_1_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_firebase_firebase_measurement_connector_17_0_1_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_firebase_firebase_messaging_17_3_3_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_firebase_firebase_messaging_17_3_3_aar.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/vavisa/masafah/activities/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/vavisa/masafah/activities/MainActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/vavisa/masafah/network/APIFunctions.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/vavisa/masafah/network/APIFunctions.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/google-services.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/vavisa/masafah/helpers/OTP/SendOTPPresenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/vavisa/masafah/helpers/OTP/SendOTPPresenter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/vavisa/masafah/login/LoginResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/vavisa/masafah/login/LoginResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/vavisa/masafah/network/APIManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/vavisa/masafah/network/APIManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/vavisa/masafah/tap_add/add_shipment/AddShipmentActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/vavisa/masafah/tap_add/add_shipment/AddShipmentActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/vavisa/masafah/tap_add/add_shipment/NewShipmentAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/vavisa/masafah/tap_add/add_shipment/NewShipmentAdapter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/vavisa/masafah/tap_add/invoice/InvoiceActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/vavisa/masafah/tap_add/invoice/InvoiceActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/vavisa/masafah/tap_add/invoice/InvoicePresenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/vavisa/masafah/tap_add/invoice/InvoicePresenter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/vavisa/masafah/tap_my_shipment/my_shipments/MyShipmentsFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/vavisa/masafah/tap_my_shipment/my_shipments/MyShipmentsFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/vavisa/masafah/tap_my_shipment/my_shipments/MyShipmentsPendingAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/vavisa/masafah/tap_my_shipment/my_shipments/MyShipmentsPendingAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/vavisa/masafah/util/Constants.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/vavisa/masafah/util/Constants.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_invoice.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_invoice.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/my_shipment_pending_list_item.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/my_shipment_pending_list_item.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/vavisa/masafah/verify_phone_number/VerifyYourNumberActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/vavisa/masafah/verify_phone_number/VerifyYourNumberActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_add_new_shipment.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_add_new_shipment.xml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.gradle/" />
     <ignored path="$PROJECT_DIR$/build/classes/" />
@@ -34,7 +58,7 @@
   <component name="DefaultGradleProjectSettings">
     <option name="isMigrated" value="true" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="FA69P0300322" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="9WVDU18621004189" />
   <component name="ExternalProjectsManager">
     <system id="GRADLE">
       <state>
@@ -72,18 +96,55 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/vavisa/masafah/tap_add/invoice/InvoiceActivity.java">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/vavisa/masafah/network/APIFunctions.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="450">
-              <caret line="64" column="12" selection-start-line="64" selection-start-column="12" selection-end-line="64" selection-end-column="12" />
+            <state relative-caret-position="90">
+              <caret line="32" column="24" selection-start-line="32" selection-start-column="24" selection-end-line="32" selection-end-column="24" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/vavisa/masafah/helpers/OTP/SendOTPPresenter.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="150">
+              <caret line="59" column="42" selection-start-line="59" selection-start-column="42" selection-end-line="59" selection-end-column="42" />
               <folding>
-                <element signature="method#onCreate#0;class#InvoiceActivity#0" />
-                <element signature="method#bindData#0;class#InvoiceActivity#0" />
-                <element signature="method#initViews#0;class#InvoiceActivity#0" />
-                <element signature="method#handleAddShipment#0;class#InvoiceActivity#0" />
-                <element signature="method#displayPrice#0;class#InvoiceActivity#0" />
+                <element signature="method#sendOtp#0;class#SendOTPPresenter#0" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/vavisa/masafah/network/APIManager.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="600">
+              <caret line="53" selection-start-line="53" selection-end-line="53" />
+              <folding>
+                <element signature="e#2415#2416#0" expanded="true" />
+                <element signature="e#2474#2475#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="810">
+              <caret line="54" column="72" lean-forward="true" selection-start-line="54" selection-start-column="72" selection-end-line="54" selection-end-column="72" />
+            </state>
+          </provider>
+          <provider editor-type-id="android-manifest" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/vavisa/masafah/tap_my_shipment/company_details/CompanyDetailsPresenter.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="120">
+              <caret line="21" column="36" selection-start-line="21" selection-start-column="36" selection-end-line="21" selection-end-column="36" />
             </state>
           </provider>
         </entry>
@@ -115,13 +176,7 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/src/main/java/com/vavisa/masafah/tap_profile/shipment_history/ShipmentHistoryFragment.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/vavisa/masafah/util/FragmentUtil.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/vavisa/masafah/util/GridSpaceItemDecoration.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_add_address.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_login.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_main_test.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/vavisa/masafah/helpers/OTP/SendOTPPresenter.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/vavisa/masafah/tap_profile/profile/ProfileFragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_startup.xml" />
@@ -144,7 +199,6 @@
         <option value="$PROJECT_DIR$/app/src/main/res/layout/rating_pop_up.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/shipment_history_canceled_list_item.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/shipment_history_delivered_list_item.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_add_new_shipment.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_companies.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_company_details.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_my_address.xml" />
@@ -162,10 +216,17 @@
         <option value="$PROJECT_DIR$/app/src/main/java/com/vavisa/masafah/tap_add/invoice/AddressIDs.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/vavisa/masafah/network/APIFunctions.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_invoice.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/vavisa/masafah/tap_add/invoice/InvoiceActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/vavisa/masafah/util/ExpandableTextView.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/my_shipment_pending_list_item.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/vavisa/masafah/tap_my_shipment/my_shipments/MyShipmentsPendingAdapter.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_add_new_shipment.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/vavisa/masafah/tap_add/add_shipment/AddShipmentActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/vavisa/masafah/tap_add/add_shipment/NewShipmentAdapter.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/vavisa/masafah/verify_phone_number/VerifyYourNumberActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/vavisa/masafah/helpers/OTP/SendOTPPresenter.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/vavisa/masafah/login/LoginResponse.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/vavisa/masafah/tap_add/invoice/InvoiceActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/vavisa/masafah/network/APIManager.java" />
       </list>
     </option>
   </component>
@@ -181,6 +242,36 @@
     </navigator>
     <panes>
       <pane id="PackagesPane" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="Masafah-Android" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Masafah-Android" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+            </path>
+            <path>
+              <item name="Masafah-Android" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Masafah-Android" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+            </path>
+            <path>
+              <item name="Masafah-Android" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Masafah-Android" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Masafah-Android" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Masafah-Android" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="Scope" />
       <pane id="AndroidView">
         <subPane>
           <expand>
@@ -221,7 +312,7 @@
               <item name="com" type="cbb59c9e:AndroidPsiDirectoryNode" />
               <item name="vavisa" type="462c0819:PsiDirectoryNode" />
               <item name="masafah" type="462c0819:PsiDirectoryNode" />
-              <item name="tap_add" type="462c0819:PsiDirectoryNode" />
+              <item name="network" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Masafah-Android" type="1abcf292:AndroidViewProjectNode" />
@@ -230,54 +321,22 @@
               <item name="com" type="cbb59c9e:AndroidPsiDirectoryNode" />
               <item name="vavisa" type="462c0819:PsiDirectoryNode" />
               <item name="masafah" type="462c0819:PsiDirectoryNode" />
-              <item name="tap_add" type="462c0819:PsiDirectoryNode" />
-              <item name="invoice" type="462c0819:PsiDirectoryNode" />
+              <item name="tap_my_shipment" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Masafah-Android" type="1abcf292:AndroidViewProjectNode" />
               <item name="app" type="feadf853:AndroidModuleNode" />
-              <item name="res" type="d4f16f75:AndroidResFolderNode" />
-            </path>
-            <path>
-              <item name="Masafah-Android" type="1abcf292:AndroidViewProjectNode" />
-              <item name="app" type="feadf853:AndroidModuleNode" />
-              <item name="res" type="d4f16f75:AndroidResFolderNode" />
-              <item name="layout" type="ddeffd01:AndroidResFolderTypeNode" />
+              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
+              <item name="com" type="cbb59c9e:AndroidPsiDirectoryNode" />
+              <item name="vavisa" type="462c0819:PsiDirectoryNode" />
+              <item name="masafah" type="462c0819:PsiDirectoryNode" />
+              <item name="tap_my_shipment" type="462c0819:PsiDirectoryNode" />
+              <item name="company_details" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="Masafah-Android" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Masafah-Android" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-            </path>
-            <path>
-              <item name="Masafah-Android" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Masafah-Android" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-            </path>
-            <path>
-              <item name="Masafah-Android" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Masafah-Android" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Masafah-Android" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Masafah-Android" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -403,7 +462,7 @@
       <window_info id="Designer" order="6" />
       <window_info id="Resources Explorer" order="7" />
       <window_info id="Capture Tool" order="8" />
-      <window_info anchor="bottom" id="Run" order="0" sideWeight="0.4989259" weight="0.38795182" />
+      <window_info anchor="bottom" id="Run" order="0" sideWeight="0.4989259" weight="0.762249" />
       <window_info anchor="bottom" id="Logcat" order="1" sideWeight="0.4989259" weight="0.8369478" />
       <window_info anchor="bottom" id="TODO" order="2" weight="0.32931727" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.2634538" />
@@ -428,34 +487,10 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/com/vavisa/masafah/verify_phone_number/VerifyYourNumberActivity.java</url>
-          <line>190</line>
-          <properties />
-          <option name="timeStamp" value="3" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/com/vavisa/masafah/verify_phone_number/VerifyPresenter.java</url>
-          <line>147</line>
-          <properties />
-          <option name="timeStamp" value="4" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/com/vavisa/masafah/verify_phone_number/VerifyPresenter.java</url>
-          <line>145</line>
-          <properties />
-          <option name="timeStamp" value="5" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/vavisa/masafah/tap_add/Select_location/SelectLocationPresenter.java</url>
           <line>19</line>
           <properties />
           <option name="timeStamp" value="6" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/com/vavisa/masafah/helpers/OTP/SendOTPPresenter.java</url>
-          <line>30</line>
-          <properties />
-          <option name="timeStamp" value="14" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/vavisa/masafah/tap_add/invoice/InvoicePresenter.java</url>
@@ -481,190 +516,71 @@
           <properties />
           <option name="timeStamp" value="76" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/vavisa/masafah/tap_add/invoice/InvoiceActivity.java</url>
+          <line>77</line>
+          <properties />
+          <option name="timeStamp" value="77" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/vavisa/masafah/tap_add/invoice/InvoiceActivity.java</url>
+          <line>79</line>
+          <properties />
+          <option name="timeStamp" value="78" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
   <component name="debuggerHistoryManager">
     <expressions id="evaluateExpression">
       <expression>
+        <expression-string>drop_address_str</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>item.getDrop_address().getGovernorate().getName()</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>concat(item.getDrop_address().getGovernorate().getName()</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>item.getDrop_address()</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>item</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>login_model.getCountry_code() + login_model.getMobile()</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>loginModel</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>Constants.ONE_SIGNAL_TOKEN</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
         <expression-string>addressIDs</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>response</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>addShipmentModel</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>shipmentsList</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>selected_item_pos</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>shipmentModel</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>shipmentModel.getItems()</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>item_str</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>item_str.toString()</expression-string>
         <language-id>JAVA</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/vavisa/masafah/base/BaseActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="404">
-          <caret line="66" selection-start-line="66" selection-end-line="66" />
-          <folding>
-            <element signature="e#1801#1802#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/vavisa/masafah/helpers/OTP/SendOTPPresenter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="262">
-          <caret line="60" selection-start-line="60" selection-end-line="60" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/vavisa/masafah/login/LoginActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="244">
-          <caret line="39" selection-start-line="39" selection-end-line="39" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/vavisa/masafah/util/dialogs/ProgressDialog.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="27" column="54" selection-start-line="27" selection-start-column="54" selection-end-line="27" selection-end-column="54" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_select_location.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="386">
-          <caret line="93" column="24" selection-start-line="93" selection-start-column="24" selection-end-line="93" selection-end-column="47" />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_base.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="1" column="50" selection-start-line="1" selection-start-column="50" selection-end-line="1" selection-end-column="50" />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_pickup_location.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="420">
-          <caret line="28" column="9" lean-forward="true" selection-start-line="28" selection-start-column="9" selection-end-line="28" selection-end-column="9" />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/item_company.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="420">
-          <caret line="28" column="39" lean-forward="true" selection-start-line="28" selection-start-column="39" selection-end-line="28" selection-end-column="39" />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_add_address.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="12" column="42" selection-start-line="12" selection-start-column="5" selection-end-line="12" selection-end-column="48" />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_add_new_shipment.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="14" column="48" selection-start-line="14" selection-start-column="48" selection-end-line="14" selection-end-column="48" />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_companies.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="13" column="48" selection-start-line="13" selection-start-column="48" selection-end-line="13" selection-end-column="48" />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_company_details.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="12" column="48" selection-start-line="12" selection-start-column="48" selection-end-line="12" selection-end-column="48" />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_login.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="817">
-          <caret line="92" column="40" selection-start-line="92" selection-start-column="40" selection-end-line="92" selection-end-column="40" />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml">
-      <provider selected="true" editor-type-id="text-editor" />
-      <provider editor-type-id="android-designer2" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main_test.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="495">
-          <caret line="33" column="14" selection-start-line="33" selection-start-column="14" selection-end-line="33" selection-end-column="14" />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_my_address.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="15" column="48" selection-start-line="15" selection-start-column="48" selection-end-line="15" selection-end-column="48" />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_startup.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="16" column="52" selection-start-line="16" selection-start-column="52" selection-end-line="16" selection-end-column="52" />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_verify_phone_number.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1102">
@@ -833,20 +749,6 @@
       </provider>
       <provider editor-type-id="android-designer2" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/vavisa/masafah/util/Constants.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="94" selection-start-line="6" selection-start-column="94" selection-end-line="6" selection-end-column="94" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/vavisa/masafah/activities/MainActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="254">
-          <caret line="80" column="58" selection-start-line="80" selection-start-column="58" selection-end-line="80" selection-end-column="58" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/vavisa/masafah/tap_my_shipment/my_shipments/MyShipmentsFragment.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="254">
@@ -856,26 +758,6 @@
     </entry>
     <entry file="android-dummy:///Users/vavisa/Desktop/Masafah-Android/app/Translations Editor">
       <provider selected="true" editor-type-id="string-resource-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/vavisa/masafah/tap_add/add_shipment/NewShipmentAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="475">
-          <caret line="161" selection-start-line="161" selection-end-line="161" />
-          <folding>
-            <element signature="method#onCreateViewHolder#0;class#NewShipmentAdapter#0" />
-            <element signature="method#showPopAddressWay#0;class#NewShipmentAdapter#0" />
-            <element signature="method#categoryExist#0;class#NewShipmentAdapter#0" />
-            <element signature="method#getItemViewType#0;class#NewShipmentAdapter#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/vavisa/masafah/network/APIFunctions.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1045">
-          <caret line="103" selection-start-line="103" selection-end-line="103" />
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/vavisa/masafah/tap_add/invoice/AddressIDs.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -887,34 +769,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/vavisa/masafah/util/ExpandableTextView.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="13" column="54" selection-start-line="13" selection-start-column="40" selection-end-line="13" selection-end-column="54" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#399#400#0" expanded="true" />
-            <element signature="e#434#435#0" expanded="true" />
-            <element signature="e#1054#1055#0" expanded="true" />
-            <element signature="e#1117#1118#0" expanded="true" />
-            <element signature="e#1166#1167#0" expanded="true" />
-            <element signature="e#1222#1223#0" expanded="true" />
-            <element signature="e#1768#1769#0" expanded="true" />
-            <element signature="e#1803#1804#0" expanded="true" />
-            <element signature="e#2001#2002#0" expanded="true" />
-            <element signature="e#2034#2035#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_invoice.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="697">
-          <caret line="59" column="46" selection-start-line="59" selection-start-column="46" selection-end-line="59" selection-end-column="46" />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2" />
-    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/vavisa/masafah/util/ExpandableTextView.java" />
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/vavisa/masafah/tap_add/invoice/InvoicePresenter.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="360">
@@ -939,10 +794,159 @@
       </provider>
       <provider editor-type-id="android-designer2" />
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_add_new_shipment.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2670">
+          <caret line="178" column="71" selection-start-line="178" selection-start-column="71" selection-end-line="178" selection-end-column="71" />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/vavisa/masafah/tap_add/add_shipment/NewShipmentAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="540">
+          <caret line="208" lean-forward="true" selection-start-line="208" selection-end-line="208" />
+          <folding>
+            <element signature="method#NewShipmentAdapter#0;class#NewShipmentAdapter#0" />
+            <element signature="method#onCreateViewHolder#0;class#NewShipmentAdapter#0" />
+            <element signature="method#onBindViewHolder#0;class#NewShipmentAdapter#0" />
+            <element signature="method#showPopAddressWay#0;class#NewShipmentAdapter#0" />
+            <element signature="method#onActivityResult#0;class#NewShipmentAdapter#0" />
+            <element signature="method#getItemViewType#0;class#NewShipmentAdapter#0" />
+            <element signature="class#ViewHolder#0;class#NewShipmentAdapter#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/vavisa/masafah/tap_add/add_address/AddAddressActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="23" column="13" selection-start-line="23" selection-start-column="13" selection-end-line="23" selection-end-column="13" />
+          <folding>
+            <element signature="e#1334#3262#0" />
+            <element signature="e#1698#2696#1" />
+            <element signature="e#2128#2684#0" />
+            <element signature="e#2164#2670#1" />
+            <element signature="e#2747#3254#0" />
+            <element signature="e#2783#3240#1" />
+            <element signature="e#3268#3702#0" />
+            <element signature="e#3708#5249#0" />
+            <element signature="e#3804#3914#1" />
+            <element signature="e#4051#4161#1" />
+            <element signature="e#4227#4441#0" />
+            <element signature="e#4505#4607#1" />
+            <element signature="e#4728#4831#1" />
+            <element signature="e#4956#5061#1" />
+            <element signature="e#5255#6236#0" />
+            <element signature="e#6242#6369#0" />
+            <element signature="e#6375#6619#0" />
+            <element signature="e#6625#7266#0" />
+            <element signature="e#7371#7892#0" />
+            <element signature="e#7627#7699#1" />
+            <element signature="e#7898#8485#0" />
+            <element signature="e#8117#8177#1" />
+            <element signature="e#8491#8910#0" />
+            <element signature="e#8623#8904#0" />
+            <element signature="e#8916#8991#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/vavisa/masafah/verify_phone_number/VerifyPresenter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="672">
+          <caret line="165" selection-start-line="165" selection-end-line="165" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/vavisa/masafah/login/LoginActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="390">
+          <caret line="115" lean-forward="true" selection-start-line="115" selection-end-line="115" />
+          <folding>
+            <element signature="method#onCreate#0;class#LoginActivity#0" />
+            <element signature="method#initViews#0;class#LoginActivity#0" />
+            <element signature="method#validate#0;class#LoginActivity#0" />
+            <element signature="method#handleVerification_id#0;class#LoginActivity#0" />
+            <element signature="method#countries#0;class#LoginActivity#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/vavisa/masafah/verify_phone_number/VerifyYourNumberActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="405">
+          <caret line="212" selection-start-line="212" selection-end-line="212" />
+          <folding>
+            <element signature="method#onCreate#0;class#VerifyYourNumberActivity#0" />
+            <element signature="e#1774#2270#0" />
+            <element signature="class#2369:2918" />
+            <element signature="class#2982:3531" />
+            <element signature="class#3595:4144" />
+            <element signature="class#4208:4757" />
+            <element signature="class#4821:5370" />
+            <element signature="e#5416#5740#0" />
+            <element signature="method#initViews#0;class#VerifyYourNumberActivity#0" />
+            <element signature="method#onSupportNavigateUp#0;class#VerifyYourNumberActivity#0" />
+            <element signature="method#userInfo#0;class#VerifyYourNumberActivity#0" />
+            <element signature="method#clearEditText#0;class#VerifyYourNumberActivity#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/vavisa/masafah/util/Constants.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" column="31" selection-start-line="4" selection-start-column="31" selection-end-line="4" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/vavisa/masafah/login/LoginResponse.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/vavisa/masafah/tap_add/add_shipment/AddShipmentActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="687">
+          <caret line="163" column="24" selection-start-line="163" selection-start-column="24" selection-end-line="163" selection-end-column="24" />
+          <folding>
+            <element signature="e#2570#3517#0" />
+            <element signature="method#showPopAddressWay#0;class#AddShipmentActivity#0" />
+            <element signature="method#showPickerTime#0;class#AddShipmentActivity#0" />
+            <element signature="method#initViews#0;class#AddShipmentActivity#0" />
+            <element signature="method#onActivityResult#0;class#AddShipmentActivity#0" />
+            <element signature="method#onSupportNavigateUp#0;class#AddShipmentActivity#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/vavisa/masafah/tap_add/add_shipment/AddShipmentPresenter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="465">
+          <caret line="45" selection-start-line="45" selection-end-line="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/vavisa/masafah/tap_add/invoice/InvoiceActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="765">
+          <caret line="79" selection-start-line="79" selection-end-line="79" />
+          <folding>
+            <element signature="method#getPrice#0;class#InvoiceActivity#0" />
+            <element signature="method#initViews#0;class#InvoiceActivity#0" />
+            <element signature="method#handleAddShipment#0;class#InvoiceActivity#0" />
+            <element signature="method#displayPrice#0;class#InvoiceActivity#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/vavisa/masafah/tap_my_shipment/my_shipments/MyShipmentsPendingAdapter.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="810">
-          <caret line="107" column="33" selection-start-line="102" selection-start-column="11" selection-end-line="115" selection-end-column="62" />
+          <caret line="107" selection-start-line="107" selection-end-line="107" />
           <folding>
             <element signature="method#MyShipmentsPendingAdapter#0;class#MyShipmentsPendingAdapter#0" />
             <element signature="method#onCreateViewHolder#0;class#MyShipmentsPendingAdapter#0" />
@@ -954,19 +958,98 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/vavisa/masafah/tap_add/invoice/InvoiceActivity.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/vavisa/masafah/activities/StartUpActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="450">
-          <caret line="64" column="12" selection-start-line="64" selection-start-column="12" selection-end-line="64" selection-end-column="12" />
+        <state relative-caret-position="60">
+          <caret line="15" column="13" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/vavisa/masafah/activities/MainActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="960">
+          <caret line="80" column="58" selection-start-line="80" selection-start-column="58" selection-end-line="80" selection-end-column="58" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/vavisa/masafah/base/BaseApplication.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="30" column="23" selection-start-line="30" selection-start-column="23" selection-end-line="30" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_invoice.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2370">
+          <caret line="158" column="16" selection-start-line="158" selection-start-column="16" selection-end-line="158" selection-end-column="16" />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/vavisa/masafah/network/InternetConnectionListener.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="17" selection-start-line="2" selection-start-column="17" selection-end-line="2" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/vavisa/masafah/network/NetworkConnectionInterceptor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="10" column="24" lean-forward="true" selection-start-line="10" selection-start-column="24" selection-end-line="10" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/vavisa/masafah/tap_my_shipment/company_details/CompanyDetailsPresenter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="21" column="36" selection-start-line="21" selection-start-column="36" selection-end-line="21" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/vavisa/masafah/helpers/OTP/SendOTPPresenter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="59" column="42" selection-start-line="59" selection-start-column="42" selection-end-line="59" selection-end-column="42" />
           <folding>
-            <element signature="method#onCreate#0;class#InvoiceActivity#0" />
-            <element signature="method#bindData#0;class#InvoiceActivity#0" />
-            <element signature="method#initViews#0;class#InvoiceActivity#0" />
-            <element signature="method#handleAddShipment#0;class#InvoiceActivity#0" />
-            <element signature="method#displayPrice#0;class#InvoiceActivity#0" />
+            <element signature="method#sendOtp#0;class#SendOTPPresenter#0" />
           </folding>
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/vavisa/masafah/tap_my_shipment/company_details/CompanyDetailsViews.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" column="17" selection-start-line="4" selection-start-column="17" selection-end-line="4" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/vavisa/masafah/network/APIFunctions.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="32" column="24" selection-start-line="32" selection-start-column="24" selection-end-line="32" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/vavisa/masafah/network/APIManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="600">
+          <caret line="53" selection-start-line="53" selection-end-line="53" />
+          <folding>
+            <element signature="e#2415#2416#0" expanded="true" />
+            <element signature="e#2474#2475#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="810">
+          <caret line="54" column="72" lean-forward="true" selection-start-line="54" selection-start-column="72" selection-end-line="54" selection-end-column="72" />
+        </state>
+      </provider>
+      <provider editor-type-id="android-manifest" />
     </entry>
   </component>
 </project>

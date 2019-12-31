@@ -12,6 +12,7 @@ public class LoginResponse {
     public String getMessage() {
         return message;
     }
+
     public void setMessage(String message) {
         this.message = message;
     }
@@ -19,6 +20,7 @@ public class LoginResponse {
     public String getOtp() {
         return otp;
     }
+
     public void setOtp(String otp) {
         this.otp = otp;
     }

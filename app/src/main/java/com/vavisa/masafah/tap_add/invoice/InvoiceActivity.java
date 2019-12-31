@@ -26,7 +26,6 @@ public class InvoiceActivity extends BaseActivity implements InvoiceView {
     private Button confirm_btn;
     private InvoicePresenter presenter;
     private AddShipmentModel addShipmentModel;
-    private String drop_address_str = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,14 +67,15 @@ public class InvoiceActivity extends BaseActivity implements InvoiceView {
     private void bindData() {
 
         StringBuilder item_str = new StringBuilder();
-
         Shipment item;
+        StringBuilder drop_address_str = new StringBuilder();
+
         for (int i = 0; i < addShipmentModel.getShipmentList().size(); i++) {
 
             item = addShipmentModel.getShipmentList().get(i);
             if (!item.getVisited()) {
                 item_str.append("\u25CF ").append(item.getDrop_address().getGovernorate().getName()).append(", ").append(item.getDrop_address().getCity().getName()).append("\n");
-                drop_address_str += ("\u25CF ").concat(item.getDrop_address().getGovernorate().getName()).concat(", ").concat(item.getDrop_address().getCity().getName()).concat("\n");
+                drop_address_str.append("\u25CF ").append(item.getDrop_address().getGovernorate().getName()).append(", ").append(item.getDrop_address().getCity().getName()).append("\n");
 
                 for (int x = 0; x < addShipmentModel.getShipmentList().size(); x++) {
                     Shipment item1 = addShipmentModel.getShipmentList().get(x);

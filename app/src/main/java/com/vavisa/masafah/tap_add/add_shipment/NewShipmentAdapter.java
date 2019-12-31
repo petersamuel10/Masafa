@@ -34,7 +34,6 @@ public class NewShipmentAdapter extends RecyclerView.Adapter<NewShipmentAdapter.
     private Integer selected_item_pos = 0;
     private final int DROP_ADDRESS = 5;
 
-
     NewShipmentAdapter(ArrayList<CategoryModel> categoryList, ArrayList<Shipment> shipmentsList) {
         this.categoryList = categoryList;
         this.shipmentsList = shipmentsList;
@@ -163,15 +162,6 @@ public class NewShipmentAdapter extends RecyclerView.Adapter<NewShipmentAdapter.
                 shipmentsList.get(selected_item_pos).setAddress_to_id(Integer.valueOf(dropAddress.getId()));
                 notifyDataSetChanged();
             }
-    }
-
-    private boolean categoryExist(Integer cat_id) {
-
-        for (Shipment item : shipmentsList) {
-            if (cat_id == item.getCategory_id())
-                return true;
-        }
-        return false;
     }
 
     @Override

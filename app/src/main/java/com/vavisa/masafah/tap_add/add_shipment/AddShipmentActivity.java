@@ -36,7 +36,6 @@ public class AddShipmentActivity extends BaseActivity implements AddShipmentView
 
     AddShipmentModel addShipmentModel;
     private RecyclerView shipmentList_rec;
-    private RadioGroup rg;
     private NewShipmentAdapter adapter;
     private ArrayList<Shipment> shipmentsList;
     private Button nextButton;
@@ -44,7 +43,6 @@ public class AddShipmentActivity extends BaseActivity implements AddShipmentView
     private TextView pickupAddress, pickup_time_from_txt, pickup_time_to_txt;
     private Boolean isToday_picker = true;
     private final int PICKUP_ADDRESS = 4;
-    private final int Drop_ADDRESS = 5;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -122,7 +120,7 @@ public class AddShipmentActivity extends BaseActivity implements AddShipmentView
         TimePickerDialog timePicker;
         timePicker = new TimePickerDialog(this, (view, hourOfDay, minute1) -> {
 
-            time_txt.setText(String.format("%02d", hourOfDay) + ":" + String.format("%02d", minute1) + ":00");
+            time_txt.setText(String.format("%02d", hourOfDay).concat(":").concat(String.format("%02d", minute1)).concat(":00"));
         }, hour, minute, true);
 
         timePicker.show();
@@ -139,24 +137,15 @@ public class AddShipmentActivity extends BaseActivity implements AddShipmentView
         pickupAddress = findViewById(R.id.pickup_address);
         shipmentList_rec = findViewById(R.id.shipment_items);
         shipmentList_rec.addItemDecoration(new BottomSpaceItemDecoration(50));
-        rg = findViewById(R.id.time_rg);
+        RadioGroup rg = findViewById(R.id.time_rg);
         pickup_time_to_txt = findViewById(R.id.time_to);
         pickup_time_from_txt = findViewById(R.id.time_from);
         nextButton = findViewById(R.id.next_button);
         rg.setOnCheckedChangeListener((group, checkedId) -> {
-            if (checkedId == R.id.pickup_time_rb)
-                isToday_picker = false;
-            else
-                isToday_picker = true;
+            isToday_picker = checkedId != R.id.pickup_time_rb;
         });
         presenter = new AddShipmentPresenter();
         presenter.attachView(this);
-    }
-
-    @Override
-    public boolean onSupportNavigateUp() {
-        onBackPressed();
-        return super.onSupportNavigateUp();
     }
 
     @Override
@@ -197,17 +186,23 @@ public class AddShipmentActivity extends BaseActivity implements AddShipmentView
         shipmentList_rec.setAdapter(adapter);
     }
 
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        int drop_ADDRESS = 5;
         if (resultCode == RESULT_OK)
             if (requestCode == PICKUP_ADDRESS) {
-                AddressModel address = data.getParcelableExtra("selectedAddress");
+                AddressModel address = data != null ? data.getParcelableExtra("selectedAddress") : null;
                 pickupAddress.setText(address.getGovernorate().getName().concat(", ").concat(address.getCity().getName()));
                 addShipmentModel.setPickup_address(address);
                 addShipmentModel.setAddress_from_id(Integer.valueOf(address.getId()));
-            } else if (requestCode == Drop_ADDRESS)
+            } else if (requestCode == drop_ADDRESS)
                 adapter.onActivityResult(requestCode, resultCode, data);
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return super.onSupportNavigateUp();
     }
 }

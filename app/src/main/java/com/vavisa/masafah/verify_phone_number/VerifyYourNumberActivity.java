@@ -3,13 +3,14 @@ package com.vavisa.masafah.verify_phone_number;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.os.Bundle;
-import androidx.annotation.Nullable;
-import androidx.appcompat.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import androidx.annotation.Nullable;
+import androidx.appcompat.widget.Toolbar;
 
 import com.vavisa.masafah.R;
 import com.vavisa.masafah.activities.MainActivity;
@@ -26,8 +27,6 @@ public class VerifyYourNumberActivity extends BaseActivity implements VerifyView
     private Button verifyButton;
     private String otp_str;
     private VerifyPresenter verifyPresenter;
-    private LoginModel loginModel;
-    private Boolean isChangeMobile;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -35,7 +34,9 @@ public class VerifyYourNumberActivity extends BaseActivity implements VerifyView
         setContentView(R.layout.activity_verify_phone_number);
         initViews();
 
-        if (getIntent().getExtras().containsKey("update_mobile")) {
+        LoginModel loginModel;
+        boolean isChangeMobile;
+        if (getIntent().hasExtra("update_mobile")) {
             isChangeMobile = true;
             loginModel = getIntent().getParcelableExtra("update_mobile");
         } else {
@@ -190,7 +191,7 @@ public class VerifyYourNumberActivity extends BaseActivity implements VerifyView
         Preferences.getInstance().putString("access_token", verifyResModel.getAccess_token());
         Preferences.getInstance().putString("country_id", verifyResModel.getUser().getCountry_id());
 
-        if (getIntent().getExtras().containsKey("update_mobile"))
+        if (getIntent().hasExtra("update_mobile"))
             onBackPressed();
         else
             start(MainActivity.class);
